@@ -1,9 +1,9 @@
 
 // ─── Framework ────────────────────────────────────────────────────────────────
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence }      from "framer-motion";
-import Link                             from 'react-router-dom';
-import { usePathname }                  from 'react-router-dom';
+
+import { Link, useLocation }            from 'react-router-dom';
 
 // ─── Icônes ───────────────────────────────────────────────────────────────────
 import {
@@ -118,7 +118,7 @@ function NavItem({ href, icon: Icon, label, isCollapsed, isActive, badge }: NavI
 
   return (
     <Link
-      href={href}
+      to={href}
       style={itemStyle}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -204,7 +204,7 @@ function PopupItem({ icon: Icon, label, href, onClick, danger = false, index }: 
 
   if (href) {
     return (
-      <Link href={href} style={style}
+      <Link to={href} style={style}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -336,8 +336,8 @@ export function LeftBarContent() {
   const [isCollapsed,      setIsCollapsed]      = useState(true);
   const [showOrgPopup,     setShowOrgPopup]      = useState(false);
   const [showAccountPopup, setShowAccountPopup]  = useState(false);
-  const location = useLocation()
-const pathname = location.pathname;
+  const location  = useLocation();
+  const pathname   = location.pathname;
 
   // ── Thème glass sidebar ────────────────────────────────────────────────────
   const glassSidebar = useGlass("sidebar");
