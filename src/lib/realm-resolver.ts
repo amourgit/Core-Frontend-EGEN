@@ -25,6 +25,9 @@
 // Ce module est SYNCHRONE et sans effet de bord — safe pour SSR/Edge.
 // ============================================================
 
+// ── Import du SubdomainResolver ──────────────────────────────
+import { resolveSubdomains, getTopSubdomain } from './subdomain-resolver';
+
 // ── Configuration ─────────────────────────────────────────
 const ENV_REALM   = import.meta.env.VITE_KEYCLOAK_REALM || '';
 const ENV_KC_URL  = import.meta.env.VITE_KEYCLOAK_URL   || 'http://localhost:8080';
@@ -76,54 +79,16 @@ export interface ResolvedRealm {
  * @param hostname  Le hostname brut (ex: "monentite.iam-central.ga")
  * @returns Le sous-domaine ou null si inexistant / non pertinent
  */
+/**
+ * Extrait le sous-domaine principal depuis un hostname.
+ * Délègue au SubdomainResolver pour une extraction robuste multi-niveaux.
+ *
+ * Retourne le sous-domaine le plus éloigné du domaine racine (= le tenant).
+ * Exemple : "client.region.iam-central.ga" → "client"
+ */
 export function extractSubdomain(hostname: string): string | null {
   if (!hostname) return null;
-
-  // Nettoyer le port si présent (ex: "localhost:3001" → "localhost")
-  const host = hostname.split(':')[0].toLowerCase().trim();
-
-  // Rejeter les IP
-  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host)) return null;
-
-  // Rejeter les domaines racines connus et localhost
-  const isRootDomain = ROOT_DOMAINS.some(
-    (root) => host === root || host === `www.${root}`
-  );
-  if (isRootDomain) return null;
-
-  // Extraire le premier segment (sous-domaine)
-  const parts = host.split('.');
-
-  // Un hostname sans point = domaine nu (ex: "monapp") → traiter comme realm direct
-  if (parts.length === 1) {
-    // Hostname sans TLD → probablement un env Docker / intranet
-    return host !== 'localhost' ? host : null;
-  }
-
-  // Au moins 2 parties : vérifier que ce n'est pas un domaine racine
-  if (parts.length === 2) {
-    // ex: "monapp.ga" → le sous-domaine serait "monapp"
-    // mais on ne peut pas distinguer un domaine racine court d'un sous-domaine
-    // → traiter le premier segment comme sous-domaine uniquement si
-    //   c'est un TLD connu en 2ème position
-    const tld = parts[1];
-    const KNOWN_TLDS = ['ga', 'com', 'org', 'net', 'io', 'fr', 'eu', 'app', 'dev'];
-    if (KNOWN_TLDS.includes(tld)) {
-      // "monapp.ga" → realm = "monapp"
-      return parts[0];
-    }
-    return null;
-  }
-
-  // 3+ parties : ex "monentite.iam-central.ga" → sous-domaine = "monentite"
-  const subdomain = parts[0];
-
-  // Ignorer "www" comme sous-domaine significatif
-  if (subdomain === 'www') {
-    return parts.length >= 4 ? parts[1] : null;
-  }
-
-  return subdomain;
+  return getTopSubdomain(hostname);
 }
 
 // ── Résolution principale ─────────────────────────────────

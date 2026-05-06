@@ -1,39 +1,43 @@
 // ============================================================
 // hooks/useSessionMonitor.ts
-// Monitor de SESSION (présence côté serveur) — polling fixe.
+// Monitor de SESSION — Vérification directe côté Keycloak.
 //
-// RÔLE UNIQUE :
-//  Vérifier que la SESSION est toujours valide côté serveur.
-//  (révocation admin, déconnexion d'un autre appareil, blacklist...)
-//  Il NE gère PAS le refresh du token — c'est useTokenWatcher.
+// ARCHITECTURE VITE SPA (sans BFF / Route Handlers) :
+//  Ce hook vérifie la validité de la session Keycloak en
+//  utilisant l'endpoint userinfo OIDC standard :
+//    GET /realms/{realm}/protocol/openid-connect/userinfo
+//    Authorization: Bearer <access_token>
+//
+//  Si Keycloak répond 401 → token invalide/révoqué → logout.
+//  Si réseau down (5xx, timeout) → on conserve la session (failsafe).
 //
 // SÉPARATION DES RESPONSABILITÉS :
-//  - useTokenWatcher   → refresh proactif (exp lu depuis le JWT, 1s interval)
-//  - useSessionMonitor → vérification serveur (polling toutes les 60s)
+//  - useTokenWatcher   → refresh proactif (exp lu depuis le JWT)
+//  - useSessionMonitor → vérification révocation Keycloak (polling)
 //
 // GRACE PERIOD post-login :
 //  8s sans vérification réseau après le login pour éviter la race
-//  condition avec la propagation des cookies HttpOnly.
+//  condition avec la propagation de session Keycloak.
 //
 // FAILSAFE :
-//  Erreur réseau (5xx, timeout) → on ne déconnecte PAS.
-//  Seul un 401/403 avec authenticated:false confirme une révocation.
+//  Erreur réseau (5xx, timeout, CORS) → on ne déconnecte PAS.
+//  Seul un 401/403 confirme une révocation réelle.
 // ============================================================
-
 
 import { useEffect, useRef, useCallback } from 'react';
 import { useAuthContext } from '@/lib/auth/AuthProvider';
-import { tokenManager } from '@/lib/security/token-manager';
-import { auditLogger }  from '@/lib/security/audit-logger';
+import { tokenManager }  from '@/lib/security/token-manager';
+import { auditLogger }   from '@/lib/security/audit-logger';
+import { getCurrentRealm } from '@/lib/realm-resolver';
 import {
   SESSION_MONITOR,
   INACTIVITY,
 } from '@/lib/security/constants';
 
-// Grace period post-login (cookies HttpOnly pas encore propagés)
+// Grace period post-login (session Keycloak pas encore propagée)
 const LOGIN_GRACE_PERIOD_MS = 8_000;
 
-// ── useSessionMonitor ─────────────────────────────────────
+// ── useSessionMonitor ─────────────────────────────────────────
 export function useSessionMonitor() {
   const { isAuthenticated, logout, user, sessionId } = useAuthContext();
 
@@ -42,7 +46,7 @@ export function useSessionMonitor() {
   const lastCheckRef     = useRef<number>(0);
   const authStartTimeRef = useRef<number>(0);
 
-  // Polling fixe toutes les 60s
+  // Polling toutes les 60s
   const pollIntervalMs = SESSION_MONITOR.POLL_STANDARD_MS;
 
   // Enregistrer le moment où l'auth devient true
@@ -55,16 +59,25 @@ export function useSessionMonitor() {
     }
   }, [isAuthenticated]);
 
-  // ── Vérification de session (côté serveur) ────────────────
-  // Ne rafraîchit PAS le token — se contente de vérifier si la session
-  // est toujours connue et valide côté backend.
+  // ── Vérification de session via Keycloak userinfo ─────────
+  //
+  // Appelle directement l'endpoint userinfo OIDC de Keycloak.
+  // Cela vérifie :
+  //   1. Que l'access token est valide (non expiré)
+  //   2. Que la session Keycloak existe toujours (non révoquée)
+  //   3. Que le compte utilisateur est actif
+  //
+  // Retourne 401 si :
+  //   - Token expiré ou révoqué
+  //   - Session terminée côté Keycloak (déconnexion admin, autre device)
+  //   - Compte désactivé
   const checkSession = useCallback(async () => {
     if (isCheckingRef.current) return;
     if (!isAuthenticated)      return;
 
     // Grace period post-login
     const timeSinceAuth = Date.now() - authStartTimeRef.current;
-    if (timeSinceAuth < LOGIN_GRACE_PERIOD_MS && tokenManager.hasValidToken()) return;
+    if (timeSinceAuth < LOGIN_GRACE_PERIOD_MS) return;
 
     // Anti-flood : min 4s entre deux vérifications
     const now = Date.now();
@@ -73,48 +86,53 @@ export function useSessionMonitor() {
     isCheckingRef.current = true;
 
     try {
-      const res = await fetch('/api/auth/session', {
-        method:      'GET',
-        credentials: 'include',
-        cache:       'no-store',
+      const accessToken = tokenManager.getAccessToken();
+
+      // Pas de token en mémoire mais isAuthenticated = true → incohérence → logout
+      if (!accessToken) {
+        auditLogger.logSessionRevoked(user?.id, sessionId || undefined);
+        await logout(false);
+        return;
+      }
+
+      // Appel direct Keycloak userinfo — vérification de révocation réelle
+      const { oidcBase } = getCurrentRealm();
+      const res = await fetch(`${oidcBase}/userinfo`, {
+        method:  'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Cache-Control': 'no-store',
+        },
+        signal: AbortSignal.timeout(10_000),
       });
 
-      // Erreur serveur → failsafe, on garde la session
+      if (res.status === 401 || res.status === 403) {
+        // Session révoquée côté Keycloak
+        auditLogger.logSessionRevoked(user?.id, sessionId || undefined);
+        tokenManager.clear();
+        await logout(false);
+        return;
+      }
+
+      // 5xx ou erreur non-auth → failsafe, on garde la session
       if (!res.ok) {
-        if (res.status >= 500) return;
-        // 401/403 = session révoquée côté backend
-        auditLogger.logSessionRevoked(user?.id, sessionId || undefined);
-        tokenManager.clear();
-        await logout(false);
+        console.warn('[SessionMonitor] Keycloak userinfo error:', res.status);
         return;
       }
 
-      const data = await res.json() as { authenticated: boolean; accessToken?: string };
+      // 200 OK → session valide
 
-      if (!data.authenticated) {
-        // Double vérification : si token valide en mémoire, ne pas déconnecter
-        // (cookie peut ne pas encore être arrivé après un refresh récent)
-        if (tokenManager.hasValidToken()) return;
-
-        auditLogger.logSessionRevoked(user?.id, sessionId || undefined);
-        tokenManager.clear();
-        await logout(false);
-        return;
+    } catch (err) {
+      // AbortError (timeout) ou erreur réseau → failsafe, session conservée
+      if (err instanceof Error && err.name !== 'AbortError') {
+        // Erreur réseau silencieuse — normale en cas de perte de connexion
       }
-
-      // Mettre à jour le token en mémoire si le serveur en fournit un nouveau
-      if (data.accessToken) {
-        tokenManager.setAccessToken(data.accessToken);
-      }
-
-    } catch {
-      // Erreur réseau → on conserve la session (failsafe)
     } finally {
       isCheckingRef.current = false;
     }
   }, [isAuthenticated, logout, user?.id, sessionId]);
 
-  // ── Polling adaptatif ──────────────────────────────────────
+  // ── Polling ───────────────────────────────────────────────
   useEffect(() => {
     if (!isAuthenticated) {
       if (intervalRef.current) { clearInterval(intervalRef.current); intervalRef.current = null; }
@@ -133,24 +151,32 @@ export function useSessionMonitor() {
     };
   }, [isAuthenticated, checkSession, pollIntervalMs]);
 
-  // ── Vérification au retour sur l'onglet ───────────────────
+  // ── Vérification au retour sur l'onglet ──────────────────
   useEffect(() => {
     if (!isAuthenticated) return;
-    const handle = () => { if (document.visibilityState === 'visible') checkSession(); };
+    const handle = () => {
+      if (document.visibilityState === 'visible') {
+        lastCheckRef.current = 0; // Force vérification immédiate
+        checkSession();
+      }
+    };
     document.addEventListener('visibilitychange', handle);
     return () => document.removeEventListener('visibilitychange', handle);
   }, [isAuthenticated, checkSession]);
 
-  // ── Vérification au focus ─────────────────────────────────
+  // ── Vérification au focus fenêtre ────────────────────────
   useEffect(() => {
     if (!isAuthenticated) return;
-    const handle = () => checkSession();
+    const handle = () => {
+      lastCheckRef.current = 0; // Force vérification immédiate
+      checkSession();
+    };
     window.addEventListener('focus', handle);
     return () => window.removeEventListener('focus', handle);
   }, [isAuthenticated, checkSession]);
 }
 
-// ── useInactivityGuard ────────────────────────────────────
+// ── useInactivityGuard ────────────────────────────────────────
 export function useInactivityGuard(onWarning?: (secondsLeft: number) => void) {
   const { isAuthenticated, logout, user, sessionId } = useAuthContext();
 

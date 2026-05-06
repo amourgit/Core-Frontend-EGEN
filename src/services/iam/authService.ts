@@ -652,45 +652,73 @@ export function clearStoredTokens(): void {
  *   2. sessionStorage (backup — si l'app a été rechargée dans l'onglet)
  *   3. Refresh via Keycloak si l'access token est expiré mais le refresh existe
  */
+/**
+ * Restaure la session côté SPA Vite (sans BFF).
+ *
+ * Priorité :
+ *  1. Token valide en mémoire (tokenManager) + vérification Keycloak userinfo
+ *  2. Access token valide en sessionStorage + vérification Keycloak userinfo
+ *  3. Refresh token disponible → appel Keycloak pour obtenir un nouveau AT
+ *  4. Aucune session valide → { authenticated: false }
+ *
+ * La vérification via userinfo garantit que la session Keycloak est
+ * toujours active (pas juste que le JWT est localement valide).
+ */
 export async function getSession(): Promise<SessionResponse> {
-  // 1. Token en mémoire valide → session active
+  // ── 1. Token en mémoire valide ─────────────────────────
   let accessToken = tokenManager.getAccessToken();
 
   if (accessToken && !isTokenExpiredLocal(accessToken)) {
-    const user        = userDataStore.getUser<CurrentUser>();
-    const permissions = userDataStore.getPermissions();
-    const roles       = userDataStore.getRoles();
-    const sessionId   = tokenManager.getSessionId();
-
-    if (user) {
-      return { authenticated: true, accessToken, user, permissions, roles, sessionId: sessionId ?? undefined };
+    // Vérifier que la session Keycloak est toujours active
+    const kcCheck = await verifyKeycloakSession(accessToken);
+    if (kcCheck === 'valid') {
+      const user        = userDataStore.getUser<CurrentUser>();
+      const permissions = userDataStore.getPermissions();
+      const roles       = userDataStore.getRoles();
+      const sessionId   = tokenManager.getSessionId();
+      if (user) {
+        return { authenticated: true, accessToken, user, permissions, roles, sessionId: sessionId ?? undefined };
+      }
+    } else if (kcCheck === 'revoked') {
+      // Session révoquée côté Keycloak → nettoyer et continuer vers refresh
+      clearStoredTokens();
+      tokenManager.clear();
+      accessToken = null;
     }
+    // kcCheck === 'network_error' → on continue et tente le refresh
   }
 
-  // 2. Mémoire vide ou expirée → tenter de restaurer depuis sessionStorage
+  // ── 2. Restauration depuis sessionStorage ───────────────
   const storedAT = getStoredAccessToken();
   const storedRT = getStoredRefreshToken();
 
   if (storedAT && !isTokenExpiredLocal(storedAT)) {
-    tokenManager.setAccessToken(storedAT);
-    const payload = decodeJWTUnsafe(storedAT);
-    const roles   = [
-      ...(payload?.realm_access?.roles ?? []),
-      ...Object.values(payload?.resource_access ?? {}).flatMap(c => c.roles),
-    ];
-    const user = userDataStore.getUser<CurrentUser>() ?? buildUserFromToken(storedAT);
-    if (user) {
-      userDataStore.setUser(user);
-      userDataStore.setPermissionsAndRoles(roles, roles);
-      return { authenticated: true, accessToken: storedAT, user, permissions: roles, roles };
+    const kcCheck = await verifyKeycloakSession(storedAT);
+    if (kcCheck === 'valid') {
+      tokenManager.setAccessToken(storedAT);
+      const payload = decodeJWTUnsafe(storedAT);
+      const roles   = [
+        ...(payload?.realm_access?.roles ?? []),
+        ...Object.values(payload?.resource_access ?? {}).flatMap(c => c.roles),
+      ];
+      const user = userDataStore.getUser<CurrentUser>() ?? buildUserFromToken(storedAT);
+      if (user) {
+        userDataStore.setUser(user);
+        userDataStore.setPermissionsAndRoles(roles, roles);
+        return { authenticated: true, accessToken: storedAT, user, permissions: roles, roles };
+      }
+    } else if (kcCheck === 'revoked') {
+      clearStoredTokens();
+      tokenManager.clear();
     }
   }
 
-  // 3. Access token expiré mais refresh token dispo → refresh proactif
+  // ── 3. Refresh token dispo → renouvellement Keycloak ───
   if (storedRT) {
     try {
       const tokenResp = await authService.refreshToken(storedRT);
       tokenManager.setAccessToken(tokenResp.access_token);
+      tokenManager.setSessionId(tokenResp.session_state);
       storeAccessToken(tokenResp.access_token);
       storeRefreshToken(tokenResp.refresh_token);
 
@@ -707,20 +735,52 @@ export async function getSession(): Promise<SessionResponse> {
         userDataStore.setPermissionsAndRoles(roles, roles);
         return {
           authenticated: true,
-          accessToken: tokenResp.access_token,
-          sessionId: tokenResp.session_state,
+          accessToken:   tokenResp.access_token,
+          sessionId:     tokenResp.session_state,
           user,
-          permissions: roles,
+          permissions:   roles,
           roles,
         };
       }
-    } catch {
-      // Refresh échoué → session expirée
+    } catch (err) {
+      // Refresh refusé par Keycloak (session révoquée, expirée, etc.)
+      console.info('[getSession] Refresh token rejeté par Keycloak:', err);
       clearStoredTokens();
+      tokenManager.clear();
     }
   }
 
   return { authenticated: false };
+}
+
+/**
+ * Vérifie si la session Keycloak est toujours valide via userinfo.
+ *
+ * @returns 'valid'         — session active et token valide
+ * @returns 'revoked'       — 401/403 → session révoquée ou token invalide
+ * @returns 'network_error' — erreur réseau ou timeout (failsafe)
+ */
+async function verifyKeycloakSession(
+  accessToken: string
+): Promise<'valid' | 'revoked' | 'network_error'> {
+  try {
+    const { oidcBase } = getCurrentRealm();
+    const res = await fetch(`${oidcBase}/userinfo`, {
+      method:  'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Cache-Control': 'no-store',
+      },
+      signal: AbortSignal.timeout(8_000),
+    });
+
+    if (res.status === 401 || res.status === 403) return 'revoked';
+    if (!res.ok) return 'network_error'; // 5xx → failsafe
+    return 'valid';
+  } catch {
+    // Timeout ou erreur réseau → failsafe (ne pas déconnecter)
+    return 'network_error';
+  }
 }
 
 /** Logout : révoque le refresh token côté Keycloak + nettoie tout */
@@ -776,16 +836,41 @@ function buildUserFromUserInfo(info: KcUserInfo, roles: string[]): CurrentUser {
 }
 
 // ── Planification du refresh automatique ──────────────────────
+//
+// FLUX CORRECT :
+//  1. Timer déclenché 60s avant expiration du token
+//  2. Vérification que le refresh token existe en sessionStorage
+//  3. Appel Keycloak token endpoint → refresh_token grant
+//  4. Si Keycloak répond 401/400 → refresh_token expiré/révoqué
+//     → signaler au callback pour déclencher un logout propre
+//  5. Si succès → nouveau token en mémoire + re-planification
+//
+// DÉTECTION DE RÉVOCATION :
+//  Si Keycloak refuse le refresh (invalid_grant, session_not_active,
+//  token_expired) → la session est définitivement invalide.
+//  On appelle onRevoked() pour que l'AuthProvider déconnecte l'utilisateur.
+// ─────────────────────────────────────────────────────────────
 
 let _refreshTimer: ReturnType<typeof setTimeout> | null = null;
+
+export interface TokenRefreshCallbacks {
+  /** Appelé avec le nouveau token après un refresh réussi */
+  onRefreshed?: (newToken: string) => void;
+  /** Appelé quand le refresh échoue (session révoquée / expirée) */
+  onRevoked?: () => void;
+}
 
 /**
  * Planifie un refresh automatique 60 s avant l'expiration du token.
  * Appelé par AuthProvider après chaque login ou hydratation.
  *
- * @param onRefreshed  Callback appelé avec le nouveau token après refresh
+ * @param callbacks.onRefreshed  Callback avec le nouveau token si succès
+ * @param callbacks.onRevoked    Callback si révocation/expiration confirmée
  */
-export function scheduleTokenRefresh(onRefreshed?: (newToken: string) => void): void {
+export function scheduleTokenRefresh(
+  onRefreshed?: (newToken: string) => void,
+  onRevoked?: () => void,
+): void {
   cancelTokenRefresh();
 
   const token = tokenManager.getAccessToken();
@@ -795,27 +880,75 @@ export function scheduleTokenRefresh(onRefreshed?: (newToken: string) => void): 
   if (!payload?.exp) return;
 
   // Refresh 60 s avant expiration (minimum 10 s)
-  const nowMs       = Date.now();
-  const expMs       = payload.exp * 1000;
-  const delayMs     = Math.max(10_000, expMs - nowMs - 60_000);
+  const nowMs   = Date.now();
+  const expMs   = payload.exp * 1000;
+  const delayMs = Math.max(10_000, expMs - nowMs - 60_000);
 
   _refreshTimer = setTimeout(async () => {
     const refreshToken = getStoredRefreshToken();
-    if (!refreshToken) return;
+
+    if (!refreshToken) {
+      // Pas de refresh token → session perdue (rechargement page sans RT)
+      // Le SessionMonitor détectera l'expiration du AT et déconnectera
+      cancelTokenRefresh();
+      onRevoked?.();
+      return;
+    }
 
     try {
       const resp = await authService.refreshToken(refreshToken);
+
+      // Succès : stocker les nouveaux tokens
       tokenManager.setAccessToken(resp.access_token);
+      tokenManager.setSessionId(resp.session_state);
       storeAccessToken(resp.access_token);
       storeRefreshToken(resp.refresh_token);
 
-      // Planifier le prochain refresh
-      scheduleTokenRefresh(onRefreshed);
+      // Re-planifier le prochain refresh
+      scheduleTokenRefresh(onRefreshed, onRevoked);
 
       onRefreshed?.(resp.access_token);
-    } catch {
-      // Refresh échoué → ne pas forcer logout ici, le SessionMonitor s'en charge
+
+    } catch (err) {
+      // Analyser l'erreur Keycloak
+      const errMsg = err instanceof Error ? err.message : String(err);
+      let isRevocation = false;
+
+      try {
+        const parsed = JSON.parse(errMsg);
+        // Codes d'erreur Keycloak indiquant une révocation définitive :
+        // - invalid_grant : refresh token expiré ou révoqué
+        // - session_not_active : session Keycloak fermée
+        // - token_expired : token expiré côté serveur
+        const revokedErrors = ['invalid_grant', 'session_not_active', 'token_expired'];
+        if (revokedErrors.includes(parsed?.error)) {
+          isRevocation = true;
+        }
+      } catch {
+        // Si le message contient ces codes sans JSON
+        if (errMsg.includes('invalid_grant') || errMsg.includes('session_not_active')) {
+          isRevocation = true;
+        }
+        // 400 = invalid_grant (Keycloak standard)
+        if (errMsg.includes('HTTP 400') || errMsg.includes('HTTP 401')) {
+          isRevocation = true;
+        }
+      }
+
+      clearStoredTokens();
+      tokenManager.clear();
       cancelTokenRefresh();
+
+      if (isRevocation) {
+        // Session définitivement invalide → déclencher logout côté AuthProvider
+        console.info('[TokenRefresh] Session révoquée par Keycloak → logout');
+        onRevoked?.();
+      } else {
+        // Erreur réseau transitoire → ne pas déconnecter, on réessaiera
+        console.warn('[TokenRefresh] Erreur réseau transitoire, refresh reporté:', errMsg);
+        // Re-planifier un essai dans 30s
+        _refreshTimer = setTimeout(() => scheduleTokenRefresh(onRefreshed, onRevoked), 30_000);
+      }
     }
   }, delayMs);
 }

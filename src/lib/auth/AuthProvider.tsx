@@ -125,10 +125,16 @@ export function AuthProvider({ children, autoHydrate = true, onLogout, onLogin }
             isAuthenticated: true, isLoading: false, permissions, roles });
           syncToStore(user, accessToken, permissions, roles);
           clientCookieManager.setSessionActiveCookie(3600 * 8);
-          scheduleTokenRefresh((newToken) => {
-            setState(p => ({ ...p, accessToken: newToken }));
-            syncToStore(user, newToken, permissions, roles);
-          });
+          scheduleTokenRefresh(
+            (newToken) => {
+              setState(p => ({ ...p, accessToken: newToken }));
+              syncToStore(user, newToken, permissions, roles);
+            },
+            () => {
+              // Session révoquée côté Keycloak → logout propre
+              doLogout(false);
+            },
+          );
         } else {
           setState(p => ({ ...p, isAuthenticated: false, isLoading: false }));
           syncToStore(null, null, [], []);
@@ -161,10 +167,15 @@ export function AuthProvider({ children, autoHydrate = true, onLogout, onLogin }
     setState({ user, accessToken, sessionId, isAuthenticated: true, isLoading: false, permissions, roles });
     syncToStore(user, accessToken, permissions, roles);
     clientCookieManager.setSessionActiveCookie(3600 * 8);
-    scheduleTokenRefresh((newToken) => {
-      setState(p => ({ ...p, accessToken: newToken }));
-      syncToStore(user, newToken, permissions, roles);
-    });
+    scheduleTokenRefresh(
+      (newToken) => {
+        setState(p => ({ ...p, accessToken: newToken }));
+        syncToStore(user, newToken, permissions, roles);
+      },
+      () => {
+        doLogout(false);
+      },
+    );
     auditLogger.log('token_refreshed', { user_id: user.id, session_id: sessionId });
     onLogin?.(user);
   }, [syncToStore, onLogin]);
