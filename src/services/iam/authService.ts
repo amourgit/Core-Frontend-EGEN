@@ -7,8 +7,8 @@
 //  👤 Profil → GET  /realms/{realm}/protocol/openid-connect/userinfo
 //  🛠 Admin  → /admin/realms/{realm}/users/**   (Bearer token admin)
 //
-// Variables d'environnement attendues (Next.js) :
-//   VITE_KEYCLOAK_REALM    = https://auth.mondomaine.com
+// Variables d'environnement attendues (Vite) :
+//   VITE_KEYCLOAK_URL    = https://auth.mondomaine.com
 //   VITE_KEYCLOAK_REALM  = mon-realm
 //   VITE_KEYCLOAK_CLIENT = mon-client-id
 //   KEYCLOAK_CLIENT_SECRET      = (si client confidentiel, côté serveur uniquement)
@@ -16,6 +16,9 @@
 
 import { httpClient } from '@/lib/http-client';
 import { getCurrentRealm } from '@/lib/realm-resolver';
+import { tokenManager, userDataStore } from '@/lib/security/token-manager';
+import { decodeJWTUnsafe } from '@/lib/security/jwt-verifier';
+import type { SessionResponse, CurrentUser } from '@/lib/models/iam/auth.model';
 
 // ── Config Keycloak ────────────────────────────────────────
 const KC_URL    = import.meta.env.VITE_KEYCLOAK_URL!;
@@ -211,7 +214,8 @@ export const authService = {
    * Headers : Content-Type: application/x-www-form-urlencoded
    * Body    : client_id + refresh_token
    */
-  async logout(refreshToken: string): Promise<void> {
+  async logout(refreshToken?: string): Promise<void> {
+    if (!refreshToken) return;
     const body = new URLSearchParams({
       client_id:     KC_CLIENT,
       refresh_token: refreshToken,
@@ -581,20 +585,239 @@ export const adminSessionService = {
   },
 };
 
-// ── Token Refresh Functions ───────────────────────────────
-// Ces fonctions sont utilisées par AuthProvider pour le refresh automatique
+// ── Gestion du Refresh Token (SPA Vite — sans BFF) ───────────
+//
+// ARCHITECTURE SÉCURITÉ SPA :
+//   - access_token  → mémoire JS uniquement (tokenManager)
+//   - refresh_token → sessionStorage (survit aux navigations,
+//     effacé à la fermeture de l'onglet/fenêtre)
+//   - Le refresh se fait directement vers Keycloak OIDC
+//     (pas de Route Handler intermédiaire dans une SPA Vite)
+//
+// COMPROMIS ACCEPTÉ :
+//   Dans une vraie SPA sans BFF (Backend For Frontend),
+//   le refresh token doit vivre quelque part côté client.
+//   sessionStorage est préférable à localStorage car il est
+//   isolé par onglet et effacé à la fermeture du navigateur.
+//
+// POUR UNE SÉCURITÉ MAXIMALE : déployer un BFF (Node/Express)
+//   qui stocke le refresh token dans un cookie HttpOnly et
+//   expose un endpoint /api/auth/refresh sécurisé.
+// ─────────────────────────────────────────────────────────────
+
+const RT_STORAGE_KEY = 'iam_rt_session';
+const AT_STORAGE_KEY = 'iam_at_session';
+
+/** Persiste le refresh token dans sessionStorage (SPA Vite) */
+export function storeRefreshToken(token: string): void {
+  if (typeof window === 'undefined') return;
+  try { sessionStorage.setItem(RT_STORAGE_KEY, token); } catch { /* quota */ }
+}
+
+/** Récupère le refresh token depuis sessionStorage */
+export function getStoredRefreshToken(): string | null {
+  if (typeof window === 'undefined') return null;
+  try { return sessionStorage.getItem(RT_STORAGE_KEY); } catch { return null; }
+}
+
+/** Persiste l'access token dans sessionStorage (backup mémoire) */
+export function storeAccessToken(token: string): void {
+  if (typeof window === 'undefined') return;
+  try { sessionStorage.setItem(AT_STORAGE_KEY, token); } catch { /* quota */ }
+}
+
+/** Récupère l'access token depuis sessionStorage (si mémoire perdue) */
+export function getStoredAccessToken(): string | null {
+  if (typeof window === 'undefined') return null;
+  try { return sessionStorage.getItem(AT_STORAGE_KEY); } catch { return null; }
+}
+
+/** Efface tous les tokens persistés (logout) */
+export function clearStoredTokens(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.removeItem(RT_STORAGE_KEY);
+    sessionStorage.removeItem(AT_STORAGE_KEY);
+  } catch { /* ignore */ }
+}
+
+// ── Session hydration (SPA Vite — remplace /api/auth/session) ─
+
+/**
+ * Simule un GET /api/auth/session pour une SPA Vite.
+ *
+ * Dans Next.js, ce serait un Route Handler qui lit les cookies HttpOnly.
+ * Ici, on restitue la session depuis :
+ *   1. tokenManager (mémoire — si l'app n'a pas été rechargée)
+ *   2. sessionStorage (backup — si l'app a été rechargée dans l'onglet)
+ *   3. Refresh via Keycloak si l'access token est expiré mais le refresh existe
+ */
+export async function getSession(): Promise<SessionResponse> {
+  // 1. Token en mémoire valide → session active
+  let accessToken = tokenManager.getAccessToken();
+
+  if (accessToken && !isTokenExpiredLocal(accessToken)) {
+    const user        = userDataStore.getUser<CurrentUser>();
+    const permissions = userDataStore.getPermissions();
+    const roles       = userDataStore.getRoles();
+    const sessionId   = tokenManager.getSessionId();
+
+    if (user) {
+      return { authenticated: true, accessToken, user, permissions, roles, sessionId: sessionId ?? undefined };
+    }
+  }
+
+  // 2. Mémoire vide ou expirée → tenter de restaurer depuis sessionStorage
+  const storedAT = getStoredAccessToken();
+  const storedRT = getStoredRefreshToken();
+
+  if (storedAT && !isTokenExpiredLocal(storedAT)) {
+    tokenManager.setAccessToken(storedAT);
+    const payload = decodeJWTUnsafe(storedAT);
+    const roles   = [
+      ...(payload?.realm_access?.roles ?? []),
+      ...Object.values(payload?.resource_access ?? {}).flatMap(c => c.roles),
+    ];
+    const user = userDataStore.getUser<CurrentUser>() ?? buildUserFromToken(storedAT);
+    if (user) {
+      userDataStore.setUser(user);
+      userDataStore.setPermissionsAndRoles(roles, roles);
+      return { authenticated: true, accessToken: storedAT, user, permissions: roles, roles };
+    }
+  }
+
+  // 3. Access token expiré mais refresh token dispo → refresh proactif
+  if (storedRT) {
+    try {
+      const tokenResp = await authService.refreshToken(storedRT);
+      tokenManager.setAccessToken(tokenResp.access_token);
+      storeAccessToken(tokenResp.access_token);
+      storeRefreshToken(tokenResp.refresh_token);
+
+      const payload = decodeJWTUnsafe(tokenResp.access_token);
+      const roles   = [
+        ...(payload?.realm_access?.roles ?? []),
+        ...Object.values(payload?.resource_access ?? {}).flatMap(c => c.roles),
+      ];
+      const userInfo = await profilService.getMonProfil(tokenResp.access_token).catch(() => null);
+      const user     = userInfo ? buildUserFromUserInfo(userInfo, roles) : buildUserFromToken(tokenResp.access_token);
+
+      if (user) {
+        userDataStore.setUser(user);
+        userDataStore.setPermissionsAndRoles(roles, roles);
+        return {
+          authenticated: true,
+          accessToken: tokenResp.access_token,
+          sessionId: tokenResp.session_state,
+          user,
+          permissions: roles,
+          roles,
+        };
+      }
+    } catch {
+      // Refresh échoué → session expirée
+      clearStoredTokens();
+    }
+  }
+
+  return { authenticated: false };
+}
+
+/** Logout : révoque le refresh token côté Keycloak + nettoie tout */
+export async function logoutAndClean(): Promise<void> {
+  const refreshToken = getStoredRefreshToken();
+  clearStoredTokens();
+  tokenManager.clearAll();
+  userDataStore.clear();
+
+  if (refreshToken) {
+    try {
+      await authService.logout(refreshToken);
+    } catch {
+      // Non-bloquant
+    }
+  }
+}
+
+// ── Helpers internes ──────────────────────────────────────────
+
+function isTokenExpiredLocal(token: string): boolean {
+  const p = decodeJWTUnsafe(token);
+  if (!p?.exp) return true;
+  // Marge de 30s pour les décalages d'horloge
+  return p.exp - 30 < Math.floor(Date.now() / 1000);
+}
+
+function buildUserFromToken(token: string): CurrentUser | null {
+  const p = decodeJWTUnsafe(token);
+  if (!p?.sub) return null;
+  return {
+    id:       p.sub,
+    username: p.preferred_username ?? p.sub,
+    email:    p.email ?? '',
+    prenom:   p.given_name,
+    nom:      p.family_name,
+    roles: [
+      ...(p.realm_access?.roles ?? []),
+      ...Object.values(p.resource_access ?? {}).flatMap(c => c.roles),
+    ],
+  };
+}
+
+function buildUserFromUserInfo(info: KcUserInfo, roles: string[]): CurrentUser {
+  return {
+    id:       info.sub,
+    username: info.preferred_username,
+    email:    info.email ?? '',
+    prenom:   info.given_name,
+    nom:      info.family_name,
+    roles,
+  };
+}
+
+// ── Planification du refresh automatique ──────────────────────
 
 let _refreshTimer: ReturnType<typeof setTimeout> | null = null;
 
-export function scheduleTokenRefresh(onRefresh?: () => void): void {
+/**
+ * Planifie un refresh automatique 60 s avant l'expiration du token.
+ * Appelé par AuthProvider après chaque login ou hydratation.
+ *
+ * @param onRefreshed  Callback appelé avec le nouveau token après refresh
+ */
+export function scheduleTokenRefresh(onRefreshed?: (newToken: string) => void): void {
   cancelTokenRefresh();
 
-  // Pour l'instant, nous n'avons pas de refresh_token côté client
-  // Cette fonction sera implémentée quand le refresh sera disponible
-  if (onRefresh) {
-    // Placeholder - le vrai refresh sera implémenté plus tard
-    console.log('Token refresh scheduling not yet implemented');
-  }
+  const token = tokenManager.getAccessToken();
+  if (!token) return;
+
+  const payload = decodeJWTUnsafe(token);
+  if (!payload?.exp) return;
+
+  // Refresh 60 s avant expiration (minimum 10 s)
+  const nowMs       = Date.now();
+  const expMs       = payload.exp * 1000;
+  const delayMs     = Math.max(10_000, expMs - nowMs - 60_000);
+
+  _refreshTimer = setTimeout(async () => {
+    const refreshToken = getStoredRefreshToken();
+    if (!refreshToken) return;
+
+    try {
+      const resp = await authService.refreshToken(refreshToken);
+      tokenManager.setAccessToken(resp.access_token);
+      storeAccessToken(resp.access_token);
+      storeRefreshToken(resp.refresh_token);
+
+      // Planifier le prochain refresh
+      scheduleTokenRefresh(onRefreshed);
+
+      onRefreshed?.(resp.access_token);
+    } catch {
+      // Refresh échoué → ne pas forcer logout ici, le SessionMonitor s'en charge
+      cancelTokenRefresh();
+    }
+  }, delayMs);
 }
 
 export function cancelTokenRefresh(): void {

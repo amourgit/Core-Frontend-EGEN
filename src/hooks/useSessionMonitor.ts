@@ -22,7 +22,7 @@
 
 
 import { useEffect, useRef, useCallback } from 'react';
-import { useAuthContext } from '@/lib/auth-store';
+import { useAuthContext } from '@/lib/auth/AuthProvider';
 import { tokenManager } from '@/lib/security/token-manager';
 import { auditLogger }  from '@/lib/security/audit-logger';
 import {

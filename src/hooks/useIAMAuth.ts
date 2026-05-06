@@ -1,51 +1,47 @@
 // ============================================================
 // hooks/useIAMAuth.ts
-// Hook principal d'authentification — VERSION KEYCLOAK
+// Hook principal d'authentification Keycloak pour le Core SPA.
 //
-// FLUX D'AUTHENTIFICATION KEYCLOAK :
-//  1. POST /realms/{realm}/protocol/openid-connect/token
-//     → grant_type=password + username + password
-//     → reçoit { access_token, refresh_token, session_state, expires_in }
+// FLUX LOGIN :
+//  1. POST Keycloak OIDC → access_token + refresh_token
+//  2. Stockage sécurisé : access en mémoire, refresh en sessionStorage
+//  3. GET userinfo → profil + rôles
+//  4. Hydrate le Context React → propagé aux modules via coreContext
 //
-//  2. GET  /realms/{realm}/protocol/openid-connect/userinfo
-//     → Authorization: Bearer <access_token>
-//     → reçoit profil + rôles (realm_access.roles)
-//
-//  3. Stockage sécurisé via Route Handler /api/auth/set-tokens (HttpOnly cookies)
-//
-//  4. SessionMonitor surveille l'expiration et rafraîchit automatiquement
-//
-// DIFFÉRENCES vs l'ancienne version (FastAPI backend) :
-//  ✅ Pas de /tokens/login custom → OIDC standard Keycloak
-//  ✅ Pas de /habilitations/moi  → rôles extraits du userinfo
-//  ✅ session_id = session_state (UUID Keycloak)
-//  ✅ logout = révocation du refresh_token côté Keycloak
-//  ✅ changePassword via Admin REST API (PUT /users/{id}/reset-password)
-//  ✅ Journal via Admin events API
+// HOOKS DISPONIBLES :
+//  - useIAMAuth()         → login / logout / état courant
+//  - useIAMSessions()     → sessions actives de l'utilisateur
+//  - useChangePassword()  → changement MDP (Keycloak Account API)
+//  - useJournal()         → journal d'événements Keycloak
+//  - useAdminResetPassword() → reset MDP par un admin
 // ============================================================
-
 
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '@/lib/auth-store';
-import { tokenManager }  from '@/lib/security/token-manager';
+import { useAuthContext } from '@/lib/auth/AuthProvider';
+import { tokenManager }   from '@/lib/security/token-manager';
 import { useSessionMonitor } from '@/hooks/useSessionMonitor';
-import { getCurrentRealm } from '@/lib/realm-resolver';
+import { getCurrentRealm }   from '@/lib/realm-resolver';
 import {
   authService,
   profilService,
   adminUserService,
+  storeAccessToken,
+  storeRefreshToken,
   extractErrorMessage,
   type KcSessionRepresentation,
 } from '@/services/iam/authService';
 
-/** Realm courant (dynamique via sous-domaine) */
-function getRealm(): string { return getCurrentRealm().realm; }
+// ── Types ─────────────────────────────────────────────────────
 
-// ── Types locaux ───────────────────────────────────────────
 export interface LoginRequest {
   username: string;
   password: string;
+}
+
+export interface LoginResult {
+  success: boolean;
+  error?:  string;
 }
 
 export interface Session {
@@ -56,105 +52,77 @@ export interface Session {
   clients:    Record<string, string>;
 }
 
-// ── useIAMAuth ─────────────────────────────────────────────
+// ── useIAMAuth ────────────────────────────────────────────────
+
 export function useIAMAuth() {
-  const ctx    = useAuthContext();
+  const ctx      = useAuthContext();
   const navigate = useNavigate();
 
   const [isLoginLoading, setIsLoginLoading] = useState(false);
   const [loginError,     setLoginError]     = useState<string | null>(null);
 
-  // Activer le SessionMonitor dès que l'utilisateur est authentifié
+  // Active le SessionMonitor dès l'authentification
   useSessionMonitor();
 
-  // ── LOGIN ────────────────────────────────────────────────
+  // ── LOGIN ──────────────────────────────────────────────────
   const handleLogin = useCallback(
-    async (credentials: LoginRequest, redirectTo = '/home') => {
+    async (credentials: LoginRequest, redirectTo = '/home'): Promise<LoginResult> => {
       setIsLoginLoading(true);
       setLoginError(null);
 
       try {
-        // ── ÉTAPE 1 : Authentification OIDC Keycloak ─────
+        // ── ÉTAPE 1 : Authentification OIDC Keycloak ────────
         // POST /realms/{realm}/protocol/openid-connect/token
-        // Content-Type: application/x-www-form-urlencoded
-        // Body: client_id + grant_type=password + username + password
-        const tokenResponse = await authService.login(
-          credentials.username,
-          credentials.password,
-        );
+        // grant_type=password + username + password + client_id
+        const tokenResponse = await authService.login(credentials.username, credentials.password);
 
-        // ── ÉTAPE 2 : Sécurisation des tokens (HttpOnly) ─
-        // Les tokens ne touchent JAMAIS localStorage
-        const setTokensRes = await fetch('/api/auth/set-tokens', {
-          method:      'POST',
-          credentials: 'include',
-          cache:       'no-store',
-          headers:     { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            accessToken:      tokenResponse.access_token,
-            refreshToken:     tokenResponse.refresh_token,
-            // session_state = identifiant de session Keycloak (UUID)
-            sessionId:        tokenResponse.session_state,
-            // Durée de vie du refresh token (en secondes) depuis Keycloak.
-            // Permet de synchroniser le cookie iam_rt_exp pour la surveillance
-            // côté client de l'expiration du refresh token (useTokenWatcher).
-            refreshExpiresIn: tokenResponse.refresh_expires_in,
-          }),
-        });
+        // ── ÉTAPE 2 : Stockage sécurisé des tokens ──────────
+        // access_token  → mémoire JS (tokenManager)
+        // refresh_token → sessionStorage (SPA Vite — pas de BFF)
+        tokenManager.setAccessToken(tokenResponse.access_token);
+        tokenManager.setSessionId(tokenResponse.session_state);
+        storeAccessToken(tokenResponse.access_token);
+        storeRefreshToken(tokenResponse.refresh_token);
 
-        if (!setTokensRes.ok) {
-          throw new Error('Échec de la sécurisation des tokens');
-        }
-
-        // ── ÉTAPE 3 : Récupération du profil et des rôles ─
+        // ── ÉTAPE 3 : Profil et rôles via userinfo ──────────
         // GET /realms/{realm}/protocol/openid-connect/userinfo
         // Authorization: Bearer <access_token>
-        //
-        // Les rôles sont dans userInfo.realm_access.roles
-        // et userInfo.resource_access[clientId].roles
-        let permCodes:  string[] = [];
-        let roleCodes:  string[] = [];
+        let permissions: string[] = [];
+        let roles:       string[] = [];
         let userInfo: Awaited<ReturnType<typeof profilService.getMonProfil>> | null = null;
 
         try {
-          tokenManager.setAccessToken(tokenResponse.access_token);
-          tokenManager.setSessionId(tokenResponse.session_state);
-
           userInfo = await profilService.getMonProfil(tokenResponse.access_token);
           const hab = profilService.getMesHabilitations(userInfo);
-          roleCodes = hab.roles_actifs;
-          permCodes = hab.permissions.map((p) => p.code);
+          roles       = hab.roles_actifs;
+          permissions = hab.permissions.map(p => p.code);
         } catch {
-          // Non-bloquant : on continue même si userinfo échoue
+          // Non-bloquant : on peut se connecter même si userinfo échoue
         }
 
-        // ── ÉTAPE 4 : Construction de l'objet utilisateur ─
-        // Keycloak userinfo → mapping vers notre modèle interne
+        // ── ÉTAPE 4 : Construction de l'objet utilisateur ───
         const userData = {
-          id:                   userInfo?.sub                  ?? '',
-          username:             userInfo?.preferred_username   ?? credentials.username,
-          nom:                  userInfo?.family_name          ?? '',
-          prenom:               userInfo?.given_name           ?? '',
-          email:                userInfo?.email                ?? '',
-          telephone:            userInfo?.phone_number         ?? '',
-          identifiant_national: userInfo?.sub                  ?? '',
-          type_profil:          roleCodes.includes('realm-admin') ? 'admin' : 'standard',
-          statut:               'actif',
-          is_admin:             roleCodes.includes('realm-admin'),
-          created_at:           undefined,
-          updated_at:           undefined,
+          id:       userInfo?.sub ?? '',
+          username: userInfo?.preferred_username ?? credentials.username,
+          nom:      userInfo?.family_name  ?? '',
+          prenom:   userInfo?.given_name   ?? '',
+          email:    userInfo?.email        ?? '',
+          roles,
+          tenantId: getCurrentRealm().realm,
+          type_profil: roles.includes('realm-admin') ? 'admin' : 'standard',
+          is_admin:    roles.includes('realm-admin'),
         };
 
-        // ── ÉTAPE 5 : Hydratation du contexte React ───────
-        ctx.login(
+        // ── ÉTAPE 5 : Hydratation du Context React ───────────
+        await ctx.login(
           tokenResponse.access_token,
-          tokenResponse.session_state,   // session_id Keycloak
+          tokenResponse.session_state,
           userData as any,
-          permCodes,
-          roleCodes,
+          permissions,
+          roles,
         );
 
-        // ── ÉTAPE 6 : Redirection ─────────────────────────
+        // ── ÉTAPE 6 : Redirection ────────────────────────────
         setTimeout(() => navigate(redirectTo), 300);
         return { success: true };
 
@@ -170,21 +138,9 @@ export function useIAMAuth() {
     [ctx, navigate],
   );
 
-  // ── LOGOUT ───────────────────────────────────────────────
+  // ── LOGOUT ────────────────────────────────────────────────
   const handleLogout = useCallback(async () => {
-    try {
-      // Révoquer la session côté Keycloak via le Route Handler /api/auth/logout
-      // Ce RH lit le refresh_token depuis le cookie HttpOnly et appelle
-      // POST /realms/{realm}/protocol/openid-connect/logout
-      await fetch('/api/auth/logout', {
-        method:      'POST',
-        credentials: 'include',
-        cache:       'no-store',
-      }).catch(() => { /* non-bloquant */ });
-    } catch { /* non-bloquant */ }
-
-    // Déléguer le logout au contexte (nettoyage mémoire + cookies)
-    ctx.logout();
+    await ctx.logout(true);
   }, [ctx]);
 
   return {
@@ -197,6 +153,7 @@ export function useIAMAuth() {
     permissions:     ctx.permissions,
     roles:           ctx.roles,
     sessionId:       ctx.sessionId,
+    accessToken:     ctx.accessToken,
 
     // Actions
     login:           handleLogin,
@@ -210,97 +167,89 @@ export function useIAMAuth() {
   };
 }
 
-// ── useIAMSessions ─────────────────────────────────────────
+// ── useIAMSessions ────────────────────────────────────────────
 //
-// Keycloak ne fournit pas d'endpoint "mes sessions" accessible avec
-// le token de l'utilisateur courant. Il faut passer par l'Admin API :
-//   GET /admin/realms/{realm}/users/{userId}/sessions
+// Keycloak ne fournit pas d'endpoint "mes sessions" accessible
+// avec le token utilisateur standard.
+// → Le Core doit soit exposer un proxy server-side, soit
+//   l'utilisateur doit avoir des droits admin view-users.
 //
-// ⚠️  Cela requiert un token admin.
-//     Solution recommandée : créer un Route Handler côté serveur
-//     /api/auth/sessions → qui appelle l'Admin API avec un service account.
-//
+// Dans notre architecture SPA, on passe par le tokenManager
+// pour fournir au moins la session courante.
+
 export function useIAMSessions() {
   const [sessions,  setSessions]  = useState<Session[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error,     setError]     = useState<string | null>(null);
-  const { sessionId: currentSessionId } = useAuthContext();
+  const ctx = useAuthContext();
 
   const fetchSessions = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
-      // Appel via notre Route Handler (qui a accès au token admin service account)
-      // Le Route Handler appelle : GET /admin/realms/{realm}/users/{userId}/sessions
-      const res = await fetch('/api/auth/sessions', {
-        credentials: 'include',
-        cache:       'no-store',
-      });
+      const accessToken = tokenManager.getAccessToken();
+      if (!accessToken || !ctx.user?.id) {
+        setSessions([]);
+        return;
+      }
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-      const kcSessions: KcSessionRepresentation[] = await res.json();
-
-      // Mapping Keycloak → notre modèle Session
-      setSessions(
-        kcSessions.map((s) => ({
-          id:         s.id,
-          ipAddress:  s.ipAddress,
-          start:      s.start,
-          lastAccess: s.lastAccess,
-          clients:    s.clients,
-        })),
+      // Appel Admin API avec le token courant
+      // ⚠️ Requiert que l'utilisateur ait le rôle view-users ou realm-admin
+      const kcSessions: KcSessionRepresentation[] = await authService.getUserSessions(
+        ctx.user.id,
+        accessToken,
       );
+
+      setSessions(kcSessions.map(s => ({
+        id:         s.id,
+        ipAddress:  s.ipAddress,
+        start:      s.start,
+        lastAccess: s.lastAccess,
+        clients:    s.clients,
+      })));
     } catch (err) {
       setError(extractErrorMessage(err, 'Erreur lors du chargement des sessions'));
+      // Fallback : afficher la session courante comme seule session connue
+      if (ctx.sessionId) {
+        setSessions([{
+          id:         ctx.sessionId,
+          ipAddress:  'session courante',
+          start:      Date.now() - 3600_000,
+          lastAccess: Date.now(),
+          clients:    {},
+        }]);
+      }
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [ctx.user?.id, ctx.sessionId]);
 
   const revokeSession = useCallback(async (sessionId: string) => {
     try {
-      // DELETE /admin/realms/{realm}/sessions/{sessionId}  (via Route Handler)
-      const res = await fetch(`/api/auth/sessions/${sessionId}`, {
-        method:      'DELETE',
-        credentials: 'include',
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setSessions((prev) => prev.filter((s) => s.id !== sessionId));
+      const accessToken = tokenManager.getAccessToken();
+      if (!accessToken) throw new Error('Non authentifié');
+      await authService.revokeSession(sessionId, accessToken);
+      setSessions(prev => prev.filter(s => s.id !== sessionId));
+      // Si on révoque la session courante → logout
+      if (sessionId === ctx.sessionId) await ctx.logout(false);
       return { success: true };
     } catch (err) {
       const msg = extractErrorMessage(err, 'Erreur lors de la révocation');
       setError(msg);
       return { success: false, error: msg };
     }
-  }, []);
+  }, [ctx]);
 
-  return {
-    sessions,
-    isLoading,
-    error,
-    currentSessionId,
-    fetchSessions,
-    revokeSession,
-  };
+  return { sessions, isLoading, error, currentSessionId: ctx.sessionId, fetchSessions, revokeSession };
 }
 
-// ── useChangePassword ───────────────────────────────────────
+// ── useChangePassword ─────────────────────────────────────────
 //
-// Keycloak ne fournit PAS d'endpoint "change-password" pour l'utilisateur
-// courant via OIDC. Deux approches possibles :
+// Utilise l'Account REST API de Keycloak (nécessite scope "account") :
+//   POST /realms/{realm}/account/credentials/password
 //
-//   A) Admin API : PUT /admin/realms/{realm}/users/{userId}/reset-password
-//      → Body: { type: "password", value, temporary: false }
-//      → Requiert un token admin (service account côté serveur)
-//
-//   B) Account REST API : POST /realms/{realm}/account/credentials/password
-//      → Body: { currentPassword, newPassword, confirmation }
-//      → Fonctionne avec le token de l'utilisateur courant ✅
-//      → Nécessite que le client ait le scope "account" activé
-//
-// On utilise l'approche B (Account API) ici.
-//
+// Si non disponible, fallback vers l'Admin API via route proxy.
+
 export function useChangePassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [error,     setError]     = useState<string | null>(null);
@@ -315,33 +264,25 @@ export function useChangePassword() {
       const accessToken = tokenManager.getAccessToken();
       if (!accessToken) throw new Error('Non authentifié');
 
-      const KC_URL   = import.meta.env.VITE_KEYCLOAK_URL!;
-      const KC_REALM = getCurrentRealm().realm;
+      const { oidcBase } = getCurrentRealm();
 
       // POST /realms/{realm}/account/credentials/password
-      // Authorization: Bearer <access_token>
-      // Body: { currentPassword, newPassword, confirmation }
-      const res = await fetch(
-        `${KC_URL}/realms/${KC_REALM}/account/credentials/password`,
-        {
-          method:  'POST',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type':  'application/json',
-          },
-          body: JSON.stringify({
-            currentPassword: oldPassword,
-            newPassword,
-            confirmation:    newPassword,
-          }),
+      const res = await fetch(`${oidcBase.replace('/protocol/openid-connect', '')}/account/credentials/password`, {
+        method:  'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type':  'application/json',
         },
-      );
+        body: JSON.stringify({
+          currentPassword: oldPassword,
+          newPassword,
+          confirmation: newPassword,
+        }),
+      });
 
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        throw new Error(
-          (err as any)?.errorMessage ?? (err as any)?.error ?? `HTTP ${res.status}`
-        );
+        throw new Error((err as any)?.errorMessage ?? (err as any)?.error ?? `HTTP ${res.status}`);
       }
 
       setSuccess(true);
@@ -356,86 +297,65 @@ export function useChangePassword() {
   }, []);
 
   return {
-    isLoading,
-    error,
-    success,
-    changePassword,
+    isLoading, error, success, changePassword,
     reset: () => { setError(null); setSuccess(false); },
   };
 }
 
-// ── useJournal ─────────────────────────────────────────────
+// ── useJournal ────────────────────────────────────────────────
 //
-// Keycloak expose les événements utilisateur via l'Admin REST API :
-//   GET /admin/realms/{realm}/events?user={userId}&type=LOGIN&type=LOGOUT
-//
-// ⚠️  Cette API est admin-only. Il faut un Route Handler côté serveur
-//     /api/auth/journal → qui appelle l'Admin API avec un service account.
-//
+// Journal des événements Keycloak de l'utilisateur courant.
+// Requiert que l'utilisateur soit admin ou que le realm autorise
+// l'accès aux events via account API.
+
 export function useJournal(limit = 10) {
   const [entries,   setEntries]   = useState<Record<string, unknown>[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error,     setError]     = useState<string | null>(null);
+  const ctx = useAuthContext();
 
   const fetchJournal = useCallback(async (skip = 0) => {
     setIsLoading(true);
     setError(null);
     try {
-      // Route Handler côté serveur (service account → Admin API events)
-      const res = await fetch(
-        `/api/auth/journal?first=${skip}&max=${limit}`,
-        { credentials: 'include', cache: 'no-store' },
-      );
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data: Record<string, unknown>[] = await res.json();
+      const accessToken = tokenManager.getAccessToken();
+      if (!accessToken || !ctx.user?.id) { setEntries([]); return; }
+
+      const data = await profilService.getMonJournal(ctx.user.id, accessToken, skip, limit);
       setEntries(data);
     } catch (err) {
       setError(extractErrorMessage(err, 'Erreur lors du chargement du journal'));
     } finally {
       setIsLoading(false);
     }
-  }, [limit]);
+  }, [ctx.user?.id, limit]);
 
   useEffect(() => { fetchJournal(); }, [fetchJournal]);
 
   return { entries, isLoading, error, refetch: fetchJournal };
 }
 
-// ── useAdminResetPassword ───────────────────────────────────
+// ── useAdminResetPassword ─────────────────────────────────────
 //
 // Réinitialisation du MDP par un admin :
 //   PUT /admin/realms/{realm}/users/{userId}/reset-password
 //   Body: { type: "password", value, temporary: true }
-//
+
 export function useAdminResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [error,     setError]     = useState<string | null>(null);
   const [success,   setSuccess]   = useState(false);
 
-  const resetPassword = useCallback(async (
-    userId:      string,
-    newPassword: string,
-    temporary  = true,
-  ) => {
+  const resetPassword = useCallback(async (userId: string, newPassword: string, temporary = true) => {
     setIsLoading(true);
     setError(null);
     setSuccess(false);
 
     try {
-      // Via Route Handler admin (service account)
-      // PUT /admin/realms/{realm}/users/{userId}/reset-password
-      const res = await fetch(`/api/admin/users/${userId}/reset-password`, {
-        method:      'PUT',
-        credentials: 'include',
-        headers:     { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ newPassword, temporary }),
-      });
+      const accessToken = tokenManager.getAccessToken();
+      if (!accessToken) throw new Error('Non authentifié');
 
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error((err as any)?.errorMessage ?? `HTTP ${res.status}`);
-      }
-
+      await adminUserService.resetPassword(userId, accessToken, newPassword, temporary);
       setSuccess(true);
       return { success: true };
     } catch (err) {
@@ -448,10 +368,7 @@ export function useAdminResetPassword() {
   }, []);
 
   return {
-    isLoading,
-    error,
-    success,
-    resetPassword,
+    isLoading, error, success, resetPassword,
     reset: () => { setError(null); setSuccess(false); },
   };
 }

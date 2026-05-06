@@ -278,7 +278,7 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
 
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Link
-            href="/auth/forgot"
+            to="/auth/forgot"
             style={{
               fontSize:   'var(--fs-xs)',
               color:      'rgba(255,255,255,0.35)',
@@ -355,7 +355,7 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
           </span>
         </div>
         <Link
-          href="/modules/compte/creer"
+          to="/modules/compte/creer"
           style={{
             fontSize:   'var(--fs-xs)',
             color:      'var(--info-400)',
