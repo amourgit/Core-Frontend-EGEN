@@ -418,8 +418,10 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
     return (kcUser?.username?.trim()?.[0] ?? "U").toUpperCase();
   })();
 
+  // ── Navigation ───────────────────────────────────────────────────────────
+  const navigate          = useNavigate();
+
   // ── État local ────────────────────────────────────────────────────────────
-  const router            = useRouter();
   const profileRef        = useRef<HTMLDivElement>(null);
   const [menuOpen,           setMenuOpen]           = useState(false);
   const [showUserProfile,    setShowUserProfile]    = useState(false);
