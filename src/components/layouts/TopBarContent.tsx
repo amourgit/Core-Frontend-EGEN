@@ -17,7 +17,7 @@ import { useGlass } from "@/hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 import { useAuth } from "@/hooks/useAuth";
-import { useAuthContext } from "@/lib/auth-store";
+import { useAuthContext } from "@/lib/auth/AuthProvider";
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 import { navigationData, NavigationItem } from "@/services/navigation";

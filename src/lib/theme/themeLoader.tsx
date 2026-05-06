@@ -109,9 +109,10 @@ export class ThemeLoader {
       lines.push(`--leading-${k}:${v};`);
     }
 
-    // Espacement
+    // Espacement — on convertit les clés avec points en tirets (0.5 → 0-5)
     for (const [k, v] of Object.entries(theme.spacing.scale)) {
-      lines.push(`--space-${k}:${v};`);
+      const safeKey = k.replace(/\./g, '-');
+      lines.push(`--space-${safeKey}:${v};`);
     }
 
     // Border radius
@@ -122,11 +123,6 @@ export class ThemeLoader {
     // Ombres
     for (const [k, v] of Object.entries(theme.shadows)) {
       lines.push(`--shadow-${k}:${v};`);
-    }
-
-    // Transitions
-    for (const [k, v] of Object.entries(theme.transitions)) {
-      lines.push(`--transition-${k}:${v};`);
     }
 
     // Animations
@@ -145,9 +141,21 @@ export class ThemeLoader {
       lines.push(`--saturate-${k}:${v};`);
     }
 
-    // Z-index
+    // Z-index (tous les keys du thème)
     for (const [k, v] of Object.entries(theme.zIndex)) {
       lines.push(`--z-${k}:${v};`);
+    }
+
+    // Variables d'alias pratiques (utilisées dans les composants)
+    const zi = theme.zIndex as Record<string, string>;
+    if (zi.raised)   lines.push(`--z-raised:${zi.raised};`);
+    if (zi.sticky)   lines.push(`--z-sticky:${zi.sticky};`);
+    if (zi.overlay)  lines.push(`--z-overlay:${zi.overlay};`);
+    if (zi.popover)  lines.push(`--z-popover:${zi.popover};`);
+
+    // Transitions nommées
+    for (const [k, v] of Object.entries(theme.transitions)) {
+      lines.push(`--transition-${k}:${v};`);
     }
 
     // Layout

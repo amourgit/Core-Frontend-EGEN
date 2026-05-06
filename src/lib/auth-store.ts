@@ -111,3 +111,9 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const useAuthContext = () => useContext(AuthContext);
+
+
+// ── Re-export du useAuthContext depuis le vrai Provider ──────────────────────
+// Permet aux composants qui importent depuis @/lib/auth-store de recevoir
+// le vrai contexte injecté par AuthProvider (lib/auth/AuthProvider.tsx).
+export { useAuthContext as useAuthContextReal } from '@/lib/auth/AuthProvider';

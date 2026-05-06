@@ -21,7 +21,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { useAuthStore }     from '@/stores/auth.store';
 import { useRegistryStore } from '@/stores/registry.store';
-import { useTheme }         from '@/hooks/useTheme';
+import { useTheme }         from '@/lib/theme';
 import { cn }               from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button }           from '@/components/ui/button';
@@ -261,7 +261,7 @@ function MenuButton({
 // TOPBAR PRINCIPAL
 // ============================================================
 export default function TopBar({ onToggleSidebar, sidebarOpen }: TopBarProps) {
-  const { theme, setTheme } = useTheme();
+  const { isDark, toggleDarkMode } = useTheme();
   const tenant = useAuthStore(s => s.tenant);
 
   return (
@@ -317,9 +317,9 @@ export default function TopBar({ onToggleSidebar, sidebarOpen }: TopBarProps) {
           <TooltipTrigger asChild>
             <Button
               variant="ghost" size="icon" className="h-7 w-7"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={toggleDarkMode}
             >
-              {theme === 'dark'
+              {isDark
                 ? <Sun className="h-3.5 w-3.5" />
                 : <Moon className="h-3.5 w-3.5" />
               }

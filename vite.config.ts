@@ -13,31 +13,24 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
 
-      // ── Module Federation ───────────────────────────────────
-      // Le Core consomme les remoteEntry.js des microservices.
-      // Chaque microservice expose ses composants via MF.
+      // ── Module Federation ─────────────────────────────────────
+      // En PROD : remoteEntry.js sert les modules compilés.
+      // En DEV  : si IAM n'est pas up, ModuleErrorBoundary gère l'erreur.
       federation({
         name: 'core',
-
-        // ── Remotes connus ─────────────────────────────────────
-        // En production ces URLs viennent du Registry Service.
-        // En dev, on les pointe en dur vers les ports locaux.
         remotes: {
+          // Format : nom@URL/remoteEntry.js
+          // L'IAM expose ses composants depuis ce point d'entrée
           iam: `iam@${IAM_URL}/static/chunks/remoteEntry.js`,
-          // future: scolarite: `scolarite@${env.VITE_SCOLARITE_URL}/static/chunks/remoteEntry.js`,
-          // future: bibliotheque: `bibliotheque@${env.VITE_BIB_URL}/static/chunks/remoteEntry.js`,
         },
-
-        // ── Dépendances partagées (singleton) ──────────────────
-        // Ces libs ne seront chargées QU'UNE SEULE FOIS même si
-        // le remote les déclare aussi — évite les doubles instances.
         shared: {
-          react:           { singleton: true, requiredVersion: '^18.3.1' },
-          'react-dom':     { singleton: true, requiredVersion: '^18.3.1' },
+          react:              { singleton: true, requiredVersion: '^18.3.1' },
+          'react-dom':        { singleton: true, requiredVersion: '^18.3.1' },
           'react-router-dom': { singleton: true, requiredVersion: '^6.0.0' },
-          'framer-motion': { singleton: true },
-          'lucide-react':  { singleton: false },
-          'zustand':       { singleton: true },
+          'framer-motion':    { singleton: true },
+          'lucide-react':     { singleton: false },
+          'zustand':          { singleton: true },
+          '@tanstack/react-query': { singleton: true },
         },
       }),
     ],
@@ -51,11 +44,19 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3001,
       cors: true,
+      // Proxy optionnel vers le backend IAM (évite les CORS en dev)
+      proxy: {
+        '/api/auth': {
+          target: IAM_URL,
+          changeOrigin: true,
+          secure: false,
+        },
+      },
     },
 
     build: {
       target: 'esnext',
-      minify: false,         // requis pour MF en mode production
+      minify: false,        // requis pour MF en production
       cssCodeSplit: false,
     },
   };
