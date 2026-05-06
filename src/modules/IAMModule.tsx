@@ -11,7 +11,7 @@
 
 import React, { lazy, Suspense, useEffect } from 'react';
 import { useAuthStore }    from '@/stores/auth.store';
-import { useAuthContext }  from '@/lib/auth/AuthProvider';
+import { useIAMAuth } from '@/hooks/useIAMAuth';
 import { tokenManager }    from '@/lib/security/token-manager';
 import type { CoreContext } from '@/types/core';
 
@@ -111,10 +111,10 @@ class ModuleErrorBoundary extends React.Component<
 // ── IAMModule principal ────────────────────────────────────────
 export default function IAMModule() {
   const { user, tenant } = useAuthStore();
-  const { accessToken, permissions, roles } = useAuthContext();
+  const { user: iamUser, permissions, roles } = useIAMAuth();
 
   // Token live depuis tokenManager (source de vérité mémoire)
-  const liveToken = tokenManager.getAccessToken() ?? accessToken ?? user?.token ?? 'no-token';
+  const liveToken = tokenManager.getAccessToken() ?? iamUser?.token ?? user?.token ?? 'no-token';
 
   // Navigation — délègue au router React
   const navigate = (path: string) => { window.history.pushState({}, '', path); };

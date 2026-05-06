@@ -17,7 +17,7 @@ import { useGlass } from "@/hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 import { useAuth } from "@/hooks/useAuth";
-import { useAuthContext } from "@/lib/auth/AuthProvider";
+import { useIAMAuth } from '@/hooks/useIAMAuth';
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 import { navigationData, NavigationItem } from "@/services/navigation";
@@ -406,7 +406,7 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
 
   // ── Auth Keycloak ─────────────────────────────────────────────────────────
   const { user }      = useAuth();
-  const { user: kcUser } = useAuthContext();
+  const { user: kcUser } = useIAMAuth();
 
   const kcFullName = [kcUser?.prenom, kcUser?.nom].filter(Boolean).join(" ")
     || kcUser?.username || user?.name || "Utilisateur";

@@ -24,7 +24,7 @@ import {
 
 import type { CurrentUser } from '@/lib/models/iam/auth.model';
 import type { AuthContextType } from '@/lib/auth-store';
-import { authService, scheduleTokenRefresh, cancelTokenRefresh } from './authService';
+import { authService, scheduleTokenRefresh, cancelTokenRefresh } from '@/services/iam/authService';
 import { tokenManager, userDataStore } from '@/lib/security/token-manager';
 import { useAuthStore } from '@/stores/auth.store';
 
@@ -131,17 +131,23 @@ export function AuthProvider({
   // ── Hydratation session ──────────────────────────────────────
 
   useEffect(() => {
+    console.log('🔄 AuthProvider: useEffect() start, autoHydrate:', autoHydrate);
     if (initialized.current || !autoHydrate) {
+      console.log('🔄 AuthProvider: skipping hydrate, initialized:', initialized.current);
       if (!autoHydrate) setLoading(false);
       return;
     }
+    console.log('🔄 AuthProvider: starting hydrate');
     initialized.current = true;
 
     const hydrate = async () => {
+      console.log('🔄 AuthProvider: hydrate() start');
       try {
         const session = await authService.getSession();
+        console.log('🔄 AuthProvider: getSession() result:', session);
 
         if (session.authenticated && session.user && session.accessToken) {
+          console.log('🔄 AuthProvider: authenticated user found');
           const user        = session.user;
           const accessToken = session.accessToken;
           const permissions = session.permissions ?? [];
@@ -165,9 +171,11 @@ export function AuthProvider({
             }
           });
         } else {
+          console.log('🔄 AuthProvider: no session, checking cache');
           // Pas de session valide → tenter de restaurer depuis userDataStore
           const cachedUser = userDataStore.getUser<CurrentUser>();
           if (cachedUser && tokenManager.hasValidToken()) {
+            console.log('🔄 AuthProvider: using cached user');
             const accessToken = tokenManager.getAccessToken()!;
             const permissions = userDataStore.getPermissions();
             const roles       = userDataStore.getRoles();
@@ -180,13 +188,17 @@ export function AuthProvider({
             });
             syncToStore(cachedUser, accessToken, permissions, roles);
           } else {
+            console.log('🔄 AuthProvider: no cache, setting not authenticated');
             setState(prev => ({ ...prev, isAuthenticated: false, isLoading: false }));
             syncToStore(null, null, [], []);
+            setLoading(false); // Force Zustand store update
           }
         }
-      } catch {
+      } catch (error) {
+        console.error('🔄 AuthProvider: hydrate() error:', error);
         setState(prev => ({ ...prev, isAuthenticated: false, isLoading: false }));
         syncToStore(null, null, [], []);
+        setLoading(false); // Force Zustand store update
       }
     };
 

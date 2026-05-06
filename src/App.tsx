@@ -18,9 +18,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 
 import { ThemeProvider }    from '@/lib/theme';
-import { AuthProvider, useAuthContext } from '@/lib/auth/AuthProvider';
 import { useAuthStore }     from '@/stores/auth.store';
 import { useRegistryStore } from '@/stores/registry.store';
+import { useIAMAuth }       from '@/hooks/useIAMAuth';
 import CoreBaseLayout       from '@/components/layouts/CoreBaseLayout';
 
 const DashboardPage = lazy(() => import('@/pages/DashboardPage'));
@@ -47,7 +47,7 @@ function GlobalLoader({ message = 'Initialisation...' }: { message?: string }) {
 
 // ── Guard de route — redirige vers /login si non authentifié ──
 function RequireAuth({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useAuthContext();
+  const { isAuthenticated, isLoading } = useIAMAuth();
   if (isLoading) return <GlobalLoader message="Vérification de la session..." />;
   if (!isAuthenticated) return <Navigate to="/login" replace />;
   return <>{children}</>;
@@ -158,16 +158,6 @@ export default function App() {
 // ─────────────────────────────────────────────────────────────
 
 function BrowserRouterAuthBridge({ children }: { children: React.ReactNode }) {
-  // Logout redirige vers /login — géré ici car on a accès au navigate
-  // après que le BrowserRouter est monté à l'intérieur de children.
-  return (
-    <AuthProvider
-      autoHydrate
-      // Le onLogout sera appelé après le montage du router dans AppContent
-      // => on utilise window.location pour la redirection initiale
-      onLogout={() => { window.location.href = '/login'; }}
-    >
-      {children}
-    </AuthProvider>
-  );
+  // Plus besoin de AuthProvider - on utilise useIAMAuth pour Keycloak direct
+  return <>{children}</>;
 }
