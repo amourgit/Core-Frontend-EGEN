@@ -1,0 +1,99 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "ui": "stream",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "!src/**/*.test.*",
+        "!src/**/setup-tests.*",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "webpack.config.js",
+        "rspack.config.js",
+        "rspack.config.cjs",
+        ".swcrc",
+        "postcss.config.js",
+        "translations/**",
+        "dependencies.json",
+        "$TURBO_ROOT$/tsconfig.json"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "build:development": {
+      "dependsOn": ["^build:development"],
+      "inputs": [
+        "src/**",
+        "!src/**/*.test.*",
+        "!src/**/setup-tests.*",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "webpack.config.js",
+        "rspack.config.js",
+        "rspack.config.cjs",
+        ".swcrc",
+        "postcss.config.js",
+        "translations/**",
+        "dependencies.json",
+        "$TURBO_ROOT$/tsconfig.json"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "document": {
+      "inputs": ["$TURBO_ROOT$/packages/**/**/src/**/*.{ts,tsx}", "!$TURBO_ROOT$/packages/**/**/src/**/*.test.{ts,tsx}"],
+      "outputs": ["docs/**/*.md"]
+    },
+    "test": {
+      "inputs": [
+        "src/**",
+        "__mocks__/**",
+        "mock.ts",
+        "mock-jest.ts",
+        "mock-jest.tsx",
+        "vitest.config.ts",
+        "setup-tests.ts"
+      ]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "coverage": {
+      "inputs": [
+        "src/**",
+        "__mocks__/**",
+        "mock.ts",
+        "mock-jest.ts",
+        "mock-jest.tsx",
+        "vitest.config.ts",
+        "setup-tests.ts"
+      ],
+      "outputs": ["coverage/**"]
+    },
+    "watch": {},
+    "lint": {
+      "inputs": [
+        "src/**/*.{ts,tsx}",
+        "$TURBO_ROOT$/.eslintrc"
+      ]
+    },
+    "typescript": {
+      "dependsOn": ["^typescript"],
+      "inputs": [
+        "src/**",
+        "tsconfig.json",
+        "tsconfig.build.json",
+        "$TURBO_ROOT$/tsconfig.json"
+      ]
+    },
+    "extract-translations": {
+      "inputs": [
+        "src/**/*.component.tsx",
+        "src/**/*.extension.tsx",
+        "src/**/*.modal.tsx",
+        "src/**/*.resource.ts"
+      ]
+    }
+  }
+}

@@ -15,7 +15,11 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
+    "paths": { "@/*": ["./packages/shell/esm-app-shell/src/*"] }
   },
-  "include": ["src"]
+  "include": [
+    "packages/shell/esm-app-shell/src",
+    "packages/apps/**/src",
+    "packages/framework/**/src"
+  ]
 }

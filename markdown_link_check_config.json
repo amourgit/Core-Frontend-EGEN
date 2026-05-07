@@ -1,0 +1,24 @@
+{
+  "httpHeaders": [
+    {
+      "urls": ["https://docs.github.com/"],
+      "headers": {
+        "Accept-Encoding": "zstd, br, gzip, deflate"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    {
+      "pattern": "^https://egen.local"
+    },
+    {
+      "pattern": "^https://www.npmjs.com/package/@egen/"
+    },
+    {
+      "pattern": "^http://localhost"
+    }
+  ],
+  "retryOn429": true,
+  "retryCount": 3,
+  "retryDelay": 1000
+}

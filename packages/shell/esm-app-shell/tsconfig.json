@@ -20,5 +20,5 @@
       "WebWorker"
     ]
   },
-  "include": ["src/**/*"]
+  "include": ["src"]
 }
