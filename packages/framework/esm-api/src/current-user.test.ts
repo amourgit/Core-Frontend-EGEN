@@ -14,7 +14,7 @@ import {
 } from './current-user';
 import type * as openmrsFetchExport from './openmrs-fetch';
 import { openmrsFetch } from './openmrs-fetch';
-import { reportError } from '@openmrs/esm-error-handling';
+import { reportError } from '@egen/esm-error-handling';
 import type { LoggedInUser, Privilege, Role, Session } from './types';
 
 // Mock only the function calls, not constants
@@ -26,7 +26,7 @@ vi.mock('./openmrs-fetch', async () => {
   };
 });
 
-vi.mock('@openmrs/esm-error-handling', () => ({
+vi.mock('@egen/esm-error-handling', () => ({
   reportError: vi.fn(),
 }));
 

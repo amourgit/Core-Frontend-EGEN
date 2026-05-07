@@ -38,7 +38,7 @@ A Promise that resolves with the FetchResponse containing an array of attachment
 ## Example
 
 ```ts
-import { getAttachments } from '@openmrs/esm-framework';
+import { getAttachments } from '@egen/esm-framework';
 const abortController = new AbortController();
 const response = await getAttachments('patient-uuid', true, abortController);
 console.log(response.data.results);

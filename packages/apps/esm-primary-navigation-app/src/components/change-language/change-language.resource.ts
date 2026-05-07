@@ -1,4 +1,4 @@
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework/src/internal';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-framework/src/internal';
 
 export type PostUserProperties = (
   userUuid: string,

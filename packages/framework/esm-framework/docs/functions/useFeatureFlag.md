@@ -11,7 +11,7 @@ Use this function to tell whether a feature flag is toggled on or off.
 Example:
 
 ```tsx
-import { useFeatureFlag } from "@openmrs/esm-react-utils";
+import { useFeatureFlag } from "@egen/esm-react-utils";
 
 export function MyComponent() {
  const isMyFeatureFlagOn = useFeatureFlag("my-feature-flag");

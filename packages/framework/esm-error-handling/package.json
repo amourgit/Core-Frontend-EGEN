@@ -1,5 +1,5 @@
 {
-  "name": "@openmrs/esm-error-handling",
+  "name": "@egen/esm-error-handling",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "description": "An ES module to help with error handling",
@@ -45,10 +45,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@openmrs/esm-globals": "9.x"
+    "@egen/esm-globals": "9.x"
   },
   "devDependencies": {
-    "@openmrs/esm-globals": "workspace:*",
+    "@egen/esm-globals": "workspace:*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",

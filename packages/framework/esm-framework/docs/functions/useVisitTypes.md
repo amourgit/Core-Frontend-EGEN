@@ -19,7 +19,7 @@ An array of VisitType objects. Returns an empty array while loading
 ## Example
 
 ```tsx
-import { useVisitTypes } from '@openmrs/esm-framework';
+import { useVisitTypes } from '@egen/esm-framework';
 function VisitTypeSelector() {
   const visitTypes = useVisitTypes();
   return (

@@ -98,7 +98,7 @@ export function loadWebpackConfig(options: WebpackOptions = {}) {
   const config:
     | ((env: Record<string, unknown>) => WebpackConfig)
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    | WebpackConfig = require('@openmrs/esm-app-shell/webpack.config.js');
+    | WebpackConfig = require('@egen/esm-app-shell/webpack.config.js');
 
   if (typeof config === 'function') {
     return config({});

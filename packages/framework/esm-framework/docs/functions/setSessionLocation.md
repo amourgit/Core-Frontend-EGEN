@@ -34,7 +34,7 @@ A Promise that resolves with the updated SessionStore.
 ## Example
 
 ```ts
-import { setSessionLocation } from '@openmrs/esm-api';
+import { setSessionLocation } from '@egen/esm-api';
 const abortController = new AbortController();
 await setSessionLocation('location-uuid-here', abortController);
 ```

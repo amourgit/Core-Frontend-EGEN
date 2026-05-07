@@ -4,7 +4,7 @@ import { useConceptReferenceRange } from './use-concept-reference-range';
 import { swrWrapper } from '../test-utils';
 
 const mockOpenmrsFetch = vi.fn();
-vi.mock('@openmrs/esm-api', () => ({
+vi.mock('@egen/esm-api', () => ({
   openmrsFetch: (...args: any[]) => mockOpenmrsFetch(...args),
   restBaseUrl: '/ws/rest/v1',
 }));

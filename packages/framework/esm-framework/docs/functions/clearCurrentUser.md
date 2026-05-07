@@ -17,7 +17,7 @@ the application's authentication state.
 ## Example
 
 ```ts
-import { clearCurrentUser } from '@openmrs/esm-api';
+import { clearCurrentUser } from '@egen/esm-api';
 // During logout
 clearCurrentUser();
 ```

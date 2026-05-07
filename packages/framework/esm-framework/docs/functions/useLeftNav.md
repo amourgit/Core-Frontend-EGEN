@@ -29,7 +29,7 @@ Configuration parameters for the left navigation, excluding the
 ## Example
 
 ```tsx
-import { useLeftNav } from '@openmrs/esm-framework';
+import { useLeftNav } from '@egen/esm-framework';
 function MyPageComponent() {
   useLeftNav({ name: 'my-nav', slots: ['nav-slot-1', 'nav-slot-2'] });
   return <div>My Page</div>;

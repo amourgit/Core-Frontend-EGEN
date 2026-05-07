@@ -35,7 +35,7 @@ An array of Location objects. Returns an empty array while loading
 ## Example
 
 ```tsx
-import { useLocations } from '@openmrs/esm-framework';
+import { useLocations } from '@egen/esm-framework';
 function LocationList() {
   const locations = useLocations('Login Location');
   return (

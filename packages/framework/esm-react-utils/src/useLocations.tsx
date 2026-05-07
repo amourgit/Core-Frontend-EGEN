@@ -1,6 +1,6 @@
 /** @module @category API */
 import { useState, useEffect } from 'react';
-import { getLocations, type Location } from '@openmrs/esm-emr-api';
+import { getLocations, type Location } from '@egen/esm-emr-api';
 
 /**
  * A React hook that fetches and returns locations from the OpenMRS server.
@@ -15,7 +15,7 @@ import { getLocations, type Location } from '@openmrs/esm-emr-api';
  *
  * @example
  * ```tsx
- * import { useLocations } from '@openmrs/esm-framework';
+ * import { useLocations } from '@egen/esm-framework';
  * function LocationList() {
  *   const locations = useLocations('Login Location');
  *   return (

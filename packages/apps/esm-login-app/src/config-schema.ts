@@ -1,4 +1,4 @@
-import { validators, Type, validator } from '@openmrs/esm-framework';
+import { validators, Type, validator } from '@egen/esm-framework';
 
 export const configSchema = {
   provider: {

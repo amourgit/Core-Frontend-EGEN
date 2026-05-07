@@ -9,8 +9,8 @@ import {
   getConfigStore,
   getExtensionsConfigStore,
   getExtensionConfigFromStore,
-} from '@openmrs/esm-config';
-import { type ExtensionData } from '@openmrs/esm-extensions';
+} from '@egen/esm-config';
+import { type ExtensionData } from '@egen/esm-extensions';
 import { ComponentContext } from './ComponentContext';
 
 const promises: Record<string, Promise<ConfigObject>> = {};

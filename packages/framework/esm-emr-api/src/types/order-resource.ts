@@ -1,4 +1,4 @@
-import { type Concept, type OpenmrsResource } from '@openmrs/esm-api';
+import { type Concept, type OpenmrsResource } from '@egen/esm-api';
 import { type Drug } from './drug-resource';
 
 export type FulfillerStatus =

@@ -37,7 +37,7 @@ A Promise that resolves with the FetchResponse containing the updated Visit.
 ## Example
 
 ```ts
-import { updateVisit } from '@openmrs/esm-framework';
+import { updateVisit } from '@egen/esm-framework';
 const abortController = new AbortController();
 const response = await updateVisit('visit-uuid', {
   stopDatetime: new Date().toISOString()

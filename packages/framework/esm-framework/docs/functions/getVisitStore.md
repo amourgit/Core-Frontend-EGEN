@@ -19,7 +19,7 @@ The global visit store instance.
 ## Example
 
 ```ts
-import { getVisitStore } from '@openmrs/esm-framework';
+import { getVisitStore } from '@egen/esm-framework';
 const store = getVisitStore();
 const unsubscribe = store.subscribe((state) => {
   console.log('Current patient:', state.patientUuid);

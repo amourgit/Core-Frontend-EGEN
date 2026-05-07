@@ -2,7 +2,7 @@
 'use strict';
 
 import { createStore } from 'zustand/vanilla';
-import { registerGlobalStore } from '@openmrs/esm-state';
+import { registerGlobalStore } from '@egen/esm-state';
 
 interface OpenmrsAppContext {
   [namespace: string]: NonNullable<object>;

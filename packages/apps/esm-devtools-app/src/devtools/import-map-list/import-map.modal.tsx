@@ -1,7 +1,7 @@
 import React, { type FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, ModalHeader, ModalBody, ModalFooter, Stack, TextInput } from '@carbon/react';
-import { addRoutesOverride, removeRoutesOverride } from '@openmrs/esm-framework/src/internal';
+import { addRoutesOverride, removeRoutesOverride } from '@egen/esm-framework/src/internal';
 import type { Module } from './types';
 
 type ImportMapModalProps = ({ module: Module; isNew: false } | { module: never; isNew: true }) & { close: () => void };

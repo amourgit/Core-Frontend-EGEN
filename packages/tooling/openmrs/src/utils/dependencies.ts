@@ -4,7 +4,7 @@ import { inc } from 'semver';
 
 export function getSharedDependencies() {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  return require('@openmrs/esm-app-shell/dependencies.json');
+  return require('@egen/esm-app-shell/dependencies.json');
 }
 
 export function getMainBundle(project: any) {

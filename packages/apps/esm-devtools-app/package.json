@@ -1,5 +1,5 @@
 {
-  "name": "@openmrs/esm-devtools-app",
+  "name": "@egen/esm-devtools-app",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "description": "Dev tools for frontend devs using OpenMRS",
@@ -40,7 +40,7 @@
   },
   "peerDependencies": {
     "@carbon/react": "1.x",
-    "@openmrs/esm-framework": "9.x",
+    "@egen/esm-framework": "9.x",
     "react": "18.x",
     "react-dom": "18.x",
     "react-i18next": "16.x",

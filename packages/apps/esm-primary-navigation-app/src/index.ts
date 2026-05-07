@@ -4,7 +4,7 @@ import {
   getAsyncLifecycle,
   getSyncLifecycle,
   navigate,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import { type Application } from 'single-spa';
 import { configSchema } from './config-schema';
 import { moduleName } from './constants';

@@ -2,7 +2,7 @@ import {
   cleanupObsoleteFeatureFlags,
   getCurrentUser,
   subscribeOpenmrsEvent,
-} from '@openmrs/esm-framework/src/internal';
+} from '@egen/esm-framework/src/internal';
 import { setupOptionalDependencies } from './optionaldeps';
 
 subscribeOpenmrsEvent('started', () => cleanupObsoleteFeatureFlags());

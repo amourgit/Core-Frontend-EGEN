@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import useSWRImmutable from 'swr/immutable';
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-api';
-import { useConfig } from '@openmrs/esm-react-utils';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-api';
+import { useConfig } from '@egen/esm-react-utils';
 import { type Patient } from './types';
 
 const customRepresentation =
@@ -29,7 +29,7 @@ export const usePatientAttributes = (patientUuid: string) => {
  * React hook that takes patientUuid and returns contact details
  * derived from patient attributes using configured attributeTypes.
  *
- * Note: This hook loads configuration from '@openmrs/esm-patient-banner-app'
+ * Note: This hook loads configuration from '@egen/esm-patient-banner-app'
  * because the contact attribute types are defined in the patient banner's
  * configuration schema. While this hook lives in esm-styleguide, it serves
  * the patient banner's contact details display.
@@ -42,7 +42,7 @@ export const usePatientAttributes = (patientUuid: string) => {
  */
 export const usePatientContactAttributes = (patientUuid: string) => {
   const { contactAttributeTypes = [] } = useConfig({
-    externalModuleName: '@openmrs/esm-patient-banner-app',
+    externalModuleName: '@egen/esm-patient-banner-app',
   });
 
   const { attributes, error, isLoading } = usePatientAttributes(patientUuid);

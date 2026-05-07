@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-framework';
 
 export type Concept = {
   answers: Array<ConceptAnswer>;

@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import { type FetchResponse, restBaseUrl } from '@openmrs/esm-framework';
-import { openmrsFetch } from '@openmrs/esm-framework';
+import { type FetchResponse, restBaseUrl } from '@egen/esm-framework';
+import { openmrsFetch } from '@egen/esm-framework';
 import { useMemo } from 'react';
 
 export interface PatientIdentifierType {

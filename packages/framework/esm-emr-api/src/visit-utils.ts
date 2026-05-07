@@ -1,6 +1,6 @@
 /** @module @category API */
-import { openmrsFetch, restBaseUrl, type FetchResponse } from '@openmrs/esm-api';
-import { getGlobalStore } from '@openmrs/esm-state';
+import { openmrsFetch, restBaseUrl, type FetchResponse } from '@egen/esm-api';
+import { getGlobalStore } from '@egen/esm-state';
 import { BehaviorSubject } from 'rxjs';
 import { type NewVisitPayload, type UpdateVisitPayload, type Visit } from './types';
 
@@ -68,7 +68,7 @@ const initialState: VisitStoreState = getVisitSessionStorage() || {
  *
  * @example
  * ```ts
- * import { getVisitStore } from '@openmrs/esm-framework';
+ * import { getVisitStore } from '@egen/esm-framework';
  * const store = getVisitStore();
  * const unsubscribe = store.subscribe((state) => {
  *   console.log('Current patient:', state.patientUuid);
@@ -88,7 +88,7 @@ export function getVisitStore() {
  *
  * @example
  * ```ts
- * import { setCurrentVisit } from '@openmrs/esm-framework';
+ * import { setCurrentVisit } from '@egen/esm-framework';
  * setCurrentVisit('patient-uuid', 'visit-uuid');
  * ```
  */
@@ -122,7 +122,7 @@ function getVisitSessionStorage(): VisitStoreState | null {
  *
  * @example
  * ```ts
- * import { saveVisit } from '@openmrs/esm-framework';
+ * import { saveVisit } from '@egen/esm-framework';
  * const abortController = new AbortController();
  * const response = await saveVisit({
  *   patient: 'patient-uuid',
@@ -152,7 +152,7 @@ export function saveVisit(payload: NewVisitPayload, abortController: AbortContro
  *
  * @example
  * ```ts
- * import { updateVisit } from '@openmrs/esm-framework';
+ * import { updateVisit } from '@egen/esm-framework';
  * const abortController = new AbortController();
  * const response = await updateVisit('visit-uuid', {
  *   stopDatetime: new Date().toISOString()

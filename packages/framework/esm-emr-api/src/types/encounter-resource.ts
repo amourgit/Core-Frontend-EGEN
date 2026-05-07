@@ -1,4 +1,4 @@
-import { type OpenmrsResource } from '@openmrs/esm-api';
+import { type OpenmrsResource } from '@egen/esm-api';
 import { type Diagnosis } from './diagnosis-resource';
 import { type Location } from './location-resource';
 import { type Obs } from './obs-resource';

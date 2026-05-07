@@ -1,8 +1,8 @@
 /** @module @category API */
 import { Observable } from 'rxjs';
 import { isPlainObject } from 'lodash-es';
-import { getConfig } from '@openmrs/esm-config';
-import { clearHistory, navigate } from '@openmrs/esm-navigation';
+import { getConfig } from '@egen/esm-config';
+import { clearHistory, navigate } from '@egen/esm-navigation';
 import type { FetchResponse } from './types';
 import { defaultRedirectAuthFailureUrl, type EsmApiConfigObject } from './config-schema';
 
@@ -58,7 +58,7 @@ export function makeUrl(path: string) {
  *
  * @example
  * ```js
- * import { openmrsFetch } from '@openmrs/esm-api'
+ * import { openmrsFetch } from '@egen/esm-api'
  * const abortController = new AbortController();
  * openmrsFetch(`${restBaseUrl}/session', {signal: abortController.signal})
  *   .then(response => {
@@ -89,16 +89,16 @@ export function makeUrl(path: string) {
  */
 export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {}): Promise<FetchResponse<T>> {
   if (typeof path !== 'string') {
-    throw Error("The first argument to @openmrs/api's openmrsFetch function must be a url string");
+    throw Error("The first argument to @egen/api's openmrsFetch function must be a url string");
   }
 
   if (typeof fetchInit !== 'object') {
-    throw Error("The second argument to @openmrs/api's openmrsFetch function must be a plain object.");
+    throw Error("The second argument to @egen/api's openmrsFetch function must be a plain object.");
   }
 
   if (!window.openmrsBase) {
     throw Error(
-      "@openmrs/api is running in a browser that doesn't have window.openmrsBase, which is provided by openmrs-module-spa's HTML file.",
+      "@egen/api is running in a browser that doesn't have window.openmrsBase, which is provided by openmrs-module-spa's HTML file.",
     );
   }
 
@@ -150,13 +150,13 @@ export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {})
   /* We capture the stacktrace before making the request, so that if an error occurs we can
    * log a full stacktrace that includes the code that made the request and handled the response
    * Otherwise, we could run into situations where the stacktrace doesn't even show which code
-   * called @openmrs/api.
+   * called @egen/api.
    */
   const requestStacktrace = Error();
 
   return window.fetch(url, fetchInit as RequestInit).then(async (r) => {
     const response = r as FetchResponse<T>;
-    const { redirectAuthFailure, followRedirects } = await getConfig<EsmApiConfigObject>('@openmrs/esm-api');
+    const { redirectAuthFailure, followRedirects } = await getConfig<EsmApiConfigObject>('@egen/esm-api');
     if (response.ok) {
       if (response.status === 204) {
         if (followRedirects && response.headers.has('location')) {
@@ -261,7 +261,7 @@ export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {})
  * @example
  *
  * ```js
- * import { openmrsObservableFetch } from '@openmrs/esm-api'
+ * import { openmrsObservableFetch } from '@egen/esm-api'
  * const subscription = openmrsObservableFetch(`${restBaseUrl}/session').subscribe(
  *   response => console.log(response.data),
  *   err => {throw err},

@@ -7,7 +7,7 @@ import {
   useLayoutType,
   useLeftNavStore,
   useSession,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { isDesktop } from '../../utils';

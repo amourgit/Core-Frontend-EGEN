@@ -32,7 +32,7 @@ A Promise that resolves with the FetchResponse confirming deletion.
 ## Example
 
 ```ts
-import { deleteAttachmentPermanently } from '@openmrs/esm-framework';
+import { deleteAttachmentPermanently } from '@egen/esm-framework';
 const abortController = new AbortController();
 await deleteAttachmentPermanently('attachment-uuid', abortController);
 ```

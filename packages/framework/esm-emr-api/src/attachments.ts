@@ -1,5 +1,5 @@
 /** @module @category API */
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-api';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-api';
 import type { UploadedFile } from './types';
 
 /** Base URL for the attachment REST API endpoint. */
@@ -14,7 +14,7 @@ export const attachmentUrl = `${restBaseUrl}/attachment`;
  *
  * @example
  * ```ts
- * import { getAttachmentByUuid } from '@openmrs/esm-framework';
+ * import { getAttachmentByUuid } from '@egen/esm-framework';
  * const abortController = new AbortController();
  * const response = await getAttachmentByUuid('attachment-uuid', abortController);
  * console.log(response.data);
@@ -37,7 +37,7 @@ export function getAttachmentByUuid(attachmentUuid: string, abortController: Abo
  *
  * @example
  * ```ts
- * import { getAttachments } from '@openmrs/esm-framework';
+ * import { getAttachments } from '@egen/esm-framework';
  * const abortController = new AbortController();
  * const response = await getAttachments('patient-uuid', true, abortController);
  * console.log(response.data.results);
@@ -62,7 +62,7 @@ export function getAttachments(patientUuid: string, includeEncounterless: boolea
  *
  * @example
  * ```ts
- * import { createAttachment } from '@openmrs/esm-framework';
+ * import { createAttachment } from '@egen/esm-framework';
  * const response = await createAttachment('patient-uuid', {
  *   file: selectedFile,
  *   fileName: 'document.pdf',
@@ -99,7 +99,7 @@ export async function createAttachment(patientUuid: string, fileToUpload: Upload
  *
  * @example
  * ```ts
- * import { deleteAttachmentPermanently } from '@openmrs/esm-framework';
+ * import { deleteAttachmentPermanently } from '@egen/esm-framework';
  * const abortController = new AbortController();
  * await deleteAttachmentPermanently('attachment-uuid', abortController);
  * ```

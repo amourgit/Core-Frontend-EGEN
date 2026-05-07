@@ -40,7 +40,7 @@ A Promise that resolves with the updated SessionStore after refetching
 ## Example
 
 ```ts
-import { getLoggedInUser, setUserProperties } from '@openmrs/esm-api';
+import { getLoggedInUser, setUserProperties } from '@egen/esm-api';
 const user = await getLoggedInUser();
 await setUserProperties(user.uuid, {
   defaultLocale: 'en_GB',

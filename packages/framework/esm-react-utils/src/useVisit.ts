@@ -3,8 +3,8 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
 import isToday from 'dayjs/plugin/isToday.js';
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-api';
-import { defaultVisitCustomRepresentation, type Visit } from '@openmrs/esm-emr-api';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-api';
+import { defaultVisitCustomRepresentation, type Visit } from '@egen/esm-emr-api';
 import { useVisitContextStore } from './useVisitContextStore';
 
 dayjs.extend(isToday);

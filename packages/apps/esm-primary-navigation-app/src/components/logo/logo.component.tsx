@@ -1,5 +1,5 @@
 import React from 'react';
-import { interpolateUrl, useConfig } from '@openmrs/esm-framework';
+import { interpolateUrl, useConfig } from '@egen/esm-framework';
 import { type ConfigSchema } from '../../config-schema';
 import styles from './logo.scss';
 

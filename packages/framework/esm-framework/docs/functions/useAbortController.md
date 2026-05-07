@@ -19,7 +19,7 @@ are cancelled when a component is unmounted.
 ## Example
 
 ```tsx
-import { useAbortController } from "@openmrs/esm-framework";
+import { useAbortController } from "@egen/esm-framework";
 
 function MyComponent() {
  const abortController = useAbortController();

@@ -1,14 +1,14 @@
 import { afterEach, vi } from 'vitest';
-import type {} from '@openmrs/esm-globals';
+import type {} from '@egen/esm-globals';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 
-vi.mock('@openmrs/esm-api', async () => ({
-  ...(await vi.importActual('@openmrs/esm-api')),
-  ...(await import('@openmrs/esm-api/mock')),
+vi.mock('@egen/esm-api', async () => ({
+  ...(await vi.importActual('@egen/esm-api')),
+  ...(await import('@egen/esm-api/mock')),
 }));
-vi.mock('@openmrs/esm-react-utils', () => import('@openmrs/esm-react-utils/mock'));
-vi.mock('@openmrs/esm-translations', () => import('@openmrs/esm-translations/mock'));
+vi.mock('@egen/esm-react-utils', () => import('@egen/esm-react-utils/mock'));
+vi.mock('@egen/esm-translations', () => import('@egen/esm-translations/mock'));
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, fallback?: string) => fallback ?? key,

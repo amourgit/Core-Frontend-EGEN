@@ -30,6 +30,6 @@ The UUID of the visit to set as the current visit.
 ## Example
 
 ```ts
-import { setCurrentVisit } from '@openmrs/esm-framework';
+import { setCurrentVisit } from '@egen/esm-framework';
 setCurrentVisit('patient-uuid', 'visit-uuid');
 ```

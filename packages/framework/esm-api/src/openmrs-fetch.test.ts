@@ -1,10 +1,10 @@
 import { isObservable } from 'rxjs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { getConfig } from '@openmrs/esm-config';
-import { navigate } from '@openmrs/esm-navigation';
+import { getConfig } from '@egen/esm-config';
+import { navigate } from '@egen/esm-navigation';
 import { openmrsFetch, openmrsObservableFetch } from './openmrs-fetch';
 
-vi.mock('@openmrs/esm-navigation', () => ({
+vi.mock('@egen/esm-navigation', () => ({
   clearHistory: vi.fn(),
   navigate: vi.fn(),
 }));

@@ -1,4 +1,4 @@
-import { isVersionSatisfied, openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
+import { isVersionSatisfied, openmrsFetch, restBaseUrl } from '@egen/esm-framework';
 import difference from 'lodash-es/difference';
 
 export type ResolvedBackendModuleType = 'missing' | 'version-mismatch' | 'okay';

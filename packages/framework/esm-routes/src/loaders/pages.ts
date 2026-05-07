@@ -1,5 +1,5 @@
 import { type ActivityFn, pathToActiveWhen, registerApplication } from 'single-spa';
-import { registerModuleWithConfigSystem } from '@openmrs/esm-config';
+import { registerModuleWithConfigSystem } from '@egen/esm-config';
 import {
   type WorkspaceGroupDefinition,
   type ExtensionDefinition,
@@ -9,8 +9,8 @@ import {
   type RegisteredPageDefinition,
   type RouteDefinition,
   type WorkspaceDefinition,
-} from '@openmrs/esm-globals';
-import { getFeatureFlag } from '@openmrs/esm-feature-flags';
+} from '@egen/esm-globals';
+import { getFeatureFlag } from '@egen/esm-feature-flags';
 import { routeRegex } from './helpers';
 import {
   tryRegisterExtension,
@@ -92,7 +92,7 @@ function wrapPageActivityFn(
  * Each app has a name and should have a `routes.json` file that defines it's
  * associated routes.
  *
- * @param appName The name of the application, e.g. `@openmrs/esm-my-app`
+ * @param appName The name of the application, e.g. `@egen/esm-my-app`
  * @param routes A Javascript object that corresponds to the app's  routes.json`
  * definition.
  */

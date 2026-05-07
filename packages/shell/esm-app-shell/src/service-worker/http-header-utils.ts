@@ -1,4 +1,4 @@
-import type { OmrsOfflineHttpHeaderNames, OmrsOfflineHttpHeaders } from '@openmrs/esm-offline';
+import type { OmrsOfflineHttpHeaderNames, OmrsOfflineHttpHeaders } from '@egen/esm-offline';
 import { omrsOfflineResponseBodyHttpHeaderName, omrsOfflineResponseStatusHttpHeaderName } from './constants';
 
 export function parseOmrsOfflineResponseBodyHeader(headers: Headers) {

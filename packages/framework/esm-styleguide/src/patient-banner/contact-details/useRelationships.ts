@@ -1,4 +1,4 @@
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-api';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-api';
 import useSWR from 'swr';
 
 const customRepresentation =

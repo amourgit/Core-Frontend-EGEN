@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { subscribeOpenmrsEvent } from '@openmrs/esm-emr-api';
+import { subscribeOpenmrsEvent } from '@egen/esm-emr-api';
 import classNames from 'classnames';
 import { createRoot } from 'react-dom/client';
 import { ActionMenu } from './action-menu2/action-menu2.component';

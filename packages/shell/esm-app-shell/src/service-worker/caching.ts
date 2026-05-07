@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import type { ImportMap } from '@openmrs/esm-globals';
-import { retry } from '@openmrs/esm-utils';
+import type { ImportMap } from '@egen/esm-globals';
+import { retry } from '@egen/esm-utils';
 import { absoluteWbManifestUrls, omrsCacheName } from './constants';
 import { fetchUrlsToCacheFromImportMap } from './import-map-utils';
 import { ServiceWorkerDb } from './storage';

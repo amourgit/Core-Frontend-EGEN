@@ -1,4 +1,4 @@
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-framework';
 
 export function changeUserPassword(oldPassword: string, newPassword: string) {
   return openmrsFetch(`${restBaseUrl}/password`, {

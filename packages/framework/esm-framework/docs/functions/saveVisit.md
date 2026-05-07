@@ -32,7 +32,7 @@ A Promise that resolves with the FetchResponse containing the created Visit.
 ## Example
 
 ```ts
-import { saveVisit } from '@openmrs/esm-framework';
+import { saveVisit } from '@egen/esm-framework';
 const abortController = new AbortController();
 const response = await saveVisit({
   patient: 'patient-uuid',

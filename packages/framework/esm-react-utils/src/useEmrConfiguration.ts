@@ -1,7 +1,7 @@
 /** @module @category API */
 import { useMemo } from 'react';
 import useSWRImmutable from 'swr/immutable';
-import { type FetchResponse, type OpenmrsResource, openmrsFetch, restBaseUrl } from '@openmrs/esm-api';
+import { type FetchResponse, type OpenmrsResource, openmrsFetch, restBaseUrl } from '@egen/esm-api';
 
 interface LocationTag extends OpenmrsResource {
   name: string;

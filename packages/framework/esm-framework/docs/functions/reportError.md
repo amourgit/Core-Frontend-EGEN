@@ -28,7 +28,7 @@ The error to report. Can be an Error object, string, or any other value.
 ## Example
 
 ```ts
-import { reportError } from '@openmrs/esm-framework';
+import { reportError } from '@egen/esm-framework';
 try {
   await riskyOperation();
 } catch (error) {

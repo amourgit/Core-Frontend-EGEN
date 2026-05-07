@@ -39,7 +39,7 @@ A single-spa lifecycle object with bootstrap, mount, and unmount functions.
 ## Example
 
 ```ts
-import { getLifecycle } from '@openmrs/esm-framework';
+import { getLifecycle } from '@egen/esm-framework';
 import MyComponent from './MyComponent';
-export const lifecycle = getLifecycle(MyComponent, { featureName: 'my-feature', moduleName: '@openmrs/esm-my-app' });
+export const lifecycle = getLifecycle(MyComponent, { featureName: 'my-feature', moduleName: '@egen/esm-my-app' });
 ```

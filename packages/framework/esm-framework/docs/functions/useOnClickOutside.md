@@ -44,7 +44,7 @@ A React ref object to attach to the element you want to detect
 ## Example
 
 ```tsx
-import { useOnClickOutside } from '@openmrs/esm-framework';
+import { useOnClickOutside } from '@egen/esm-framework';
 function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOnClickOutside<HTMLDivElement>(() => setIsOpen(false), isOpen);

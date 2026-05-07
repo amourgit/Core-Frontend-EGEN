@@ -33,7 +33,7 @@ An Observable that produces zero or more values (as described above).
 ### Example
 
 ```js
-import { getCurrentUser } from '@openmrs/esm-api'
+import { getCurrentUser } from '@egen/esm-api'
 const subscription = getCurrentUser().subscribe(
   user => console.log(user)
 )

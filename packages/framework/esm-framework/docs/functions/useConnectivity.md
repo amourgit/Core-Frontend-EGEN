@@ -19,7 +19,7 @@ conditionally rendering UI based on network availability.
 ## Example
 
 ```tsx
-import { useConnectivity } from '@openmrs/esm-framework';
+import { useConnectivity } from '@egen/esm-framework';
 function NetworkStatus() {
   const isOnline = useConnectivity();
   return <span>{isOnline ? 'Online' : 'Offline'}</span>;

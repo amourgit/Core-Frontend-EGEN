@@ -48,7 +48,7 @@ A [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Gl
 ## Example
 
 ```js
-import { openmrsFetch } from '@openmrs/esm-api'
+import { openmrsFetch } from '@egen/esm-api'
 const abortController = new AbortController();
 openmrsFetch(`${restBaseUrl}/session', {signal: abortController.signal})
   .then(response => {

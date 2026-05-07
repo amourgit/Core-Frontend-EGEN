@@ -44,7 +44,7 @@ export async function runDevelop(args: DevelopArgs) {
   const localConfigUrlPrefix = '__local_config__';
   const localConfigUrls = configFiles.map((path) => `${spaPath}/${localConfigUrlPrefix}/${basename(path)}`);
 
-  const source = resolve(require.resolve('@openmrs/esm-app-shell/package.json'), '..', 'dist');
+  const source = resolve(require.resolve('@egen/esm-app-shell/package.json'), '..', 'dist');
   const index = resolve(source, 'index.html');
   const indexContent = readFileSync(index, 'utf8')
     .replace(

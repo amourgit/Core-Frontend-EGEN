@@ -1,5 +1,5 @@
 {
-  "name": "@openmrs/esm-dynamic-loading",
+  "name": "@egen/esm-dynamic-loading",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "description": "Utilities for dynamically loading code in OpenMRS",
@@ -53,12 +53,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@openmrs/esm-globals": "9.x",
-    "@openmrs/esm-translations": "9.x"
+    "@egen/esm-globals": "9.x",
+    "@egen/esm-translations": "9.x"
   },
   "devDependencies": {
-    "@openmrs/esm-globals": "workspace:*",
-    "@openmrs/esm-translations": "workspace:*",
+    "@egen/esm-globals": "workspace:*",
+    "@egen/esm-translations": "workspace:*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",

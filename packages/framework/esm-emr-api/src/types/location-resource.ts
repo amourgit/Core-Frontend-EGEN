@@ -1,4 +1,4 @@
-import { type OpenmrsResource } from '@openmrs/esm-api';
+import { type OpenmrsResource } from '@egen/esm-api';
 
 export interface Location extends OpenmrsResource {
   name?: string;

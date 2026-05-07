@@ -14,7 +14,7 @@ const { removeTrailingSlash, getTimestamp } = require('./tools/helpers');
 
 const { name, version, dependencies } = require('./package.json');
 const sharedDependencies = require('./dependencies.json');
-const frameworkVersion = require('@openmrs/esm-framework/package.json').version;
+const frameworkVersion = require('@egen/esm-framework/package.json').version;
 
 const timestamp = getTimestamp();
 const production = 'production';
@@ -310,8 +310,8 @@ module.exports = (env, argv = []) => {
         'lodash.omit': 'lodash-es/omit',
         'lodash.throttle': 'lodash-es/throttle',
         // ugly, stupid hack to support dynamic translation resolution here
-        '@openmrs/esm-translations/translations': resolve(
-          dirname(require.resolve('@openmrs/esm-translations/package.json')),
+        '@egen/esm-translations/translations': resolve(
+          dirname(require.resolve('@egen/esm-translations/package.json')),
           'translations',
         ),
       },

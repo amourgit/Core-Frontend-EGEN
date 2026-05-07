@@ -3,11 +3,11 @@ import type useSWR from 'swr';
 import type { BareFetcher, Key } from 'swr';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { useVisit } from './useVisit';
-import type { Visit } from '@openmrs/esm-emr-api';
+import type { Visit } from '@egen/esm-emr-api';
 
 // Mock openmrsFetch
 const mockOpenmrsFetch = vi.fn();
-vi.mock('@openmrs/esm-api', () => ({
+vi.mock('@egen/esm-api', () => ({
   openmrsFetch: (...args: any[]) => mockOpenmrsFetch(...args),
   restBaseUrl: '/ws/rest/v1',
 }));

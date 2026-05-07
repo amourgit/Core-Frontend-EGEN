@@ -1,5 +1,5 @@
 {
-  "name": "@openmrs/esm-feature-flags",
+  "name": "@egen/esm-feature-flags",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "description": "A feature flag system for the OpenMRS Single-Spa framework.",
@@ -45,13 +45,13 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@openmrs/esm-globals": "9.x",
-    "@openmrs/esm-state": "9.x",
+    "@egen/esm-globals": "9.x",
+    "@egen/esm-state": "9.x",
     "single-spa": "6.x"
   },
   "devDependencies": {
-    "@openmrs/esm-globals": "workspace:*",
-    "@openmrs/esm-state": "workspace:*",
+    "@egen/esm-globals": "workspace:*",
+    "@egen/esm-state": "workspace:*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "concurrently": "^9.1.2",

@@ -58,7 +58,7 @@ An object containing:
 ## Example
 
 ```tsx
-import { useAttachments } from '@openmrs/esm-framework';
+import { useAttachments } from '@egen/esm-framework';
 function PatientAttachments({ patientUuid }) {
   const { data, isLoading, error } = useAttachments(patientUuid, true);
   if (isLoading) return <span>Loading...</span>;

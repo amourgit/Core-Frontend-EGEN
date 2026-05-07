@@ -18,7 +18,7 @@ The current state of the left navigation store.
 ## Example
 
 ```tsx
-import { useLeftNavStore } from '@openmrs/esm-framework';
+import { useLeftNavStore } from '@egen/esm-framework';
 function MyComponent() {
   const leftNavState = useLeftNavStore();
   return <div>Current nav: {leftNavState.activeNavName}</div>;

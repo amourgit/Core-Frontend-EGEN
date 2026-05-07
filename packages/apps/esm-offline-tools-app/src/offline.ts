@@ -3,7 +3,7 @@ import {
   makeUrl,
   messageOmrsServiceWorker,
   setupDynamicOfflineDataHandler,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import { cacheForOfflineHeaders } from './constants';
 
 export function setupOffline() {

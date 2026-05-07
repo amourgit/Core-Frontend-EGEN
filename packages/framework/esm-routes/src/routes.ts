@@ -1,6 +1,6 @@
 /** @module @category Routes Utilities */
-import type { OpenmrsAppRoutes, OpenmrsRoutes } from '@openmrs/esm-globals';
-import { canAccessStorage } from '@openmrs/esm-utils';
+import type { OpenmrsAppRoutes, OpenmrsRoutes } from '@egen/esm-globals';
+import { canAccessStorage } from '@egen/esm-utils';
 import { localStorageRoutesPrefix } from './constants';
 
 const isEnabled = canAccessStorage();

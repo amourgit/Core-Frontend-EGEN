@@ -45,7 +45,7 @@ A function that returns a Promise resolving to a single-spa lifecycle object.
 ## Example
 
 ```ts
-import { getAsyncLifecycle } from '@openmrs/esm-framework';
-const options = { featureName: 'my-feature', moduleName: '@openmrs/esm-my-app' };
+import { getAsyncLifecycle } from '@egen/esm-framework';
+const options = { featureName: 'my-feature', moduleName: '@egen/esm-my-app' };
 export const root = getAsyncLifecycle(() => import('./root.component'), options);
 ```

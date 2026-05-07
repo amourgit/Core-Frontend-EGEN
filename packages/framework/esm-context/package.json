@@ -1,5 +1,5 @@
 {
-  "name": "@openmrs/esm-context",
+  "name": "@egen/esm-context",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "description": "Utilities for managing the current execution context",
@@ -50,12 +50,12 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@openmrs/esm-globals": "9.x",
-    "@openmrs/esm-state": "9.x"
+    "@egen/esm-globals": "9.x",
+    "@egen/esm-state": "9.x"
   },
   "devDependencies": {
-    "@openmrs/esm-globals": "workspace:*",
-    "@openmrs/esm-state": "workspace:*",
+    "@egen/esm-globals": "workspace:*",
+    "@egen/esm-state": "workspace:*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",

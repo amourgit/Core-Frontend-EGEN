@@ -19,7 +19,7 @@ The global session store that can be subscribed to for session updates.
 ## Example
 
 ```ts
-import { getSessionStore } from '@openmrs/esm-api';
+import { getSessionStore } from '@egen/esm-api';
 const store = getSessionStore();
 const unsubscribe = store.subscribe((state) => {
   if (state.loaded) {

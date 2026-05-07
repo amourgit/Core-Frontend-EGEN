@@ -10,7 +10,7 @@ import {
   parseOmrsOfflineResponseBodyHeader,
   parseOmrsOfflineResponseStatusHeader,
 } from './http-header-utils';
-import type { OmrsOfflineCachingStrategy } from '@openmrs/esm-offline';
+import type { OmrsOfflineCachingStrategy } from '@egen/esm-offline';
 import uniq from 'lodash-es/uniq';
 
 const networkOnly = new NetworkOnly();

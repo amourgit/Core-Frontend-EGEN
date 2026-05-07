@@ -1,4 +1,4 @@
-import { type Concept, type OpenmrsResource } from '@openmrs/esm-api';
+import { type Concept, type OpenmrsResource } from '@egen/esm-api';
 
 export interface Drug extends OpenmrsResource {
   uuid: string;

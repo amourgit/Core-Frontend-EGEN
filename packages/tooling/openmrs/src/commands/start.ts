@@ -16,7 +16,7 @@ export interface StartArgs {
 export function runStart(args: StartArgs) {
   const { backend, host, port, open, addCookie } = args;
   const app = express();
-  const source = resolve(require.resolve('@openmrs/esm-app-shell/package.json'), '..', 'dist');
+  const source = resolve(require.resolve('@egen/esm-app-shell/package.json'), '..', 'dist');
   const index = resolve(source, 'index.html');
   const spaPath = '/openmrs/spa';
   const pageUrl = `http://${host}:${port}${spaPath}`;

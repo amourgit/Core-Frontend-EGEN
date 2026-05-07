@@ -35,7 +35,7 @@ A Promise that resolves with the FetchResponse containing the created
 ## Example
 
 ```ts
-import { createAttachment } from '@openmrs/esm-framework';
+import { createAttachment } from '@egen/esm-framework';
 const response = await createAttachment('patient-uuid', {
   file: selectedFile,
   fileName: 'document.pdf',

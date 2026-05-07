@@ -1,4 +1,4 @@
-import { type ConfigSchema, Type, validators } from '@openmrs/esm-config';
+import { type ConfigSchema, Type, validators } from '@egen/esm-config';
 
 export const defaultRedirectAuthFailureUrl = '${openmrsSpaBase}/login';
 

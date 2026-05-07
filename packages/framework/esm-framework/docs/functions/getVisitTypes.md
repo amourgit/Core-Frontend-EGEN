@@ -18,7 +18,7 @@ An Observable that emits an array of VisitType objects and then completes.
 ## Example
 
 ```ts
-import { getVisitTypes } from '@openmrs/esm-framework';
+import { getVisitTypes } from '@egen/esm-framework';
 getVisitTypes().subscribe((visitTypes) => {
   console.log('Available visit types:', visitTypes);
 });

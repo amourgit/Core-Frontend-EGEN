@@ -1,5 +1,5 @@
 /** @module @category UI */
-import { type FetchResponse, makeUrl, openmrsFetch } from '@openmrs/esm-api';
+import { type FetchResponse, makeUrl, openmrsFetch } from '@egen/esm-api';
 import {
   type ServerPaginationHandlers,
   useServerPagination,

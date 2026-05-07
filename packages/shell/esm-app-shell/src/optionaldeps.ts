@@ -4,7 +4,7 @@ import {
   registerFeatureFlag,
   setFeatureFlag,
   restBaseUrl,
-} from '@openmrs/esm-framework/src/internal';
+} from '@egen/esm-framework/src/internal';
 import { satisfies } from 'semver';
 
 export function setupOptionalDependencies() {

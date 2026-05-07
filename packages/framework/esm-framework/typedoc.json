@@ -9,7 +9,7 @@
     }
   ],
   "plugin": [
-    "@openmrs/typedoc-plugin-file-categories",
+    "@egen/typedoc-plugin-file-categories",
     "typedoc-plugin-markdown",
     "typedoc-plugin-no-inherit"
   ],

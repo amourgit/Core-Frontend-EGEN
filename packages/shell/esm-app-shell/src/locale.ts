@@ -6,7 +6,7 @@ import {
   getTranslationOverrides,
   importDynamic,
   registerTranslationNamespace,
-} from '@openmrs/esm-framework/src/internal';
+} from '@egen/esm-framework/src/internal';
 
 registerTranslationNamespace('core');
 
@@ -38,7 +38,7 @@ export function setupI18n() {
           callback(Error(), null);
         } else if (namespace === 'core') {
           Promise.all([
-            import(/* webpackMode: "lazy" */ `@openmrs/esm-translations/translations/${language}.json`),
+            import(/* webpackMode: "lazy" */ `@egen/esm-translations/translations/${language}.json`),
             getTranslationOverrides(namespace),
           ])
             .then(([json, [overrides]]) => {

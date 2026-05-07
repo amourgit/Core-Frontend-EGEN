@@ -41,7 +41,7 @@ The response object is exactly the same as for [[openmrsFetch]].
 ## Example
 
 ```js
-import { openmrsObservableFetch } from '@openmrs/esm-api'
+import { openmrsObservableFetch } from '@egen/esm-api'
 const subscription = openmrsObservableFetch(`${restBaseUrl}/session').subscribe(
   response => console.log(response.data),
   err => {throw err},

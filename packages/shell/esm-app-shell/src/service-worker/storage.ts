@@ -1,4 +1,4 @@
-import type { OmrsOfflineCachingStrategy } from '@openmrs/esm-offline';
+import type { OmrsOfflineCachingStrategy } from '@egen/esm-offline';
 import type { Table } from 'dexie';
 import Dexie from 'dexie';
 

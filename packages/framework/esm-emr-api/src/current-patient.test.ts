@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { openmrsFetch, type FetchResponse } from '@openmrs/esm-api';
-import { getSynchronizationItems } from '@openmrs/esm-offline';
+import { openmrsFetch, type FetchResponse } from '@egen/esm-api';
+import { getSynchronizationItems } from '@egen/esm-offline';
 import { fetchCurrentPatient } from './current-patient';
 
-vi.mock('@openmrs/esm-api');
+vi.mock('@egen/esm-api');
 
 const mockOpenmrsFetch = vi.mocked(openmrsFetch);
 const mockGetSynchronizationItems = vi.mocked(getSynchronizationItems);
@@ -13,7 +13,7 @@ vi.mock('../openmrs-fetch', () => ({
   fhirBaseUrl: '/ws/fhir2/R4',
 }));
 
-vi.mock('@openmrs/esm-offline', () => ({
+vi.mock('@egen/esm-offline', () => ({
   getSynchronizationItems: vi.fn(),
 }));
 

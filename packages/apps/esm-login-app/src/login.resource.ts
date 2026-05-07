@@ -10,7 +10,7 @@ import {
   type FetchResponse,
   type Session,
   useDebounce,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import type { LocationEntry, LocationResponse } from './types';
 
 // "swr/infinite" doesn't export InfiniteKeyedMutator directly

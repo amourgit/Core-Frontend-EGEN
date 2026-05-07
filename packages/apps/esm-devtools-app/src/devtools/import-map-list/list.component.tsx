@@ -13,7 +13,7 @@ import {
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import fuzzy from 'fuzzy';
-import { useDebounce, type ImportMap, showModal, resetAllRoutesOverrides } from '@openmrs/esm-framework/src/internal';
+import { useDebounce, type ImportMap, showModal, resetAllRoutesOverrides } from '@egen/esm-framework/src/internal';
 import type { Module } from './types';
 import styles from './list.scss';
 

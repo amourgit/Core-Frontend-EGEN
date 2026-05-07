@@ -1,8 +1,8 @@
 /** @module @category Dynamic Loading */
 'use strict';
 // hack to make the types defined in esm-globals available here
-import { dispatchToastShown, type ImportMap } from '@openmrs/esm-globals';
-import { getCoreTranslation } from '@openmrs/esm-translations';
+import { dispatchToastShown, type ImportMap } from '@egen/esm-globals';
+import { getCoreTranslation } from '@egen/esm-translations';
 
 /**
  * @internal
@@ -20,7 +20,7 @@ export function slugify(name: string) {
  * Loads the named export from a named package. This might be used like:
  *
  * ```js
- * const { someComponent } = importDynamic("@openmrs/esm-template-app")
+ * const { someComponent } = importDynamic("@egen/esm-template-app")
  * ```
  *
  * @param jsPackage The package to load the export from.

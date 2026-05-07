@@ -27,7 +27,7 @@ load the module's translations if they have not already been loaded via `useTran
 
 `string`
 
-The module to get the translation from, e.g. '@openmrs/esm-login-app'
+The module to get the translation from, e.g. '@egen/esm-login-app'
 
 ### key
 

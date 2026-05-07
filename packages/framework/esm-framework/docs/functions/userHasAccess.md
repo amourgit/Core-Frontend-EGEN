@@ -41,7 +41,7 @@ The user object containing their privileges and roles.
 ## Example
 
 ```ts
-import { userHasAccess } from '@openmrs/esm-api';
+import { userHasAccess } from '@egen/esm-api';
 const hasAccess = userHasAccess('View Patients', currentUser);
 const hasMultipleAccess = userHasAccess(['View Patients', 'Edit Patients'], currentUser);
 ```

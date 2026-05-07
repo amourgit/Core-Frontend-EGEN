@@ -20,7 +20,7 @@ A Promise that resolves with the LoggedInUser object once available.
 ## Example
 
 ```ts
-import { getLoggedInUser } from '@openmrs/esm-api';
+import { getLoggedInUser } from '@egen/esm-api';
 const user = await getLoggedInUser();
 console.log('Logged in as:', user.display);
 ```

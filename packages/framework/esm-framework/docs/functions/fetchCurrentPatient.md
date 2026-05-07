@@ -46,7 +46,7 @@ Rethrows any error from the server request if no offline patient is found.
 ## Example
 
 ```ts
-import { fetchCurrentPatient } from '@openmrs/esm-framework';
+import { fetchCurrentPatient } from '@egen/esm-framework';
 const patient = await fetchCurrentPatient('patient-uuid');
 if (patient) {
   console.log('Patient name:', patient.name?.[0]?.text);

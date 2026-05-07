@@ -1,4 +1,4 @@
-import { type OpenmrsResourceStrict, type Person } from '@openmrs/esm-api';
+import { type OpenmrsResourceStrict, type Person } from '@egen/esm-api';
 
 export interface PatientIdentifierType extends OpenmrsResourceStrict {
   name?: string;

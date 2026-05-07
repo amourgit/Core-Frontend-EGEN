@@ -1,8 +1,8 @@
 import React from 'react';
-import { openmrsFetch } from '@openmrs/esm-api/mock';
-import { configSchema } from '@openmrs/esm-config/mock';
-import { getExtensionInternalStore } from '@openmrs/esm-extensions/mock';
-import { createGlobalStore } from '@openmrs/esm-state/mock';
+import { openmrsFetch } from '@egen/esm-api/mock';
+import { configSchema } from '@egen/esm-config/mock';
+import { getExtensionInternalStore } from '@egen/esm-extensions/mock';
+import { createGlobalStore } from '@egen/esm-state/mock';
 import {
   isDesktop as realIsDesktop,
   usePagination as realUsePagination,
@@ -17,7 +17,7 @@ import {
 } from './src/index';
 export { ConfigurableLink } from './src/ConfigurableLink';
 export { useStore, useStoreWithActions, createUseStore } from './src/useStore';
-import * as utils from '@openmrs/esm-utils';
+import * as utils from '@egen/esm-utils';
 
 export const ComponentContext = React.createContext(null);
 

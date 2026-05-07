@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { NEVER } from 'rxjs';
 import { vi } from 'vitest';
-import type {} from '@openmrs/esm-globals';
-import * as utils from '@openmrs/esm-utils';
+import type {} from '@egen/esm-globals';
+import * as utils from '@egen/esm-utils';
 
 window.i18next = { ...window.i18next, language: 'en' };
 
-export * from '@openmrs/esm-api/mock';
-export * from '@openmrs/esm-emr-api/mock';
-export * from '@openmrs/esm-config/mock';
-export * from '@openmrs/esm-context';
-export * from '@openmrs/esm-expression-evaluator/src/public';
-export * from '@openmrs/esm-extensions/mock';
-export * from '@openmrs/esm-react-utils/mock';
-export * from '@openmrs/esm-state/mock';
-export * from '@openmrs/esm-styleguide/mock';
-export * from '@openmrs/esm-translations/mock';
+export * from '@egen/esm-api/mock';
+export * from '@egen/esm-emr-api/mock';
+export * from '@egen/esm-config/mock';
+export * from '@egen/esm-context';
+export * from '@egen/esm-expression-evaluator/src/public';
+export * from '@egen/esm-extensions/mock';
+export * from '@egen/esm-react-utils/mock';
+export * from '@egen/esm-state/mock';
+export * from '@egen/esm-styleguide/mock';
+export * from '@egen/esm-translations/mock';
 
-export { parseDate, formatDate, formatDatetime, formatTime, isOmrsDateToday } from '@openmrs/esm-utils';
+export { parseDate, formatDate, formatDatetime, formatTime, isOmrsDateToday } from '@egen/esm-utils';
 
 /* esm-globals */
 
@@ -46,7 +46,7 @@ export const getFeatureFlag = vi.fn().mockReturnValue(true);
 export const subscribeToFeatureFlag = vi.fn((name: string, callback) => callback(true));
 
 /* esm-navigation */
-export { interpolateUrl, interpolateString } from '@openmrs/esm-navigation';
+export { interpolateUrl, interpolateString } from '@egen/esm-navigation';
 export const navigate = vi.fn();
 export const getHistory = vi.fn(() => ['https://o3.openmrs.org/home']);
 export const clearHistory = vi.fn();
@@ -160,7 +160,7 @@ export {
   getPatientName,
   formatPatientName,
   selectPreferredName,
-} from '@openmrs/esm-utils';
+} from '@egen/esm-utils';
 
 export const age = vi.fn((arg) => utils.age(arg));
 

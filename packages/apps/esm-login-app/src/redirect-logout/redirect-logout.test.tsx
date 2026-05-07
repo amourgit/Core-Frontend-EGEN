@@ -14,7 +14,7 @@ import {
   useConfig,
   useConnectivity,
   useSession,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import RedirectLogout from './redirect-logout.component';
 
 vi.mock('swr', () => ({

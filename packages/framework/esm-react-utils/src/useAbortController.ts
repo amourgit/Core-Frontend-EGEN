@@ -10,7 +10,7 @@ import { useEffect, useRef } from 'react';
  *
  * @example
  * ```tsx
- * import { useAbortController } from "@openmrs/esm-framework";
+ * import { useAbortController } from "@egen/esm-framework";
  *
  * function MyComponent() {
  *  const abortController = useAbortController();

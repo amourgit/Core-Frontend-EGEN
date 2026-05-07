@@ -1,4 +1,4 @@
-import { type Concept, type OpenmrsResource, type Person } from '@openmrs/esm-api';
+import { type Concept, type OpenmrsResource, type Person } from '@egen/esm-api';
 import { type Encounter } from './encounter-resource';
 import { type Location } from './location-resource';
 

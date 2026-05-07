@@ -12,7 +12,7 @@ This allows workspaces to be opened on the page where this component is mounted.
 must not be mounted multiple times on the same page. If there are multiple apps on a page, only
 one of those apps should use this component—it "hosts" the workspaces.
 
-Workspaces may be opened with the [[launchWorkspace]] function from `@openmrs/esm-framework`
+Workspaces may be opened with the [[launchWorkspace]] function from `@egen/esm-framework`
 (among other options).
 
 The `overlay` prop determines whether the workspace is rendered as an overlay or a window.

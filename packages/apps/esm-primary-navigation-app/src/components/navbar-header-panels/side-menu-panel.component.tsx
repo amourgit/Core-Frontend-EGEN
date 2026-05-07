@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { isDesktop, LeftNavMenu, useLayoutType, useLeftNavStore, useOnClickOutside } from '@openmrs/esm-framework';
+import { isDesktop, LeftNavMenu, useLayoutType, useLeftNavStore, useOnClickOutside } from '@egen/esm-framework';
 import { createPortal } from 'react-dom';
 
 interface SideMenuPanelProps {

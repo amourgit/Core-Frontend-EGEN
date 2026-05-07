@@ -28,7 +28,7 @@ import {
   useLayoutType,
   usePagination,
   type SyncItem,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import styles from './offline-actions-table.styles.scss';
 
 export interface SyncItemWithPatient {

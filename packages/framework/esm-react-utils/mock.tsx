@@ -1,9 +1,9 @@
 import React, { type PropsWithChildren } from 'react';
 import { vi } from 'vitest';
-import { openmrsFetch } from '@openmrs/esm-api/mock';
-import { configSchema } from '@openmrs/esm-config/mock';
-import { getExtensionInternalStore } from '@openmrs/esm-extensions/mock';
-import { createGlobalStore } from '@openmrs/esm-state/mock';
+import { openmrsFetch } from '@egen/esm-api/mock';
+import { configSchema } from '@egen/esm-config/mock';
+import { getExtensionInternalStore } from '@egen/esm-extensions/mock';
+import { createGlobalStore } from '@egen/esm-state/mock';
 import {
   isDesktop as realIsDesktop,
   usePagination as realUsePagination,
@@ -19,7 +19,7 @@ import {
 export { ConfigurableLink } from './src/ConfigurableLink';
 export { RenderIfValueIsTruthy } from './src/RenderIfValueIsTruthy';
 export { useStore, useStoreWithActions, createUseStore } from './src/useStore';
-import * as utils from '@openmrs/esm-utils';
+import * as utils from '@egen/esm-utils';
 
 export const ComponentContext = React.createContext(null);
 
@@ -34,7 +34,7 @@ export const useAttachments = vi.fn(() => ({
 }));
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-export const useConfig = vi.fn<typeof import('@openmrs/esm-react-utils').useConfig>(
+export const useConfig = vi.fn<typeof import('@egen/esm-react-utils').useConfig>(
   (options?: { externalModuleName?: string }) => {
     if (options?.externalModuleName) {
       console.warn(`Mock useConfig called with externalModuleName: ${options.externalModuleName}`);

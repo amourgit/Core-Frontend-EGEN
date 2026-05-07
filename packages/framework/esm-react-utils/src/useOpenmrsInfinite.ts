@@ -1,5 +1,5 @@
 /** @module @category UI */
-import { type FetchResponse, openmrsFetch } from '@openmrs/esm-api';
+import { type FetchResponse, openmrsFetch } from '@egen/esm-api';
 import { useCallback } from 'react';
 import useSWRInfinite, { type SWRInfiniteConfiguration, type SWRInfiniteResponse } from 'swr/infinite';
 import {

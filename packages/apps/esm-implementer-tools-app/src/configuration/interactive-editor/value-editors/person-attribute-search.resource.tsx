@@ -1,4 +1,4 @@
-import { openmrsFetch, restBaseUrl } from '@openmrs/esm-framework';
+import { openmrsFetch, restBaseUrl } from '@egen/esm-framework';
 
 export function fetchPersonAttributeTypeByUuid(personAttributeTypeUuid: string) {
   return openmrsFetch(`${restBaseUrl}/personattributetype/${personAttributeTypeUuid}`, {

@@ -10,7 +10,7 @@ import {
   useConfig,
   useConnectivity,
   useSession,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import { type ConfigSchema } from '../config-schema';
 import Logo from '../logo.component';
 import Footer from '../footer.component';

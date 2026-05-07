@@ -1,5 +1,5 @@
 {
-  "name": "@openmrs/esm-api",
+  "name": "@egen/esm-api",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "description": "The javascript module for interacting with the OpenMRS API",
@@ -56,16 +56,16 @@
     "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
-    "@openmrs/esm-config": "9.x",
-    "@openmrs/esm-error-handling": "9.x",
-    "@openmrs/esm-globals": "9.x",
-    "@openmrs/esm-navigation": "9.x"
+    "@egen/esm-config": "9.x",
+    "@egen/esm-error-handling": "9.x",
+    "@egen/esm-globals": "9.x",
+    "@egen/esm-navigation": "9.x"
   },
   "devDependencies": {
-    "@openmrs/esm-config": "workspace:*",
-    "@openmrs/esm-error-handling": "workspace:*",
-    "@openmrs/esm-globals": "workspace:*",
-    "@openmrs/esm-navigation": "workspace:*",
+    "@egen/esm-config": "workspace:*",
+    "@egen/esm-error-handling": "workspace:*",
+    "@egen/esm-globals": "workspace:*",
+    "@egen/esm-navigation": "workspace:*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",

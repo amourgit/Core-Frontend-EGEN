@@ -1,4 +1,4 @@
-import { fireOpenmrsEvent, type OpenmrsEventTypes, subscribeOpenmrsEvent } from '@openmrs/esm-framework/src/internal';
+import { fireOpenmrsEvent, type OpenmrsEventTypes, subscribeOpenmrsEvent } from '@egen/esm-framework/src/internal';
 
 interface BeforeRoutingEventPayload {
   appsByNewStatus: {
@@ -46,9 +46,9 @@ window.addEventListener('single-spa:before-routing-event', (event: Event) => {
         event.detail.totalAppChanges > 0
           ? event.detail.appsByNewStatus.MOUNTED.find(
               (it) =>
-                !it.startsWith('@openmrs/esm-primary-navigation-app') &&
-                !it.startsWith('@openmrs/esm-devtools-app') &&
-                !it.startsWith('@openmrs/esm-help-menu-app'),
+                !it.startsWith('@egen/esm-primary-navigation-app') &&
+                !it.startsWith('@egen/esm-devtools-app') &&
+                !it.startsWith('@egen/esm-help-menu-app'),
             )
           : undefined;
 

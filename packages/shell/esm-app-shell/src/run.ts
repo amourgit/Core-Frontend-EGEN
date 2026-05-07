@@ -46,7 +46,7 @@ import {
   type OpenmrsAppRoutes,
   type OpenmrsRoutes,
   type StyleguideConfigObject,
-} from '@openmrs/esm-framework/src/internal';
+} from '@egen/esm-framework/src/internal';
 import { setupI18n } from './locale';
 import './routing-events';
 import './events';
@@ -204,7 +204,7 @@ async function runShell() {
   return setupI18n()
     .catch((err) => console.error(`Failed to initialize translations`, err))
     .then(async () => {
-      const { preferredCalendar } = await getConfig<StyleguideConfigObject>('@openmrs/esm-styleguide');
+      const { preferredCalendar } = await getConfig<StyleguideConfigObject>('@egen/esm-styleguide');
 
       for (const entry of Object.entries(preferredCalendar)) {
         registerDefaultCalendar(entry[0], entry[1] as CalendarIdentifier);
@@ -413,7 +413,7 @@ export function run(configUrls: Array<string>) {
   const closeLoading = showLoadingSpinner();
   const provideConfigs = createConfigLoader(configUrls);
 
-  return import('@openmrs/esm-styleguide/src/index').then(() => {
+  return import('@egen/esm-styleguide/src/index').then(() => {
     integrateBreakpoints();
     showToasts();
     showModals();

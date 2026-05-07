@@ -1,4 +1,4 @@
-import { createGlobalStore } from '@openmrs/esm-framework';
+import { createGlobalStore } from '@egen/esm-framework';
 
 export interface ImplementerToolsStore {
   activeItemDescription: null | ActiveItemDescription;

@@ -10,7 +10,7 @@ describe('Openmrs Routes Utilities', () => {
     beforeEach(() => localStorage.clear());
 
     it('should add routes when provided as an object', () => {
-      addRoutesOverride('@openmrs/my-module', {
+      addRoutesOverride('@egen/my-module', {
         backendDependencies: {
           fhir2: '^2.0.0',
           'webservices.rest': '^1.4.0',
@@ -30,14 +30,14 @@ describe('Openmrs Routes Utilities', () => {
         ],
       });
 
-      expect(localStorage.getItem('openmrs-routes:@openmrs/my-module')).toBe(
+      expect(localStorage.getItem('openmrs-routes:@egen/my-module')).toBe(
         '{"backendDependencies":{"fhir2":"^2.0.0","webservices.rest":"^1.4.0"},"version":"1.2.0-pre.12345+build.8","pages":[{"component":"root","route":"myPage"}],"extensions":[{"name":"custom extension","component":"customExtension"}]}',
       );
     });
 
     it('should add routes when provided as a JSON string', () => {
       addRoutesOverride(
-        '@openmrs/my-module',
+        '@egen/my-module',
         JSON.stringify({
           backendDependencies: {
             fhir2: '^2.0.0',
@@ -59,23 +59,23 @@ describe('Openmrs Routes Utilities', () => {
         }),
       );
 
-      expect(localStorage.getItem('openmrs-routes:@openmrs/my-module')).toBe(
+      expect(localStorage.getItem('openmrs-routes:@egen/my-module')).toBe(
         '{"backendDependencies":{"fhir2":"^2.0.0","webservices.rest":"^1.4.0"},"version":"1.2.0-pre.12345+build.8","pages":[{"component":"root","route":"myPage"}],"extensions":[{"name":"custom extension","component":"customExtension"}]}',
       );
     });
 
     it('should add routes when loaded via a string HTTP endpoint', () => {
-      addRoutesOverride('@openmrs/my-module', 'http://localhost/my-route-override.json');
+      addRoutesOverride('@egen/my-module', 'http://localhost/my-route-override.json');
 
-      expect(localStorage.getItem('openmrs-routes:@openmrs/my-module')).toBe(
+      expect(localStorage.getItem('openmrs-routes:@egen/my-module')).toBe(
         '"http://localhost/my-route-override.json"',
       );
     });
 
     it('should add routes when loaded via a URL HTTP endpoint', () => {
-      addRoutesOverride('@openmrs/my-module', new URL('http://localhost/my-route-override.json'));
+      addRoutesOverride('@egen/my-module', new URL('http://localhost/my-route-override.json'));
 
-      expect(localStorage.getItem('openmrs-routes:@openmrs/my-module')).toBe(
+      expect(localStorage.getItem('openmrs-routes:@egen/my-module')).toBe(
         '"http://localhost/my-route-override.json"',
       );
     });

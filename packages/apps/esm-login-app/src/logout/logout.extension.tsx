@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, SwitcherItem } from '@carbon/react';
-import { navigate } from '@openmrs/esm-framework';
+import { navigate } from '@egen/esm-framework';
 import styles from './logout.scss';
 
 const Logout: React.FC = () => {

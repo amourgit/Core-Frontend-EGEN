@@ -13,7 +13,7 @@ import {
   type LoggedInUser,
   type Session,
   type FetchResponse,
-} from '@openmrs/esm-framework';
+} from '@egen/esm-framework';
 import {
   mockLoginLocations,
   validatingLocationFailureResponse,

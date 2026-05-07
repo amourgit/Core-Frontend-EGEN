@@ -31,7 +31,7 @@ A Promise that resolves with the FetchResponse containing the attachment data.
 ## Example
 
 ```ts
-import { getAttachmentByUuid } from '@openmrs/esm-framework';
+import { getAttachmentByUuid } from '@egen/esm-framework';
 const abortController = new AbortController();
 const response = await getAttachmentByUuid('attachment-uuid', abortController);
 console.log(response.data);

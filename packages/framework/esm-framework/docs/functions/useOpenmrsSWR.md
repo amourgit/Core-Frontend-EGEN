@@ -44,7 +44,7 @@ An object of optional parameters to provide, including a [FetchConfig](../interf
 ## Examples
 
 ```tsx
-import { useOpenmrsSWR } from "@openmrs/esm-framework";
+import { useOpenmrsSWR } from "@egen/esm-framework";
 
 function MyComponent() {
  const { data } = useOpenmrsSWR(key);
@@ -59,7 +59,7 @@ Note that if you are using a complex SWR key you must provide a url function to 
 which translates the key into a URL to be sent to `openmrsFetch()`
 
 ```tsx
-import { useOpenmrsSWR } from "@openmrs/esm-framework";
+import { useOpenmrsSWR } from "@egen/esm-framework";
 
 function MyComponent() {
  const { data } = useOpenmrsSWR(['key', 'url'], { url: (key) => key[1] });

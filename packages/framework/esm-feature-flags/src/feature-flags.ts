@@ -1,5 +1,5 @@
 /** @module @category Feature Flags */
-import { getGlobalStore } from '@openmrs/esm-state';
+import { getGlobalStore } from '@egen/esm-state';
 
 export interface FeatureFlagsStore {
   flags: { [flagName: string]: FeatureFlag };

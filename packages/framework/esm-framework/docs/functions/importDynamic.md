@@ -9,7 +9,7 @@ Defined in: [packages/framework/esm-dynamic-loading/src/dynamic-loading.ts:37](h
 Loads the named export from a named package. This might be used like:
 
 ```js
-const { someComponent } = importDynamic("@openmrs/esm-template-app")
+const { someComponent } = importDynamic("@egen/esm-template-app")
 ```
 
 ## Type Parameters

@@ -29,6 +29,6 @@ The same observable as returned by [getCurrentUser](getCurrentUser.md).
 ## Example
 
 ```js
-import { refetchCurrentUser } from '@openmrs/esm-api'
+import { refetchCurrentUser } from '@egen/esm-api'
 refetchCurrentUser()
 ```

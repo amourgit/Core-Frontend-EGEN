@@ -1,5 +1,5 @@
 /** @module @category API */
-import { openmrsObservableFetch, restBaseUrl } from '@openmrs/esm-api';
+import { openmrsObservableFetch, restBaseUrl } from '@egen/esm-api';
 import type { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators/index.js';
 import type { Location } from './types';

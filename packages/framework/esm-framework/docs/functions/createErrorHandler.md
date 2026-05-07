@@ -33,7 +33,7 @@ A function that accepts an error and reports it with an enhanced stack trace.
 ## Example
 
 ```ts
-import { createErrorHandler } from '@openmrs/esm-framework';
+import { createErrorHandler } from '@egen/esm-framework';
 const handleError = createErrorHandler();
 someAsyncOperation()
   .then(processResult)
