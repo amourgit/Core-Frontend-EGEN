@@ -37,3 +37,28 @@ export {
   type Workspace2Definition,
   type Workspace2DefinitionProps,
 } from './workspaces2';
+
+// ============================================================
+// EIGEN — Core Extensions (Theme, UI, Auth, Layouts, Hooks)
+// ============================================================
+
+// Theme System
+export * from './theme/index';
+
+// UI Components (EIGEN Primitives)
+export * from './ui/index';
+
+// Layout Components
+export * from './layouts/index';
+
+// Cards
+export * from './cards/index';
+
+// Fields
+export * from './fields/index';
+
+// Hooks
+export * from './hooks/index';
+
+// Auth System
+export * from './auth/index';
