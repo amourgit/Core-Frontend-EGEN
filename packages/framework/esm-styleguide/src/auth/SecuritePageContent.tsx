@@ -20,8 +20,8 @@ import {
   GlassCard, PageContainer, PageHeader, BackLink,
   CenteredLoader, ErrorBanner, glass,
 } from './ui/GlassUI';
-import { authService } from '@igen/esm-auth';
-import { useIAMAuth } from '@igen/esm-auth';
+import { authService } from '@egen/esm-auth';
+import { useIAMAuth } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';

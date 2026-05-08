@@ -17,8 +17,8 @@
 // ============================================================
 
 import { useState, useCallback } from 'react';
-import { tokenManager } from '@igen/esm-auth';
-import { getCurrentRealm } from '@igen/esm-auth';
+import { tokenManager } from '@egen/esm-auth';
+import { getCurrentRealm } from '@egen/esm-auth';
 
 export interface KeycloakSessionState {
   /** null = pas encore vérifié */

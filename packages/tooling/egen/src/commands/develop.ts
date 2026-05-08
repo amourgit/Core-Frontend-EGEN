@@ -60,13 +60,13 @@ export async function runDevelop(args: DevelopArgs) {
     </script>
   `,
     )
-    .replace(/href="\/eigen\/spa/g, `href="${spaPath}`)
-    .replace(/src="\/eigen\/spa/g, `src="${spaPath}`)
-    .replace(/https:\/\/dev.iam-central.ga\/eigen\/spa\/importmap\.json/g, `${spaPath}/importmap.json`);
+    .replace(/href="\/egen\/spa/g, `href="${spaPath}`)
+    .replace(/src="\/egen\/spa/g, `src="${spaPath}`)
+    .replace(/https:\/\/dev.iam-central.ga\/egen\/spa\/importmap\.json/g, `${spaPath}/importmap.json`);
 
   const sw = resolve(source, 'service-worker.js');
   // remove any full references to dev.iam-central.ga
-  const swContent = readFileSync(sw, 'utf-8').replace(/https:\/\/dev.iam-central.ga\/eigen\/spa\//g, `${spaPath}`);
+  const swContent = readFileSync(sw, 'utf-8').replace(/https:\/\/dev.iam-central.ga\/egen\/spa\//g, `${spaPath}`);
 
   const pageUrl = `http://${host}:${port}${spaPath}`;
 
@@ -133,7 +133,7 @@ export async function runDevelop(args: DevelopArgs) {
   // Return our custom `index.html` for all requests beginning with spaPath
   // and not ending in `.js`, `.woff`, `.woff2`, `.json`, or any two- or three-character
   // extension.
-  const indexHtmlPathMatcher = /\/eigen\/spa\/(?!.*\.(js|woff2?|json|.{2,3}$)).*$/;
+  const indexHtmlPathMatcher = /\/egen\/spa\/(?!.*\.(js|woff2?|json|.{2,3}$)).*$/;
 
   // Route for custom `index.html` goes above static assets
   app.get(indexHtmlPathMatcher, (_, res) => res.contentType('text/html').send(indexContent));

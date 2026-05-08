@@ -14,7 +14,7 @@ import { useEffect, useRef } from 'react';
  *
  * function MyComponent() {
  *  const abortController = useAbortController();
- *  const { data } = useSWR(key, (key) => eigenFetch(key, { signal: abortController.signal }));
+ *  const { data } = useSWR(key, (key) => egenFetch(key, { signal: abortController.signal }));
  *
  *  return (
  *    // render something with data

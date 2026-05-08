@@ -42,7 +42,7 @@ const HeaderItems: React.FC = () => {
 
   return (
     <>
-      <Header aria-label="EIGEN" className={styles.topNavHeader}>
+      <Header aria-label="EGEN" className={styles.topNavHeader}>
         {showHamburger && (
           <HeaderMenuButton
             aria-label="Open menu"
@@ -91,7 +91,7 @@ const HeaderItems: React.FC = () => {
 
 const Navbar: React.FC = () => {
   const session = useSession();
-  const eigenSpaBase = window['getEigenSpaBase']();
+  const egenSpaBase = window['getEgenSpaBase']();
 
   if (session?.user?.person) {
     return session.sessionLocation ? (
@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
         to={`/login/location`}
         state={{
           referrer: window.location.pathname.slice(
-            window.location.pathname.indexOf(eigenSpaBase) + eigenSpaBase.length - 1,
+            window.location.pathname.indexOf(egenSpaBase) + egenSpaBase.length - 1,
           ),
         }}
       />
@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
       to={`/login`}
       state={{
         referrer: window.location.pathname.slice(
-          window.location.pathname.indexOf(eigenSpaBase) + eigenSpaBase.length - 1,
+          window.location.pathname.indexOf(egenSpaBase) + egenSpaBase.length - 1,
         ),
       }}
     />

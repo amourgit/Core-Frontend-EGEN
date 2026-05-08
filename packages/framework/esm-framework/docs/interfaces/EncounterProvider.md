@@ -2,11 +2,11 @@
 
 # Interface: EncounterProvider
 
-Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:27](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/encounter-resource.ts#L27)
+Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:27](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/encounter-resource.ts#L27)
 
 ## Extends
 
-- `OpenmrsResource`
+- `EgenResource`
 
 ## Indexable
 
@@ -18,11 +18,11 @@ Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:27](
 
 > `optional` **auditInfo**: `AuditInfo`
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:14
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:14
 
 #### Inherited from
 
-`OpenmrsResource.auditInfo`
+`EgenResource.auditInfo`
 
 ***
 
@@ -30,11 +30,11 @@ Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:14
 
 > `optional` **display**: `string`
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:12
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:12
 
 #### Inherited from
 
-`OpenmrsResource.display`
+`EgenResource.display`
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:12
 
 > `optional` **encounterRole**: [`EncounterRole`](EncounterRole.md)
 
-Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:29](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/encounter-resource.ts#L29)
+Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:29](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/encounter-resource.ts#L29)
 
 ***
 
@@ -50,19 +50,19 @@ Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:29](
 
 > `optional` **links**: `Link`[]
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:13
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:13
 
 #### Inherited from
 
-`OpenmrsResource.links`
+`EgenResource.links`
 
 ***
 
 ### provider?
 
-> `optional` **provider**: `OpenmrsResource`
+> `optional` **provider**: `EgenResource`
 
-Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:28](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/encounter-resource.ts#L28)
+Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:28](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/encounter-resource.ts#L28)
 
 ***
 
@@ -70,11 +70,11 @@ Defined in: [packages/framework/esm-emr-api/src/types/encounter-resource.ts:28](
 
 > `optional` **resourceVersion**: `string`
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:15
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:15
 
 #### Inherited from
 
-`OpenmrsResource.resourceVersion`
+`EgenResource.resourceVersion`
 
 ***
 
@@ -82,8 +82,8 @@ Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:15
 
 > **uuid**: `string`
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:11
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:11
 
 #### Inherited from
 
-`OpenmrsResource.uuid`
+`EgenResource.uuid`

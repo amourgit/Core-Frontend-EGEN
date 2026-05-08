@@ -1,10 +1,10 @@
 /** @module @category API */
-import { getVisitTypes, type VisitType } from '@egen/esm-igen-api';
+import { getVisitTypes, type VisitType } from '@egen/esm-egen-api';
 import { useEffect, useState } from 'react';
 
 /**
  * A React hook that fetches and returns all available visit types from the
- * EIGEN server. The data is fetched once when the component mounts.
+ * EGEN server. The data is fetched once when the component mounts.
  *
  * @returns An array of VisitType objects. Returns an empty array while loading
  *   or if an error occurs.

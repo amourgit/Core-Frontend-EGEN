@@ -10,9 +10,9 @@
 // ============================================================
 
 import React, { lazy, Suspense, useEffect } from 'react';
-import { useAuthStore }    from '@igen/esm-auth';
-import { useIAMAuth } from '@igen/esm-auth';
-import { tokenManager }    from '@igen/esm-auth';
+import { useAuthStore }    from '@egen/esm-auth';
+import { useIAMAuth } from '@egen/esm-auth';
+import { tokenManager }    from '@egen/esm-auth';
 import type { CoreContext } from '@/types/core';
 
 // Import MF — résolu par vite-plugin-federation à la compilation

@@ -2,7 +2,7 @@
   "name": "@egen/esm-api",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "The javascript module for interacting with the EIGEN API",
+  "description": "The javascript module for interacting with the EGEN API",
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,7 +35,7 @@
     "lint": "eslint src --ext ts,tsx"
   },
   "keywords": [
-    "eigen",
+    "egen",
     "microfrontends"
   ],
   "directories": {
@@ -50,12 +50,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-EGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-EGEN/issues"
   },
-  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-EGEN#readme",
   "publishConfig": {
     "access": "public"
   },

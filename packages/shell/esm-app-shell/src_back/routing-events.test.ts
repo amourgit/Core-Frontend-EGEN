@@ -37,16 +37,16 @@ describe('routing-events', () => {
 
   beforeAll(() => {
     // Enable routing events by dispatching the 'started' event
-    window.dispatchEvent(new CustomEvent('eigen:started', { detail: undefined }));
+    window.dispatchEvent(new CustomEvent('egen:started', { detail: undefined }));
   });
 
   beforeEach(() => {
     pageChangedHandler = vi.fn();
-    window.addEventListener('eigen:before-page-changed', pageChangedHandler);
+    window.addEventListener('egen:before-page-changed', pageChangedHandler);
   });
 
   afterEach(() => {
-    window.removeEventListener('eigen:before-page-changed', pageChangedHandler);
+    window.removeEventListener('egen:before-page-changed', pageChangedHandler);
   });
 
   it('should set newPage to the mounted app when totalAppChanges > 0', () => {

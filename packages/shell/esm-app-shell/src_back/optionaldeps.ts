@@ -1,6 +1,6 @@
 import {
   type FeatureFlagDefinition,
-  eigenFetch,
+  egenFetch,
   registerFeatureFlag,
   setFeatureFlag,
   restBaseUrl,
@@ -39,7 +39,7 @@ export function setupOptionalDependencies() {
   }, new Map());
 
   if (optionalDependencyFlags.size > 0) {
-    eigenFetch<{ results: { uuid: string; version: string }[] }>(`${restBaseUrl}/module?v=custom:(uuid,version)`)
+    egenFetch<{ results: { uuid: string; version: string }[] }>(`${restBaseUrl}/module?v=custom:(uuid,version)`)
       .then((response) => {
         (response.data.results ?? []).forEach((backendModule) => {
           if (optionalDependencyFlags.has(backendModule.uuid)) {

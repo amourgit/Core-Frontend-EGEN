@@ -43,9 +43,9 @@ Object.defineProperty(globalThis, 'IS_REACT_ACT_ENVIRONMENT', {
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
-window.eigenBase = '/eigen';
+window.egenBase = '/egen';
 window.spaBase = '/spa';
-window.getEigenSpaBase = () => '/eigen/spa/';
+window.getEgenSpaBase = () => '/egen/spa/';
 const { getComputedStyle } = window;
 window.getComputedStyle = (elt) => getComputedStyle(elt);
 

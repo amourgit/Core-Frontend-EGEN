@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   resolve: {
     alias: {
-      '@egen/esm-framework/src/internal': resolve(__dirname, '../../framework/esm-igen-api/src/events/index.ts'),
+      '@egen/esm-framework/src/internal': resolve(__dirname, '../../framework/esm-egen-api/src/events/index.ts'),
     },
   },
   test: {

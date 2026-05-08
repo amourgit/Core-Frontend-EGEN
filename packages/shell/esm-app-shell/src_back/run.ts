@@ -7,16 +7,16 @@ import {
   dispatchPrecacheStaticDependencies,
   type ExtensionDefinition,
   finishRegisteringAllApps,
-  fireEigenEvent,
+  fireEgenEvent,
   getConfig,
   getCurrentUser,
   integrateBreakpoints,
   interpolateUrl,
-  isEigenAppRoutes,
-  isEigenRoutes,
+  isEgenAppRoutes,
+  isEgenRoutes,
   localStorageRoutesPrefix,
   messageOmrsServiceWorker,
-  eigenFetch,
+  egenFetch,
   provide,
   registerApp,
   registerDefaultCalendar,
@@ -43,8 +43,8 @@ import {
   subscribeToastShown,
   tryRegisterExtension,
   type Config,
-  type EigenAppRoutes,
-  type EigenRoutes,
+  type EgenAppRoutes,
+  type EgenRoutes,
   type StyleguideConfigObject,
 } from '@egen/esm-framework/src/internal';
 import { setupI18n } from './locale';
@@ -56,7 +56,7 @@ import { setupCoreConfig } from './core-config';
 // @internal
 // used to track when the window.installedModules global is finalised
 // so we can pre-load all modules
-const REGISTRATION_PROMISES = Symbol('eigen_registration_promises');
+const REGISTRATION_PROMISES = Symbol('egen_registration_promises');
 
 /**
  * Sets up the frontend modules (apps). Uses the defined export
@@ -65,18 +65,18 @@ const REGISTRATION_PROMISES = Symbol('eigen_registration_promises');
  * as the registry of all apps in the application.
  */
 async function setupApps() {
-  const scriptTags = document.querySelectorAll<HTMLScriptElement>("script[type='eigen-routes']");
+  const scriptTags = document.querySelectorAll<HTMLScriptElement>("script[type='egen-routes']");
 
-  const promises: Array<Promise<EigenRoutes>> = [];
+  const promises: Array<Promise<EgenRoutes>> = [];
   for (let i = 0; i < scriptTags.length; i++) {
     promises.push(
       (async (scriptTag) => {
-        let routes: EigenRoutes | undefined = undefined;
+        let routes: EgenRoutes | undefined = undefined;
         try {
           if (scriptTag.textContent) {
-            routes = JSON.parse(scriptTag.textContent) as EigenRoutes;
+            routes = JSON.parse(scriptTag.textContent) as EgenRoutes;
           } else if (scriptTag.src) {
-            routes = (await eigenFetch<EigenRoutes>(scriptTag.src)).data;
+            routes = (await egenFetch<EgenRoutes>(scriptTag.src)).data;
           }
         } catch (e) {
           console.error(`Caught error while loading routes from ${scriptTag.src ?? 'JSON script tag content'}`, e);
@@ -98,25 +98,25 @@ async function setupApps() {
         const localOverride = localStorage.getItem(key);
         if (localOverride) {
           try {
-            const maybeEigenRoutes = JSON.parse(localOverride);
-            if (isEigenAppRoutes(maybeEigenRoutes)) {
+            const maybeEgenRoutes = JSON.parse(localOverride);
+            if (isEgenAppRoutes(maybeEgenRoutes)) {
               promises.push(
-                Promise.resolve<EigenRoutes>({
-                  [key.slice(localStorageRoutesPrefix.length)]: maybeEigenRoutes,
+                Promise.resolve<EgenRoutes>({
+                  [key.slice(localStorageRoutesPrefix.length)]: maybeEgenRoutes,
                 }),
               );
-            } else if (typeof maybeEigenRoutes === 'string' && maybeEigenRoutes.startsWith('http')) {
+            } else if (typeof maybeEgenRoutes === 'string' && maybeEgenRoutes.startsWith('http')) {
               promises.push(
-                eigenFetch<EigenAppRoutes>(maybeEigenRoutes)
+                egenFetch<EgenAppRoutes>(maybeEgenRoutes)
                   .then((response) => {
-                    if (isEigenAppRoutes(response.data)) {
+                    if (isEgenAppRoutes(response.data)) {
                       return Promise.resolve({
                         [key.slice(localStorageRoutesPrefix.length)]: response.data,
                       });
                     }
 
                     return Promise.reject(
-                      `${maybeEigenRoutes} did not resolve to a valid EigenAppRoutes JSON object`,
+                      `${maybeEgenRoutes} did not resolve to a valid EgenAppRoutes JSON object`,
                     );
                   })
                   .catch((reason) => {
@@ -145,10 +145,10 @@ async function setupApps() {
     }
   }
 
-  const routes: EigenRoutes = (await Promise.allSettled(promises))
+  const routes: EgenRoutes = (await Promise.allSettled(promises))
     .filter((p) => p.status === 'fulfilled')
-    .map((p) => (p as PromiseFulfilledResult<EigenRoutes>).value)
-    .filter(isEigenRoutes)
+    .map((p) => (p as PromiseFulfilledResult<EgenRoutes>).value)
+    .filter(isEgenRoutes)
     .reduce(
       (accumulatedRoutes, routes) => ({
         ...accumulatedRoutes,
@@ -230,7 +230,7 @@ function renderFatalErrorPage(e?: Error) {
     }
 
     if (
-      localStorage.getItem('eigen:devtools') &&
+      localStorage.getItem('egen:devtools') &&
       Object.keys(localStorage).some((k) => k.startsWith('import-map-override:'))
     ) {
       const appErrorActionButtons = fragment?.querySelector('#buttons');
@@ -321,7 +321,7 @@ function registerCoreExtensions() {
 
 async function setupOffline() {
   try {
-    await registerOmrsServiceWorker(`${window.getEigenSpaBase()}service-worker.js`);
+    await registerOmrsServiceWorker(`${window.getEgenSpaBase()}service-worker.js`);
     await activateOfflineCapability();
     setupOfflineStaticDependencyPrecaching();
   } catch (error) {
@@ -368,7 +368,7 @@ async function precacheGlobalStaticDependencies() {
 
   // By default, cache the session endpoint.
   // This ensures that a lot of user/session related functions also work offline.
-  const sessionPathUrl = new URL(`${window.eigenBase}${restBaseUrl}/session`, window.location.origin).href;
+  const sessionPathUrl = new URL(`${window.egenBase}${restBaseUrl}/session`, window.location.origin).href;
 
   await messageOmrsServiceWorker({
     type: 'registerDynamicRoute',
@@ -376,7 +376,7 @@ async function precacheGlobalStaticDependencies() {
     strategy: 'network-first',
   });
 
-  await eigenFetch(`${restBaseUrl}/session`).catch((e) =>
+  await egenFetch(`${restBaseUrl}/session`).catch((e) =>
     console.warn(
       'Failed to precache the user session data from the app shell. MFs depending on this data may run into problems while offline.',
       e,
@@ -442,7 +442,7 @@ export function run(configUrls: Array<string>) {
       .then(offlineEnabled ? setupOffline : undefined)
       .then(() => {
         // intentionally not returned so that processing the "started" event doesn't block
-        fireEigenEvent('started');
+        fireEgenEvent('started');
       });
   });
 }

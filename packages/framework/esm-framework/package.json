@@ -3,7 +3,7 @@
   "version": "9.0.2",
   "license": "MPL-2.0",
   "type": "module",
-  "module": "dist/openmrs-esm-framework.js",
+  "module": "dist/egen-esm-framework.js",
   "types": "src/index.ts",
   "exports": {
     ".": {
@@ -39,23 +39,23 @@
     "lint": "eslint src --ext ts,tsx"
   },
   "keywords": [
-    "eigen",
+    "egen",
     "framework",
     "frontend",
     "ui",
     "microfrontends"
   ],
   "browserslist": [
-    "extends browserslist-config-igen"
+    "extends browserslist-config-egen"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-EGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-EGEN/issues"
   },
-  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-EGEN#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -77,7 +77,7 @@
     "@egen/esm-styleguide": "workspace:*",
     "@egen/esm-translations": "workspace:*",
     "@egen/esm-utils": "workspace:*",
-    "@igen/esm-igen-api": "workspace:*"
+    "@egen/esm-egen-api": "workspace:*"
   },
   "peerDependencies": {
     "dayjs": "1.x",

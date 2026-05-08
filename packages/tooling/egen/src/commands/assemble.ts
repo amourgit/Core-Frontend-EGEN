@@ -110,12 +110,12 @@ async function readConfig(
 
       const packages = await npmRegistryFetch
         // see https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#get-v1search for what these
-        // options mean; in essence, we search for anything with the keyword eigen that has at least one
+        // options mean; in essence, we search for anything with the keyword egen that has at least one
         // stable version; quality is down-scored because that metric favours smaller apps over core
         // community assets. Maintenance is boosted to de-score relatively unmaintained apps, as the framework
         // still has a fair bit of churn
         .json(
-          `/-/v1/search?text=app%20keywords:eigen&not:unstable&quality=0.001&maintenance=3.0&size=250`,
+          `/-/v1/search?text=app%20keywords:egen&not:unstable&quality=0.001&maintenance=3.0&size=250`,
           fetchOptions,
         )
         .then((res) =>
@@ -317,7 +317,7 @@ export async function runAssemble(args: AssembleArgs) {
     }, {});
 
     await writeFile(
-      resolve(args.target, `eigen-config${args.hashFiles ? '.' + contentHash(assembledConfig) : ''}.json`),
+      resolve(args.target, `egen-config${args.hashFiles ? '.' + contentHash(assembledConfig) : ''}.json`),
       JSON.stringify(assembledConfig),
       'utf8',
     );

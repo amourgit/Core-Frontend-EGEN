@@ -16,11 +16,11 @@ declare global {
      */
     copyText(source: HTMLElement): void;
     /**
-     * Gets the EIGEN SPA base path with a trailing slash.
+     * Gets the EGEN SPA base path with a trailing slash.
      */
-    getEigenSpaBase(): string;
+    getEgenSpaBase(): string;
     /**
-     * Starts the EIGEN SPA application.
+     * Starts the EGEN SPA application.
      * @param config The configuration to use for running.
      */
     initializeSpa(config: SpaConfig): void;
@@ -30,11 +30,11 @@ declare global {
      */
     offlineEnabled: boolean;
     /**
-     * Gets the API base path, e.g. /eigen
+     * Gets the API base path, e.g. /egen
      */
-    eigenBase: string;
+    egenBase: string;
     /**
-     * Gets the SPA base path, e.g. /eigen/spa
+     * Gets the SPA base path, e.g. /egen/spa
      */
     spaBase: string;
     /**
@@ -64,7 +64,7 @@ declare global {
     /**
      * Gets the installed modules, which are tuples consisting of the module's name and exports.
      */
-    installedModules: Array<[string, EigenAppRoutes]>;
+    installedModules: Array<[string, EgenAppRoutes]>;
     /**
      * The i18next instance for the app.
      */
@@ -83,7 +83,7 @@ export interface ImportMap {
  */
 export interface SpaConfig {
   /**
-   * The base path or URL for the EIGEN API / endpoints.
+   * The base path or URL for the EGEN API / endpoints.
    */
   apiUrl: string;
   /**
@@ -370,7 +370,7 @@ export interface FeatureFlagDefinition {
 }
 
 /** This interface describes the format of the routes provided by an app */
-export interface EigenAppRoutes {
+export interface EgenAppRoutes {
   /** The version of this frontend module. */
   version?: string;
   /** A list of backend modules necessary for this frontend module and the corresponding required versions. */
@@ -414,7 +414,7 @@ export interface EigenAppRoutes {
  * This interfaces describes the format of the overall routes.json loaded by the app shell.
  * Basically, this is the same as the app routes, with each routes definition keyed by the app's name
  */
-export type EigenRoutes = Record<string, EigenAppRoutes>;
+export type EgenRoutes = Record<string, EgenAppRoutes>;
 
 export interface ResourceLoader<T = any> {
   (): Promise<T>;

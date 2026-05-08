@@ -1,6 +1,6 @@
-import { type EigenResource } from '@egen/esm-api';
+import { type EgenResource } from '@egen/esm-api';
 
-export interface Location extends EigenResource {
+export interface Location extends EgenResource {
   name?: string;
   description?: string;
   cityVillage?: string;
@@ -25,8 +25,8 @@ export interface Location extends EigenResource {
   address13?: string;
   address14?: string;
   address15?: string;
-  tags?: Array<EigenResource>;
-  attributes?: Array<EigenResource>;
+  tags?: Array<EgenResource>;
+  attributes?: Array<EgenResource>;
   parentLocation?: Location;
   childLocation?: Location;
   retired?: boolean;

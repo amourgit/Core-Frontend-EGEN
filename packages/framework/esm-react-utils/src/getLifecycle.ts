@@ -4,16 +4,16 @@ import React from 'react';
 import ReactDOMClient from 'react-dom/client';
 import type { AppProps } from 'single-spa';
 import singleSpaReact, { type ReactAppOrParcel } from 'single-spa-react';
-import type { ComponentDecoratorOptions } from './eigenComponentDecorator';
-import { eigenComponentDecorator } from './eigenComponentDecorator';
+import type { ComponentDecoratorOptions } from './egenComponentDecorator';
+import { egenComponentDecorator } from './egenComponentDecorator';
 
 /**
  * Creates a single-spa lifecycle object for a React component. The component is
- * wrapped with the EIGEN component decorator which provides standard functionality
+ * wrapped with the EGEN component decorator which provides standard functionality
  * like error boundaries, configuration, and extension support.
  *
  * @param Component The React component to create a lifecycle for.
- * @param options Configuration options for the EIGEN component decorator.
+ * @param options Configuration options for the EGEN component decorator.
  * @returns A single-spa lifecycle object with bootstrap, mount, and unmount functions.
  *
  * @example
@@ -27,7 +27,7 @@ export function getLifecycle<T>(Component: ComponentType<T>, options: ComponentD
   return singleSpaReact<T>({
     React,
     ReactDOMClient,
-    rootComponent: eigenComponentDecorator<T>(options)(Component) as ComponentType<T & AppProps>,
+    rootComponent: egenComponentDecorator<T>(options)(Component) as ComponentType<T & AppProps>,
   });
 }
 
@@ -39,7 +39,7 @@ export function getLifecycle<T>(Component: ComponentType<T>, options: ComponentD
  *
  * @param lazy A function that returns a Promise resolving to a module with the
  *   component as its default export (i.e., a dynamic import).
- * @param options Configuration options for the EIGEN component decorator.
+ * @param options Configuration options for the EGEN component decorator.
  * @returns A function that returns a Promise resolving to a single-spa lifecycle object.
  *
  * @example
@@ -63,7 +63,7 @@ export function getAsyncLifecycle<T>(
  * component doesn't need lazy loading.
  *
  * @param Component The React component to create a lifecycle for.
- * @param options Configuration options for the EIGEN component decorator.
+ * @param options Configuration options for the EGEN component decorator.
  * @returns A function that returns a Promise resolving to a single-spa lifecycle object.
  *
  * @example

@@ -9,7 +9,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
-import { useIAMAuth } from '@igen/esm-auth';
+import { useIAMAuth } from '@egen/esm-auth';
 import AnimateAgentAI from '@/components/layouts/AnimateAgentAI';
 import LoginOrbitalAuth from '@/components/auth/LoginOrbitalAuth';
 

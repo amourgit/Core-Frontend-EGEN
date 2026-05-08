@@ -1,9 +1,9 @@
 // ============================================================
-// @igen/esm-styleguide — Auth UI Components
+// @egen/esm-styleguide — Auth UI Components
 //
-// ⚠️  Core auth logic lives in @igen/esm-auth.
+// ⚠️  Core auth logic lives in @egen/esm-auth.
 //     This module exports only UI pages & layouts.
-//     Import hooks, stores, security from @igen/esm-auth.
+//     Import hooks, stores, security from @egen/esm-auth.
 // ============================================================
 
 // ── Auth UI Pages ────────────────────────────────────────────
@@ -23,7 +23,7 @@ export * from './ui/AuthLayout';
 export * from './ui/GlassUI';
 export * from './ui/AuthNavMenu';
 
-// ── Re-exports from @igen/esm-auth (single source of truth) ──
+// ── Re-exports from @egen/esm-auth (single source of truth) ──
 export {
   AuthProvider,
   useAuthContext,
@@ -34,5 +34,5 @@ export {
   useKeycloakSession,
   useSessionMonitor,
   useAuthStore,
-} from '@igen/esm-auth';
-export type { AuthContextType, CurrentUser, AuthState } from '@igen/esm-auth';
+} from '@egen/esm-auth';
+export type { AuthContextType, CurrentUser, AuthState } from '@egen/esm-auth';

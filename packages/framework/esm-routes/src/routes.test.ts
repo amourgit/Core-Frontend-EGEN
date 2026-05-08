@@ -3,9 +3,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 createFetchMock(vi).enableMocks();
 
-import { addRoutesOverride, isEigenAppRoutes } from './routes';
+import { addRoutesOverride, isEgenAppRoutes } from './routes';
 
-describe('Eigen Routes Utilities', () => {
+describe('Egen Routes Utilities', () => {
   describe('addRoutesOverride', () => {
     beforeEach(() => localStorage.clear());
 
@@ -30,7 +30,7 @@ describe('Eigen Routes Utilities', () => {
         ],
       });
 
-      expect(localStorage.getItem('eigen-routes:@egen/my-module')).toBe(
+      expect(localStorage.getItem('egen-routes:@egen/my-module')).toBe(
         '{"backendDependencies":{"fhir2":"^2.0.0","webservices.rest":"^1.4.0"},"version":"1.2.0-pre.12345+build.8","pages":[{"component":"root","route":"myPage"}],"extensions":[{"name":"custom extension","component":"customExtension"}]}',
       );
     });
@@ -59,7 +59,7 @@ describe('Eigen Routes Utilities', () => {
         }),
       );
 
-      expect(localStorage.getItem('eigen-routes:@egen/my-module')).toBe(
+      expect(localStorage.getItem('egen-routes:@egen/my-module')).toBe(
         '{"backendDependencies":{"fhir2":"^2.0.0","webservices.rest":"^1.4.0"},"version":"1.2.0-pre.12345+build.8","pages":[{"component":"root","route":"myPage"}],"extensions":[{"name":"custom extension","component":"customExtension"}]}',
       );
     });
@@ -67,7 +67,7 @@ describe('Eigen Routes Utilities', () => {
     it('should add routes when loaded via a string HTTP endpoint', () => {
       addRoutesOverride('@egen/my-module', 'http://localhost/my-route-override.json');
 
-      expect(localStorage.getItem('eigen-routes:@egen/my-module')).toBe(
+      expect(localStorage.getItem('egen-routes:@egen/my-module')).toBe(
         '"http://localhost/my-route-override.json"',
       );
     });
@@ -75,16 +75,16 @@ describe('Eigen Routes Utilities', () => {
     it('should add routes when loaded via a URL HTTP endpoint', () => {
       addRoutesOverride('@egen/my-module', new URL('http://localhost/my-route-override.json'));
 
-      expect(localStorage.getItem('eigen-routes:@egen/my-module')).toBe(
+      expect(localStorage.getItem('egen-routes:@egen/my-module')).toBe(
         '"http://localhost/my-route-override.json"',
       );
     });
   });
 
-  describe('isEigenAppRoutes', () => {
+  describe('isEgenAppRoutes', () => {
     it('should return true for a valid routes object', () => {
       expect(
-        isEigenAppRoutes({
+        isEgenAppRoutes({
           backendDependencies: {
             fhir2: '^2.0.0',
             'webservices.rest': '^1.4.0',
@@ -120,7 +120,7 @@ describe('Eigen Routes Utilities', () => {
 
     it('should accept an object with only pages', () => {
       expect(
-        isEigenAppRoutes({
+        isEgenAppRoutes({
           pages: [
             {
               component: 'root',
@@ -133,7 +133,7 @@ describe('Eigen Routes Utilities', () => {
 
     it('should accept an object with only extensions', () => {
       expect(
-        isEigenAppRoutes({
+        isEgenAppRoutes({
           extensions: [
             {
               name: 'custom extension',
@@ -146,7 +146,7 @@ describe('Eigen Routes Utilities', () => {
 
     it('should accept an object with only modals', () => {
       expect(
-        isEigenAppRoutes({
+        isEgenAppRoutes({
           modals: [
             {
               name: 'custom modal',
@@ -159,7 +159,7 @@ describe('Eigen Routes Utilities', () => {
 
     it('should accept an object with only workspaces', () => {
       expect(
-        isEigenAppRoutes({
+        isEgenAppRoutes({
           workspaces: [
             {
               name: 'custom workspace',
@@ -171,7 +171,7 @@ describe('Eigen Routes Utilities', () => {
     });
 
     it('should report an empty object as valid', () => {
-      expect(isEigenAppRoutes({})).toBe(true);
+      expect(isEgenAppRoutes({})).toBe(true);
     });
   });
 });

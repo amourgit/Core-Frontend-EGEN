@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
 import { useGlass } from "@/hooks/useGlass"
-import { useTheme } from "@igen/esm-styleguide/theme"
+import { useTheme } from "@egen/esm-styleguide/theme"
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface GlassTimeCardProps {

@@ -1,19 +1,19 @@
 /**
- * This is the base webpack config for all EIGEN modules.
+ * This is the base webpack config for all EGEN modules.
  *
  * ## Usage
  *
  * You can use it as simply as
  *
  * ```ts
- * module.exports = require('igen/default-webpack-config');
+ * module.exports = require('egen/default-webpack-config');
  * ```
  *
  * or you can customize the configuration using merges and overrides
  * like
  *
  * ```ts
- * const config = require('igen/default-webpack-config');
+ * const config = require('egen/default-webpack-config');
  * config.cssRuleConfig.rules = [myCustomRule];
  * module.exports = config;
  * ```
@@ -27,7 +27,7 @@
  * After you `yarn build --watch`, do something like
  * `watch "cp -R dist /path/to/packages/esm-patient-chart-app/webpack"`
  * and then change the webpack line from
- * `module.exports = require('igen/default-webpack-config');`
+ * `module.exports = require('egen/default-webpack-config');`
  * to
  * `module.exports = require('./webpack');`
  *
@@ -54,7 +54,7 @@ import rspack, {
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { StatsWriterPlugin } from 'webpack-stats-plugin';
 
-type EigenRspackConfig = Omit<Partial<RspackConfiguration>, 'module'> & {
+type EgenRspackConfig = Omit<Partial<RspackConfiguration>, 'module'> & {
   module: ModuleOptions;
 };
 
@@ -100,14 +100,14 @@ function fileExistsSync(name: string) {
  * Array values will be concatenated with the existing array.
  * Make sure to modify this object and not reassign it.
  */
-export const overrides: Partial<EigenRspackConfig> = {};
+export const overrides: Partial<EgenRspackConfig> = {};
 
 /**
  * The keys of this object will override the top-level keys
  * of the webpack config.
  * Make sure to modify this object and not reassign it.
  */
-export const additionalConfig: Partial<EigenRspackConfig> = {};
+export const additionalConfig: Partial<EgenRspackConfig> = {};
 
 /**
  * This object will be merged into the webpack rule governing
@@ -142,21 +142,21 @@ export const assetRuleConfig: Partial<RuleSetRule> = {};
  * the watch options.
  * Make sure to modify this object and not reassign it.
  */
-export const watchConfig: Partial<EigenRspackConfig['watchOptions']> = {};
+export const watchConfig: Partial<EgenRspackConfig['watchOptions']> = {};
 
 /**
  * This object will be merged with the webpack optimization
  * object.
  * Make sure to modify this object and not reassign it.
  */
-export const optimizationConfig: Partial<EigenRspackConfig['optimization']> = {};
+export const optimizationConfig: Partial<EgenRspackConfig['optimization']> = {};
 
 export default (env: Record<string, string>, argv: Record<string, string> = {}) => {
   const root = process.cwd();
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { name, version, peerDependencies, browser, main, types } = require(resolve(root, 'package.json'));
   // this typing is provably incorrect, but actually works
-  const mode = (argv.mode || process.env.NODE_ENV || 'development') as EigenRspackConfig['mode'];
+  const mode = (argv.mode || process.env.NODE_ENV || 'development') as EgenRspackConfig['mode'];
   const filename = basename(browser || main);
   const outDir = dirname(browser || main);
   const srcFile = resolve(root, browser ? main : types);
@@ -167,7 +167,7 @@ export default (env: Record<string, string>, argv: Record<string, string> = {}) 
 
   if (!hasRoutesDefined) {
     console.error(
-      'This app does not define a routes.json. This file is required for this app to be used by the EIGEN App Shell.',
+      'This app does not define a routes.json. This file is required for this app to be used by the EGEN App Shell.',
     );
     // key-smash error code
     // so this (hopefully) doesn't interfere with Webpack-specific exit codes
@@ -183,7 +183,7 @@ export default (env: Record<string, string>, argv: Record<string, string> = {}) 
     },
   };
 
-  const baseConfig: EigenRspackConfig = {
+  const baseConfig: EgenRspackConfig = {
     // The only `entry` in the application is the app shell. Everything else is
     // a Webpack Module Federation "remote." This ensures that there is always
     // only one container context--i.e., if we had an entry point per module,

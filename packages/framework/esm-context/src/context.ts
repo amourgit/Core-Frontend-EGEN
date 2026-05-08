@@ -4,7 +4,7 @@
 import { createStore } from 'zustand/vanilla';
 import { registerGlobalStore } from '@egen/esm-state';
 
-interface EigenAppContext {
+interface EgenAppContext {
   [namespace: string]: NonNullable<object>;
 }
 
@@ -13,9 +13,9 @@ interface EigenAppContext {
  *
  * The application context store, using immer to potentially simplify updates
  */
-export const contextStore = createStore<EigenAppContext>()(() => ({}));
+export const contextStore = createStore<EgenAppContext>()(() => ({}));
 
-registerGlobalStore<EigenAppContext>('eigen-app-context', contextStore);
+registerGlobalStore<EgenAppContext>('egen-app-context', contextStore);
 
 const nothing = Object();
 

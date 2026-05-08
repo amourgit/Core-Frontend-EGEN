@@ -3,7 +3,7 @@ import { reportError } from '@egen/esm-error-handling';
 import { createGlobalStore } from '@egen/esm-state';
 import { isUndefined } from 'lodash-es';
 import { Observable } from 'rxjs';
-import { eigenFetch, restBaseUrl, sessionEndpoint } from './eigen-fetch';
+import { egenFetch, restBaseUrl, sessionEndpoint } from './egen-fetch';
 import type { LoggedInUser, SessionLocation, Privilege, Role, Session, FetchResponse } from './types';
 
 export type SessionStore = LoadedSessionStore | UnloadedSessionStore;
@@ -209,7 +209,7 @@ export function refetchCurrentUser(username?: string, password?: string) {
   }
 
   return handleSessionResponse(
-    eigenFetch(sessionEndpoint, {
+    egenFetch(sessionEndpoint, {
       headers,
     }),
   );
@@ -350,7 +350,7 @@ export function getSessionLocation() {
  */
 export async function setSessionLocation(locationUuid: string, abortController: AbortController): Promise<any> {
   return handleSessionResponse(
-    eigenFetch(sessionEndpoint, {
+    egenFetch(sessionEndpoint, {
       method: 'POST',
       body: { sessionLocation: locationUuid },
       headers: {
@@ -394,7 +394,7 @@ export async function setUserProperties(
   if (!abortController) {
     abortController = new AbortController();
   }
-  await eigenFetch(`${restBaseUrl}/user/${userUuid}`, {
+  await egenFetch(`${restBaseUrl}/user/${userUuid}`, {
     method: 'POST',
     body: { userProperties },
     headers: {

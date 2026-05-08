@@ -39,7 +39,7 @@ export function loadWebpackConfig(options: WebpackOptions = {}) {
   }
 
   if (typeof options.addCookie === 'string') {
-    variables.EIGEN_ADD_COOKIE = options.addCookie;
+    variables.EGEN_ADD_COOKIE = options.addCookie;
   }
 
   if (typeof options.supportOffline === 'boolean') {

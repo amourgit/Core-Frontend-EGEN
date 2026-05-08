@@ -1,6 +1,6 @@
 /** @module @category UI */
 import useSWR from 'swr';
-import { eigenFetch, restBaseUrl } from '@egen/esm-api';
+import { egenFetch, restBaseUrl } from '@egen/esm-api';
 import { useConfig } from '@egen/esm-react-utils';
 import { type StyleguideConfigObject } from '../config-schema';
 
@@ -36,7 +36,7 @@ export function usePatientPhoto(patientUuid: string): UsePatientPhotoResult {
     ? `${restBaseUrl}/obs?patient=${patientUuid}&concept=${patientPhotoConceptUuid}&v=full`
     : null;
 
-  const { data, error, isLoading } = useSWR<{ data: ObsFetchResponse }, Error>(patientUuid ? url : null, eigenFetch);
+  const { data, error, isLoading } = useSWR<{ data: ObsFetchResponse }, Error>(patientUuid ? url : null, egenFetch);
 
   const item = data?.data?.results[0];
 

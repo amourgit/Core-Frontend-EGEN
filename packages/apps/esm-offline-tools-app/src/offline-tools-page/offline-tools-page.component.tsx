@@ -11,7 +11,7 @@ export interface OfflineToolsPageParams {
 const OfflineToolsPage: React.FC = () => {
   const location = useLocation();
   const { page } = useParams();
-  const basePath = trimEnd(window.getEigenSpaBase(), '/') + location.pathname;
+  const basePath = trimEnd(window.getEgenSpaBase(), '/') + location.pathname;
   const meta = useExtensionSlotMeta<OfflineToolsPageConfig>('offline-tools-page-slot');
 
   const pageConfig = Object.values(meta).find((pageConfig) => pageConfig.name === page);

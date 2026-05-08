@@ -5,10 +5,10 @@ import '@testing-library/jest-dom/vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useConfig } from '@egen/esm-react-utils/mock';
-import { EigenDateRangePicker } from './index';
+import { EgenDateRangePicker } from './index';
 import { DEFAULT_MIN_DATE_FLOOR } from './defaults';
 
-describe('EigenDateRangePicker', () => {
+describe('EgenDateRangePicker', () => {
   beforeEach(() => {
     window.i18next = { language: 'en' } as i18n;
 
@@ -21,7 +21,7 @@ describe('EigenDateRangePicker', () => {
 
   describe('locale and format', () => {
     it('uses dd/mm/yyyy for english by default', () => {
-      render(<EigenDateRangePicker aria-label="datepicker" />);
+      render(<EgenDateRangePicker aria-label="datepicker" />);
 
       const input = screen.getByLabelText('datepicker');
       expect(input).toHaveTextContent('dd/mm/yyyy–dd/mm/yyyy');
@@ -33,7 +33,7 @@ describe('EigenDateRangePicker', () => {
           en: 'en-US',
         },
       });
-      render(<EigenDateRangePicker aria-label="datepicker" />);
+      render(<EgenDateRangePicker aria-label="datepicker" />);
       const input = screen.getByLabelText('datepicker');
       expect(input).toHaveTextContent('mm/dd/yyyy–mm/dd/yyyy');
     });
@@ -41,7 +41,7 @@ describe('EigenDateRangePicker', () => {
     it('should render RTL layout for Arabic locale', () => {
       window.i18next = { language: 'ar' } as i18n;
 
-      render(<EigenDateRangePicker aria-label="datepicker" />);
+      render(<EgenDateRangePicker aria-label="datepicker" />);
       const input = screen.getByLabelText('datepicker');
       const text = input.textContent?.replace(/\u200F/g, '');
 
@@ -51,7 +51,7 @@ describe('EigenDateRangePicker', () => {
     it('should render RTL layout for Amharic locale', () => {
       window.i18next = { language: 'am' } as i18n;
 
-      render(<EigenDateRangePicker aria-label="datepicker" />);
+      render(<EgenDateRangePicker aria-label="datepicker" />);
       const input = screen.getByLabelText('datepicker');
       const text = input.textContent?.replace(/\u200F/g, '');
 
@@ -61,14 +61,14 @@ describe('EigenDateRangePicker', () => {
 
   describe('labels and accessibility', () => {
     it('should work with aria-label when labelText is empty', () => {
-      render(<EigenDateRangePicker aria-label="Select date range" labelText="" />);
+      render(<EgenDateRangePicker aria-label="Select date range" labelText="" />);
       const group = screen.getByRole('group', { name: /Select date range/i });
       expect(group).toBeInTheDocument();
       expect(screen.queryByText('Select date range')).not.toBeInTheDocument();
     });
 
     it('should render visible label when labelText is provided', () => {
-      render(<EigenDateRangePicker labelText="Date range" />);
+      render(<EgenDateRangePicker labelText="Date range" />);
       const labelText = screen.getByText('Date range');
       expect(labelText).toBeInTheDocument();
       expect(labelText).toHaveClass('cds--label');
@@ -78,9 +78,9 @@ describe('EigenDateRangePicker', () => {
 
     it('should warn in development when neither labelText nor aria-label is provided', () => {
       const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-      render(<EigenDateRangePicker labelText="" />);
+      render(<EgenDateRangePicker labelText="" />);
       expect(consoleWarnSpy).toHaveBeenCalledWith(
-        'EigenDateRangePicker: You must provide either a visible label (labelText/label) or an aria-label for accessibility.',
+        'EgenDateRangePicker: You must provide either a visible label (labelText/label) or an aria-label for accessibility.',
       );
       consoleWarnSpy.mockRestore();
     });
@@ -89,7 +89,7 @@ describe('EigenDateRangePicker', () => {
   describe('value display', () => {
     it('should display prefilled date range from form value', () => {
       render(
-        <EigenDateRangePicker
+        <EgenDateRangePicker
           aria-label="datepicker"
           startName="start"
           endName="end"
@@ -102,7 +102,7 @@ describe('EigenDateRangePicker', () => {
 
     it('should display prefilled date range from defaultValue prop', () => {
       render(
-        <EigenDateRangePicker
+        <EgenDateRangePicker
           aria-label="datepicker"
           defaultValue={[new Date(2024, 0, 1), new Date(2024, 11, 31)]}
         />,
@@ -114,24 +114,24 @@ describe('EigenDateRangePicker', () => {
 
   describe('invalid state', () => {
     it('should display invalidText when invalid is true', () => {
-      render(<EigenDateRangePicker aria-label="datepicker" invalid={true} invalidText="Invalid date range" />);
+      render(<EgenDateRangePicker aria-label="datepicker" invalid={true} invalidText="Invalid date range" />);
       expect(screen.getByText('Invalid date range')).toBeInTheDocument();
     });
 
     it('should not display invalidText when invalid is false', () => {
-      render(<EigenDateRangePicker aria-label="datepicker" invalid={false} invalidText="Invalid date range" />);
+      render(<EgenDateRangePicker aria-label="datepicker" invalid={false} invalidText="Invalid date range" />);
       expect(screen.queryByText('Invalid date range')).not.toBeInTheDocument();
     });
 
     it('should display invalidText when isInvalid is true', () => {
-      render(<EigenDateRangePicker aria-label="datepicker" isInvalid={true} invalidText="Bad range" />);
+      render(<EgenDateRangePicker aria-label="datepicker" isInvalid={true} invalidText="Bad range" />);
       expect(screen.getByText('Bad range')).toBeInTheDocument();
     });
   });
 
   describe('disabled state', () => {
     it('should render disabled label styling when isDisabled is true', () => {
-      render(<EigenDateRangePicker labelText="Date range" isDisabled={true} />);
+      render(<EgenDateRangePicker labelText="Date range" isDisabled={true} />);
       const label = screen.getByText('Date range');
       expect(label).toHaveClass('cds--label--disabled');
     });
@@ -143,10 +143,10 @@ describe('EigenDateRangePicker', () => {
       const onChange = vi.fn();
       const onChangeRaw = vi.fn();
 
-      render(<EigenDateRangePicker aria-label="datepicker" onChange={onChange} onChangeRaw={onChangeRaw} />);
+      render(<EgenDateRangePicker aria-label="datepicker" onChange={onChange} onChangeRaw={onChangeRaw} />);
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'An EigenDateRangePicker component was created with both onChange and onChangeRaw handlers defined. Only onChangeRaw will be used.',
+        'An EgenDateRangePicker component was created with both onChange and onChangeRaw handlers defined. Only onChangeRaw will be used.',
       );
       consoleErrorSpy.mockRestore();
     });
@@ -155,7 +155,7 @@ describe('EigenDateRangePicker', () => {
   describe('calendar popover', () => {
     it('should open the calendar popover when the calendar button is clicked', async () => {
       const user = userEvent.setup();
-      render(<EigenDateRangePicker aria-label="datepicker" />);
+      render(<EgenDateRangePicker aria-label="datepicker" />);
 
       const button = screen.getByRole('button');
       await user.click(button);
@@ -167,7 +167,7 @@ describe('EigenDateRangePicker', () => {
     it('should clamp previous-month navigation at the default minDate floor when minDate is omitted', async () => {
       const user = userEvent.setup();
       render(
-        <EigenDateRangePicker
+        <EgenDateRangePicker
           aria-label="datepicker"
           value={[
             new Date(DEFAULT_MIN_DATE_FLOOR.year, DEFAULT_MIN_DATE_FLOOR.month - 1, DEFAULT_MIN_DATE_FLOOR.day),

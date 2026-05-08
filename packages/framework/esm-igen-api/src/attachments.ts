@@ -1,12 +1,12 @@
 /** @module @category API */
-import { eigenFetch, restBaseUrl } from '@egen/esm-api';
+import { egenFetch, restBaseUrl } from '@egen/esm-api';
 import type { UploadedFile } from './types';
 
 /** Base URL for the attachment REST API endpoint. */
 export const attachmentUrl = `${restBaseUrl}/attachment`;
 
 /**
- * Fetches a single attachment by its UUID from the EIGEN server.
+ * Fetches a single attachment by its UUID from the EGEN server.
  *
  * @param attachmentUuid The UUID of the attachment to fetch.
  * @param abortController An AbortController to allow cancellation of the request.
@@ -21,13 +21,13 @@ export const attachmentUrl = `${restBaseUrl}/attachment`;
  * ```
  */
 export function getAttachmentByUuid(attachmentUuid: string, abortController: AbortController) {
-  return eigenFetch(`${attachmentUrl}/${attachmentUuid}`, {
+  return egenFetch(`${attachmentUrl}/${attachmentUuid}`, {
     signal: abortController.signal,
   });
 }
 
 /**
- * Fetches all attachments for a specific patient from the EIGEN server.
+ * Fetches all attachments for a specific patient from the EGEN server.
  *
  * @param patientUuid The UUID of the patient whose attachments should be fetched.
  * @param includeEncounterless Whether to include attachments that are not associated
@@ -44,13 +44,13 @@ export function getAttachmentByUuid(attachmentUuid: string, abortController: Abo
  * ```
  */
 export function getAttachments(patientUuid: string, includeEncounterless: boolean, abortController: AbortController) {
-  return eigenFetch(`${attachmentUrl}?patient=${patientUuid}&includeEncounterless=${includeEncounterless}`, {
+  return egenFetch(`${attachmentUrl}?patient=${patientUuid}&includeEncounterless=${includeEncounterless}`, {
     signal: abortController.signal,
   });
 }
 
 /**
- * Creates a new attachment for a patient by uploading a file to the EIGEN server.
+ * Creates a new attachment for a patient by uploading a file to the EGEN server.
  * The file can be provided either as a File object or as base64-encoded content.
  *
  * @param patientUuid The UUID of the patient to associate the attachment with.
@@ -83,14 +83,14 @@ export async function createAttachment(patientUuid: string, fileToUpload: Upload
     formData.append('base64Content', fileToUpload.base64Content);
   }
 
-  return eigenFetch(`${attachmentUrl}`, {
+  return egenFetch(`${attachmentUrl}`, {
     method: 'POST',
     body: formData,
   });
 }
 
 /**
- * Permanently deletes an attachment from the EIGEN server. This action cannot
+ * Permanently deletes an attachment from the EGEN server. This action cannot
  * be undone.
  *
  * @param attachmentUuid The UUID of the attachment to delete.
@@ -105,7 +105,7 @@ export async function createAttachment(patientUuid: string, fileToUpload: Upload
  * ```
  */
 export function deleteAttachmentPermanently(attachmentUuid: string, abortController: AbortController) {
-  return eigenFetch(`${attachmentUrl}/${attachmentUuid}`, {
+  return egenFetch(`${attachmentUrl}/${attachmentUuid}`, {
     method: 'DELETE',
     signal: abortController.signal,
   });

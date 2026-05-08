@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 // ============================================================
-// IGEN CORE — Vite Configuration
+// EGEN CORE — Vite Configuration
 //
 // Architecture: Vite + Module Federation (primary bundler)
 //
@@ -15,17 +15,17 @@ import path from 'path';
 //  - Shared singletons: React, Router, Zustand, Query
 //
 // ENV VARS:
-//  IGEN_IAM_URL     — IAM micro-frontend URL (default: localhost:3000)
-//  IGEN_API_URL     — Backend API URL (default: localhost:8080)
-//  IGEN_PORT        — Dev server port (default: 3001)
+//  EGEN_IAM_URL     — IAM micro-frontend URL (default: localhost:3000)
+//  EGEN_API_URL     — Backend API URL (default: localhost:8080)
+//  EGEN_PORT        — Dev server port (default: 3001)
 // ============================================================
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
-  const IAM_URL   = env.IGEN_IAM_URL   || 'http://localhost:3000';
-  const API_URL   = env.IGEN_API_URL   || 'http://localhost:8080';
-  const DEV_PORT  = parseInt(env.IGEN_PORT || '3001', 10);
+  const IAM_URL   = env.EGEN_IAM_URL   || 'http://localhost:3000';
+  const API_URL   = env.EGEN_API_URL   || 'http://localhost:8080';
+  const DEV_PORT  = parseInt(env.EGEN_PORT || '3001', 10);
 
   return {
     plugins: [
@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
       // Core is the HOST shell.
       // Remotes are loaded dynamically (see mf-loader.ts).
       federation({
-        name: 'igen-core',
+        name: 'egen-core',
         remotes: {
           // Each MF remote — add/remove as modules are deployed
           // Format: <alias>@<url>/remoteEntry.js
@@ -61,13 +61,13 @@ export default defineConfig(({ mode }) => {
         // @/ maps to shell src — used by shell components
         '@': path.resolve(__dirname, './packages/shell/esm-app-shell/src'),
         // Package aliases for local development (monorepo)
-        '@igen/esm-auth':        path.resolve(__dirname, './packages/framework/esm-auth/src'),
-        '@igen/esm-styleguide':  path.resolve(__dirname, './packages/framework/esm-styleguide/src'),
-        '@igen/esm-framework':   path.resolve(__dirname, './packages/framework/esm-framework/src'),
-        '@igen/esm-api':         path.resolve(__dirname, './packages/framework/esm-api/src'),
-        '@igen/esm-config':      path.resolve(__dirname, './packages/framework/esm-config/src'),
-        '@igen/esm-state':       path.resolve(__dirname, './packages/framework/esm-state/src'),
-        '@igen/esm-utils':       path.resolve(__dirname, './packages/framework/esm-utils/src'),
+        '@egen/esm-auth':        path.resolve(__dirname, './packages/framework/esm-auth/src'),
+        '@egen/esm-styleguide':  path.resolve(__dirname, './packages/framework/esm-styleguide/src'),
+        '@egen/esm-framework':   path.resolve(__dirname, './packages/framework/esm-framework/src'),
+        '@egen/esm-api':         path.resolve(__dirname, './packages/framework/esm-api/src'),
+        '@egen/esm-config':      path.resolve(__dirname, './packages/framework/esm-config/src'),
+        '@egen/esm-state':       path.resolve(__dirname, './packages/framework/esm-state/src'),
+        '@egen/esm-utils':       path.resolve(__dirname, './packages/framework/esm-utils/src'),
       },
     },
 
@@ -81,8 +81,8 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           secure: false,
         },
-        // Proxy /eigen → IGEN backend
-        '/eigen': {
+        // Proxy /egen → EGEN backend
+        '/egen': {
           target: API_URL,
           changeOrigin: true,
           secure: false,

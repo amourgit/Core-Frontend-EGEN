@@ -8,7 +8,7 @@ const { peerDependencies } = require('./package.json');
 module.exports = (env, argv = {}) => ({
   entry: [resolve(__dirname, 'src/internal.ts')],
   output: {
-    filename: 'openmrs-esm-framework.js',
+    filename: 'egen-esm-framework.js',
     chunkFilename: '[name].js',
     path: resolve(__dirname, 'dist'),
   },

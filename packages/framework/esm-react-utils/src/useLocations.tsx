@@ -1,9 +1,9 @@
 /** @module @category API */
 import { useState, useEffect } from 'react';
-import { getLocations, type Location } from '@egen/esm-igen-api';
+import { getLocations, type Location } from '@egen/esm-egen-api';
 
 /**
- * A React hook that fetches and returns locations from the EIGEN server.
+ * A React hook that fetches and returns locations from the EGEN server.
  * Locations can be filtered by a tag UUID/name and/or a search query string.
  *
  * @param tagUuidOrName Optional tag UUID or name to filter locations by.

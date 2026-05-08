@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
-import { useTheme, useThemeVariables } from "@igen/esm-styleguide/theme";
+import { useTheme, useThemeVariables } from "@egen/esm-styleguide/theme";
 import { useGlass } from "@/hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────

@@ -1,11 +1,11 @@
-import fullLogo from './eigen-logo-full.svg';
-import partialLogo from './eigen-logo-partial.svg';
-import iconLogo from './eigen-logo-icon.svg';
-import whiteLogo from './eigen-logo-white.svg';
+import fullLogo from './egen-logo-full.svg';
+import partialLogo from './egen-logo-partial.svg';
+import iconLogo from './egen-logo-icon.svg';
+import whiteLogo from './egen-logo-white.svg';
 import { addSvg } from '../svg-utils';
 
 /**
- * Registers the default EIGEN logo SVGs into the SVG sprite container.
+ * Registers the default EGEN logo SVGs into the SVG sprite container.
  * This makes them available for use throughout the application via SVG use references.
  *
  * @internal

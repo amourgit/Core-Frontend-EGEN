@@ -8,13 +8,13 @@ const Logo: React.FC<{ t: TFunction }> = ({ t }) => {
   const { logo } = useConfig<ConfigSchema>();
   return logo.src ? (
     <img
-      alt={logo.alt ? t(logo.alt) : t('eigenLogo', 'EIGEN logo')}
+      alt={logo.alt ? t(logo.alt) : t('egenLogo', 'EGEN logo')}
       className={styles.logoImg}
       src={interpolateUrl(logo.src)}
     />
   ) : (
     <svg role="img" className={styles.logo}>
-      <title>{t('eigenLogo', 'EIGEN logo')}</title>
+      <title>{t('egenLogo', 'EGEN logo')}</title>
       <use href="#omrs-logo-full-color"></use>
     </svg>
   );

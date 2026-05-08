@@ -39,13 +39,13 @@ export {
 } from './workspaces2';
 
 // ============================================================
-// EIGEN — Core Extensions (Theme, UI, Auth, Layouts, Hooks)
+// EGEN — Core Extensions (Theme, UI, Auth, Layouts, Hooks)
 // ============================================================
 
 // Theme System
 export * from './theme/index';
 
-// UI Components (EIGEN Primitives)
+// UI Components (EGEN Primitives)
 export * from './ui/index';
 
 // Layout Components

@@ -7,7 +7,7 @@ import { FrontendModules } from '../frontend-modules/frontend-modules.component'
 import { BackendDependencies } from '../backend-dependencies/backend-dependencies.component';
 import { FeatureFlags } from '../feature-flags/feature-flags.component';
 import type { FrontendModule } from '../types';
-import type { ResolvedDependenciesModule } from '../backend-dependencies/eigen-backend-dependencies';
+import type { ResolvedDependenciesModule } from '../backend-dependencies/egen-backend-dependencies';
 import styles from './popup.styles.scss';
 
 interface DevToolsPopupProps {

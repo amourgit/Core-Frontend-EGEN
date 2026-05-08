@@ -14,7 +14,7 @@ import { type ExtensionData } from '@egen/esm-extensions';
 import { ComponentContext } from './ComponentContext';
 
 const promises: Record<string, Promise<ConfigObject>> = {};
-const errorMessage = `No ComponentContext has been provided. This should come from "eigenComponentDecorator".
+const errorMessage = `No ComponentContext has been provided. This should come from "egenComponentDecorator".
 Usually this is already applied when using "getAsyncLifecycle" or "getSyncLifecycle".`;
 
 function readInitialConfig(store: StoreApi<ConfigStore>) {

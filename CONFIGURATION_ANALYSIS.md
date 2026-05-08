@@ -21,7 +21,7 @@ Le projet **Core-Frontend-EGEN** a été analysé en détail et mis à jour avec
 ### 2. **package.json** ✅ (MAJEUR)
 - **Statut** : Mis à jour
 - **Changements clés** :
-  - Nom : `@openmrs/esm-core` → `@egen/esm-core`
+  - Nom : `@egen/esm-core` → `@egen/esm-core`
   - Version : `9.0.2` → `1.0.0` (nouvelle baseline pour EGEN)
   - Workspaces configurés : apps, framework, shell, tooling
   - Scripts enrichis :
@@ -120,7 +120,7 @@ packages/
 ├── shell/
 │   └── esm-app-shell
 └── tooling/
-    ├── openmrs
+    ├── egen
     ├── rspack-config
     ├── typedoc-plugin-file-categories
     └── webpack-config
@@ -140,7 +140,7 @@ packages/
 4. ✅ Configuration TypeScript inclut tous les packages
 5. ✅ ESLint et Prettier configurés pour multi-repo
 6. ✅ Scripts Turbo adaptés pour tous les packages
-7. ✅ Aucune référence @openmrs détectée dans les packages
+7. ✅ Aucune référence @egen détectée dans les packages
 8. ✅ Fichiers de configuration de base complets
 
 ---

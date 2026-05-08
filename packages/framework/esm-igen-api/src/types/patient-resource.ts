@@ -1,6 +1,6 @@
-import { type EigenResourceStrict, type Person } from '@egen/esm-api';
+import { type EgenResourceStrict, type Person } from '@egen/esm-api';
 
-export interface PatientIdentifierType extends EigenResourceStrict {
+export interface PatientIdentifierType extends EgenResourceStrict {
   name?: string;
   description?: string;
   format?: string;
@@ -12,13 +12,13 @@ export interface PatientIdentifierType extends EigenResourceStrict {
   retired?: boolean;
 }
 
-export interface Patient extends EigenResourceStrict {
+export interface Patient extends EgenResourceStrict {
   identifiers?: PatientIdentifier[];
   person?: Person;
   voided?: boolean;
 }
 
-export interface PatientIdentifier extends EigenResourceStrict {
+export interface PatientIdentifier extends EgenResourceStrict {
   identifier?: string;
   identifierType?: PatientIdentifierType;
   location?: Location;

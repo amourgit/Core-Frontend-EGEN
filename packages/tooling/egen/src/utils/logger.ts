@@ -2,13 +2,13 @@
 import chalk from 'chalk';
 
 export function logInfo(message: string) {
-  console.log(`${chalk.green.bold('[igen]')} ${message}`);
+  console.log(`${chalk.green.bold('[egen]')} ${message}`);
 }
 
 export function logWarn(message: string) {
-  console.warn(`${chalk.yellow.bold('[igen]')} ${chalk.yellow(message)}`);
+  console.warn(`${chalk.yellow.bold('[egen]')} ${chalk.yellow(message)}`);
 }
 
 export function logFail(message: string) {
-  console.error(`${chalk.red.bold('[igen]')} ${chalk.red(message)}`);
+  console.error(`${chalk.red.bold('[egen]')} ${chalk.red(message)}`);
 }

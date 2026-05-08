@@ -13,7 +13,7 @@ const RedirectLogout: React.FC = () => {
     clearHistory();
     if (!session.authenticated || !isLoginEnabled) {
       if (config.provider.type !== 'oauth2') {
-        navigate({ to: '${eigenSpaBase}/login' });
+        navigate({ to: '${egenSpaBase}/login' });
       }
     } else {
       performLogout()
@@ -27,7 +27,7 @@ const RedirectLogout: React.FC = () => {
           });
 
           if (config.provider.type !== 'oauth2') {
-            navigate({ to: '${eigenSpaBase}/login' });
+            navigate({ to: '${egenSpaBase}/login' });
           }
         })
         .catch((error) => {

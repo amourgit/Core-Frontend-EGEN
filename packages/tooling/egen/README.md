@@ -1,4 +1,4 @@
-# openmrs
+# egen
 
 The one stop CLI for using the OpenMRS 3.0 Frontend app.
 
@@ -10,11 +10,11 @@ You need Node.js with NPM. We recommend using version 16.17 (LTS) or later.
 
 You can run the tool without installation using `npx`, which is part of NPM. Just make sure to fulfill the prerequisites.
 
-Alternatively, install the application globally using `npm i openmrs -g`. Then you can run the tool without `npx`, e.g., instead of `npx openmrs ...` you run `openmrs ...`.
+Alternatively, install the application globally using `npm i egen -g`. Then you can run the tool without `npx`, e.g., instead of `npx egen ...` you run `egen ...`.
 
 ## Available Commands
 
-The following commands are available. For an up-to-date help on your installation run `npx openmrs --help`.
+The following commands are available. For an up-to-date help on your installation run `npx egen --help`.
 
 The `--help` flag can also be applied to any command below, resulting in detailed information about the available options.
 
@@ -28,7 +28,7 @@ Example:
 
 ```sh
 # run the command
-npx openmrs
+npx egen
 ```
 
 ### `develop`
@@ -41,7 +41,7 @@ Example:
 
 ```sh
 # run the command
-npx openmrs develop
+npx egen develop
 ```
 
 ### `build`
@@ -54,7 +54,7 @@ Example:
 
 ```sh
 # run the command
-npx openmrs build
+npx egen build
 ```
 
 ### `assemble`
@@ -67,5 +67,5 @@ Example:
 
 ```sh
 # run the command
-npx openmrs assemble
+npx egen assemble
 ```

@@ -34,7 +34,7 @@ const mockPatient = {
       use: 'official',
       type: {
         coding: [{ code: '05a29f94-c0ed-11e2-94be-8c13b969e334' }],
-        text: 'EIGEN ID',
+        text: 'EGEN ID',
       },
       value: '100GEJ',
     },
@@ -71,7 +71,7 @@ describe('PatientBannerPatientInfo', () => {
     expect(screen.getByText(/male/i)).toBeInTheDocument();
     expect(screen.getByText(new RegExp(age(mockPatient.birthDate)!, 'i'))).toBeInTheDocument();
     expect(screen.getByText(/04-Apr-1972/i)).toBeInTheDocument();
-    expect(screen.getByText(/eigen id/i)).toBeInTheDocument();
+    expect(screen.getByText(/egen id/i)).toBeInTheDocument();
     expect(screen.getByText(/100gej/i)).toBeInTheDocument();
     expect(screen.getByText(/national id/i)).toBeInTheDocument();
     expect(screen.getByText(/123456789/i)).toBeInTheDocument();

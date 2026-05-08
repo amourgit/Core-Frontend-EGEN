@@ -5,7 +5,7 @@ import {
   type ExtensionDefinition,
   type FeatureFlagDefinition,
   type ModalDefinition,
-  type EigenAppRoutes,
+  type EgenAppRoutes,
   type RegisteredPageDefinition,
   type RouteDefinition,
   type WorkspaceDefinition,
@@ -42,7 +42,7 @@ function getActivityFn(route: RouteDefinition | Array<RouteDefinition>): Activit
     const activators = route.map(getActivityFn);
     return (location) => activators.some((activator) => activator(location));
   } else if (typeof route === 'string') {
-    return pathToActiveWhen(window.getEigenSpaBase() + route);
+    return pathToActiveWhen(window.getEgenSpaBase() + route);
   } else if (route instanceof RegExp) {
     return (location) => routeRegex(route, location);
   } else {
@@ -96,7 +96,7 @@ function wrapPageActivityFn(
  * @param routes A Javascript object that corresponds to the app's  routes.json`
  * definition.
  */
-export function registerApp(appName: string, routes: EigenAppRoutes) {
+export function registerApp(appName: string, routes: EgenAppRoutes) {
   if (appName && routes && typeof routes === 'object') {
     registerModuleWithConfigSystem(appName);
 

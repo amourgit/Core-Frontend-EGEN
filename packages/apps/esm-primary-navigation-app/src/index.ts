@@ -34,7 +34,7 @@ export function startupApp() {
 export const root = getSyncLifecycle(primaryNavRootComponent, options);
 
 export const redirect: Application = async () => ({
-  bootstrap: async () => navigate({ to: '${eigenSpaBase}/home' }),
+  bootstrap: async () => navigate({ to: '${egenSpaBase}/home' }),
   mount: async () => undefined,
   unmount: async () => undefined,
 });

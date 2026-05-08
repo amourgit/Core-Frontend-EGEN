@@ -1,21 +1,21 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fireEigenEvent, subscribeEigenEvent } from './index';
+import { fireEgenEvent, subscribeEgenEvent } from './index';
 
 describe('Event system', () => {
-  describe('fireEigenEvent', () => {
+  describe('fireEgenEvent', () => {
     it('dispatches an event on window by default', () => {
       const handler = vi.fn();
-      window.addEventListener('eigen:started', handler);
+      window.addEventListener('egen:started', handler);
 
-      fireEigenEvent('started');
+      fireEgenEvent('started');
 
       expect(handler).toHaveBeenCalledOnce();
-      window.removeEventListener('eigen:started', handler);
+      window.removeEventListener('egen:started', handler);
     });
 
     it('dispatches an event with payload', () => {
       const handler = vi.fn();
-      window.addEventListener('eigen:before-page-changed', handler);
+      window.addEventListener('egen:before-page-changed', handler);
 
       const payload = {
         cancelNavigation: vi.fn(),
@@ -23,36 +23,36 @@ describe('Event system', () => {
         oldUrl: 'http://localhost/old',
         newUrl: 'http://localhost/new',
       };
-      fireEigenEvent('before-page-changed', payload);
+      fireEgenEvent('before-page-changed', payload);
 
       expect(handler).toHaveBeenCalledOnce();
       const event = handler.mock.calls[0][0] as CustomEvent;
       expect(event.detail).toEqual(payload);
-      window.removeEventListener('eigen:before-page-changed', handler);
+      window.removeEventListener('egen:before-page-changed', handler);
     });
 
     it('returns true when event is not cancelled', () => {
-      const result = fireEigenEvent('started');
+      const result = fireEgenEvent('started');
       expect(result).toBe(true);
     });
 
     it('returns false when event is cancelled', () => {
       const handler = (e: Event) => e.preventDefault();
-      window.addEventListener('eigen:started', handler);
+      window.addEventListener('egen:started', handler);
 
-      const result = fireEigenEvent('started');
+      const result = fireEgenEvent('started');
 
       expect(result).toBe(false);
-      window.removeEventListener('eigen:started', handler);
+      window.removeEventListener('egen:started', handler);
     });
   });
 
-  describe('subscribeEigenEvent', () => {
+  describe('subscribeEgenEvent', () => {
     it('subscribes to an event on window by default', () => {
       const handler = vi.fn();
-      const unsubscribe = subscribeEigenEvent('started', handler);
+      const unsubscribe = subscribeEgenEvent('started', handler);
 
-      fireEigenEvent('started');
+      fireEgenEvent('started');
 
       expect(handler).toHaveBeenCalledOnce();
       unsubscribe();
@@ -60,7 +60,7 @@ describe('Event system', () => {
 
     it('receives the event payload', () => {
       const handler = vi.fn();
-      const unsubscribe = subscribeEigenEvent('before-page-changed', handler);
+      const unsubscribe = subscribeEgenEvent('before-page-changed', handler);
 
       const payload = {
         cancelNavigation: vi.fn(),
@@ -68,7 +68,7 @@ describe('Event system', () => {
         oldUrl: 'http://localhost/old',
         newUrl: 'http://localhost/new',
       };
-      fireEigenEvent('before-page-changed', payload);
+      fireEgenEvent('before-page-changed', payload);
 
       expect(handler).toHaveBeenCalledWith(payload);
       unsubscribe();
@@ -76,9 +76,9 @@ describe('Event system', () => {
 
     it('receives undefined for events without payload', () => {
       const handler = vi.fn();
-      const unsubscribe = subscribeEigenEvent('started', handler);
+      const unsubscribe = subscribeEgenEvent('started', handler);
 
-      fireEigenEvent('started');
+      fireEgenEvent('started');
 
       expect(handler).toHaveBeenCalledWith(undefined);
       unsubscribe();
@@ -86,24 +86,24 @@ describe('Event system', () => {
 
     it('unsubscribes correctly', () => {
       const handler = vi.fn();
-      const unsubscribe = subscribeEigenEvent('started', handler);
+      const unsubscribe = subscribeEgenEvent('started', handler);
 
-      fireEigenEvent('started');
+      fireEgenEvent('started');
       expect(handler).toHaveBeenCalledOnce();
 
       unsubscribe();
 
-      fireEigenEvent('started');
+      fireEgenEvent('started');
       expect(handler).toHaveBeenCalledOnce();
     });
 
     it('allows multiple subscribers to the same event', () => {
       const handler1 = vi.fn();
       const handler2 = vi.fn();
-      const unsubscribe1 = subscribeEigenEvent('started', handler1);
-      const unsubscribe2 = subscribeEigenEvent('started', handler2);
+      const unsubscribe1 = subscribeEgenEvent('started', handler1);
+      const unsubscribe2 = subscribeEgenEvent('started', handler2);
 
-      fireEigenEvent('started');
+      fireEgenEvent('started');
 
       expect(handler1).toHaveBeenCalledOnce();
       expect(handler2).toHaveBeenCalledOnce();
@@ -113,7 +113,7 @@ describe('Event system', () => {
 
     it('calling unsubscribe multiple times is safe', () => {
       const handler = vi.fn();
-      const unsubscribe = subscribeEigenEvent('started', handler);
+      const unsubscribe = subscribeEgenEvent('started', handler);
 
       unsubscribe();
       expect(() => unsubscribe()).not.toThrow();
@@ -122,11 +122,11 @@ describe('Event system', () => {
     it('unsubscribing one handler does not affect others', () => {
       const handler1 = vi.fn();
       const handler2 = vi.fn();
-      const unsubscribe1 = subscribeEigenEvent('started', handler1);
-      const unsubscribe2 = subscribeEigenEvent('started', handler2);
+      const unsubscribe1 = subscribeEgenEvent('started', handler1);
+      const unsubscribe2 = subscribeEgenEvent('started', handler2);
 
       unsubscribe1();
-      fireEigenEvent('started');
+      fireEgenEvent('started');
 
       expect(handler1).not.toHaveBeenCalled();
       expect(handler2).toHaveBeenCalledOnce();

@@ -29,7 +29,7 @@ export type DateInput = string | number | Date;
 const isoFormat = 'YYYY-MM-DDTHH:mm:ss.SSSZZ';
 
 /**
- * This function checks whether a date string is the EIGEN ISO format.
+ * This function checks whether a date string is the EGEN ISO format.
  * The format should be YYYY-MM-DDTHH:mm:ss.SSSZZ
  */
 export function isOmrsDateStrict(omrsPayloadString: string): boolean {
@@ -68,7 +68,7 @@ export function isOmrsDateToday(date: DateInput) {
 }
 
 /**
- * Converts the object to a date object if it is an EIGEN ISO date time string.
+ * Converts the object to a date object if it is an EGEN ISO date time string.
  * Otherwise returns null.
  */
 export function toDateObjectStrict(omrsDateString: string): Date | null {
@@ -80,7 +80,7 @@ export function toDateObjectStrict(omrsDateString: string): Date | null {
 }
 
 /**
- * Formats the input to EIGEN ISO format: "YYYY-MM-DDTHH:mm:ss.SSSZZ".
+ * Formats the input to EGEN ISO format: "YYYY-MM-DDTHH:mm:ss.SSSZZ".
  */
 export function toOmrsIsoString(date: DateInput, toUTC = false): string {
   let d = dayjs(date);

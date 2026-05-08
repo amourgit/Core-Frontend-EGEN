@@ -12,13 +12,13 @@ export const configSchema = {
     },
     loginUrl: {
       _type: Type.String,
-      _default: '${eigenSpaBase}/login',
+      _default: '${egenSpaBase}/login',
       _description: 'The URL to use to login. This is only needed if you are using OAuth2.',
       _validators: [validators.isUrl],
     },
     logoutUrl: {
       _type: Type.String,
-      _default: '${eigenSpaBase}/logout',
+      _default: '${egenSpaBase}/logout',
       _description: 'The URL to use to login. This is only needed if you are using OAuth2.',
       _validators: [validators.isUrl],
     },
@@ -53,7 +53,7 @@ export const configSchema = {
   links: {
     loginSuccess: {
       _type: Type.String,
-      _default: '${eigenSpaBase}/home',
+      _default: '${egenSpaBase}/home',
       _description: 'The URL to redirect the user to after a successful login.',
       _validators: [validators.isUrl],
     },
@@ -63,7 +63,7 @@ export const configSchema = {
       _type: Type.String,
       _default: '',
       _description:
-        'The path or URL to the logo image. If set to an empty string, the default EIGEN SVG sprite will be used.',
+        'The path or URL to the logo image. If set to an empty string, the default EGEN SVG sprite will be used.',
       _validators: [validators.isUrl],
     },
     alt: {
@@ -90,7 +90,7 @@ export const configSchema = {
         },
       },
       _default: [],
-      _description: 'An array of logos to be displayed in the footer next to the EIGEN logo.',
+      _description: 'An array of logos to be displayed in the footer next to the EGEN logo.',
     },
   },
   showPasswordOnSeparateScreen: {

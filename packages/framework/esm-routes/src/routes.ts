@@ -1,5 +1,5 @@
 /** @module @category Routes Utilities */
-import type { EigenAppRoutes, EigenRoutes } from '@egen/esm-globals';
+import type { EgenAppRoutes, EgenRoutes } from '@egen/esm-globals';
 import { canAccessStorage } from '@egen/esm-utils';
 import { localStorageRoutesPrefix } from './constants';
 
@@ -11,11 +11,11 @@ const isEnabled = canAccessStorage();
  *
  * @internal
  * @param moduleName The name of the module the routes are for
- * @param routes Either an {@link EigenAppRoutes} object, a string that represents a JSON
- *  version of an {@link EigenAppRoutes} object or a string or URL that resolves to a
- *  JSON document that represents an {@link EigenAppRoutes} object
+ * @param routes Either an {@link EgenAppRoutes} object, a string that represents a JSON
+ *  version of an {@link EgenAppRoutes} object or a string or URL that resolves to a
+ *  JSON document that represents an {@link EgenAppRoutes} object
  */
-export function addRoutesOverride(moduleName: string, routes: EigenAppRoutes | string | URL) {
+export function addRoutesOverride(moduleName: string, routes: EgenAppRoutes | string | URL) {
   if (!isEnabled) {
     return;
   }
@@ -26,10 +26,10 @@ export function addRoutesOverride(moduleName: string, routes: EigenAppRoutes | s
     } else {
       try {
         const maybeRoutes = JSON.parse(routes);
-        if (isEigenAppRoutes(maybeRoutes)) {
+        if (isEgenAppRoutes(maybeRoutes)) {
           return addRouteOverrideInternal(moduleName, maybeRoutes);
         } else {
-          console.error(`The supplied routes for ${moduleName} is not a valid EigenAppRoutes object`, routes);
+          console.error(`The supplied routes for ${moduleName} is not a valid EgenAppRoutes object`, routes);
         }
       } catch (e) {
         console.error(`Could not add routes override for ${moduleName}: `, e);
@@ -37,7 +37,7 @@ export function addRoutesOverride(moduleName: string, routes: EigenAppRoutes | s
     }
   } else if (routes instanceof URL) {
     return addRouteOverrideInternal(moduleName, routes.toString());
-  } else if (isEigenAppRoutes(routes)) {
+  } else if (isEgenAppRoutes(routes)) {
     return addRouteOverrideInternal(moduleName, routes);
   }
 
@@ -81,25 +81,25 @@ export function resetAllRoutesOverrides() {
   }
 }
 
-function addRouteOverrideInternal(moduleName: string, routes: EigenAppRoutes | string) {
+function addRouteOverrideInternal(moduleName: string, routes: EgenAppRoutes | string) {
   const key = localStorageRoutesPrefix + moduleName;
   localStorage.setItem(key, JSON.stringify(routes));
 }
 
 /**
- * Simple type-predicate to ensure that the value can be treated as an EigenAppRoutes
+ * Simple type-predicate to ensure that the value can be treated as an EgenAppRoutes
  * object.
  *
  * @internal
- * @param routes the object to check to see if it is an EigenAppRoutes object
- * @returns true if the routes value is an EigenAppRoutes
+ * @param routes the object to check to see if it is an EgenAppRoutes object
+ * @returns true if the routes value is an EgenAppRoutes
  */
-export function isEigenAppRoutes(routes: EigenAppRoutes | unknown): routes is EigenAppRoutes {
+export function isEgenAppRoutes(routes: EgenAppRoutes | unknown): routes is EgenAppRoutes {
   if (routes && typeof routes === 'object') {
     const hasOwnProperty = Object.prototype.hasOwnProperty;
-    // we cast maybeRoutes as EigenAppRoutes mainly so we can refer to the properties it should
+    // we cast maybeRoutes as EgenAppRoutes mainly so we can refer to the properties it should
     // have without repeated casts
-    const maybeRoutes = routes as EigenAppRoutes;
+    const maybeRoutes = routes as EgenAppRoutes;
 
     if (hasOwnProperty.call(routes, 'pages')) {
       if (!Boolean(maybeRoutes.pages) || !Array.isArray(maybeRoutes.pages)) {
@@ -125,8 +125,8 @@ export function isEigenAppRoutes(routes: EigenAppRoutes | unknown): routes is Ei
       }
     }
 
-    // Notice that we're essentially testing for things that cannot be treated as an EigenAppRoutes
-    // object. This is because a completely empty object is a valid EigenAppRoutes object.
+    // Notice that we're essentially testing for things that cannot be treated as an EgenAppRoutes
+    // object. This is because a completely empty object is a valid EgenAppRoutes object.
     return true;
   }
 
@@ -134,18 +134,18 @@ export function isEigenAppRoutes(routes: EigenAppRoutes | unknown): routes is Ei
 }
 
 /**
- * Simple type-predicate to ensure that the value can be treated as an EigenRoutes
+ * Simple type-predicate to ensure that the value can be treated as an EgenRoutes
  * object.
  *
  * @internal
- * @param routes the object to check to see if it is an EigenRoutes object
- * @returns true if the routes value is an EigenRoutes
+ * @param routes the object to check to see if it is an EgenRoutes object
+ * @returns true if the routes value is an EgenRoutes
  */
-export function isEigenRoutes(routes: EigenRoutes | unknown): routes is EigenRoutes {
+export function isEgenRoutes(routes: EgenRoutes | unknown): routes is EgenRoutes {
   if (routes && typeof routes === 'object') {
-    const maybeRoutes = routes as EigenRoutes;
+    const maybeRoutes = routes as EgenRoutes;
 
-    return Object.entries(maybeRoutes).every(([key, value]) => typeof key === 'string' && isEigenAppRoutes(value));
+    return Object.entries(maybeRoutes).every(([key, value]) => typeof key === 'string' && isEgenAppRoutes(value));
   }
 
   return false;

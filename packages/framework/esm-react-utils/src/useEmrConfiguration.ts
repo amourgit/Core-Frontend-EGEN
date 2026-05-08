@@ -1,9 +1,9 @@
 /** @module @category API */
 import { useMemo } from 'react';
 import useSWRImmutable from 'swr/immutable';
-import { type FetchResponse, type EigenResource, eigenFetch, restBaseUrl } from '@egen/esm-api';
+import { type FetchResponse, type EgenResource, egenFetch, restBaseUrl } from '@egen/esm-api';
 
-interface LocationTag extends EigenResource {
+interface LocationTag extends EgenResource {
   name: string;
 }
 
@@ -13,31 +13,31 @@ type DispositionType = 'ADMIT' | 'TRANSFER' | 'DISCHARGE';
  * Add other properties as needed. Maintain alphabetical order. Keep in lockstep with the customRepresentation below.
  *
  * For all available configuration constants and global property keys, see:
- * @see https://github.com/amourgit/eigen-module-emrapi/blob/master/api/src/main/java/org/eigen/module/emrapi/EmrApiConstants.java
+ * @see https://github.com/amourgit/egen-module-emrapi/blob/master/api/src/main/java/org/egen/module/emrapi/EmrApiConstants.java
  */
 export interface EmrApiConfigurationResponse {
-  admissionDecisionConcept?: EigenResource;
-  admissionEncounterType?: EigenResource;
-  admissionForm?: EigenResource;
-  atFacilityVisitType?: EigenResource;
-  bedAssignmentEncounterType?: EigenResource;
-  cancelADTRequestEncounterType?: EigenResource;
-  checkInClerkEncounterRole?: EigenResource;
-  checkInEncounterType?: EigenResource;
-  clinicianEncounterRole?: EigenResource;
-  conceptSourcesForDiagnosisSearch?: EigenResource;
-  consultEncounterType?: EigenResource;
-  consultFreeTextCommentsConcept?: EigenResource;
-  denyAdmissionConcept?: EigenResource;
-  diagnosisMetadata?: EigenResource;
-  diagnosisSets?: EigenResource;
-  dischargeForm?: EigenResource;
+  admissionDecisionConcept?: EgenResource;
+  admissionEncounterType?: EgenResource;
+  admissionForm?: EgenResource;
+  atFacilityVisitType?: EgenResource;
+  bedAssignmentEncounterType?: EgenResource;
+  cancelADTRequestEncounterType?: EgenResource;
+  checkInClerkEncounterRole?: EgenResource;
+  checkInEncounterType?: EgenResource;
+  clinicianEncounterRole?: EgenResource;
+  conceptSourcesForDiagnosisSearch?: EgenResource;
+  consultEncounterType?: EgenResource;
+  consultFreeTextCommentsConcept?: EgenResource;
+  denyAdmissionConcept?: EgenResource;
+  diagnosisMetadata?: EgenResource;
+  diagnosisSets?: EgenResource;
+  dischargeForm?: EgenResource;
   dispositionDescriptor?: {
-    admissionLocationConcept?: EigenResource;
-    dateOfDeathConcept?: EigenResource;
-    dispositionConcept?: EigenResource;
-    dispositionSetConcept?: EigenResource;
-    internalTransferLocationConcept?: EigenResource;
+    admissionLocationConcept?: EgenResource;
+    dateOfDeathConcept?: EgenResource;
+    dispositionConcept?: EgenResource;
+    dispositionSetConcept?: EgenResource;
+    internalTransferLocationConcept?: EgenResource;
   };
   dispositions?: Array<{
     actions?: [];
@@ -51,40 +51,40 @@ export interface EmrApiConfigurationResponse {
     type?: DispositionType;
     uuid?: string;
   }>;
-  emrApiConceptSource?: EigenResource;
-  exitFromInpatientEncounterType?: EigenResource;
-  extraPatientIdentifierTypes?: EigenResource;
-  fullPrivilegeLevel?: EigenResource;
-  highPrivilegeLevel?: EigenResource;
-  identifierTypesToSearch?: EigenResource;
-  inpatientNoteEncounterType?: EigenResource;
-  lastViewedPatientSizeLimit?: EigenResource;
-  metadataSourceName?: EigenResource;
-  motherChildRelationshipType?: EigenResource;
-  narrowerThanConceptMapType?: EigenResource;
-  nonDiagnosisConceptSets?: EigenResource;
-  orderingProviderEncounterRole?: EigenResource;
-  patientDiedConcept?: EigenResource;
-  personImageDirectory?: EigenResource;
-  primaryIdentifierType?: EigenResource;
-  sameAsConceptMapType?: EigenResource;
-  suppressedDiagnosisConcepts?: EigenResource;
+  emrApiConceptSource?: EgenResource;
+  exitFromInpatientEncounterType?: EgenResource;
+  extraPatientIdentifierTypes?: EgenResource;
+  fullPrivilegeLevel?: EgenResource;
+  highPrivilegeLevel?: EgenResource;
+  identifierTypesToSearch?: EgenResource;
+  inpatientNoteEncounterType?: EgenResource;
+  lastViewedPatientSizeLimit?: EgenResource;
+  metadataSourceName?: EgenResource;
+  motherChildRelationshipType?: EgenResource;
+  narrowerThanConceptMapType?: EgenResource;
+  nonDiagnosisConceptSets?: EgenResource;
+  orderingProviderEncounterRole?: EgenResource;
+  patientDiedConcept?: EgenResource;
+  personImageDirectory?: EgenResource;
+  primaryIdentifierType?: EgenResource;
+  sameAsConceptMapType?: EgenResource;
+  suppressedDiagnosisConcepts?: EgenResource;
   supportsAdmissionLocationTag?: LocationTag;
   supportsLoginLocationTag?: LocationTag;
   supportsTransferLocationTag?: LocationTag;
   supportsVisitsLocationTag?: LocationTag;
-  telephoneAttributeType?: EigenResource;
-  testPatientPersonAttributeType?: EigenResource;
-  transferForm?: EigenResource;
-  transferRequestEncounterType?: EigenResource;
-  transferWithinHospitalEncounterType?: EigenResource;
-  unknownCauseOfDeathConcept?: EigenResource;
-  unknownLocation?: EigenResource;
-  unknownPatientPersonAttributeType?: EigenResource;
-  unknownProvider?: EigenResource;
-  visitAssignmentHandlerAdjustEncounterTimeOfDayIfNecessary?: EigenResource;
-  visitExpireHours?: EigenResource;
-  visitNoteEncounterType?: EigenResource;
+  telephoneAttributeType?: EgenResource;
+  testPatientPersonAttributeType?: EgenResource;
+  transferForm?: EgenResource;
+  transferRequestEncounterType?: EgenResource;
+  transferWithinHospitalEncounterType?: EgenResource;
+  unknownCauseOfDeathConcept?: EgenResource;
+  unknownLocation?: EgenResource;
+  unknownPatientPersonAttributeType?: EgenResource;
+  unknownProvider?: EgenResource;
+  visitAssignmentHandlerAdjustEncounterTimeOfDayIfNecessary?: EgenResource;
+  visitExpireHours?: EgenResource;
+  visitNoteEncounterType?: EgenResource;
 }
 
 /*
@@ -148,7 +148,7 @@ const customRepProps = [
 const customRepresentation = `custom:${customRepProps.map(([prop, rep]) => `${prop}:${rep}`).join(',')}`;
 
 /**
- * React hook for fetching and managing EIGEN EMR configuration
+ * React hook for fetching and managing EGEN EMR configuration
  * @returns {Object} Object containing:
  *   - emrConfiguration: EmrApiConfigurationResponse | undefined - The EMR configuration data
  *   - isLoadingEmrConfiguration: boolean - Loading state indicator
@@ -157,7 +157,7 @@ const customRepresentation = `custom:${customRepProps.map(([prop, rep]) => `${pr
  */
 export function useEmrConfiguration() {
   const url = `${restBaseUrl}/emrapi/configuration?v=${customRepresentation}`;
-  const swrData = useSWRImmutable<FetchResponse<EmrApiConfigurationResponse>, Error>(url, eigenFetch);
+  const swrData = useSWRImmutable<FetchResponse<EmrApiConfigurationResponse>, Error>(url, egenFetch);
 
   const results = useMemo(
     () => ({

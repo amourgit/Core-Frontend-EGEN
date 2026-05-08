@@ -1,4 +1,4 @@
-import { useAuthStore } from '@igen/esm-auth';
+import { useAuthStore } from '@egen/esm-auth';
 
 /**
  * Hook de vérification des permissions pour les modules.

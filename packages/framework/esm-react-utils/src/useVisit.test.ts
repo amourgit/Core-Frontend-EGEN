@@ -3,12 +3,12 @@ import type useSWR from 'swr';
 import type { BareFetcher, Key } from 'swr';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { useVisit } from './useVisit';
-import type { Visit } from '@egen/esm-igen-api';
+import type { Visit } from '@egen/esm-egen-api';
 
-// Mock eigenFetch
-const mockEigenFetch = vi.fn();
+// Mock egenFetch
+const mockEgenFetch = vi.fn();
 vi.mock('@egen/esm-api', () => ({
-  eigenFetch: (...args: any[]) => mockEigenFetch(...args),
+  egenFetch: (...args: any[]) => mockEgenFetch(...args),
   restBaseUrl: '/ws/rest/v1',
 }));
 

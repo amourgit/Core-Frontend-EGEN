@@ -34,7 +34,7 @@ function runCommand<T extends CommandNames>(type: T, args: Parameters<Commands[T
 
 yargs.command(
   'debug',
-  'Starts a new debugging session of the EIGEN app shell. This uses Webpack as a debug server with proxy middleware.',
+  'Starts a new debugging session of the EGEN app shell. This uses Webpack as a debug server with proxy middleware.',
   (argv) =>
     argv
       .option('port', {
@@ -58,12 +58,12 @@ yargs.command(
         type: 'string',
       })
       .option('spa-path', {
-        default: '/eigen/spa/',
+        default: '/egen/spa/',
         describe: 'The path of the application on the target server.',
         type: 'string',
       })
       .option('api-url', {
-        default: '/eigen/',
+        default: '/egen/',
         describe: 'The URL of the API. Can be a path if the API is on the same target server.',
         type: 'string',
       })
@@ -140,7 +140,7 @@ yargs.command(
 
 yargs.command(
   'develop',
-  'Starts a new frontend module development session with the EIGEN app shell.',
+  'Starts a new frontend module development session with the EGEN app shell.',
   (argv) =>
     argv
       .option('port', {
@@ -164,12 +164,12 @@ yargs.command(
         type: 'string',
       })
       .option('spa-path', {
-        default: '/eigen/spa/',
+        default: '/egen/spa/',
         describe: 'The path of the application on the target server.',
         type: 'string',
       })
       .option('api-url', {
-        default: '/eigen/',
+        default: '/egen/',
         describe: 'The URL of the API. Can be a path if the API is on the same target server.',
         type: 'string',
       })
@@ -286,16 +286,16 @@ yargs.command(
         coerce: (arg) => resolve(process.cwd(), arg),
       })
       .option('spa-path', {
-        default: '/eigen/spa/',
+        default: '/egen/spa/',
         describe: 'The path of the application on the target server.',
         type: 'string',
       })
       .option('page-title', {
-        default: 'EIGEN',
+        default: 'EGEN',
         describe: 'The title of the web app usually displayed in the browser tab.',
       })
       .option('api-url', {
-        default: '/eigen/',
+        default: '/egen/',
         describe: 'The URL of the API. Can be a path if the API is on the same target server.',
         type: 'string',
       })
@@ -378,7 +378,7 @@ yargs.command(
       .option('config-file', {
         default: [],
         describe:
-          'Reference to a frontend configuration file. Can be used multiple times. Configurations are merged in the order specified into eigen-config.json.',
+          'Reference to a frontend configuration file. Can be used multiple times. Configurations are merged in the order specified into egen-config.json.',
         type: 'array',
         coerce: (arg: Array<string>) => arg.map((p) => resolve(process.cwd(), p)),
       })
@@ -446,14 +446,14 @@ yargs
     'The SPA assemble config JSON is a JSON file, typically `frontend.json`, which defines parameters for the `build` and `assemble` ' +
       'commands. The keys used by `build` are:\n' +
       '  `apiUrl`, `spaPath`, `configPaths`, `configUrls`, `importmap`, `pageTitle`, and `supportOffline`;\n' +
-      'each of which is equivalent to the corresponding command line argument (see `igen build --help`). ' +
+      'each of which is equivalent to the corresponding command line argument (see `egen build --help`). ' +
       'Multiple values provided to `configPaths` and `configUrls` shoud be comma-separated.\n' +
       'The keys used by `assemble` are:\n' +
       '  frontendModules  \tAn object which specifies which frontend modules to include. It should have package names ' +
       'for keys and versions for values.\n' +
       '  publicUrl  \tThe URL at which the frontend modules will be made available. Can be relative to the importmap. ' +
       'Defaults to `.` (which means they will be colocated with the import map).\n\n' +
-      'For more information visit https://github.com/amourgit/Core-Frontend-EIGEN.',
+      'For more information visit https://github.com/amourgit/Core-Frontend-EGEN.',
   )
   .help()
   .demandCommand()
@@ -462,7 +462,7 @@ yargs
 
 yargs.command(
   'serve',
-  'Starts the EIGEN dev server (alias for "develop").',
+  'Starts the EGEN dev server (alias for "develop").',
   (argv) => argv
     .option('backend', {
       default: 'https://dev.iam-central.ga',
@@ -475,11 +475,11 @@ yargs.command(
 
 yargs.command(
   'create-mf <name>',
-  'Scaffold a new EIGEN micro-frontend module.',
+  'Scaffold a new EGEN micro-frontend module.',
   (argv) => argv
     .positional('name', { type: 'string', describe: 'Module name (e.g. esm-my-module)' })
     .option('scope', {
-      default: '@igen',
+      default: '@egen',
       describe: 'NPM scope for the package.',
       type: 'string',
     })
@@ -498,6 +498,6 @@ yargs.command(
     .option('name', { type: 'string', describe: 'Route name.' })
     .option('path', { type: 'string', describe: 'Route path.' }),
   (argv) => {
-    console.log('🚧 igen generate-route — coming soon.');
+    console.log('🚧 egen generate-route — coming soon.');
   },
 );

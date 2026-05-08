@@ -1,6 +1,6 @@
 /* eslint-env node */
 import { vi } from 'vitest';
 
-global.window.eigenBase = '/eigen';
+global.window.egenBase = '/egen';
 global.window.spaBase = '/spa';
-global.window.getEigenSpaBase = () => '/eigen/spa/';
+global.window.getEgenSpaBase = () => '/egen/spa/';

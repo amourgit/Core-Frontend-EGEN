@@ -1,20 +1,20 @@
 // ============================================================
-// @igen/esm-api — SDK barrel for micro-frontends
+// @egen/esm-api — SDK barrel for micro-frontends
 //
 // Import everything you need for API interactions:
-//   import { eigenFetch, EigenFetchError, restBaseUrl } from '@igen/esm-api';
+//   import { egenFetch, EgenFetchError, restBaseUrl } from '@egen/esm-api';
 // ============================================================
 
 // HTTP Client
 export {
-  eigenFetch,
-  eigenObservableFetch,
+  egenFetch,
+  egenObservableFetch,
   makeUrl,
-  EigenFetchError,
+  EgenFetchError,
   restBaseUrl,
   fhirBaseUrl,
   sessionEndpoint,
-} from './eigen-fetch';
+} from './egen-fetch';
 
 // Types
 export type {
@@ -23,7 +23,7 @@ export type {
   FetchResponseJson,
   FetchError,
   FetchResponse,
-} from './eigen-fetch';
+} from './egen-fetch';
 
 // User session
 export {
@@ -45,7 +45,7 @@ export type { LoadedSessionStore, SessionStore, UnloadedSessionStore } from './c
 export * from './environment';
 
 // Backend dependencies
-export * from './eigen-backend-dependencies';
+export * from './egen-backend-dependencies';
 
 // Resource types
 export * from './types';

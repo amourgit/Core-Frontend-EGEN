@@ -1,12 +1,12 @@
 {
-  "name": "igen",
+  "name": "egen",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "main": "dist/index.js",
   "bin": {
-    "igen": "./dist/cli.js",
-    "igen-rspack": "./bin/rspack.js",
-    "igen-webpack": "./bin/webpack.js"
+    "egen": "./dist/cli.js",
+    "egen-rspack": "./bin/rspack.js",
+    "egen-webpack": "./bin/webpack.js"
   },
   "types": "dist/index.d.ts",
   "engines": {
@@ -20,19 +20,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-EGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-EGEN/issues"
   },
   "keywords": [
-    "igen",
-    "eigen",
+    "egen",
+    "egen",
     "microfrontends",
     "cli",
     "tooling"
   ],
-  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-EGEN#readme",
   "dependencies": {
     "@egen/esm-app-shell": "workspace:*",
     "@egen/rspack-config": "workspace:*",
@@ -44,7 +44,7 @@
     "@swc/core": "1.12.6",
     "autoprefixer": "10.4.20",
     "axios": "^1.13.4",
-    "browserslist-config-igen": "^1.0.1",
+    "browserslist-config-egen": "^1.0.1",
     "chalk": "^4.1.2",
     "clean-webpack-plugin": "4.0.0",
     "copy-webpack-plugin": "11.0.0",
@@ -88,7 +88,7 @@
     "@types/tar": "^4.0.3",
     "vitest": "^4.0.18"
   },
-  "description": "EIGEN frontend tooling CLI \u2014 serve, build, assemble, deploy micro-frontends",
+  "description": "EGEN frontend tooling CLI \u2014 serve, build, assemble, deploy micro-frontends",
   "exports": {
     "./default-webpack-config": "./default-webpack-config.js",
     "./default-rspack-config": "./default-rspack-config.js"

@@ -15,7 +15,7 @@ describe('history', () => {
     Document.prototype,
     'referrer',
   ) as PropertyDescriptor;
-  const mockReferrer = 'https://iam-central.ga/eigen/spa/lalaland';
+  const mockReferrer = 'https://iam-central.ga/egen/spa/lalaland';
   let mockLocationAssign: Mock<typeof window.location.assign>;
 
   beforeAll(() => {
@@ -24,11 +24,11 @@ describe('history', () => {
     // @ts-expect-error
     window.location = {
       assign: vi.fn(),
-      href: 'https://iam-central.ga/eigen/spa/chart',
+      href: 'https://iam-central.ga/egen/spa/chart',
       origin: 'https://iam-central.ga',
     };
     mockLocationAssign = window.location.assign as Mock<typeof window.location.assign>;
-    window.getEigenSpaBase = () => 'https://iam-central.ga/eigen/spa';
+    window.getEgenSpaBase = () => 'https://iam-central.ga/egen/spa';
     Object.defineProperty(document, 'referrer', {
       value: mockReferrer,
       writable: true,
@@ -58,16 +58,16 @@ describe('history', () => {
 
   it('should update history on routing events and go back correctly', () => {
     setupHistory();
-    window.location.href = 'https://iam-central.ga/eigen/spa/labs';
+    window.location.href = 'https://iam-central.ga/egen/spa/labs';
     dispatchRoutingEvent();
-    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/eigen/spa/labs']);
+    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/egen/spa/labs']);
     window.location.href = 'https://iam-central.ga/pharmacy';
     dispatchRoutingEvent();
     window.location.href = 'https://iam-central.ga/x-ray';
     dispatchRoutingEvent();
     expect(getHistory()).toEqual([
       mockReferrer,
-      'https://iam-central.ga/eigen/spa/labs',
+      'https://iam-central.ga/egen/spa/labs',
       'https://iam-central.ga/pharmacy',
       'https://iam-central.ga/x-ray',
     ]);
@@ -76,30 +76,30 @@ describe('history', () => {
       window.location.href = params.to;
       dispatchRoutingEvent();
     });
-    goBackInHistory({ toUrl: 'https://iam-central.ga/eigen/spa/labs' });
-    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/eigen/spa/labs']);
+    goBackInHistory({ toUrl: 'https://iam-central.ga/egen/spa/labs' });
+    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/egen/spa/labs']);
     goBackInHistory({ toUrl: mockReferrer });
     expect(getHistory()).toEqual([mockReferrer]);
   });
 
   it('should handle in-SPA redirects / replaceState correctly', () => {
     setupHistory();
-    window.location.href = 'https://iam-central.ga/eigen/spa/tests';
+    window.location.href = 'https://iam-central.ga/egen/spa/tests';
     dispatchRoutingEvent();
-    window.location.href = 'https://iam-central.ga/eigen/spa/tests/home';
+    window.location.href = 'https://iam-central.ga/egen/spa/tests/home';
     dispatchRoutingEvent({ originalEvent: { singleSpaTrigger: 'replaceState' } });
-    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/eigen/spa/tests/home']);
+    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/egen/spa/tests/home']);
   });
 
   it('should handle back button navigation', () => {
     setupHistory();
-    window.location.href = 'https://iam-central.ga/eigen/spa/home';
+    window.location.href = 'https://iam-central.ga/egen/spa/home';
     dispatchRoutingEvent();
-    window.location.href = 'https://iam-central.ga/eigen/spa/dentist';
+    window.location.href = 'https://iam-central.ga/egen/spa/dentist';
     dispatchRoutingEvent();
-    window.location.href = 'https://iam-central.ga/eigen/spa/home';
+    window.location.href = 'https://iam-central.ga/egen/spa/home';
     dispatchRoutingEvent({ originalEvent: { singleSpa: null } });
-    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/eigen/spa/home']);
+    expect(getHistory()).toEqual([mockReferrer, 'https://iam-central.ga/egen/spa/home']);
   });
 });
 

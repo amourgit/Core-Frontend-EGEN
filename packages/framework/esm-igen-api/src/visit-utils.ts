@@ -1,5 +1,5 @@
 /** @module @category API */
-import { eigenFetch, restBaseUrl, type FetchResponse } from '@egen/esm-api';
+import { egenFetch, restBaseUrl, type FetchResponse } from '@egen/esm-api';
 import { getGlobalStore } from '@egen/esm-state';
 import { BehaviorSubject } from 'rxjs';
 import { type NewVisitPayload, type UpdateVisitPayload, type Visit } from './types';
@@ -101,19 +101,19 @@ getVisitStore().subscribe((state) => {
 });
 
 function setVisitSessionStorage(value: VisitStoreState) {
-  sessionStorage.setItem('eigen:visitStoreState', JSON.stringify(value));
+  sessionStorage.setItem('egen:visitStoreState', JSON.stringify(value));
 }
 
 function getVisitSessionStorage(): VisitStoreState | null {
   try {
-    return JSON.parse(sessionStorage.getItem('eigen:visitStoreState') || 'null');
+    return JSON.parse(sessionStorage.getItem('egen:visitStoreState') || 'null');
   } catch (e) {
     return null;
   }
 }
 
 /**
- * Creates a new visit by sending a POST request to the EIGEN REST API.
+ * Creates a new visit by sending a POST request to the EGEN REST API.
  *
  * @param payload The visit data to create, including patient UUID, visit type,
  *   start datetime, and other visit attributes.
@@ -132,7 +132,7 @@ function getVisitSessionStorage(): VisitStoreState | null {
  * ```
  */
 export function saveVisit(payload: NewVisitPayload, abortController: AbortController): Promise<FetchResponse<Visit>> {
-  return eigenFetch(`${restBaseUrl}/visit`, {
+  return egenFetch(`${restBaseUrl}/visit`, {
     signal: abortController.signal,
     method: 'POST',
     headers: {
@@ -143,7 +143,7 @@ export function saveVisit(payload: NewVisitPayload, abortController: AbortContro
 }
 
 /**
- * Updates an existing visit by sending a POST request to the EIGEN REST API.
+ * Updates an existing visit by sending a POST request to the EGEN REST API.
  *
  * @param uuid The UUID of the visit to update.
  * @param payload The visit data to update, such as stop datetime or attributes.
@@ -164,7 +164,7 @@ export function updateVisit(
   payload: UpdateVisitPayload,
   abortController: AbortController,
 ): Promise<FetchResponse<Visit>> {
-  return eigenFetch(`${restBaseUrl}/visit/${uuid}`, {
+  return egenFetch(`${restBaseUrl}/visit/${uuid}`, {
     signal: abortController.signal,
     method: 'POST',
     headers: {
@@ -184,7 +184,7 @@ export function getVisitsForPatient(
 ): Promise<FetchResponse<{ results: Array<Visit> }>> {
   const custom = v ?? defaultVisitCustomRepresentation;
 
-  return eigenFetch(`${restBaseUrl}/visit?patient=${patientUuid}&v=${custom}`, {
+  return egenFetch(`${restBaseUrl}/visit?patient=${patientUuid}&v=${custom}`, {
     signal: abortController.signal,
     method: 'GET',
     headers: {

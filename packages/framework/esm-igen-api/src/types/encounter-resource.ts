@@ -1,12 +1,12 @@
-import { type EigenResource } from '@egen/esm-api';
+import { type EgenResource } from '@egen/esm-api';
 import { type Diagnosis } from './diagnosis-resource';
 import { type Location } from './location-resource';
 import { type Obs } from './obs-resource';
 import { type Patient } from './patient-resource';
 import { type Visit } from './visit-resource';
 
-// TODO: make this extends EigenResourceStrict
-export interface Encounter extends EigenResource {
+// TODO: make this extends EgenResourceStrict
+export interface Encounter extends EgenResource {
   encounterDatetime?: string;
   patient?: Patient;
   location?: Location;
@@ -15,21 +15,21 @@ export interface Encounter extends EigenResource {
   visit?: Visit;
   encounterProviders?: Array<EncounterProvider>;
   diagnoses?: Array<Diagnosis>;
-  form?: EigenResource;
+  form?: EgenResource;
 }
 
-export interface EncounterType extends EigenResource {
+export interface EncounterType extends EgenResource {
   name?: string;
   description?: string;
   retired?: boolean;
 }
 
-export interface EncounterProvider extends EigenResource {
-  provider?: EigenResource;
+export interface EncounterProvider extends EgenResource {
+  provider?: EgenResource;
   encounterRole?: EncounterRole;
 }
 
-export interface EncounterRole extends EigenResource {
+export interface EncounterRole extends EgenResource {
   name?: string;
   description?: string;
   retired?: boolean;

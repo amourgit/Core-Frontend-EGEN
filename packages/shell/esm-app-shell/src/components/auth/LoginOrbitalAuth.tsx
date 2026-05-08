@@ -15,7 +15,7 @@ import {
   Fingerprint, Mic, ScanFace, Key, Smartphone, Usb,
   ArrowRight,
 } from 'lucide-react';
-import { useIAMAuth } from '@igen/esm-auth';
+import { useIAMAuth } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { OutlinedField } from '@/components/fields/fields';

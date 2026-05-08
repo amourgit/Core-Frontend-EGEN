@@ -1,4 +1,4 @@
-# openmrs-esm-styleguide
+# egen-esm-styleguide
 
 The styleguide for OpenMRS.
 

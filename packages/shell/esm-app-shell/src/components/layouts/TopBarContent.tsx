@@ -12,12 +12,12 @@ import {
 } from "lucide-react";
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
-import { useTheme, useThemeVariables } from "@igen/esm-styleguide/theme";
+import { useTheme, useThemeVariables } from "@egen/esm-styleguide/theme";
 import { useGlass } from "@/hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 import { useAuth } from "@/hooks/useAuth";
-import { useIAMAuth } from '@igen/esm-auth';
+import { useIAMAuth } from '@egen/esm-auth';
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 import { navigationData, NavigationItem } from "@/services/navigation";

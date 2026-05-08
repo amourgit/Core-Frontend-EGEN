@@ -4,7 +4,7 @@ import classNames, { type Argument } from 'classnames';
 import { RenderIfValueIsTruthy } from '@egen/esm-react-utils';
 import style from './pictograms.module.scss';
 
-/** Array of all available EIGEN pictogram IDs that can be used with the Pictogram component. */
+/** Array of all available EGEN pictogram IDs that can be used with the Pictogram component. */
 export const pictogramIds = [
   'omrs-pict-appointments',
   'omrs-pict-assessment-1',

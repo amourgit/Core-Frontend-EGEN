@@ -3,8 +3,8 @@ import { createGlobalStore } from '@egen/esm-state/mock';
 import { type SessionStore } from './src/current-user';
 
 export const setSessionLocation = jest.fn(() => Promise.resolve());
-export const eigenFetch = jest.fn((url?: string) => new Promise(() => {}));
-export const eigenObservableFetch = jest.fn(() => of({ data: { entry: [] } }));
+export const egenFetch = jest.fn((url?: string) => new Promise(() => {}));
+export const egenObservableFetch = jest.fn(() => of({ data: { entry: [] } }));
 export function getCurrentUser() {
   return of({ authenticated: false });
 }

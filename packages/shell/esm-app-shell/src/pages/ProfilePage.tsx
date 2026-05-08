@@ -1,4 +1,4 @@
-import { useAuthStore } from '@igen/esm-auth';
+import { useAuthStore } from '@egen/esm-auth';
 export default function ProfilePage() {
   const user = useAuthStore(s => s.user);
   return (

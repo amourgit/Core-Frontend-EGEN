@@ -54,12 +54,12 @@ temporaryConfigStore.subscribe((state) => {
 });
 
 function setTemporaryConfig(value: Config) {
-  localStorage.setItem('eigen:temporaryConfig', JSON.stringify(value));
+  localStorage.setItem('egen:temporaryConfig', JSON.stringify(value));
 }
 
 function getTemporaryConfig(): Config {
   try {
-    return JSON.parse(localStorage.getItem('eigen:temporaryConfig') || '{}');
+    return JSON.parse(localStorage.getItem('egen:temporaryConfig') || '{}');
   } catch (e) {
     return {};
   }

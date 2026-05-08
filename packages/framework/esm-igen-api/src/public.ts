@@ -1,6 +1,6 @@
 export * from './attachments';
 export * from './patient';
-export { subscribeEigenEvent, type EigenEvent, type EigenEventTypes } from './events';
+export { subscribeEgenEvent, type EgenEvent, type EgenEventTypes } from './events';
 export * from './types';
 export * from './visit-utils';
 export * from './visit-type';

@@ -19,10 +19,10 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-route
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 
-import { ThemeProvider }    from '@igen/esm-styleguide/theme';
-import { AuthProvider }     from '@igen/esm-auth';
-import { useIAMAuth }       from '@igen/esm-auth';
-import { useAuthStore }     from '@igen/esm-auth';
+import { ThemeProvider }    from '@egen/esm-styleguide/theme';
+import { AuthProvider }     from '@egen/esm-auth';
+import { useIAMAuth }       from '@egen/esm-auth';
+import { useAuthStore }     from '@egen/esm-auth';
 import { useRegistryStore } from '@/stores/registry.store';
 import CoreBaseLayout       from '@/components/layouts/CoreBaseLayout';
 
@@ -70,7 +70,7 @@ function useRegistryBootstrap() {
       version: '2.0.0', requiredRoles: ['iam-admin', 'super-admin', 'realm-admin'],
       eager: false, order: 1, defaultEnabled: true, routes: [],
     }]);
-    import('@igen/esm-auth').then(m => {
+    import('@egen/esm-auth').then(m => {
       setNavigation(m.iamNavItems as any, m.iamNavGroups as any);
     }).catch(() => {});
   // eslint-disable-next-line react-hooks/exhaustive-deps

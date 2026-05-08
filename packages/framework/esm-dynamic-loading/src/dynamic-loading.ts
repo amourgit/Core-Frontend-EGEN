@@ -25,7 +25,7 @@ export function slugify(name: string) {
  *
  * @param jsPackage The package to load the export from.
  * @param share Indicates the name of the shared module; this is an advanced feature if the package you are loading
- *   doesn't use the default EIGEN shared module name "./start".
+ *   doesn't use the default EGEN shared module name "./start".
  * @param options Additional options to control loading this script.
  * @param options.importMap The import map to use to load the script. This is useful for situations where you're
  *   loading multiple scripts at a time, since it allows the calling code to supply an importMap, saving multiple
@@ -200,7 +200,7 @@ function isFederatedModule(a: unknown): a is FederatedModule {
 // internals to track script loading
 // basically, if we're already loading a script, we should wait until the script is loaded
 // we use a global to track this
-const EIGEN_SCRIPT_LOADING = Symbol('__eigen_script_loading');
+const EGEN_SCRIPT_LOADING = Symbol('__egen_script_loading');
 
 /**
  * Appends a `<script>` to the DOM with the given URL.
@@ -211,9 +211,9 @@ function loadScript(
   reject: (reason?: any) => void,
 ) {
   const scriptElement = document.head.querySelector(`script[src="${url}"]`);
-  let scriptLoading: Set<string> = window[EIGEN_SCRIPT_LOADING];
+  let scriptLoading: Set<string> = window[EGEN_SCRIPT_LOADING];
   if (!scriptLoading) {
-    scriptLoading = window[EIGEN_SCRIPT_LOADING] = new Set([]);
+    scriptLoading = window[EGEN_SCRIPT_LOADING] = new Set([]);
   }
 
   if (!scriptElement) {

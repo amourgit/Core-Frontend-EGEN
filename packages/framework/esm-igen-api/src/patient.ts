@@ -1,5 +1,5 @@
 /** @module @category API */
-import { fhirBaseUrl, eigenFetch, type FetchConfig, type FetchResponse } from '@egen/esm-api';
+import { fhirBaseUrl, egenFetch, type FetchConfig, type FetchResponse } from '@egen/esm-api';
 import { getSynchronizationItems } from '@egen/esm-offline';
 
 export type CurrentPatient = fhir.Patient | FetchResponse<fhir.Patient>;
@@ -49,7 +49,7 @@ export async function fetchCurrentPatient(
   if (patientUuid) {
     let err: Error | null = null;
     const [onlinePatient, offlinePatient] = await Promise.all([
-      eigenFetch<fhir.Patient>(`${fhirBaseUrl}/Patient/${patientUuid}`, fetchInit).catch<FetchResponse<fhir.Patient>>(
+      egenFetch<fhir.Patient>(`${fhirBaseUrl}/Patient/${patientUuid}`, fetchInit).catch<FetchResponse<fhir.Patient>>(
         (e) => (err = e),
       ),
       includeOfflinePatients ? getOfflineRegisteredPatientAsFhirPatient(patientUuid) : Promise.resolve(null),

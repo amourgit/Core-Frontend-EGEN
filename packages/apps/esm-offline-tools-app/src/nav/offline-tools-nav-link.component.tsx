@@ -14,7 +14,7 @@ export default function OfflineToolsNavLink({ page, title }: OfflineToolsNavLink
   return (
     <div key={page}>
       <ConfigurableLink
-        to={'${eigenSpaBase}/' + routes.offlineTools + (page ? `/${page}` : '')}
+        to={'${egenSpaBase}/' + routes.offlineTools + (page ? `/${page}` : '')}
         className="cds--side-nav__link"
       >
         {t(title)}

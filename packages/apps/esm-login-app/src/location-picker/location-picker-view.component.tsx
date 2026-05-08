@@ -71,7 +71,7 @@ const LocationPickerView: React.FC<LocationPickerProps> = ({ hideWelcomeMessage,
       updateDefaultLocation(locationUuid, saveUserPreference);
       sessionDefined.then(() => {
         if (referrer && !['/', '/login', '/login/location'].includes(referrer)) {
-          navigate({ to: '${eigenSpaBase}' + referrer });
+          navigate({ to: '${egenSpaBase}' + referrer });
           return;
         }
         if (returnToUrl && returnToUrl !== '/') {

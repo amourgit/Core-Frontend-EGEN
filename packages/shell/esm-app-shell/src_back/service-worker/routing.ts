@@ -39,7 +39,7 @@ export function registerAllOmrsRoutes() {
   // Navigation requests are, when unresolvable via network (i.e. when offline), routed back
   // to the SPA's index (which should always be precached).
   // This ensures that the page loads correctly when a new navigation occurs to pages
-  // like `/eigen/spa/anything/nested`.
+  // like `/egen/spa/anything/nested`.
   registerRoute(({ request }) => request.mode === 'navigate', navigationHandler);
 
   // Fallback routing behavior.

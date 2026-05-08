@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tag } from '@carbon/react';
 import { useConfig } from '@egen/esm-react-utils';
-import { type Diagnosis } from '@egen/esm-igen-api';
+import { type Diagnosis } from '@egen/esm-egen-api';
 import { type StyleguideConfigObject } from '../config-schema';
 import styles from './diagnosis-tags.module.scss';
 

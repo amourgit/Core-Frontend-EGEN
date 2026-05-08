@@ -9,7 +9,7 @@ const mockNavigate = vi.mocked(navigate);
 const mockUseSession = vi.mocked(useSession);
 
 delete window.location;
-(window.location as Location) = new URL('https://dev.iam-central.ga/eigen/spa/home') as unknown as Location;
+(window.location as Location) = new URL('https://dev.iam-central.ga/egen/spa/home') as unknown as Location;
 
 describe('ChangeLocationLink', () => {
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe('ChangeLocationLink', () => {
     await user.click(changeLocationButton);
 
     expect(mockNavigate).toHaveBeenCalledWith({
-      to: '${eigenSpaBase}/login/location?returnToUrl=/eigen/spa/home&update=true',
+      to: '${egenSpaBase}/login/location?returnToUrl=/egen/spa/home&update=true',
     });
   });
 });

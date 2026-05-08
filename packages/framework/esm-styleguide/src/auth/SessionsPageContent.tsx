@@ -12,11 +12,11 @@ import {
   LogOut, RefreshCw, Shield, AlertCircle, CheckCircle2,
   Loader2, ArrowLeft, Wifi, WifiOff,
 } from 'lucide-react';
-import { useIAMSessions } from '@igen/esm-auth';
+import { useIAMSessions } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import type { Session } from '@igen/esm-auth';
+import type { Session } from '@egen/esm-auth';
 import { AuthLayout } from './ui/AuthLayout';
 
 // ── Détection appareil depuis User-Agent ──────────────────

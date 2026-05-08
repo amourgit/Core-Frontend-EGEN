@@ -1,5 +1,5 @@
 {
-  "name": "@igen/rspack-config",
+  "name": "@egen/rspack-config",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "main": "dist/index.js",
@@ -14,21 +14,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-EGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-EGEN/issues"
   },
   "publishConfig": {
     "access": "public"
   },
   "keywords": [
-    "igen",
-    "eigen",
+    "egen",
+    "egen",
     "webpack",
     "microfrontends"
   ],
-  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-EGEN#readme",
   "dependencies": {
     "@rspack/cli": "1.3.15",
     "@rspack/core": "1.3.15",
@@ -49,5 +49,5 @@
     "@types/lodash-es": "^4.17.12",
     "typescript": "^5.8.3"
   },
-  "description": "EIGEN bundler config \u2014 rspack-config"
+  "description": "EGEN bundler config \u2014 rspack-config"
 }

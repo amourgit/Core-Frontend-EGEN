@@ -18,12 +18,12 @@ async function readImportmap(path: string, backend?: string, spaPath?: string) {
         return await fetchRemoteImportmap(`${backend}${spaPath}importmap.json`);
       } catch (e) {
         logWarn(
-          `Could not read importmap from ${backend}${spaPath}importmap.json. Falling back to import map from https://dev.iam-central.ga/eigen/spa/importmap.json: ${e}`,
+          `Could not read importmap from ${backend}${spaPath}importmap.json. Falling back to import map from https://dev.iam-central.ga/egen/spa/importmap.json: ${e}`,
         );
       }
     }
 
-    return fetchRemoteImportmap('https://dev.iam-central.ga/eigen/spa/importmap.json');
+    return fetchRemoteImportmap('https://dev.iam-central.ga/egen/spa/importmap.json');
   }
 
   return '{"imports":{}}';
@@ -38,12 +38,12 @@ async function readRoutes(path: string, backend?: string, spaPath?: string) {
         return await fetchRemoteRoutes(`${backend}${spaPath}routes.registry.json`);
       } catch (e) {
         logWarn(
-          `Could not read routes registry from ${backend}${spaPath}routes.registry.json. Falling back to routes registry from https://dev.iam-central.ga/eigen/spa/routes.registry.json: ${e}`,
+          `Could not read routes registry from ${backend}${spaPath}routes.registry.json. Falling back to routes registry from https://dev.iam-central.ga/egen/spa/routes.registry.json: ${e}`,
         );
       }
     }
 
-    return fetchRemoteRoutes('https://dev.iam-central.ga/eigen/spa/routes.registry.json');
+    return fetchRemoteRoutes('https://dev.iam-central.ga/egen/spa/routes.registry.json');
   }
 
   return '{}';
@@ -203,7 +203,7 @@ export async function runProject(
 
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const project = require(projectFile);
-    const startup = project['eigen:develop'];
+    const startup = project['egen:develop'];
 
     if (existsSync(routesFile)) {
       watchedRoutesPaths[project.name] = routesFile;

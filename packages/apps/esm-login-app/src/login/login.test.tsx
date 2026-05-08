@@ -56,7 +56,7 @@ describe('Login', () => {
       },
     );
 
-    expect(screen.getAllByRole('img', { name: /EIGEN logo/i })).toHaveLength(2);
+    expect(screen.getAllByRole('img', { name: /EGEN logo/i })).toHaveLength(2);
     expect(screen.queryByAltText(/^logo$/i)).not.toBeInTheDocument();
     screen.getByRole('textbox', { name: /Username/i });
     screen.getByRole('button', { name: /Continue/i });
@@ -76,7 +76,7 @@ describe('Login', () => {
 
     const logo = screen.getByAltText(customLogoConfig.alt);
 
-    expect(screen.queryByTitle(/eigen logo/i)).not.toBeInTheDocument();
+    expect(screen.queryByTitle(/egen logo/i)).not.toBeInTheDocument();
     expect(logo).toHaveAttribute('src', customLogoConfig.src);
     expect(logo).toHaveAttribute('alt', customLogoConfig.alt);
   });

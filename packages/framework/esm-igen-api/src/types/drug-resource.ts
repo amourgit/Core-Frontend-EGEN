@@ -1,9 +1,9 @@
-import { type Concept, type EigenResource } from '@egen/esm-api';
+import { type Concept, type EgenResource } from '@egen/esm-api';
 
-export interface Drug extends EigenResource {
+export interface Drug extends EgenResource {
   uuid: string;
   strength: string;
   concept: Concept;
-  dosageForm: EigenResource;
+  dosageForm: EgenResource;
   display: string;
 }

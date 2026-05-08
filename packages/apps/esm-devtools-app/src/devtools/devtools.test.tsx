@@ -50,7 +50,7 @@ describe('DevTools', () => {
     });
 
     it('should render DevTools when the devtools localStorage flag is set', () => {
-      localStorage.setItem('eigen:devtools', 'true');
+      localStorage.setItem('egen:devtools', 'true');
 
       render(<Root {...defaultProps} />);
 

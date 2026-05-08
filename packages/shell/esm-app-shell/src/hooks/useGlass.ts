@@ -5,7 +5,7 @@
 // ============================================================
 
 import { useMemo } from 'react';
-import { useTheme } from '@igen/esm-styleguide/theme';
+import { useTheme } from '@egen/esm-styleguide/theme';
 
 type GlassLayer =
   | 'xs' | 'sm' | 'md' | 'lg' | 'xl'

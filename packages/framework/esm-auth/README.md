@@ -1,6 +1,6 @@
-# @eigen/esm-auth
+# @egen/esm-auth
 
-Package d'authentification et IAM pour le Core EIGEN.
+Package d'authentification et IAM pour le Core EGEN.
 
 ## Architecture
 
@@ -42,7 +42,7 @@ src/
 
 ```tsx
 // Dans le CORE (shell)
-import { AuthProvider } from '@eigen/esm-auth';
+import { AuthProvider } from '@egen/esm-auth';
 
 function App() {
   return (
@@ -53,7 +53,7 @@ function App() {
 }
 
 // Dans un Micro-frontend
-import { useAuthContext, usePermissions, tokenManager } from '@eigen/esm-auth';
+import { useAuthContext, usePermissions, tokenManager } from '@egen/esm-auth';
 
 function MyComponent() {
   const { user, isAuthenticated, hasPermission } = useAuthContext();

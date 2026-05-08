@@ -78,33 +78,33 @@ implementerToolsStore.subscribe((state) => {
 });
 
 function getIsImplementerToolsOpen(): boolean {
-  return JSON.parse(localStorage.getItem('eigen:eigenImplementerToolsAreOpen') || 'false') ?? false;
+  return JSON.parse(localStorage.getItem('egen:egenImplementerToolsAreOpen') || 'false') ?? false;
 }
 
 function setIsImplementerToolsOpen(value: boolean): void {
-  localStorage.setItem('eigen:eigenImplementerToolsAreOpen', JSON.stringify(value));
+  localStorage.setItem('egen:egenImplementerToolsAreOpen', JSON.stringify(value));
 }
 
 function getIsConfigToolbarOpen(): boolean {
-  return JSON.parse(localStorage.getItem('eigen:eigenImplementerToolsConfigOpen') || 'true') ?? true;
+  return JSON.parse(localStorage.getItem('egen:egenImplementerToolsConfigOpen') || 'true') ?? true;
 }
 
 function setIsConfigToolbarOpen(value: boolean): void {
-  localStorage.setItem('eigen:eigenImplementerToolsConfigOpen', JSON.stringify(value));
+  localStorage.setItem('egen:egenImplementerToolsConfigOpen', JSON.stringify(value));
 }
 
 function getIsUIEditorEnabled(): boolean {
-  return JSON.parse(localStorage.getItem('eigen:isUIEditorEnabled') || 'false') ?? false;
+  return JSON.parse(localStorage.getItem('egen:isUIEditorEnabled') || 'false') ?? false;
 }
 
 function setIsUIEditorEnabled(enabled: boolean) {
-  localStorage.setItem('eigen:isUIEditorEnabled', JSON.stringify(enabled));
+  localStorage.setItem('egen:isUIEditorEnabled', JSON.stringify(enabled));
 }
 
 function getIsJsonModeEnabled(): boolean {
-  return JSON.parse(localStorage.getItem('eigen:getIsJsonModeEnabled') || 'false') ?? false;
+  return JSON.parse(localStorage.getItem('egen:getIsJsonModeEnabled') || 'false') ?? false;
 }
 
 function setIsJsonModeEnabled(enabled: boolean) {
-  localStorage.setItem('eigen:getIsJsonModeEnabled', JSON.stringify(enabled));
+  localStorage.setItem('egen:getIsJsonModeEnabled', JSON.stringify(enabled));
 }

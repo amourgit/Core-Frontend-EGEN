@@ -1,4 +1,4 @@
-import '@egen/esm-styleguide/dist/eigen-esm-styleguide.css';
+import '@egen/esm-styleguide/dist/egen-esm-styleguide.css';
 import 'import-map-overrides';
 import type { SpaConfig } from '@egen/esm-framework/src/internal';
 
@@ -28,12 +28,12 @@ function setupPaths(config: SpaConfig) {
     );
   }
 
-  window.eigenBase = config.apiUrl;
+  window.egenBase = config.apiUrl;
   window.spaBase = config.spaPath;
   window.spaEnv = config.env || 'production';
   window.spaVersion = process.env.BUILD_VERSION ?? 'local';
   const spaBaseWithSlash = window.spaBase.endsWith('/') ? window.spaBase : window.spaBase + '/';
-  window.getEigenSpaBase = _createSpaBase(spaBaseWithSlash);
+  window.getEgenSpaBase = _createSpaBase(spaBaseWithSlash);
 }
 
 export function setupUtils() {
@@ -53,14 +53,14 @@ export function setupUtils() {
 
 function wireSpaPaths() {
   const baseElement = document.createElement('base');
-  const baseHref = window.getEigenSpaBase();
+  const baseHref = window.getEgenSpaBase();
   baseElement.href = baseHref;
   document.head.appendChild(baseElement);
   __webpack_public_path__ = baseHref;
 }
 
 /**
- * Initializes the EIGEN Frontend App Shell.
+ * Initializes the EGEN Frontend App Shell.
  * @param config The global configuration to apply.
  */
 function initializeSpa(config: SpaConfig) {

@@ -1,5 +1,5 @@
 import { useEffect, useId } from 'react';
-import { getVisitStore, type Visit, type VisitStoreState } from '@egen/esm-igen-api';
+import { getVisitStore, type Visit, type VisitStoreState } from '@egen/esm-egen-api';
 import { type Actions, useStoreWithActions } from './useStore';
 
 const visitContextStoreActions = {

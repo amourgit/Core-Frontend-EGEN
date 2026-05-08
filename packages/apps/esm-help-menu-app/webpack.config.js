@@ -1,2 +1,2 @@
-module.exports = require('igen/default-webpack-config');
+module.exports = require('egen/default-webpack-config');
 

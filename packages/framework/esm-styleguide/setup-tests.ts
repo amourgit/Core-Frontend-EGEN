@@ -15,9 +15,9 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-window.eigenBase = '/eigen';
+window.egenBase = '/egen';
 window.spaBase = '/spa';
-window.getEigenSpaBase = () => '/eigen/spa/';
+window.getEgenSpaBase = () => '/egen/spa/';
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
 afterEach(cleanup);

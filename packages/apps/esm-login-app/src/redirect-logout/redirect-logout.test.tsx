@@ -7,7 +7,7 @@ import {
   type Session,
   clearCurrentUser,
   navigate,
-  eigenFetch,
+  egenFetch,
   refetchCurrentUser,
   restBaseUrl,
   setUserLanguage,
@@ -23,7 +23,7 @@ vi.mock('swr', () => ({
 
 const mockClearCurrentUser = vi.mocked(clearCurrentUser);
 const mockNavigate = vi.mocked(navigate);
-const mockEigenFetch = vi.mocked(eigenFetch);
+const mockEgenFetch = vi.mocked(egenFetch);
 const mockRefetchCurrentUser = vi.mocked(refetchCurrentUser);
 const mockSetUserLanguage = vi.mocked(setUserLanguage);
 const mockUseConfig = vi.mocked(useConfig);
@@ -33,7 +33,7 @@ const mockUseSession = vi.mocked(useSession);
 describe('RedirectLogout', () => {
   beforeEach(() => {
     mockUseConnectivity.mockReturnValue(true);
-    mockEigenFetch.mockResolvedValue({} as FetchResponse<unknown>);
+    mockEgenFetch.mockResolvedValue({} as FetchResponse<unknown>);
 
     mockUseSession.mockReturnValue({
       authenticated: true,
@@ -52,7 +52,7 @@ describe('RedirectLogout', () => {
   it('should redirect to login page upon logout', async () => {
     render(<RedirectLogout />);
 
-    expect(mockEigenFetch).toHaveBeenCalledWith(`${restBaseUrl}/session`, {
+    expect(mockEgenFetch).toHaveBeenCalledWith(`${restBaseUrl}/session`, {
       method: 'DELETE',
     });
 
@@ -65,7 +65,7 @@ describe('RedirectLogout', () => {
       authenticated: false,
       sessionId: '',
     });
-    expect(mockNavigate).toHaveBeenCalledWith({ to: '${eigenSpaBase}/login' });
+    expect(mockNavigate).toHaveBeenCalledWith({ to: '${egenSpaBase}/login' });
   });
 
   it('should not redirect if the configured provider is `oauth2`', async () => {
@@ -77,7 +77,7 @@ describe('RedirectLogout', () => {
 
     render(<RedirectLogout />);
 
-    expect(mockEigenFetch).toHaveBeenCalledWith(`${restBaseUrl}/session`, {
+    expect(mockEgenFetch).toHaveBeenCalledWith(`${restBaseUrl}/session`, {
       method: 'DELETE',
     });
 
@@ -100,7 +100,7 @@ describe('RedirectLogout', () => {
 
     render(<RedirectLogout />);
 
-    expect(mockNavigate).toHaveBeenCalledWith({ to: '${eigenSpaBase}/login' });
+    expect(mockNavigate).toHaveBeenCalledWith({ to: '${egenSpaBase}/login' });
   });
 
   it('should redirect to login if the application is offline', async () => {
@@ -108,12 +108,12 @@ describe('RedirectLogout', () => {
 
     render(<RedirectLogout />);
 
-    expect(mockNavigate).toHaveBeenCalledWith({ to: '${eigenSpaBase}/login' });
+    expect(mockNavigate).toHaveBeenCalledWith({ to: '${egenSpaBase}/login' });
   });
 
   it('should handle logout failure gracefully', async () => {
     const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
-    mockEigenFetch.mockRejectedValue(new Error('Logout failed'));
+    mockEgenFetch.mockRejectedValue(new Error('Logout failed'));
 
     render(<RedirectLogout />);
 
@@ -150,7 +150,7 @@ describe('RedirectLogout', () => {
     rerender(<RedirectLogout />);
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith({ to: '${eigenSpaBase}/login' });
+      expect(mockNavigate).toHaveBeenCalledWith({ to: '${egenSpaBase}/login' });
     });
   });
 

@@ -8,7 +8,7 @@ import * as utils from '@egen/esm-utils';
 window.i18next = { ...window.i18next, language: 'en' };
 
 export * from '@egen/esm-api/mock';
-export * from '@egen/esm-igen-api/mock';
+export * from '@egen/esm-egen-api/mock';
 export * from '@egen/esm-config/mock';
 export * from '@egen/esm-context';
 export * from '@egen/esm-expression-evaluator/src/public';
@@ -23,11 +23,11 @@ export { parseDate, formatDate, formatDatetime, formatTime, isOmrsDateToday } fr
 /* esm-globals */
 
 export function setupPaths(config: any) {
-  window.eigenBase = config.apiUrl;
+  window.egenBase = config.apiUrl;
   window.spaBase = config.spaPath;
   window.spaEnv = config.env || 'production';
   window.spaVersion = process.env.BUILD_VERSION ?? 'local';
-  window.getEigenSpaBase = () => `${window.spaBase}/`;
+  window.getEgenSpaBase = () => `${window.spaBase}/`;
 }
 
 /* esm-dynamic-loading */
@@ -111,7 +111,7 @@ export const navigateAndLaunchWorkspace = vi.fn();
 export const useWorkspaces = vi.fn();
 export const useWorkspace2Context = vi.fn();
 
-export const EigenDatePicker = vi.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
+export const EgenDatePicker = vi.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
   <>
     <label htmlFor={id}>{labelText}</label>
     <input
@@ -124,7 +124,7 @@ export const EigenDatePicker = vi.fn(({ id, labelText, value, onChange, isInvali
   </>
 ));
 
-export const EigenDateRangePicker = vi.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
+export const EgenDateRangePicker = vi.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
   const [inputValue, setInputValue] = useState(() => {
     const [start, end] = value;
     const formattedStart = start ? dayjs(start).format('DD/MM/YYYY') : 'dd/mm/yyyy';

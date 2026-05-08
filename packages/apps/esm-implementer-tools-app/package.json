@@ -3,11 +3,11 @@
   "version": "9.0.2",
   "license": "MPL-2.0",
   "description": "The admin interface for OpenMRS Frontend",
-  "browser": "dist/openmrs-esm-implementer-tools-app.js",
+  "browser": "dist/egen-esm-implementer-tools-app.js",
   "main": "src/index.ts",
   "source": true,
   "scripts": {
-    "start": "openmrs develop",
+    "start": "egen develop",
     "serve": "webpack serve --mode=development",
     "debug": "npm run serve",
     "test": "cross-env TZ=UTC vitest run --passWithNoTests",
@@ -21,20 +21,20 @@
     "extract-translations": "i18next 'src/**/*.tsx' 'src/**/*.ts' '!src/**/*.test.tsx' '!src/**/*.test.ts' --config='../../../tools/i18next-parser.config.js'"
   },
   "keywords": [
-    "eigen",
+    "egen",
     "microfrontends"
   ],
   "browserslist": [
-    "extends browserslist-config-igen"
+    "extends browserslist-config-egen"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-EGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-EGEN/issues"
   },
-  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-EGEN#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -56,7 +56,7 @@
     "ace-builds": "^1.43.3",
     "cross-env": "^7.0.3",
     "happy-dom": "^20.6.0",
-    "eigen": "workspace:*",
+    "egen": "workspace:*",
     "react": "^18.3.1",
     "react-ace": "^14.0.1",
     "react-dom": "^18.3.1",

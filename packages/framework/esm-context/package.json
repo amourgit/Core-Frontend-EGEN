@@ -28,7 +28,7 @@
     "lint": "eslint src --ext ts,tsx"
   },
   "keywords": [
-    "eigen",
+    "egen",
     "microfrontends"
   ],
   "directories": {
@@ -36,16 +36,16 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-igen"
+    "extends browserslist-config-egen"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-EGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-EGEN/issues"
   },
-  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-EGEN#readme",
   "publishConfig": {
     "access": "public"
   },

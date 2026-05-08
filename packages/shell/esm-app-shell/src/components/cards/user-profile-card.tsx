@@ -13,7 +13,7 @@ import {
   ArrowRight,
   Loader2,
 } from "lucide-react"
-import { useAuthContext } from "@igen/esm-auth"
+import { useAuthContext } from "@egen/esm-auth"
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

@@ -5,12 +5,12 @@ import { useConfig } from '@egen/esm-react-utils';
 import { getLocale, getDefaultCalendar } from '@egen/esm-utils';
 import { type StyleguideConfigObject } from '../config-schema';
 
-export const EigenIntlLocaleContext = createContext<Intl.Locale | null>(null);
+export const EgenIntlLocaleContext = createContext<Intl.Locale | null>(null);
 
-export const useIntlLocale = () => useContext(EigenIntlLocaleContext)!;
+export const useIntlLocale = () => useContext(EgenIntlLocaleContext)!;
 
 /**
- * This is the context provided to the EigenDatePicker and EigenDateRangePicker
+ * This is the context provided to the EgenDatePicker and EgenDateRangePicker
  */
 interface DatepickerContext {
   calendar: Calendar | undefined;
@@ -20,7 +20,7 @@ interface DatepickerContext {
 
 /**
  * Resolves the active locale, calendar system, and "today" value for use
- * in both EigenDatePicker and EigenDateRangePicker.
+ * in both EgenDatePicker and EgenDateRangePicker.
  *
  * The locale is resolved from i18next, mapped through the user's preferred
  * date locale config, and then used to derive the calendar system. This

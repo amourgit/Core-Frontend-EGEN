@@ -44,12 +44,12 @@ export interface EventTypes {
 /**
  * This type is the union of all supported events
  */
-export type EigenEvent = keyof EventTypes;
+export type EgenEvent = keyof EventTypes;
 
 export type EventsWithoutPayload = {
-  [K in EigenEvent]: EventTypes[K] extends undefined ? K : never;
-}[EigenEvent];
+  [K in EgenEvent]: EventTypes[K] extends undefined ? K : never;
+}[EgenEvent];
 
 export type EventsWithPayload = {
-  [K in EigenEvent]: EventTypes[K] extends undefined ? never : K;
-}[EigenEvent];
+  [K in EgenEvent]: EventTypes[K] extends undefined ? never : K;
+}[EgenEvent];

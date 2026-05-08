@@ -31,7 +31,7 @@
 - [x] packages/tooling/* - Outils build
 
 ### Validations
-- [x] Aucune référence @openmrs
+- [x] Aucune référence @egen
 - [x] Tous les JSON sont valides
 - [x] Scope @egen confirmé partout
 - [x] Workspaces configurés

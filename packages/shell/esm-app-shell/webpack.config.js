@@ -21,30 +21,30 @@ const production = 'production';
 const allowedSuffixes = ['-app', '-widgets'];
 const { ModuleFederationPlugin } = container;
 
-const eigenAddCookie = process.env.IGEN_ADD_COOKIE;
-const eigenApiUrl = removeTrailingSlash(process.env.IGEN_API_URL || '/eigen');
-const eigenPublicPath = removeTrailingSlash(process.env.IGEN_PUBLIC_PATH || '/eigen/spa');
-const eigenProxyTarget = process.env.IGEN_PROXY_TARGET || 'https://dev.iam-central.ga/';
-const eigenPageTitle = process.env.IGEN_PAGE_TITLE || 'EIGEN';
-const eigenFavicon = process.env.IGEN_FAVICON || `${eigenPublicPath}/favicon.ico`;
-const eigenEnvironment = process.env.IGEN_ENV || process.env.NODE_ENV || '';
-const eigenOffline = process.env.IGEN_OFFLINE === 'enable';
-const eigenDefaultLocale = process.env.IGEN_DEFAULT_LOCALE || 'en';
-const eigenImportmapDef = process.env.IGEN_IMPORTMAP;
-const eigenImportmapUrl = process.env.IGEN_IMPORTMAP_URL || `${eigenPublicPath}/importmap.json`;
-const eigenRoutesDef = process.env.IGEN_ROUTES;
-const eigenRoutesUrl = process.env.IGEN_ROUTES_URL || `${eigenPublicPath}/routes.registry.json`;
-const eigenCoreApps = process.env.IGEN_CORE_APPS_DIR || resolve(__dirname, '../../apps');
-const eigenConfigUrls = (process.env.IGEN_CONFIG_URLS || '')
+const egenAddCookie = process.env.EGEN_ADD_COOKIE;
+const egenApiUrl = removeTrailingSlash(process.env.EGEN_API_URL || '/egen');
+const egenPublicPath = removeTrailingSlash(process.env.EGEN_PUBLIC_PATH || '/egen/spa');
+const egenProxyTarget = process.env.EGEN_PROXY_TARGET || 'https://dev.iam-central.ga/';
+const egenPageTitle = process.env.EGEN_PAGE_TITLE || 'EGEN';
+const egenFavicon = process.env.EGEN_FAVICON || `${egenPublicPath}/favicon.ico`;
+const egenEnvironment = process.env.EGEN_ENV || process.env.NODE_ENV || '';
+const egenOffline = process.env.EGEN_OFFLINE === 'enable';
+const egenDefaultLocale = process.env.EGEN_DEFAULT_LOCALE || 'en';
+const egenImportmapDef = process.env.EGEN_IMPORTMAP;
+const egenImportmapUrl = process.env.EGEN_IMPORTMAP_URL || `${egenPublicPath}/importmap.json`;
+const egenRoutesDef = process.env.EGEN_ROUTES;
+const egenRoutesUrl = process.env.EGEN_ROUTES_URL || `${egenPublicPath}/routes.registry.json`;
+const egenCoreApps = process.env.EGEN_CORE_APPS_DIR || resolve(__dirname, '../../apps');
+const egenConfigUrls = (process.env.EGEN_CONFIG_URLS || '')
   .split(';')
   .filter((url) => url.length > 0)
   .map((url) => JSON.stringify(url))
   .join(', ');
-const eigenJsCssAssets = (process.env.IGEN_JS_CSS_ASSETS || '')
+const egenJsCssAssets = (process.env.EGEN_JS_CSS_ASSETS || '')
   .split(';')
   .filter((filePath) => filePath.length > 0);
 
-const eigenCleanBeforeBuild =
+const egenCleanBeforeBuild =
   (() => {
     try {
       return (
@@ -114,9 +114,9 @@ module.exports = (env, argv = []) => {
 
   const coreRoutes = {};
 
-  if (!isProd && checkDirectoryExists(eigenCoreApps)) {
-    readdirSync(eigenCoreApps).forEach((dir) => {
-      const appDir = resolve(eigenCoreApps, dir);
+  if (!isProd && checkDirectoryExists(egenCoreApps)) {
+    readdirSync(egenCoreApps).forEach((dir) => {
+      const appDir = resolve(egenCoreApps, dir);
       if (checkDirectoryExists(appDir)) {
         const { name, browser } = require(resolve(appDir, 'package.json'));
         const distDir = resolve(appDir, dirname(browser));
@@ -141,12 +141,12 @@ module.exports = (env, argv = []) => {
     });
   }
 
-  const assetsPatterns = eigenJsCssAssets.map(asset => ({from: asset, to: 'assets'}));
+  const assetsPatterns = egenJsCssAssets.map(asset => ({from: asset, to: 'assets'}));
 
   return {
     entry: resolve(__dirname, 'src/index.ts'),
     output: {
-      filename: isProd ? 'eigen.[contenthash].js' : 'eigen.js',
+      filename: isProd ? 'egen.[contenthash].js' : 'egen.js',
       chunkFilename: '[chunkhash].js',
       path: resolve(__dirname, outDir),
       publicPath: '',
@@ -155,15 +155,15 @@ module.exports = (env, argv = []) => {
     target: 'web',
     devServer: {
       compress: true,
-      open: [`${eigenPublicPath}/`.substring(1)],
+      open: [`${egenPublicPath}/`.substring(1)],
       devMiddleware: {
-        publicPath: `${eigenPublicPath}/`,
+        publicPath: `${egenPublicPath}/`,
       },
       historyApiFallback: {
         rewrites: [
           {
-            from: new RegExp(`^${escapeRegExp(eigenPublicPath)}/.*(?!\\.(?!html).+$)`),
-            to: `${eigenPublicPath}/index.html`,
+            from: new RegExp(`^${escapeRegExp(egenPublicPath)}/.*(?!\\.(?!html).+$)`),
+            to: `${egenPublicPath}/index.html`,
           },
         ],
       },
@@ -177,7 +177,7 @@ module.exports = (env, argv = []) => {
               return false;
             }
 
-            if (path.startsWith(eigenPublicPath)) {
+            if (path.startsWith(egenPublicPath)) {
               if (basename(path).indexOf('.') >= 0) {
                 return true;
               } else {
@@ -185,21 +185,21 @@ module.exports = (env, argv = []) => {
               }
             }
 
-            if (path.startsWith(eigenApiUrl)) {
+            if (path.startsWith(egenApiUrl)) {
               return true;
             }
 
             return false;
           },
-          target: eigenProxyTarget,
+          target: egenProxyTarget,
           changeOrigin: true,
           /**
            * @param {Request} proxyReq
            */
           onProxyReq(proxyReq) {
-            if (eigenAddCookie) {
+            if (egenAddCookie) {
               const origCookie = proxyReq.getHeader('cookie');
-              const newCookie = `${origCookie};${eigenAddCookie}`;
+              const newCookie = `${origCookie};${egenAddCookie}`;
               proxyReq.setHeader('cookie', newCookie);
             }
           },
@@ -217,10 +217,10 @@ module.exports = (env, argv = []) => {
            * @returns {string}
            */
           pathRewrite(path) {
-            if (path.startsWith(eigenPublicPath)) {
+            if (path.startsWith(egenPublicPath)) {
               const matcher = /^.*\/([^\/]*\.(?!html|js)[^.]+)$/i.exec(path);
               if (matcher) {
-                return `${eigenPublicPath}/${matcher[1]}`;
+                return `${egenPublicPath}/${matcher[1]}`;
               }
             }
 
@@ -238,7 +238,7 @@ module.exports = (env, argv = []) => {
     module: {
       rules: [
         {
-          test: /eigen-esm-styleguide.css$/,
+          test: /egen-esm-styleguide.css$/,
           use: [
             isProd
               ? { loader: require.resolve(MiniCssExtractPlugin.loader) }
@@ -248,7 +248,7 @@ module.exports = (env, argv = []) => {
         },
         {
           test: /\.css$/,
-          exclude: [/eigen-esm-styleguide.css$/],
+          exclude: [/egen-esm-styleguide.css$/],
           use: [
             isProd
               ? { loader: require.resolve(MiniCssExtractPlugin.loader) }
@@ -317,34 +317,34 @@ module.exports = (env, argv = []) => {
       },
     },
     plugins: [
-      eigenCleanBeforeBuild && new CleanWebpackPlugin(),
+      egenCleanBeforeBuild && new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         inject: false,
         scriptLoading: 'blocking',
-        publicPath: eigenPublicPath,
+        publicPath: egenPublicPath,
         template: resolve(__dirname, 'src/index.ejs'),
         templateParameters: {
-          eigenApiUrl,
-          eigenPublicPath,
-          eigenFavicon,
-          eigenPageTitle,
-          eigenDefaultLocale,
-          eigenImportmapDef,
-          eigenImportmapUrl,
-          eigenRoutesDef,
-          eigenRoutesUrl,
-          eigenOffline,
-          eigenEnvironment,
-          eigenConfigUrls,
-          eigenCoreImportmap: appPatterns.length > 0 && JSON.stringify(coreImportmap),
-          eigenCoreRoutes: Object.keys(coreRoutes).length > 0 && JSON.stringify(coreRoutes),
+          egenApiUrl,
+          egenPublicPath,
+          egenFavicon,
+          egenPageTitle,
+          egenDefaultLocale,
+          egenImportmapDef,
+          egenImportmapUrl,
+          egenRoutesDef,
+          egenRoutesUrl,
+          egenOffline,
+          egenEnvironment,
+          egenConfigUrls,
+          egenCoreImportmap: appPatterns.length > 0 && JSON.stringify(coreImportmap),
+          egenCoreRoutes: Object.keys(coreRoutes).length > 0 && JSON.stringify(coreRoutes),
         },
       }),
-      new HtmlWebpackTagsPlugin({ tags: eigenJsCssAssets.map(fileName => 'assets/' + basename(fileName)) }),
+      new HtmlWebpackTagsPlugin({ tags: egenJsCssAssets.map(fileName => 'assets/' + basename(fileName)) }),
       new WebpackPwaManifest({
-        name: 'EIGEN',
-        short_name: 'EIGEN',
-        publicPath: eigenPublicPath,
+        name: 'EGEN',
+        short_name: 'EGEN',
+        publicPath: egenPublicPath,
         description: 'Open source Health IT by and for the entire planet, starting with the developing world.',
         background_color: '#ffffff',
         theme_color: '#000000',
@@ -406,7 +406,7 @@ module.exports = (env, argv = []) => {
       }),
       isProd &&
         new MiniCssExtractPlugin({
-          filename: 'eigen.[contenthash].css',
+          filename: 'egen.[contenthash].css',
           ignoreOrder: true,
         }),
       new DefinePlugin({
@@ -417,14 +417,14 @@ module.exports = (env, argv = []) => {
       new BundleAnalyzerPlugin({
         analyzerMode: env?.analyze ? 'static' : 'disabled',
       }),
-      eigenOffline
+      egenOffline
         ? new InjectManifest({
             swSrc: resolve(__dirname, './src/service-worker/index.ts'),
             swDest: 'service-worker.js',
             maximumFileSizeToCacheInBytes: mode === production ? undefined : Number.MAX_SAFE_INTEGER,
             additionalManifestEntries: [
-              { url: eigenImportmapUrl, revision: null },
-              { url: eigenRoutesUrl, revision: null },
+              { url: egenImportmapUrl, revision: null },
+              { url: egenRoutesUrl, revision: null },
             ],
           })
         : new InjectManifest({

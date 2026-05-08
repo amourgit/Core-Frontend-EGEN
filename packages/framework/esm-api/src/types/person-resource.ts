@@ -1,13 +1,13 @@
 import { type Concept } from './concept-resource';
-import { type EigenResourceStrict, type EigenResource } from './eigen-resource';
+import { type EgenResourceStrict, type EgenResource } from './egen-resource';
 
-export interface PersonAttribute extends EigenResourceStrict {
-  attributeType?: EigenResource;
+export interface PersonAttribute extends EgenResourceStrict {
+  attributeType?: EgenResource;
   value?: string;
   voided?: boolean;
 }
 
-export interface Person extends EigenResourceStrict {
+export interface Person extends EgenResourceStrict {
   gender?: string;
   age?: number;
   birthdate?: string;
@@ -26,7 +26,7 @@ export interface Person extends EigenResourceStrict {
   causeOfDeathNonCoded?: string | null;
 }
 
-export interface PersonName extends EigenResourceStrict {
+export interface PersonName extends EgenResourceStrict {
   givenName?: string;
   middleName?: string;
   familyName?: string;
@@ -39,7 +39,7 @@ export interface PersonName extends EigenResourceStrict {
   voided?: boolean;
 }
 
-export interface PersonAddress extends EigenResourceStrict {
+export interface PersonAddress extends EgenResourceStrict {
   preferred?: boolean;
   cityVillage?: string;
   stateProvince?: string;

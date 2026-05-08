@@ -1,8 +1,8 @@
 import { mutate } from 'swr';
-import { clearCurrentUser, eigenFetch, refetchCurrentUser, restBaseUrl } from '@egen/esm-framework';
+import { clearCurrentUser, egenFetch, refetchCurrentUser, restBaseUrl } from '@egen/esm-framework';
 
 export async function performLogout() {
-  await eigenFetch(`${restBaseUrl}/session`, {
+  await egenFetch(`${restBaseUrl}/session`, {
     method: 'DELETE',
   });
 

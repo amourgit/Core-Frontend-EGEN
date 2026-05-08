@@ -3,9 +3,9 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { useConceptReferenceRange } from './use-concept-reference-range';
 import { swrWrapper } from '../test-utils';
 
-const mockEigenFetch = vi.fn();
+const mockEgenFetch = vi.fn();
 vi.mock('@egen/esm-api', () => ({
-  eigenFetch: (...args: any[]) => mockEigenFetch(...args),
+  egenFetch: (...args: any[]) => mockEgenFetch(...args),
   restBaseUrl: '/ws/rest/v1',
 }));
 
@@ -31,7 +31,7 @@ describe('useConceptReferenceRange', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.referenceRange).toBeUndefined();
-    expect(mockEigenFetch).not.toHaveBeenCalled();
+    expect(mockEgenFetch).not.toHaveBeenCalled();
   });
 
   it('fetches concept data when conceptUuid is provided', async () => {
@@ -47,7 +47,7 @@ describe('useConceptReferenceRange', () => {
       },
     };
 
-    mockEigenFetch.mockResolvedValue(mockResponse);
+    mockEgenFetch.mockResolvedValue(mockResponse);
 
     const { result } = renderUseConceptReferenceRange('test-concept-uuid');
 
@@ -62,13 +62,13 @@ describe('useConceptReferenceRange', () => {
     expect(result.current.referenceRange).toEqual({
       ...mockConceptReferenceRange,
     });
-    expect(mockEigenFetch).toHaveBeenCalledWith(
+    expect(mockEgenFetch).toHaveBeenCalledWith(
       '/ws/rest/v1/conceptreferencerange/?concept=test-concept-uuid&v=full',
     );
   });
 
   it('returns loading state correctly', async () => {
-    mockEigenFetch.mockImplementation(() => new Promise(() => { }));
+    mockEgenFetch.mockImplementation(() => new Promise(() => { }));
 
     const { result } = renderUseConceptReferenceRange('test-concept-uuid');
 
@@ -79,7 +79,7 @@ describe('useConceptReferenceRange', () => {
 
   it('returns error state on fetch failure', async () => {
     const mockError = new Error('Fetch failed');
-    mockEigenFetch.mockRejectedValue(mockError);
+    mockEgenFetch.mockRejectedValue(mockError);
 
     const { result } = renderUseConceptReferenceRange('test-concept-uuid');
 

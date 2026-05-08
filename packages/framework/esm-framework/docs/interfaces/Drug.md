@@ -2,11 +2,11 @@
 
 # Interface: Drug
 
-Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:3](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L3)
+Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:3](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L3)
 
 ## Extends
 
-- `OpenmrsResource`
+- `EgenResource`
 
 ## Indexable
 
@@ -18,11 +18,11 @@ Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:3](https:
 
 > `optional` **auditInfo**: `AuditInfo`
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:14
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:14
 
 #### Inherited from
 
-`OpenmrsResource.auditInfo`
+`EgenResource.auditInfo`
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:14
 
 > **concept**: `Concept`
 
-Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:6](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L6)
+Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:6](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L6)
 
 ***
 
@@ -38,19 +38,19 @@ Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:6](https:
 
 > **display**: `string`
 
-Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:8](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L8)
+Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:8](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L8)
 
 #### Overrides
 
-`OpenmrsResource.display`
+`EgenResource.display`
 
 ***
 
 ### dosageForm
 
-> **dosageForm**: `OpenmrsResource`
+> **dosageForm**: `EgenResource`
 
-Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:7](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L7)
+Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:7](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L7)
 
 ***
 
@@ -58,11 +58,11 @@ Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:7](https:
 
 > `optional` **links**: `Link`[]
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:13
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:13
 
 #### Inherited from
 
-`OpenmrsResource.links`
+`EgenResource.links`
 
 ***
 
@@ -70,11 +70,11 @@ Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:13
 
 > `optional` **resourceVersion**: `string`
 
-Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:15
+Defined in: packages/framework/esm-api/dist/types/egen-resource.d.ts:15
 
 #### Inherited from
 
-`OpenmrsResource.resourceVersion`
+`EgenResource.resourceVersion`
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: packages/framework/esm-api/dist/types/openmrs-resource.d.ts:15
 
 > **strength**: `string`
 
-Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:5](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L5)
+Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:5](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L5)
 
 ***
 
@@ -90,8 +90,8 @@ Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:5](https:
 
 > **uuid**: `string`
 
-Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:4](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L4)
+Defined in: [packages/framework/esm-emr-api/src/types/drug-resource.ts:4](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/types/drug-resource.ts#L4)
 
 #### Overrides
 
-`OpenmrsResource.uuid`
+`EgenResource.uuid`

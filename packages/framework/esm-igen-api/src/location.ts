@@ -1,13 +1,13 @@
 /** @module @category API */
-import { eigenObservableFetch, restBaseUrl } from '@egen/esm-api';
+import { egenObservableFetch, restBaseUrl } from '@egen/esm-api';
 import type { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators/index.js';
 import type { Location } from './types';
 
-export function toLocationObject(eigenRestForm: any): Location {
+export function toLocationObject(egenRestForm: any): Location {
   return {
-    uuid: eigenRestForm.uuid,
-    display: eigenRestForm.display,
+    uuid: egenRestForm.uuid,
+    display: egenRestForm.display,
   };
 }
 
@@ -25,7 +25,7 @@ export function getLocations(
   const queryString = params.toString();
   const url = `${restBaseUrl}/location${queryString ? '?' + queryString : ''}`;
 
-  return eigenObservableFetch<{ results: Array<Location> }>(url)
+  return egenObservableFetch<{ results: Array<Location> }>(url)
     .pipe(
       map((results) => {
         const locations: Array<Location> = results.data.results.map(toLocationObject);

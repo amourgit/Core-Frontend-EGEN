@@ -13,7 +13,7 @@ const ChangeLocationLink: React.FC = () => {
     // update=true is passed as a query param for updating the location preference,
     // The location picker won't redirect with default location on finding the update=true param.
     navigate({
-      to: `\${eigenSpaBase}/login/location?returnToUrl=${window.location.pathname}&update=true`,
+      to: `\${egenSpaBase}/login/location?returnToUrl=${window.location.pathname}&update=true`,
     });
   };
 

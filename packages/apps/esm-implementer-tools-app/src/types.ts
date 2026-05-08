@@ -1,5 +1,5 @@
-import type { EigenAppRoutes } from '@egen/esm-framework';
+import type { EgenAppRoutes } from '@egen/esm-framework';
 
-export interface FrontendModule extends EigenAppRoutes {
+export interface FrontendModule extends EgenAppRoutes {
   name: string;
 }

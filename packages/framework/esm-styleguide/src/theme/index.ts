@@ -1,6 +1,6 @@
 // ============================================================
 // @egen/esm-styleguide — Theme System
-// Point d'entrée du système de thème EIGEN
+// Point d'entrée du système de thème EGEN
 // ============================================================
 
 // Types

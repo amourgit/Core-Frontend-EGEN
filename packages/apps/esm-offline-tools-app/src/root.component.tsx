@@ -8,7 +8,7 @@ import styles from './root.styles.scss';
 
 const Root: React.FC = () => {
   return (
-    <BrowserRouter basename={window.getEigenSpaBase()}>
+    <BrowserRouter basename={window.getEgenSpaBase()}>
       <DesktopSideNav />
       <div className={classNames('omrs-main-content', styles.mainContentContainer)}>
         <Routes>

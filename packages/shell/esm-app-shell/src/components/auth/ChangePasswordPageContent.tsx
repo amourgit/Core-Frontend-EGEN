@@ -11,7 +11,7 @@ import {
   Lock, Eye, EyeOff, ShieldCheck, CheckCircle2,
   AlertCircle, Loader2, ArrowLeft, KeyRound,
 } from 'lucide-react';
-import { useChangePassword } from '@igen/esm-auth';
+import { useChangePassword } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { OutlinedField } from '@/components/fields/fields';

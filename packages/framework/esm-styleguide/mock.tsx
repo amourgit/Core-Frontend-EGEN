@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { type Diagnosis } from '@egen/esm-igen-api';
+import { type Diagnosis } from '@egen/esm-egen-api';
 
 /* Please keep these stubs in alphabetical order for readability */
 
@@ -161,8 +161,8 @@ export const EmptyCard = ({
 
 export { CardHeader, ErrorCard, Pagination, PageHeader, PageHeaderContent } from '@egen/esm-styleguide/src/internal';
 
-export const EigenDatePicker = () => <span>EigenDatePicker</span>;
-export const EigenDateRangePicker = () => <span>EigenDateRangePicker</span>;
+export const EgenDatePicker = () => <span>EgenDatePicker</span>;
+export const EgenDateRangePicker = () => <span>EgenDateRangePicker</span>;
 
 export const LocationPicker = vi.fn(({ onChange, selectedLocationUuid }) => {
   const locations = [

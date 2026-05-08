@@ -1,6 +1,6 @@
-# @eigen/esm-theme
+# @egen/esm-theme
 
-Système de thème dynamique pour le Core EIGEN.
+Système de thème dynamique pour le Core EGEN.
 
 ## Architecture
 
@@ -21,15 +21,15 @@ src/
 
 ```tsx
 // Dans main.tsx du CORE
-import { ThemeProvider, ThemeInitScript } from '@eigen/esm-theme';
-import '@eigen/esm-theme/globals.css';
+import { ThemeProvider, ThemeInitScript } from '@egen/esm-theme';
+import '@egen/esm-theme/globals.css';
 
 // Dans index.html (anti-FOUC SSR)
-const { ThemeLoader } = await import('@eigen/esm-theme');
+const { ThemeLoader } = await import('@egen/esm-theme');
 const script = ThemeLoader.getInstance().buildSSRScript();
 
 // Dans un composant
-import { useTheme, themeUtils } from '@eigen/esm-theme';
+import { useTheme, themeUtils } from '@egen/esm-theme';
 
 function MyComponent() {
   const { isDark, toggleDarkMode, theme } = useTheme();

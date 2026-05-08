@@ -1,19 +1,19 @@
 /** @module @category API */
-import { eigenObservableFetch, restBaseUrl } from '@egen/esm-api';
+import { egenObservableFetch, restBaseUrl } from '@egen/esm-api';
 import type { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators/index.js';
 import { type VisitType } from './types';
 
-export function toVisitTypeObject(eigenRestForm: any): VisitType {
+export function toVisitTypeObject(egenRestForm: any): VisitType {
   return {
-    uuid: eigenRestForm.uuid,
-    display: eigenRestForm.display,
-    name: eigenRestForm.name,
+    uuid: egenRestForm.uuid,
+    display: egenRestForm.display,
+    name: egenRestForm.name,
   };
 }
 
 /**
- * Fetches all available visit types from the EIGEN REST API.
+ * Fetches all available visit types from the EGEN REST API.
  *
  * @returns An Observable that emits an array of VisitType objects and then completes.
  *   The Observable will emit exactly one value containing all visit types.
@@ -27,7 +27,7 @@ export function toVisitTypeObject(eigenRestForm: any): VisitType {
  * ```
  */
 export function getVisitTypes(): Observable<Array<VisitType>> {
-  return eigenObservableFetch<any>(`${restBaseUrl}/visittype`)
+  return egenObservableFetch<any>(`${restBaseUrl}/visittype`)
     .pipe(
       map((results) => {
         const visitTypes: Array<VisitType> = results.data.results.map(toVisitTypeObject);

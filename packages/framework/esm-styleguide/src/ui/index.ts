@@ -1,4 +1,4 @@
-// @egen/esm-styleguide — UI Components (EIGEN Design System)
+// @egen/esm-styleguide — UI Components (EGEN Design System)
 export * from './avatar/index';
 export * from './badge/index';
 export * from './button/index';

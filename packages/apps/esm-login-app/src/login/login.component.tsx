@@ -6,7 +6,7 @@ import {
   ArrowRightIcon,
   getCoreTranslation,
   refetchCurrentUser,
-  navigate as eigenNavigate,
+  navigate as egenNavigate,
   useConfig,
   useConnectivity,
   useSession,
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     if (!user) {
       if (loginProvider.type === 'oauth2') {
-        eigenNavigate({ to: loginProvider.loginUrl });
+        egenNavigate({ to: loginProvider.loginUrl });
       } else if (!username && location.pathname === '/login/confirm') {
         navigate('/login');
       }
@@ -104,13 +104,13 @@ const Login: React.FC = () => {
             let to = loginLinks?.loginSuccess || '/home';
             if (location?.state?.referrer) {
               if (location.state.referrer.startsWith('/')) {
-                to = `\${eigenSpaBase}${location.state.referrer}`;
+                to = `\${egenSpaBase}${location.state.referrer}`;
               } else {
                 to = location.state.referrer;
               }
             }
 
-            eigenNavigate({ to });
+            egenNavigate({ to });
           } else {
             navigate('/login/location');
           }

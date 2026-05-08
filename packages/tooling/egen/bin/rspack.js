@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Re-export the rspack CLI so that packages depending on
-// igen get the `rspack` command without needing a direct
+// egen get the `rspack` command without needing a direct
 // dependency on @rspack/cli.
 const { RspackCLI } = require('@rspack/cli');
 

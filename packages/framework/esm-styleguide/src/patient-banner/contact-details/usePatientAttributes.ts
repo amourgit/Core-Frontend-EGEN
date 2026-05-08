@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import useSWRImmutable from 'swr/immutable';
-import { eigenFetch, restBaseUrl } from '@egen/esm-api';
+import { egenFetch, restBaseUrl } from '@egen/esm-api';
 import { useConfig } from '@egen/esm-react-utils';
 import { type Patient } from './types';
 
@@ -15,7 +15,7 @@ const customRepresentation =
 export const usePatientAttributes = (patientUuid: string) => {
   const { data, error, isLoading } = useSWRImmutable<{ data: Patient }>(
     `${restBaseUrl}/patient/${patientUuid}?v=${customRepresentation}`,
-    eigenFetch,
+    egenFetch,
   );
 
   return {

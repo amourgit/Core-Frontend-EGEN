@@ -1,2 +1,2 @@
-export { EigenDatePicker, type EigenDatePickerProps } from './eigen-date-picker.component';
-export { EigenDateRangePicker, type EigenDateRangePickerProps } from './eigen-date-range-picker.component';
+export { EgenDatePicker, type EgenDatePickerProps } from './egen-date-picker.component';
+export { EgenDateRangePicker, type EgenDateRangePickerProps } from './egen-date-range-picker.component';

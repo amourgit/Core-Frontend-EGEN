@@ -18,13 +18,13 @@ export function runStart(args: StartArgs) {
   const app = express();
   const source = resolve(require.resolve('@egen/esm-app-shell/package.json'), '..', 'dist');
   const index = resolve(source, 'index.html');
-  const spaPath = '/eigen/spa';
+  const spaPath = '/egen/spa';
   const pageUrl = `http://${host}:${port}${spaPath}`;
 
   app.use(spaPath, express.static(source));
   app.use(
-    '/eigen',
-    createProxyMiddleware([`/eigen/**`, `!${spaPath}/**`], {
+    '/egen',
+    createProxyMiddleware([`/egen/**`, `!${spaPath}/**`], {
       target: backend,
       changeOrigin: true,
       onProxyReq(proxyReq) {

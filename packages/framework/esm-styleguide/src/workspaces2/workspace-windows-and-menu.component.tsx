@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { subscribeEigenEvent } from '@egen/esm-igen-api';
+import { subscribeEgenEvent } from '@egen/esm-egen-api';
 import classNames from 'classnames';
 import { createRoot } from 'react-dom/client';
 import { ActionMenu } from './action-menu2/action-menu2.component';
@@ -23,7 +23,7 @@ function WorkspaceWindowsAndMenu() {
   const { openedGroup, openedWindows, registeredGroupsByName, registeredWindowsByName } = useWorkspace2Store();
 
   useEffect(() => {
-    const unsubscribe = subscribeEigenEvent('before-page-changed', (pageChangedEvent) => {
+    const unsubscribe = subscribeEgenEvent('before-page-changed', (pageChangedEvent) => {
       const { newPage, cancelNavigation, oldUrl, newUrl } = pageChangedEvent;
 
       if (!openedGroup) {

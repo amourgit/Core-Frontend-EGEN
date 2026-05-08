@@ -16,13 +16,13 @@ import {
 
 window.i18next = { language: 'en' } as i18n;
 
-describe('Eigen Dates', () => {
+describe('Egen Dates', () => {
   it('converts js Date object to omrs date string version', () => {
     let date = dayjs('2018-03-19T00:05:03.999+0300', 'YYYY-MM-DDTHH:mm:ss.SSSZZ').toDate();
     expect(toOmrsIsoString(date, true)).toEqual('2018-03-18T21:05:03.999+0000');
   });
 
-  it('checks if a string is eigen date', () => {
+  it('checks if a string is egen date', () => {
     expect(isOmrsDateStrict('2018-03-19T00:00:00.000+0300')).toEqual(true);
     expect(isOmrsDateStrict(' 2018-03-19T00:00:00.000+0300 ')).toEqual(true);
     expect(isOmrsDateStrict('2023-10-06T12:56:56.065-0400')).toEqual(true);

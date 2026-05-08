@@ -19,9 +19,9 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { useAuthStore }     from '@igen/esm-auth';
+import { useAuthStore }     from '@egen/esm-auth';
 import { useRegistryStore } from '@/stores/registry.store';
-import { useTheme }         from '@igen/esm-styleguide/theme';
+import { useTheme }         from '@egen/esm-styleguide/theme';
 import { cn }               from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button }           from '@/components/ui/button';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { ResolvedDependenciesModule } from './eigen-backend-dependencies';
-import { checkModules } from './eigen-backend-dependencies';
+import type { ResolvedDependenciesModule } from './egen-backend-dependencies';
+import { checkModules } from './egen-backend-dependencies';
 
 export function useBackendDependencies() {
   const [modulesWithMissingBackendModules, setModulesWithMissingBackendModules] = useState<

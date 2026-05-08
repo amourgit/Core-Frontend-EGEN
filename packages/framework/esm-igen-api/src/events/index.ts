@@ -1,35 +1,35 @@
 import {
   type EventsWithPayload,
-  type EigenEvent,
+  type EgenEvent,
   type EventsWithoutPayload,
   type EventTypes,
   type PageChanged,
 } from './types';
-export { type EigenEvent, type EventTypes as EigenEventTypes } from './types';
+export { type EgenEvent, type EventTypes as EgenEventTypes } from './types';
 
-export function fireEigenEvent<T extends EventsWithoutPayload>(event: T, payload?: never): boolean;
-export function fireEigenEvent<T extends EventsWithPayload>(event: T, payload: EventTypes[T]): boolean;
+export function fireEgenEvent<T extends EventsWithoutPayload>(event: T, payload?: never): boolean;
+export function fireEgenEvent<T extends EventsWithPayload>(event: T, payload: EventTypes[T]): boolean;
 /**
- * Fires an EIGEN custom event
+ * Fires an EGEN custom event
  *
  * @param event The custom event to fire
  * @param payload The payload associated with this type of event
  * @returns true if the event was not cancelled and false, i.e., the result of `dispatchEvent()`
  */
-export function fireEigenEvent<T extends EigenEvent>(event: T, payload?: EventTypes[T]): boolean {
-  const evt = new CustomEvent(`eigen:${event}`, { detail: payload ?? undefined, cancelable: true, bubbles: true });
+export function fireEgenEvent<T extends EgenEvent>(event: T, payload?: EventTypes[T]): boolean {
+  const evt = new CustomEvent(`egen:${event}`, { detail: payload ?? undefined, cancelable: true, bubbles: true });
   return window.dispatchEvent(evt);
 }
 
 /**
- * Subscribes to a custom EIGEN event
+ * Subscribes to a custom EGEN event
  *
  * @param event The name of the event to listen to
  * @param handler The callback to be called when the event fires
  */
-export function subscribeEigenEvent(event: 'started', handler: (payload: undefined) => void);
-export function subscribeEigenEvent(event: 'before-page-changed', handler: (payload: PageChanged) => void);
-export function subscribeEigenEvent<T extends EigenEvent>(
+export function subscribeEgenEvent(event: 'started', handler: (payload: undefined) => void);
+export function subscribeEgenEvent(event: 'before-page-changed', handler: (payload: PageChanged) => void);
+export function subscribeEgenEvent<T extends EgenEvent>(
   event: T,
   handler: (payload?: EventTypes[T]) => void,
 ): () => void {
@@ -38,8 +38,8 @@ export function subscribeEigenEvent<T extends EigenEvent>(
     handler(detail as EventTypes[T]);
   };
 
-  window.addEventListener(`eigen:${event}`, internalHandler);
+  window.addEventListener(`egen:${event}`, internalHandler);
   return () => {
-    window.removeEventListener(`eigen:${event}`, internalHandler);
+    window.removeEventListener(`egen:${event}`, internalHandler);
   };
 }

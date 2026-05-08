@@ -31,25 +31,25 @@ export interface NavigateOptions {
  * @example
  * navigate({ to: "/some/path" }); // => window.location.assign("/some/path")
  * navigate({ to: "https://single-spa.js.org/" }); // => window.location.assign("https://single-spa.js.org/")
- * navigate({ to: "${eigenBase}/some/path" }); // => window.location.assign("/eigen/some/path")
- * navigate({ to: "/eigen/spa/foo/page" }); // => navigateToUrl("/eigen/spa/foo/page")
- * navigate({ to: "${eigenSpaBase}/bar/page" }); // => navigateToUrl("/eigen/spa/bar/page")
- * navigate({ to: "/${eigenSpaBase}/baz/page" }) // => navigateToUrl("/eigen/spa/baz/page")
- * navigate({ to: "https://iam-central.ga/${eigenSpaBase}/qux/page" }); // => navigateToUrl("/eigen/spa/qux/page")
+ * navigate({ to: "${egenBase}/some/path" }); // => window.location.assign("/egen/some/path")
+ * navigate({ to: "/egen/spa/foo/page" }); // => navigateToUrl("/egen/spa/foo/page")
+ * navigate({ to: "${egenSpaBase}/bar/page" }); // => navigateToUrl("/egen/spa/bar/page")
+ * navigate({ to: "/${egenSpaBase}/baz/page" }) // => navigateToUrl("/egen/spa/baz/page")
+ * navigate({ to: "https://iam-central.ga/${egenSpaBase}/qux/page" }); // => navigateToUrl("/egen/spa/qux/page")
  *   if `window.location.origin` == "https://iam-central.ga", else will use window.location.assign
  * ```
  *
- * @param to The target path or URL. Supports templating with 'eigenBase', 'eigenSpaBase',
+ * @param to The target path or URL. Supports templating with 'egenBase', 'egenSpaBase',
  * and any additional template parameters defined in `templateParams`.
- * For example, `${eigenSpaBase}/home` will resolve to `/eigen/spa/home`
- * for implementations using the standard EIGEN and SPA base paths.
- * If `templateParams` contains `{ foo: "bar" }`, then the URL `${eigenBase}/${foo}`
- * will become `/eigen/bar`.
+ * For example, `${egenSpaBase}/home` will resolve to `/egen/spa/home`
+ * for implementations using the standard EGEN and SPA base paths.
+ * If `templateParams` contains `{ foo: "bar" }`, then the URL `${egenBase}/${foo}`
+ * will become `/egen/bar`.
  */
 export function navigate({ to, templateParams }: NavigateOptions): void {
-  const eigenSpaBase = trimTrailingSlash(window.getEigenSpaBase());
+  const egenSpaBase = trimTrailingSlash(window.getEgenSpaBase());
   const target = interpolateUrl(to, templateParams).replace(window.location.origin, '');
-  const isSpaPath = target.startsWith(eigenSpaBase);
+  const isSpaPath = target.startsWith(egenSpaBase);
 
   if (isSpaPath) {
     navigateToUrl(target);

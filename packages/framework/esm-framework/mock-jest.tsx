@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 window.i18next = { ...window.i18next, language: 'en' };
 
 export * from '@egen/esm-api/mock';
-export * from '@egen/esm-igen-api/mock';
+export * from '@egen/esm-egen-api/mock';
 export * from '@egen/esm-config/mock';
 export * from '@egen/esm-context';
 export * from '@egen/esm-expression-evaluator/src/public';
@@ -22,11 +22,11 @@ export { parseDate, formatDate, formatDatetime, formatTime, isOmrsDateToday } fr
 /* esm-globals */
 
 export function setupPaths(config: any) {
-  window.eigenBase = config.apiUrl;
+  window.egenBase = config.apiUrl;
   window.spaBase = config.spaPath;
   window.spaEnv = config.env || 'production';
   window.spaVersion = process.env.BUILD_VERSION ?? 'local';
-  window.getEigenSpaBase = () => `${window.spaBase}/`;
+  window.getEgenSpaBase = () => `${window.spaBase}/`;
 }
 
 /* esm-dynamic-loading */
@@ -110,7 +110,7 @@ export const navigateAndLaunchWorkspace = jest.fn();
 export const useWorkspaces = jest.fn();
 export const useWorkspace2Context = jest.fn();
 
-export const EigenDatePicker = jest.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
+export const EgenDatePicker = jest.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
   <>
     <label htmlFor={id}>{labelText}</label>
     <input
@@ -123,7 +123,7 @@ export const EigenDatePicker = jest.fn(({ id, labelText, value, onChange, isInva
   </>
 ));
 
-export const EigenDateRangePicker = jest.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
+export const EgenDateRangePicker = jest.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
   const [inputValue, setInputValue] = useState(() => {
     const [start, end] = value;
     const formattedStart = start ? dayjs(start).format('DD/MM/YYYY') : 'dd/mm/yyyy';

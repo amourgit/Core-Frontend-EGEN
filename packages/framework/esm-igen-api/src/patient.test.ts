@@ -1,15 +1,15 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { eigenFetch, type FetchResponse } from '@egen/esm-api';
+import { egenFetch, type FetchResponse } from '@egen/esm-api';
 import { getSynchronizationItems } from '@egen/esm-offline';
 import { fetchCurrentPatient } from './current-patient';
 
 vi.mock('@egen/esm-api');
 
-const mockEigenFetch = vi.mocked(eigenFetch);
+const mockEgenFetch = vi.mocked(egenFetch);
 const mockGetSynchronizationItems = vi.mocked(getSynchronizationItems);
 
-vi.mock('../eigen-fetch', () => ({
-  eigenFetch: vi.fn(),
+vi.mock('../egen-fetch', () => ({
+  egenFetch: vi.fn(),
   fhirBaseUrl: '/ws/fhir2/R4',
 }));
 
@@ -29,7 +29,7 @@ describe('fetchPatientData', () => {
 
   it('should return online patient data when available', async () => {
     const mockPatient = { id: '123', name: [{ given: ['John'], family: 'Doe' }] };
-    mockEigenFetch.mockResolvedValue({ data: mockPatient, ok: true } as Partial<FetchResponse> as FetchResponse);
+    mockEgenFetch.mockResolvedValue({ data: mockPatient, ok: true } as Partial<FetchResponse> as FetchResponse);
 
     const result = await fetchCurrentPatient('123');
     expect(result).toEqual(mockPatient);
@@ -37,7 +37,7 @@ describe('fetchPatientData', () => {
 
   it('should return offline patient data when online fetch fails', async () => {
     const mockOfflinePatient = { id: '123', name: [{ given: ['Jane'], family: 'Doe' }] };
-    mockEigenFetch.mockRejectedValue(new Error('Network error'));
+    mockEgenFetch.mockRejectedValue(new Error('Network error'));
     mockGetSynchronizationItems.mockResolvedValue([{ fhirPatient: mockOfflinePatient }]);
 
     const result = await fetchCurrentPatient('123');
@@ -45,7 +45,7 @@ describe('fetchPatientData', () => {
   });
 
   it('should throw an error when both online and offline fetches fail', async () => {
-    mockEigenFetch.mockRejectedValue(new Error('Network error'));
+    mockEgenFetch.mockRejectedValue(new Error('Network error'));
     mockGetSynchronizationItems.mockResolvedValue([]);
 
     await expect(fetchCurrentPatient('123')).rejects.toThrow('Network error');

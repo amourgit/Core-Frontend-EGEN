@@ -1,8 +1,8 @@
 /** @module @category API */
 import { useMemo } from 'react';
 import useSWR from 'swr';
-import { eigenFetch, type FetchResponse } from '@egen/esm-api';
-import { attachmentUrl, type AttachmentResponse } from '@egen/esm-igen-api';
+import { egenFetch, type FetchResponse } from '@egen/esm-api';
+import { attachmentUrl, type AttachmentResponse } from '@egen/esm-egen-api';
 
 /**
  * A React hook that fetches attachments for a patient using SWR for caching
@@ -32,7 +32,7 @@ import { attachmentUrl, type AttachmentResponse } from '@egen/esm-igen-api';
 export function useAttachments(patientUuid: string, includeEncounterless: boolean) {
   const { data, error, mutate, isLoading, isValidating } = useSWR<
     FetchResponse<{ results: Array<AttachmentResponse> }>
-  >(`${attachmentUrl}?patient=${patientUuid}&includeEncounterless=${includeEncounterless}`, eigenFetch);
+  >(`${attachmentUrl}?patient=${patientUuid}&includeEncounterless=${includeEncounterless}`, egenFetch);
 
   const results = useMemo(
     () => ({

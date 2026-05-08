@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren } from 'react';
 import { vi } from 'vitest';
-import { eigenFetch } from '@egen/esm-api/mock';
+import { egenFetch } from '@egen/esm-api/mock';
 import { configSchema } from '@egen/esm-config/mock';
 import { getExtensionInternalStore } from '@egen/esm-extensions/mock';
 import { createGlobalStore } from '@egen/esm-state/mock';
@@ -8,9 +8,9 @@ import {
   isDesktop as realIsDesktop,
   usePagination as realUsePagination,
   usePaginationInfo as realUsePaginationInfo,
-  useEigenPagination as realUseEigenPagination,
-  useEigenInfinite as realUseEigenInfinite,
-  useEigenFetchAll as realUseEigenFetchAll,
+  useEgenPagination as realUseEgenPagination,
+  useEgenInfinite as realUseEgenInfinite,
+  useEgenFetchAll as realUseEgenFetchAll,
   useFhirPagination as realUseFhirPagination,
   useFhirInfinite as realUseFhirInfinite,
   useFhirFetchAll as realUseFhirFetchAll,
@@ -23,7 +23,7 @@ import * as utils from '@egen/esm-utils';
 
 export const ComponentContext = React.createContext(null);
 
-export const eigenComponentDecorator = vi.fn().mockImplementation(() => (component) => component);
+export const egenComponentDecorator = vi.fn().mockImplementation(() => (component) => component);
 
 export const useAttachments = vi.fn(() => ({
   isLoading: true,
@@ -84,9 +84,9 @@ export const useFeatureFlag = vi.fn().mockReturnValue(true);
 export const usePagination = vi.fn(realUsePagination);
 export const usePaginationInfo = vi.fn(realUsePaginationInfo);
 
-export const useEigenPagination = vi.fn(realUseEigenPagination);
-export const useEigenInfinite = vi.fn(realUseEigenInfinite);
-export const useEigenFetchAll = vi.fn(realUseEigenFetchAll);
+export const useEgenPagination = vi.fn(realUseEgenPagination);
+export const useEgenInfinite = vi.fn(realUseEgenInfinite);
+export const useEgenFetchAll = vi.fn(realUseEgenFetchAll);
 export const useFhirPagination = vi.fn(realUseFhirPagination);
 export const useFhirInfinite = vi.fn(realUseFhirInfinite);
 export const useFhirFetchAll = vi.fn(realUseFhirFetchAll);
@@ -116,8 +116,8 @@ export const useAbortController = vi.fn(() => {
   } as AbortController;
 });
 
-export const useEigenSWR = vi.fn((key: string | Array<any>) => {
-  return { data: eigenFetch(key.toString()) };
+export const useEgenSWR = vi.fn((key: string | Array<any>) => {
+  return { data: egenFetch(key.toString()) };
 });
 
 export const useDebounce = vi.fn((value) => value);

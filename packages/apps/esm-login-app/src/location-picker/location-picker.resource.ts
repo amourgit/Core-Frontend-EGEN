@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSwrImmutable from 'swr/immutable';
-import { type FetchResponse, eigenFetch, setUserProperties, showSnackbar, useSession } from '@egen/esm-framework';
+import { type FetchResponse, egenFetch, setUserProperties, showSnackbar, useSession } from '@egen/esm-framework';
 import { useValidateLocationUuid } from '../login.resource';
 import { type LocationResponse } from '../types';
 
@@ -90,7 +90,7 @@ export function useLocationCount(useLoginLocationTag: boolean) {
   if (useLoginLocationTag) {
     url.concat(`&tag=Login Location`);
   }
-  const { data, error, isLoading } = useSwrImmutable<FetchResponse<LocationResponse>>(url, eigenFetch, {
+  const { data, error, isLoading } = useSwrImmutable<FetchResponse<LocationResponse>>(url, egenFetch, {
     shouldRetryOnError(err) {
       if (err?.response?.status) {
         return err.response.status >= 500;

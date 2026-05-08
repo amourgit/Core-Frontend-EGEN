@@ -6,7 +6,7 @@ import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import { type Person } from '@egen/esm-api';
 import { mockSessionStore } from '@egen/esm-api/mock';
 import { attach, registerExtension, updateInternalExtensionStore } from '../../../esm-extensions';
-import { ExtensionSlot, getSyncLifecycle, eigenComponentDecorator, useConfig } from '../../../esm-react-utils/src';
+import { ExtensionSlot, getSyncLifecycle, egenComponentDecorator, useConfig } from '../../../esm-react-utils/src';
 import {
   configInternalStore,
   defineConfigSchema,
@@ -75,7 +75,7 @@ describe('Expression evaluation in extension display conditions', () => {
       );
     }
 
-    const App = eigenComponentDecorator({
+    const App = egenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,
@@ -110,7 +110,7 @@ describe('Expression evaluation in extension display conditions', () => {
       );
     }
 
-    const App = eigenComponentDecorator({
+    const App = egenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,
@@ -145,7 +145,7 @@ describe('Expression evaluation in extension display conditions', () => {
       );
     }
 
-    const App = eigenComponentDecorator({
+    const App = egenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,
@@ -204,7 +204,7 @@ describe('Expression evaluation in extension display conditions', () => {
       );
     }
 
-    const App = eigenComponentDecorator({
+    const App = egenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,
@@ -256,7 +256,7 @@ describe('Expression evaluation in extension display conditions', () => {
       );
     }
 
-    const App = eigenComponentDecorator({
+    const App = egenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,

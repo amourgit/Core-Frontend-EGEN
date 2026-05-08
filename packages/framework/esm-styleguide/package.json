@@ -2,8 +2,8 @@
   "name": "@egen/esm-styleguide",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "The styleguide for EIGEN SPA",
-  "main": "dist/openmrs-esm-styleguide.js",
+  "description": "The styleguide for EGEN SPA",
+  "main": "dist/egen-esm-styleguide.js",
   "types": "dist/public.d.ts",
   "exports": {
     ".": {
@@ -14,8 +14,8 @@
       "types": "./src/internal.ts",
       "default": "./src/internal.ts"
     },
-    "./dist/eigen-esm-styleguide.css": {
-      "default": "./dist/eigen-esm-styleguide.css"
+    "./dist/egen-esm-styleguide.css": {
+      "default": "./dist/egen-esm-styleguide.css"
     },
     "./src/public": {
       "types": "./src/public.ts",
@@ -51,7 +51,7 @@
     "lint": "eslint src"
   },
   "keywords": [
-    "eigen",
+    "egen",
     "microfrontends",
     "styleguide"
   ],
@@ -60,16 +60,16 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-igen"
+    "extends browserslist-config-egen"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-EGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-EGEN/issues"
   },
-  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-EGEN#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -83,12 +83,12 @@
     "lodash-es": "^4.17.21",
     "react-aria-components": "^1.7.1",
     "react-avatar": "^5.0.3",
-    "@igen/esm-auth": "workspace:*"
+    "@egen/esm-auth": "workspace:*"
   },
   "peerDependencies": {
     "@egen/esm-api": "9.x",
     "@egen/esm-config": "9.x",
-    "@egen/esm-igen-api": "9.x",
+    "@egen/esm-egen-api": "9.x",
     "@egen/esm-error-handling": "9.x",
     "@egen/esm-extensions": "9.x",
     "@egen/esm-globals": "9.x",
@@ -108,7 +108,7 @@
   "devDependencies": {
     "@egen/esm-api": "workspace:*",
     "@egen/esm-config": "workspace:*",
-    "@egen/esm-igen-api": "workspace:*",
+    "@egen/esm-egen-api": "workspace:*",
     "@egen/esm-error-handling": "workspace:*",
     "@egen/esm-extensions": "workspace:*",
     "@egen/esm-globals": "workspace:*",

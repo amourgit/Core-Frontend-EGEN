@@ -5,29 +5,29 @@ function trimTrailingSlash(str: string) {
 }
 
 /**
- * Interpolates a string with eigenBase and eigenSpaBase.
+ * Interpolates a string with egenBase and egenSpaBase.
  *
- * Useful for accepting `${eigenBase}` or `${eigenSpaBase}`plus additional template
+ * Useful for accepting `${egenBase}` or `${egenSpaBase}`plus additional template
  * parameters in configurable URLs.
  *
  * Example usage:
  * ```js
- * interpolateUrl("test ${eigenBase} ${eigenSpaBase} ok");
- *    // will return "test /eigen /eigen/spa ok"
+ * interpolateUrl("test ${egenBase} ${egenSpaBase} ok");
+ *    // will return "test /egen /egen/spa ok"
  *
- * interpolateUrl("${eigenSpaBase}/patient/${patientUuid}", {
+ * interpolateUrl("${egenSpaBase}/patient/${patientUuid}", {
  *    patientUuid: "4fcb7185-c6c9-450f-8828-ccae9436bd82",
- * }); // will return "/eigen/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
+ * }); // will return "/egen/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
  * ```
  *
  * This can be used in conjunction with the `navigate` function like so
  * ```js
  * navigate({
  *  to: interpolateUrl(
- *    "${eigenSpaBase}/patient/${patientUuid}",
+ *    "${egenSpaBase}/patient/${patientUuid}",
  *    { patientUuid: patient.uuid }
  *  )
- * }); // will navigate to "/eigen/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
+ * }); // will navigate to "/egen/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
  * ```
  *
  * @param template A string to interpolate
@@ -35,10 +35,10 @@ function trimTrailingSlash(str: string) {
  * @returns The interpolated string with all template parameters replaced.
  */
 export function interpolateUrl(template: string, additionalParams?: { [key: string]: string }): string {
-  const eigenSpaBase = trimTrailingSlash(window.getEigenSpaBase());
+  const egenSpaBase = trimTrailingSlash(window.getEgenSpaBase());
   return interpolateString(template, {
-    eigenBase: window.eigenBase,
-    eigenSpaBase: eigenSpaBase,
+    egenBase: window.egenBase,
+    egenSpaBase: egenSpaBase,
     ...additionalParams,
   }).replace(/^\/\//, '/'); // remove extra initial slash if present
 }

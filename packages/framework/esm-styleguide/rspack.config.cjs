@@ -8,7 +8,7 @@ const { peerDependencies } = require('./package.json');
 module.exports = (env, argv = {}) => ({
   entry: [resolve(__dirname, 'src/internal.ts'), resolve(__dirname, 'src/_all.scss')],
   output: {
-    filename: 'openmrs-esm-styleguide.js',
+    filename: 'egen-esm-styleguide.js',
     chunkFilename: '[name].js',
     path: resolve(__dirname, 'dist'),
   },
@@ -87,7 +87,7 @@ module.exports = (env, argv = {}) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new rspack.CssExtractRspackPlugin({
-      filename: 'openmrs-esm-styleguide.css',
+      filename: 'egen-esm-styleguide.css',
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: env && env.analyze ? 'static' : 'disabled',

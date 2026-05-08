@@ -7,8 +7,8 @@ import {
   DashboardExtension,
   getCoreTranslation,
   useConfig,
-  eigenComponentDecorator,
-  type EigenReactComponentProps,
+  egenComponentDecorator,
+  type EgenReactComponentProps,
   Type,
   type IconId,
 } from '@egen/esm-framework/src/internal';
@@ -54,7 +54,7 @@ export default function Dashboard({ basePath, moduleName }: DashboardProps) {
 
   const Component = useMemo(
     () =>
-      eigenComponentDecorator<EigenReactComponentProps>({
+      egenComponentDecorator<EgenReactComponentProps>({
         moduleName: module,
         featureName: 'dashboard',
       })(() => <DashboardInternal basePath={basePath} />),

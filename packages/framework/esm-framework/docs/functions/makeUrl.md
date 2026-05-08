@@ -4,7 +4,7 @@
 
 > **makeUrl**(`path`): `string`
 
-Defined in: [packages/framework/esm-api/src/openmrs-fetch.ts:30](https://github.com/openmrs/openmrs-esm-core/blob/main/packages/framework/esm-api/src/openmrs-fetch.ts#L30)
+Defined in: [packages/framework/esm-api/src/egen-fetch.ts:30](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-api/src/egen-fetch.ts#L30)
 
 Append `path` to the OpenMRS SPA base.
 
@@ -27,5 +27,5 @@ The full URL with the OpenMRS base prepended. If the path is already
 
 ```ts
 makeUrl('/foo/bar');
-// => '/openmrs/foo/bar'
+// => '/egen/foo/bar'
 ```

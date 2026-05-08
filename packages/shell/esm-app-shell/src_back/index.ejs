@@ -1,44 +1,44 @@
 <!DOCTYPE html>
-<html lang="<%= openmrsDefaultLocale %>" data-default-lang="<%= openmrsDefaultLocale %>">
+<html lang="<%= egenDefaultLocale %>" data-default-lang="<%= egenDefaultLocale %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%= openmrsPageTitle %></title>
+    <title><%= egenPageTitle %></title>
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="<%= openmrsFavicon %>"
+      href="<%= egenFavicon %>"
     >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="importmap-type" content="systemjs-importmap">
     <%= htmlWebpackPlugin.tags.headTags %>
-<% if (openmrsImportmapDef) { %>
-    <script type="systemjs-importmap"><%= openmrsImportmapDef %></script>
-<% } else if (openmrsImportmapUrl) { %>
+<% if (egenImportmapDef) { %>
+    <script type="systemjs-importmap"><%= egenImportmapDef %></script>
+<% } else if (egenImportmapUrl) { %>
     <link
       rel="preload"
-      href="<%= openmrsImportmapUrl %>"
+      href="<%= egenImportmapUrl %>"
       as="fetch"
       crossorigin="anonymous"
     >
-    <script type="systemjs-importmap" src="<%= openmrsImportmapUrl %>"></script>
+    <script type="systemjs-importmap" src="<%= egenImportmapUrl %>"></script>
 <% } %>
-<% if (openmrsCoreImportmap) { %>
-  <script type="systemjs-importmap"><%= openmrsCoreImportmap %></script>
+<% if (egenCoreImportmap) { %>
+  <script type="systemjs-importmap"><%= egenCoreImportmap %></script>
 <% } %>
-<% if (openmrsRoutesDef) { %>
-  <script type="openmrs-routes"><%= openmrsRoutesDef %></script>
-<% } else if (openmrsRoutesUrl) { %>
+<% if (egenRoutesDef) { %>
+  <script type="egen-routes"><%= egenRoutesDef %></script>
+<% } else if (egenRoutesUrl) { %>
   <link
     rel="preload"
-    href="<%= openmrsRoutesUrl %>"
+    href="<%= egenRoutesUrl %>"
     as="fetch"
     crossorigin="anonymous"
   >
-  <script type="openmrs-routes" src="<%= openmrsRoutesUrl %>"></script>
+  <script type="egen-routes" src="<%= egenRoutesUrl %>"></script>
 <% } %>
-<% if (openmrsCoreRoutes) { %>
-  <script type="openmrs-routes"><%= openmrsCoreRoutes %></script>
+<% if (egenCoreRoutes) { %>
+  <script type="egen-routes"><%= egenCoreRoutes %></script>
 <% } %>
   </head>
   <body>
@@ -91,11 +91,11 @@
     </template>
     <script>
       initializeSpa({
-        apiUrl: "<%= openmrsApiUrl %>",
-        spaPath: "<%= openmrsPublicPath %>",
-        env: "<%= openmrsEnvironment %>",
-        offline: <%= openmrsOffline %>,
-        configUrls: [<%= openmrsConfigUrls %>],
+        apiUrl: "<%= egenApiUrl %>",
+        spaPath: "<%= egenPublicPath %>",
+        env: "<%= egenEnvironment %>",
+        offline: <%= egenOffline %>,
+        configUrls: [<%= egenConfigUrls %>],
       });
     </script>
   </body>

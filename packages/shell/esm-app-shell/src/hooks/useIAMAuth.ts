@@ -18,10 +18,10 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '@igen/esm-auth';
-import { tokenManager }   from '@igen/esm-auth';
-import { useSessionMonitor } from '@igen/esm-auth';
-import { getCurrentRealm }   from '@igen/esm-auth';
+import { useAuthContext } from '@egen/esm-auth';
+import { tokenManager }   from '@egen/esm-auth';
+import { useSessionMonitor } from '@egen/esm-auth';
+import { getCurrentRealm }   from '@egen/esm-auth';
 import {
   authService,
   profilService,
@@ -30,7 +30,7 @@ import {
   storeRefreshToken,
   extractErrorMessage,
   type KcSessionRepresentation,
-} from '@igen/esm-auth';
+} from '@egen/esm-auth';
 
 // ── Types ─────────────────────────────────────────────────────
 

@@ -13,7 +13,7 @@ import {
   User, Shield, Activity, Monitor, KeyRound,
   ShieldCheck, LogOut, ChevronRight,
 } from 'lucide-react';
-import { useIAMAuth } from '@igen/esm-auth';
+import { useIAMAuth } from '@egen/esm-auth';
 import { cn } from '@/lib/utils';
 
 // ── Config de la navigation ───────────────────────────────

@@ -13,12 +13,12 @@ import {
   Hash, Mail, Phone, Building, Calendar, Loader2,
   Copy, Check, AlertCircle, Users,
 } from 'lucide-react';
-import { useIAMAuth, useJournal } from '@igen/esm-auth';
-import { profilService } from '@igen/esm-auth';
+import { useIAMAuth, useJournal } from '@egen/esm-auth';
+import { profilService } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import type { JournalEntry, PermissionEffective } from '@igen/esm-auth';
+import type { JournalEntry, PermissionEffective } from '@egen/esm-auth';
 import { AuthLayout } from './ui/AuthLayout';
 import { GlassTimeCard } from "@/components/cards/glass-time-card"
 

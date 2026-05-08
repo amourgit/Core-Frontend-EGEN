@@ -4,7 +4,7 @@ import classNames, { type Argument } from 'classnames';
 import { RenderIfValueIsTruthy } from '@egen/esm-react-utils';
 import style from './icons.module.scss';
 
-/** Array of all available EIGEN icon IDs that can be used with the Icon component. */
+/** Array of all available EGEN icon IDs that can be used with the Icon component. */
 export const iconIds = [
   'omrs-icon-activity',
   'omrs-icon-add',
@@ -763,7 +763,7 @@ export const TreeViewAltIcon = memo(
 );
 
 /**
- * User of EIGEN e.g. My Account
+ * User of EGEN e.g. My Account
  */
 export const UserAvatarIcon = memo(
   forwardRef<SVGSVGElement, IconProps>(function UserAvatarIcon(props, ref) {

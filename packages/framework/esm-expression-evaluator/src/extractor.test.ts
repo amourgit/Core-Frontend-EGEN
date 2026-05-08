@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { extractVariableNames } from './extractor';
 
-describe('EIGEN Expression Extractor', () => {
+describe('EGEN Expression Extractor', () => {
   it('returns an empty list for expression lacking variables', () => {
     expect(extractVariableNames('1 + 1')).toEqual([]);
   });
