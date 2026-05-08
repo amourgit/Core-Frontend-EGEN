@@ -6,7 +6,7 @@
 
 Defined in: packages/framework/esm-utils/dist/dates/date-util.d.ts:28
 
-Formats the input to OpenMRS ISO format: "YYYY-MM-DDTHH:mm:ss.SSSZZ".
+Formats the input to Egen ISO format: "YYYY-MM-DDTHH:mm:ss.SSSZZ".
 
 ## Parameters
 

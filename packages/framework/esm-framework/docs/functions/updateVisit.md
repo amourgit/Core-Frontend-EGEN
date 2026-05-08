@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-emr-api/src/visit-utils.ts:162](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/visit-utils.ts#L162)
 
-Updates an existing visit by sending a POST request to the OpenMRS REST API.
+Updates an existing visit by sending a POST request to the Egen REST API.
 
 ## Parameters
 

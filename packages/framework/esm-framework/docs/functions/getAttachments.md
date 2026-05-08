@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-emr-api/src/attachments.ts:46](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/attachments.ts#L46)
 
-Fetches all attachments for a specific patient from the OpenMRS server.
+Fetches all attachments for a specific patient from the Egen server.
 
 ## Parameters
 

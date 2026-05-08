@@ -39,7 +39,7 @@ navigate({ to: "https://o3.egen.org/${egenSpaBase}/qux/page" }); // => navigateT
 The target path or URL. Supports templating with 'egenBase', 'egenSpaBase',
 and any additional template parameters defined in `templateParams`.
 For example, `${egenSpaBase}/home` will resolve to `/egen/spa/home`
-for implementations using the standard OpenMRS and SPA base paths.
+for implementations using the standard Egen and SPA base paths.
 If `templateParams` contains `{ foo: "bar" }`, then the URL `${egenBase}/${foo}`
 will become `/egen/bar`.
 

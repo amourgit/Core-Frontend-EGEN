@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-emr-api/src/attachments.ts:107](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/attachments.ts#L107)
 
-Permanently deletes an attachment from the OpenMRS server. This action cannot
+Permanently deletes an attachment from the Egen server. This action cannot
 be undone.
 
 ## Parameters

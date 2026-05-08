@@ -30,7 +30,7 @@ A function that returns a Promise resolving to a module with the
 
 `ComponentDecoratorOptions`
 
-Configuration options for the OpenMRS component decorator.
+Configuration options for the Egen component decorator.
 
 ## Returns
 

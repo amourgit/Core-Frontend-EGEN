@@ -6,4 +6,4 @@
 
 Defined in: [packages/framework/esm-api/src/egen-fetch.ts:10](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-api/src/egen-fetch.ts#L10)
 
-The base URL for the OpenMRS REST API (e.g., '/ws/rest/v1').
+The base URL for the Egen REST API (e.g., '/ws/rest/v1').

@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-styleguide/src/numeric-observation/use-concept-reference-range.ts:31](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-styleguide/src/numeric-observation/use-concept-reference-range.ts#L31)
 
-Hook to fetch concept reference range from OpenMRS REST API
+Hook to fetch concept reference range from Egen REST API
 
 ## Parameters
 

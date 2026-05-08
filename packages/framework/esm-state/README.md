@@ -1,6 +1,6 @@
 # egen-esm-state
 
-egen-esm-state provides functions for managing OpenMRS state using
+egen-esm-state provides functions for managing Egen state using
 [Unistore](https://github.com/developit/unistore#unistore).
 
 It also provides a global Unistore store called `app`.

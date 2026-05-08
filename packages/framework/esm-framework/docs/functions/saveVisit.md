@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-emr-api/src/visit-utils.ts:134](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/visit-utils.ts#L134)
 
-Creates a new visit by sending a POST request to the OpenMRS REST API.
+Creates a new visit by sending a POST request to the Egen REST API.
 
 ## Parameters
 

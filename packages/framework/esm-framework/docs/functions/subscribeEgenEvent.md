@@ -8,7 +8,7 @@
 
 Defined in: [packages/framework/esm-emr-api/src/events/index.ts:30](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/events/index.ts#L30)
 
-Subscribes to a custom OpenMRS event
+Subscribes to a custom Egen event
 
 ### Parameters
 
@@ -34,7 +34,7 @@ The callback to be called when the event fires
 
 Defined in: [packages/framework/esm-emr-api/src/events/index.ts:31](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/events/index.ts#L31)
 
-Subscribes to a custom OpenMRS event
+Subscribes to a custom Egen event
 
 ### Parameters
 

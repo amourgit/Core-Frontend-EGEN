@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-api/src/egen-backend-dependencies.ts:6](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-api/src/egen-backend-dependencies.ts#L6)
 
-Defines the minimum required versions of OpenMRS backend modules that the
+Defines the minimum required versions of Egen backend modules that the
 frontend framework depends on. These versions are checked at startup to ensure
 compatibility between the frontend and backend.
 

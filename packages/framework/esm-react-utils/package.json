@@ -2,7 +2,7 @@
   "name": "@egen/esm-react-utils",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "React utilities for OpenMRS.",
+  "description": "React utilities for Egen.",
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

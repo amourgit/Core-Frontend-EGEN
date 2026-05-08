@@ -2,7 +2,7 @@
   "name": "@egen/esm-feature-flags",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "A feature flag system for the OpenMRS Single-Spa framework.",
+  "description": "A feature flag system for the Egen Single-Spa framework.",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {

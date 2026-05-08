@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-react-utils/src/useEgenPagination.ts:59](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-react-utils/src/useEgenPagination.ts#L59)
 
-Most OpenMRS REST endpoints that return a list of objects, such as getAll or search, are server-side paginated.
+Most Egen REST endpoints that return a list of objects, such as getAll or search, are server-side paginated.
 The server limits the max number of results being returned, and multiple requests are needed to get the full data set
 if its size exceeds this limit.
 The max number of results per request is configurable server-side

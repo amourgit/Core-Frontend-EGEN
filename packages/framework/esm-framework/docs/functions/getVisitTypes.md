@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-emr-api/src/visit-type.ts:29](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/visit-type.ts#L29)
 
-Fetches all available visit types from the OpenMRS REST API.
+Fetches all available visit types from the Egen REST API.
 
 ## Returns
 

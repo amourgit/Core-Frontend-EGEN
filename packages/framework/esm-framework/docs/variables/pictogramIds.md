@@ -6,4 +6,4 @@
 
 Defined in: [packages/framework/esm-styleguide/src/pictograms/pictograms.tsx:8](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-styleguide/src/pictograms/pictograms.tsx#L8)
 
-Array of all available OpenMRS pictogram IDs that can be used with the Pictogram component.
+Array of all available Egen pictogram IDs that can be used with the Pictogram component.

@@ -29,7 +29,7 @@ The React component to create a lifecycle for.
 
 `ComponentDecoratorOptions`
 
-Configuration options for the OpenMRS component decorator.
+Configuration options for the Egen component decorator.
 
 ## Returns
 

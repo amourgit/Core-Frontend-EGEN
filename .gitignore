@@ -209,4 +209,4 @@ test-results.xml
 
 
 # Keep packages dist for distribution
-!packages/**/dist/
+packages/**/dist/

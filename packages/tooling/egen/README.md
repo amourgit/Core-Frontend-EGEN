@@ -1,6 +1,6 @@
 # egen
 
-The one stop CLI for using the OpenMRS 3.0 Frontend app.
+The one stop CLI for using the Egen 3.0 Frontend app.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ npx egen
 
 > For developers and implementers.
 
-Performs a debug build of the app shell and runs it against a given OpenMRS backend. Can be proxied to any network and used with any import map configuration.
+Performs a debug build of the app shell and runs it against a given Egen backend. Can be proxied to any network and used with any import map configuration.
 
 Example:
 

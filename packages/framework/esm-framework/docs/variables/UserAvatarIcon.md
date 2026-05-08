@@ -6,4 +6,4 @@
 
 Defined in: [packages/framework/esm-styleguide/src/icons/icons.tsx:768](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-styleguide/src/icons/icons.tsx#L768)
 
-User of OpenMRS e.g. My Account
+User of Egen e.g. My Account

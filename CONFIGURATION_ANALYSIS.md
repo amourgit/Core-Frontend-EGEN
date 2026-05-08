@@ -195,7 +195,7 @@ packages/
 
 ## Notes Importantes
 
-1. **Branding EGEN** : Tous les fichiers de configuration ont été adaptés pour refléter "EGEN" plutôt que "OpenMRS"
+1. **Branding EGEN** : Tous les fichiers de configuration ont été adaptés pour refléter "EGEN" plutôt que "Egen"
 2. **Package Manager** : Le projet utilise npm (pas yarn contrairement à Egen-esm-core)
 3. **TypeScript Version** : Alignée sur 5.8.3 pour compatibilité
 4. **Node Version** : npm@10.0.0 minimum recommandé

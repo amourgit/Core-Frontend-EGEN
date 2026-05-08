@@ -6,7 +6,7 @@
 
 Defined in: [packages/framework/esm-emr-api/src/attachments.ts:23](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-emr-api/src/attachments.ts#L23)
 
-Fetches a single attachment by its UUID from the OpenMRS server.
+Fetches a single attachment by its UUID from the Egen server.
 
 ## Parameters
 

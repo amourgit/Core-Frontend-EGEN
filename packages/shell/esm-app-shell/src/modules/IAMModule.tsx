@@ -49,7 +49,7 @@ function ModuleLoader({ name }: { name: string }) {
 
 // ── Erreur si remote inaccessible ─────────────────────────────
 function ModuleError({ name, error }: { name: string; error: Error }) {
-  const iamUrl = import.meta.env.VITE_IAM_URL ?? 'http://localhost:3000';
+  const iamUrl = import.meta.env.EGEN_IAM_URL ?? 'http://localhost:3000';
   return (
     <div style={{
       display: 'flex', flexDirection: 'column',

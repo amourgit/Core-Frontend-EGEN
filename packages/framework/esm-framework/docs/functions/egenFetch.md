@@ -8,7 +8,7 @@ Defined in: [packages/framework/esm-api/src/egen-fetch.ts:90](https://github.com
 
 The egenFetch function is a wrapper around the
 [browser's built-in fetch function](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch),
-with extra handling for OpenMRS-specific API behaviors, such as
+with extra handling for Egen-specific API behaviors, such as
 request headers, authentication, authorization, and the API urls.
 
 ## Type Parameters

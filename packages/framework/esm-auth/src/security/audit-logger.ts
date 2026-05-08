@@ -57,7 +57,7 @@ export const auditLogger = {
   _send(entry: AuditEntry): void {
     if (typeof window === 'undefined') return;
 
-    const base = import.meta.env.VITE_IAM_URL || 'http://localhost:8000';
+    const base = import.meta.env.EGEN_IAM_URL || 'http://localhost:8000';
     const url  = `${base}/api/v1/audit/frontend`;
     const body = JSON.stringify(entry);
 

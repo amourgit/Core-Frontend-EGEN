@@ -7,7 +7,7 @@
 Defined in: [packages/framework/esm-react-utils/src/getLifecycle.ts:26](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-react-utils/src/getLifecycle.ts#L26)
 
 Creates a single-spa lifecycle object for a React component. The component is
-wrapped with the OpenMRS component decorator which provides standard functionality
+wrapped with the Egen component decorator which provides standard functionality
 like error boundaries, configuration, and extension support.
 
 ## Type Parameters
@@ -28,7 +28,7 @@ The React component to create a lifecycle for.
 
 `ComponentDecoratorOptions`
 
-Configuration options for the OpenMRS component decorator.
+Configuration options for the Egen component decorator.
 
 ## Returns
 

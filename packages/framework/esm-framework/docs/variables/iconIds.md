@@ -6,4 +6,4 @@
 
 Defined in: [packages/framework/esm-styleguide/src/icons/icons.tsx:8](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-styleguide/src/icons/icons.tsx#L8)
 
-Array of all available OpenMRS icon IDs that can be used with the Icon component.
+Array of all available Egen icon IDs that can be used with the Icon component.

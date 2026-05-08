@@ -2,7 +2,7 @@
   "name": "@egen/esm-extensions",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "Coordinates extensions and extension points in the OpenMRS Frontend",
+  "description": "Coordinates extensions and extension points in the Egen Frontend",
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

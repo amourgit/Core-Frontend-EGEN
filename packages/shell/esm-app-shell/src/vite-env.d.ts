@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_IAM_URL: string;
+  readonly EGEN_IAM_URL: string;
   readonly VITE_REGISTRY_URL: string;
   readonly VITE_KEYCLOAK_URL: string;
   readonly VITE_KEYCLOAK_REALM: string;

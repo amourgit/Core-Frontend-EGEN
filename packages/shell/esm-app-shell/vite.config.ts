@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 export default defineConfig(({ mode }) => {
-  const IAM_URL = process.env.VITE_IAM_URL || 'http://localhost:3000';
+  const IAM_URL = process.env.EGEN_IAM_URL || 'http://localhost:3000';
 
   return {
     plugins: [

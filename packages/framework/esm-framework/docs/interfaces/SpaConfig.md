@@ -14,7 +14,7 @@ The configuration passed to the app shell initialization function
 
 Defined in: packages/framework/esm-globals/dist/types.d.ts:83
 
-The base path or URL for the OpenMRS API / endpoints.
+The base path or URL for the Egen API / endpoints.
 
 ***
 

@@ -2,7 +2,7 @@
   "name": "@egen/esm-state",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "Frontend stores & state management for OpenMRS",
+  "description": "Frontend stores & state management for Egen",
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

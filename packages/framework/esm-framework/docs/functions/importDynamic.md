@@ -31,7 +31,7 @@ The package to load the export from.
 `string` = `'./start'`
 
 Indicates the name of the shared module; this is an advanced feature if the package you are loading
-  doesn't use the default OpenMRS shared module name "./start".
+  doesn't use the default Egen shared module name "./start".
 
 ### options?
 

@@ -8,7 +8,7 @@ packages/
 │   ├── esm-auth/          @egen/esm-auth        ← Authentification IAM / Keycloak
 │   ├── esm-theme/         @egen/esm-theme       ← Système de thème CSS Variable
 │   ├── esm-styleguide/    @egen/esm-styleguide  ← Composants UI + Layouts + Hooks
-│   ├── esm-api/           @egen/esm-api         ← HTTP client & OpenMRS API
+│   ├── esm-api/           @egen/esm-api         ← HTTP client & Egen API
 │   ├── esm-config/        @egen/esm-config      ← Config modulaire
 │   ├── esm-extensions/    @egen/esm-extensions  ← Extension slots (MF)
 │   ├── esm-navigation/    @egen/esm-navigation  ← Router & breadcrumbs

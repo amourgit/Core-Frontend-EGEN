@@ -2,7 +2,7 @@
   "name": "@egen/esm-implementer-tools-app",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "The admin interface for OpenMRS Frontend",
+  "description": "The admin interface for Egen Frontend",
   "browser": "dist/egen-esm-implementer-tools-app.js",
   "main": "src/index.ts",
   "source": true,
