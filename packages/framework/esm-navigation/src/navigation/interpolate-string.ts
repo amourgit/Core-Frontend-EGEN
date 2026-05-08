@@ -5,29 +5,29 @@ function trimTrailingSlash(str: string) {
 }
 
 /**
- * Interpolates a string with openmrsBase and openmrsSpaBase.
+ * Interpolates a string with eigenBase and eigenSpaBase.
  *
- * Useful for accepting `${openmrsBase}` or `${openmrsSpaBase}`plus additional template
+ * Useful for accepting `${eigenBase}` or `${eigenSpaBase}`plus additional template
  * parameters in configurable URLs.
  *
  * Example usage:
  * ```js
- * interpolateUrl("test ${openmrsBase} ${openmrsSpaBase} ok");
- *    // will return "test /openmrs /openmrs/spa ok"
+ * interpolateUrl("test ${eigenBase} ${eigenSpaBase} ok");
+ *    // will return "test /eigen /eigen/spa ok"
  *
- * interpolateUrl("${openmrsSpaBase}/patient/${patientUuid}", {
+ * interpolateUrl("${eigenSpaBase}/patient/${patientUuid}", {
  *    patientUuid: "4fcb7185-c6c9-450f-8828-ccae9436bd82",
- * }); // will return "/openmrs/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
+ * }); // will return "/eigen/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
  * ```
  *
  * This can be used in conjunction with the `navigate` function like so
  * ```js
  * navigate({
  *  to: interpolateUrl(
- *    "${openmrsSpaBase}/patient/${patientUuid}",
+ *    "${eigenSpaBase}/patient/${patientUuid}",
  *    { patientUuid: patient.uuid }
  *  )
- * }); // will navigate to "/openmrs/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
+ * }); // will navigate to "/eigen/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82"
  * ```
  *
  * @param template A string to interpolate
@@ -35,10 +35,10 @@ function trimTrailingSlash(str: string) {
  * @returns The interpolated string with all template parameters replaced.
  */
 export function interpolateUrl(template: string, additionalParams?: { [key: string]: string }): string {
-  const openmrsSpaBase = trimTrailingSlash(window.getOpenmrsSpaBase());
+  const eigenSpaBase = trimTrailingSlash(window.getEigenSpaBase());
   return interpolateString(template, {
-    openmrsBase: window.openmrsBase,
-    openmrsSpaBase: openmrsSpaBase,
+    eigenBase: window.eigenBase,
+    eigenSpaBase: eigenSpaBase,
     ...additionalParams,
   }).replace(/^\/\//, '/'); // remove extra initial slash if present
 }

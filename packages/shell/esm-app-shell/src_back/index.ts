@@ -1,4 +1,4 @@
-import '@egen/esm-styleguide/dist/openmrs-esm-styleguide.css';
+import '@egen/esm-styleguide/dist/eigen-esm-styleguide.css';
 import 'import-map-overrides';
 import type { SpaConfig } from '@egen/esm-framework/src/internal';
 
@@ -28,12 +28,12 @@ function setupPaths(config: SpaConfig) {
     );
   }
 
-  window.openmrsBase = config.apiUrl;
+  window.eigenBase = config.apiUrl;
   window.spaBase = config.spaPath;
   window.spaEnv = config.env || 'production';
   window.spaVersion = process.env.BUILD_VERSION ?? 'local';
   const spaBaseWithSlash = window.spaBase.endsWith('/') ? window.spaBase : window.spaBase + '/';
-  window.getOpenmrsSpaBase = _createSpaBase(spaBaseWithSlash);
+  window.getEigenSpaBase = _createSpaBase(spaBaseWithSlash);
 }
 
 export function setupUtils() {
@@ -53,14 +53,14 @@ export function setupUtils() {
 
 function wireSpaPaths() {
   const baseElement = document.createElement('base');
-  const baseHref = window.getOpenmrsSpaBase();
+  const baseHref = window.getEigenSpaBase();
   baseElement.href = baseHref;
   document.head.appendChild(baseElement);
   __webpack_public_path__ = baseHref;
 }
 
 /**
- * Initializes the OpenMRS Frontend App Shell.
+ * Initializes the EIGEN Frontend App Shell.
  * @param config The global configuration to apply.
  */
 function initializeSpa(config: SpaConfig) {

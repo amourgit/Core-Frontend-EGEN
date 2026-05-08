@@ -6,7 +6,7 @@ import { type CalendarDate } from '@internationalized/date';
 import { type DateInputValue, type DatePickerBaseProps } from './types';
 import { I18nWrapper } from './i18n-wrapper.component';
 import { dateToInternationalizedDate, internationalizedDateToDate } from './utils';
-import { OpenmrsIntlLocaleContext, useDatepickerContext } from './hooks';
+import { EigenIntlLocaleContext, useDatepickerContext } from './hooks';
 import { DEFAULT_MIN_DATE_FLOOR } from './defaults';
 import { CalendarPopover } from './calendar-popover.component';
 import { DatePickerInput } from './date-picker-input.component';
@@ -15,9 +15,9 @@ import { DateSegment } from './date-segment.component';
 import styles from './datepicker.module.scss';
 
 /**
- * Properties for the OpenmrsDatePicker
+ * Properties for the EigenDatePicker
  */
-export interface OpenmrsDatePickerProps
+export interface EigenDatePickerProps
   extends Omit<DatePickerProps<CalendarDate>, 'className' | 'onChange' | 'defaultValue' | 'value'>,
     DatePickerBaseProps {
   /** The default value (uncontrolled) */
@@ -34,7 +34,7 @@ export interface OpenmrsDatePickerProps
   value?: DateInputValue;
 }
 
-const defaultProps: OpenmrsDatePickerProps = {
+const defaultProps: EigenDatePickerProps = {
   short: false,
   size: 'md',
 };
@@ -42,8 +42,8 @@ const defaultProps: OpenmrsDatePickerProps = {
 /**
  * A date picker component to select a single date. Based on React Aria, but styled to look like Carbon.
  */
-export const OpenmrsDatePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, OpenmrsDatePickerProps>(
-  function OpenmrsDatePicker(props, ref) {
+export const EigenDatePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, EigenDatePickerProps>(
+  function EigenDatePicker(props, ref) {
     const {
       className,
       defaultValue: rawDefaultValue,
@@ -73,7 +73,7 @@ export const OpenmrsDatePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, Openmr
     if (process.env.NODE_ENV !== 'production') {
       if (!hasVisibleLabel && !datePickerProps['aria-label'] && !datePickerProps['aria-labelledby']) {
         console.warn(
-          'OpenmrsDatePicker: You must provide either a visible label (labelText/label) or an aria-label for accessibility.',
+          'EigenDatePicker: You must provide either a visible label (labelText/label) or an aria-label for accessibility.',
         );
       }
     }
@@ -93,7 +93,7 @@ export const OpenmrsDatePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, Openmr
     const onChange = useMemo(() => {
       if (onChangeRaw && rawOnChange) {
         console.error(
-          'An OpenmrsDatePicker component was created with both onChange and onChangeRaw handlers defined. Only onChangeRaw will be used.',
+          'An EigenDatePicker component was created with both onChange and onChangeRaw handlers defined. Only onChangeRaw will be used.',
         );
       }
       return onChangeRaw ?? ((value: DateValue) => rawOnChange?.(internationalizedDateToDate(value)));
@@ -102,7 +102,7 @@ export const OpenmrsDatePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, Openmr
     return (
       <I18nWrapper locale={intlLocale.toString()}>
         <div className={classNames('cds--form-item', className)}>
-          <Provider values={[[OpenmrsIntlLocaleContext, intlLocale]]}>
+          <Provider values={[[EigenIntlLocaleContext, intlLocale]]}>
             <DatePicker
               className={classNames('cds--date-picker', 'cds--date-picker--single', {
                 ['cds--date-picker--short']: short,

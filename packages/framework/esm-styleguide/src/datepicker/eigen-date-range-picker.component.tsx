@@ -14,7 +14,7 @@ import {
 import { type CalendarDate } from '@internationalized/date';
 import { DateSegment } from './date-segment.component';
 import styles from './datepicker.module.scss';
-import { OpenmrsIntlLocaleContext, useDatepickerContext } from './hooks';
+import { EigenIntlLocaleContext, useDatepickerContext } from './hooks';
 import { type DateInputValue, type DatePickerBaseProps } from './types';
 import { I18nWrapper } from './i18n-wrapper.component';
 import { DatePickerIcon } from './date-picker-icon.component';
@@ -22,8 +22,8 @@ import { CalendarPopover } from './calendar-popover.component';
 import { dateToInternationalizedDate, internationalizedDateToDate } from './utils';
 import { DEFAULT_MIN_DATE_FLOOR } from './defaults';
 
-/** Properties for the OpenmrsDateRangePicker */
-export interface OpenmrsDateRangePickerProps
+/** Properties for the EigenDateRangePicker */
+export interface EigenDateRangePickerProps
   extends Omit<DateRangePickerProps<CalendarDate>, 'className' | 'onChange' | 'defaultValue' | 'value'>,
     DatePickerBaseProps {
   /** The default value (uncontrolled) */
@@ -39,8 +39,8 @@ export interface OpenmrsDateRangePickerProps
 /**
  * A date range picker to enter or select a date and time range. Based on React Aria, but styled to look like Carbon.
  */
-export const OpenmrsDateRangePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, OpenmrsDateRangePickerProps>(
-  function OpenmrsDateRangePicker(
+export const EigenDateRangePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, EigenDateRangePickerProps>(
+  function EigenDateRangePicker(
     {
       className,
       defaultValue: rawDefaultValue,
@@ -69,7 +69,7 @@ export const OpenmrsDateRangePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, O
     if (process.env.NODE_ENV !== 'production') {
       if (!hasVisibleLabel && !dateRangePickerProps['aria-label'] && !dateRangePickerProps['aria-labelledby']) {
         console.warn(
-          'OpenmrsDateRangePicker: You must provide either a visible label (labelText/label) or an aria-label for accessibility.',
+          'EigenDateRangePicker: You must provide either a visible label (labelText/label) or an aria-label for accessibility.',
         );
       }
     }
@@ -104,7 +104,7 @@ export const OpenmrsDateRangePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, O
     const innerOnChange = useMemo(() => {
       if (onChangeRaw && onChange) {
         console.error(
-          'An OpenmrsDateRangePicker component was created with both onChange and onChangeRaw handlers defined. Only onChangeRaw will be used.',
+          'An EigenDateRangePicker component was created with both onChange and onChangeRaw handlers defined. Only onChangeRaw will be used.',
         );
       }
 
@@ -118,7 +118,7 @@ export const OpenmrsDateRangePicker = /*#__PURE__*/ forwardRef<HTMLDivElement, O
     return (
       <I18nWrapper locale={intlLocale.toString()}>
         <div className={classNames('cds--form-item', className)}>
-          <Provider values={[[OpenmrsIntlLocaleContext, intlLocale]]}>
+          <Provider values={[[EigenIntlLocaleContext, intlLocale]]}>
             <DateRangePicker
               id={hasVisibleLabel ? id : undefined}
               className={classNames('cds--date-picker', {

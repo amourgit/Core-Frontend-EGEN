@@ -8,7 +8,7 @@ const Logout: React.FC = () => {
   const { t } = useTranslation();
 
   const handleLogout = useCallback(() => {
-    navigate({ to: '${openmrsSpaBase}/logout' });
+    navigate({ to: '${eigenSpaBase}/logout' });
   }, []);
 
   return (

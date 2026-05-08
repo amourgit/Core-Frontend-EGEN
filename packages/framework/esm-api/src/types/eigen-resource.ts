@@ -1,15 +1,15 @@
 import { type User } from './user-resource';
 
-export interface OpenmrsResource extends OpenmrsResourceStrict {
+export interface EigenResource extends EigenResourceStrict {
   [anythingElse: string]: any;
 }
 
 /**
- * Superclass for all Openmrs Resources, with strict typings.
+ * Superclass for all EIGEN Resources, with strict typings.
  * If the subclass does not have all attributes (including optional ones)
- * accounted for, use OpenmrsResource instead.
+ * accounted for, use EigenResource instead.
  */
-export interface OpenmrsResourceStrict {
+export interface EigenResourceStrict {
   uuid: string;
   display?: string;
   links?: Array<Link>;

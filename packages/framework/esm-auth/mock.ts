@@ -1,4 +1,4 @@
-// Mock @eigen/esm-auth pour les tests
+// Mock @egen/esm-auth pour les tests
 export const useAuthContext = () => ({
   accessToken: null,
   user: null,

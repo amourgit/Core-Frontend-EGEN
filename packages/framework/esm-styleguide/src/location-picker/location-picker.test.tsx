@@ -31,7 +31,7 @@ vi.mock('./location-picker.resource', () => ({
 
 vi.mock('@egen/esm-api', async () => ({
   ...(await import('@egen/esm-api')),
-  openmrsFetch: vi.fn((url) => {
+  eigenFetch: vi.fn((url) => {
     if (url === `/ws/fhir2/R4/Location?_id=${inpatientWardLocationUuid}`) {
       return inpatientWardResponse;
     }

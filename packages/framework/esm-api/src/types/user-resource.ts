@@ -1,4 +1,4 @@
-import { type OpenmrsResource } from './openmrs-resource';
+import { type EigenResource } from './eigen-resource';
 import { type Person } from './person-resource';
 
 export interface Session {
@@ -67,6 +67,6 @@ export interface Role {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface User extends OpenmrsResource {
+export interface User extends EigenResource {
   // TODO: add more attributes
 }

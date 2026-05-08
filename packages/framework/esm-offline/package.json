@@ -27,7 +27,7 @@
     "lint": "eslint src --ext ts,tsx"
   },
   "keywords": [
-    "openmrs",
+    "eigen",
     "microfrontends"
   ],
   "directories": {
@@ -35,16 +35,16 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-openmrs"
+    "extends browserslist-config-igen"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/openmrs-esm-core.git"
+    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/openmrs-esm-core/issues"
+    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
   },
-  "homepage": "https://github.com/openmrs/openmrs-esm-core#readme",
+  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
   "publishConfig": {
     "access": "public"
   },

@@ -3,15 +3,15 @@ import { interpolateString, interpolateUrl } from './interpolate-string';
 
 describe('interpolateUrl', () => {
   it('interpolates URL template elements', () => {
-    const result = interpolateUrl('test ${openmrsBase} ${openmrsSpaBase} ok');
-    expect(result).toBe('test /openmrs /openmrs/spa ok');
+    const result = interpolateUrl('test ${eigenBase} ${eigenSpaBase} ok');
+    expect(result).toBe('test /eigen /eigen/spa ok');
   });
 
   it('interpolates other URL template parameters', () => {
-    const result = interpolateUrl('${openmrsSpaBase}/patient/${patientUuid}', {
+    const result = interpolateUrl('${eigenSpaBase}/patient/${patientUuid}', {
       patientUuid: '4fcb7185-c6c9-450f-8828-ccae9436bd82',
     });
-    expect(result).toBe('/openmrs/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82');
+    expect(result).toBe('/eigen/spa/patient/4fcb7185-c6c9-450f-8828-ccae9436bd82');
   });
 
   it('works when no interpolation needed', () => {
@@ -50,8 +50,8 @@ describe('interpolateString', () => {
   });
 
   it('removes double slashes at the start of URLs', () => {
-    const result = interpolateUrl('${openmrsBase}/${path}', { path: 'test' });
-    expect(result).toBe('/openmrs/test');
+    const result = interpolateUrl('${eigenBase}/${path}', { path: 'test' });
+    expect(result).toBe('/eigen/test');
   });
 
   it('handles special characters in parameters', () => {

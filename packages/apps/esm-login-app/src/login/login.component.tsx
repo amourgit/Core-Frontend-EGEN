@@ -6,7 +6,7 @@ import {
   ArrowRightIcon,
   getCoreTranslation,
   refetchCurrentUser,
-  navigate as openmrsNavigate,
+  navigate as eigenNavigate,
   useConfig,
   useConnectivity,
   useSession,
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     if (!user) {
       if (loginProvider.type === 'oauth2') {
-        openmrsNavigate({ to: loginProvider.loginUrl });
+        eigenNavigate({ to: loginProvider.loginUrl });
       } else if (!username && location.pathname === '/login/confirm') {
         navigate('/login');
       }
@@ -104,13 +104,13 @@ const Login: React.FC = () => {
             let to = loginLinks?.loginSuccess || '/home';
             if (location?.state?.referrer) {
               if (location.state.referrer.startsWith('/')) {
-                to = `\${openmrsSpaBase}${location.state.referrer}`;
+                to = `\${eigenSpaBase}${location.state.referrer}`;
               } else {
                 to = location.state.referrer;
               }
             }
 
-            openmrsNavigate({ to });
+            eigenNavigate({ to });
           } else {
             navigate('/login/location');
           }

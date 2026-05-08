@@ -44,12 +44,12 @@ export interface EventTypes {
 /**
  * This type is the union of all supported events
  */
-export type OpenmrsEvent = keyof EventTypes;
+export type EigenEvent = keyof EventTypes;
 
 export type EventsWithoutPayload = {
-  [K in OpenmrsEvent]: EventTypes[K] extends undefined ? K : never;
-}[OpenmrsEvent];
+  [K in EigenEvent]: EventTypes[K] extends undefined ? K : never;
+}[EigenEvent];
 
 export type EventsWithPayload = {
-  [K in OpenmrsEvent]: EventTypes[K] extends undefined ? never : K;
-}[OpenmrsEvent];
+  [K in EigenEvent]: EventTypes[K] extends undefined ? never : K;
+}[EigenEvent];

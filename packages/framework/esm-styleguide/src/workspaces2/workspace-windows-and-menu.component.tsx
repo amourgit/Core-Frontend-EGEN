@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { subscribeOpenmrsEvent } from '@egen/esm-emr-api';
+import { subscribeEigenEvent } from '@egen/esm-emr-api';
 import classNames from 'classnames';
 import { createRoot } from 'react-dom/client';
 import { ActionMenu } from './action-menu2/action-menu2.component';
@@ -23,7 +23,7 @@ function WorkspaceWindowsAndMenu() {
   const { openedGroup, openedWindows, registeredGroupsByName, registeredWindowsByName } = useWorkspace2Store();
 
   useEffect(() => {
-    const unsubscribe = subscribeOpenmrsEvent('before-page-changed', (pageChangedEvent) => {
+    const unsubscribe = subscribeEigenEvent('before-page-changed', (pageChangedEvent) => {
       const { newPage, cancelNavigation, oldUrl, newUrl } = pageChangedEvent;
 
       if (!openedGroup) {

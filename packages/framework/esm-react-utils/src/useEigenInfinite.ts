@@ -1,19 +1,19 @@
 /** @module @category UI */
-import { type FetchResponse, openmrsFetch } from '@egen/esm-api';
+import { type FetchResponse, eigenFetch } from '@egen/esm-api';
 import { useCallback } from 'react';
 import useSWRInfinite, { type SWRInfiniteConfiguration, type SWRInfiniteResponse } from 'swr/infinite';
 import {
-  openmrsServerPaginationHandlers,
+  eigenServerPaginationHandlers,
   type ServerPaginationHandlers,
-  type OpenMRSPaginatedResponse,
-} from './useOpenmrsPagination';
+  type EigenPaginatedResponse,
+} from './useEigenPagination';
 
 // "swr/infinite" doesn't export InfiniteKeyedMutator directly
 type InfiniteKeyedMutator<T> = SWRInfiniteResponse<T extends (infer I)[] ? I : T>['mutate'];
 
 export interface UseServerInfiniteOptions<R> {
   /**
-   * The fetcher to use. Defaults to openmrsFetch
+   * The fetcher to use. Defaults to eigenFetch
    */
   fetcher?: (key: string) => Promise<FetchResponse<R>>;
 
@@ -80,16 +80,16 @@ export interface UseServerInfiniteReturnObject<T, R> {
  * The server limits the max number of results being returned, and multiple requests are needed to get the full data set
  * if its size exceeds this limit.
  * The max number of results per request is configurable server-side
- * with the key "webservices.rest.maxResultsDefault". See: https://openmrs.atlassian.net/wiki/spaces/docs/pages/25469882/REST+Module
+ * with the key "webservices.rest.maxResultsDefault". See: https://github.com/amourgit/wiki/spaces/docs/pages/25469882/REST+Module
  *
  * This hook fetches data from a paginated rest endpoint, initially by fetching the first page of the results.
  * It provides a callback to load data from subsequent pages as needed. This hook is intended to serve UIs that
- * provide infinite loading / scrolling of results. Unlike `useOpenmrsPagination`, this hook does not allow random access
+ * provide infinite loading / scrolling of results. Unlike `useEigenPagination`, this hook does not allow random access
  * (and lazy-loading) of any arbitrary page; rather, it fetches pages sequentially starting form the initial page, and the next page
  * is fetched by calling `loadMore`. See: https://swr.vercel.app/docs/pagination#useswrinfinite
  *
- * @see `useOpenmrsPagination`
- * @see `useOpenmrsFetchAll`
+ * @see `useEigenPagination`
+ * @see `useEigenFetchAll`
  * @see `useFhirInfinite`
  *
  * @param url The URL of the paginated rest endpoint. Note that the `limit` GET param can be set to specify
@@ -99,11 +99,11 @@ export interface UseServerInfiniteReturnObject<T, R> {
  * @param options The options object
  * @returns a UseServerInfiniteReturnObject object
  */
-export function useOpenmrsInfinite<T>(
+export function useEigenInfinite<T>(
   url: string | URL,
-  options: UseServerInfiniteOptions<OpenMRSPaginatedResponse<T>> = {},
-): UseServerInfiniteReturnObject<T, OpenMRSPaginatedResponse<T>> {
-  return useServerInfinite<T, OpenMRSPaginatedResponse<T>>(url, openmrsServerPaginationHandlers, options);
+  options: UseServerInfiniteOptions<EigenPaginatedResponse<T>> = {},
+): UseServerInfiniteReturnObject<T, EigenPaginatedResponse<T>> {
+  return useServerInfinite<T, EigenPaginatedResponse<T>>(url, eigenServerPaginationHandlers, options);
 }
 
 export function useServerInfinite<T, R>(
@@ -113,7 +113,7 @@ export function useServerInfinite<T, R>(
 ): UseServerInfiniteReturnObject<T, R> {
   const { swrInfiniteConfig, immutable } = options;
   const { getNextUrl, getTotalCount, getData } = serverPaginationHandlers;
-  const fetcher: (key: string) => Promise<FetchResponse<R>> = options.fetcher ?? openmrsFetch;
+  const fetcher: (key: string) => Promise<FetchResponse<R>> = options.fetcher ?? eigenFetch;
   const getKey = useCallback(
     (pageIndex: number, previousPageData: FetchResponse<R>): string | null => {
       if (pageIndex == 0) {

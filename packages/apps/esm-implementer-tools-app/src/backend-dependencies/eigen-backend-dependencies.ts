@@ -1,4 +1,4 @@
-import { isVersionSatisfied, openmrsFetch, restBaseUrl } from '@egen/esm-framework';
+import { isVersionSatisfied, eigenFetch, restBaseUrl } from '@egen/esm-framework';
 import difference from 'lodash-es/difference';
 
 export type ResolvedBackendModuleType = 'missing' | 'version-mismatch' | 'okay';
@@ -110,7 +110,7 @@ async function fetchInstalledBackendModules(): Promise<Array<BackendModule>> {
 
   while (nextUrl && safetyCounter < MAX_PAGES) {
     try {
-      const { data } = await openmrsFetch(nextUrl, { method: 'GET' });
+      const { data } = await eigenFetch(nextUrl, { method: 'GET' });
       const pageResults: Array<BackendModule> = Array.isArray(data?.results) ? data.results : [];
 
       collected.push(...pageResults);

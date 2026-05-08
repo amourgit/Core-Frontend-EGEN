@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { useOpenmrsInfinite } from './useOpenmrsInfinite';
-import { getIntArray, getTestData } from './useOpenmrsPagination.test';
+import { useEigenInfinite } from './useEigenInfinite';
+import { getIntArray, getTestData } from './useEigenPagination.test';
 
-describe('useOpenmrsInfinite', () => {
+describe('useEigenInfinite', () => {
   it('should load all rows with 1 fetch if number of rows < pageSize', async () => {
     const pageSize = 20;
     const expectedRowCount = 17;
     const { result } = renderHook(() =>
-      useOpenmrsInfinite(`http://localhost/1?limit=${pageSize}`, {
+      useEigenInfinite(`http://localhost/1?limit=${pageSize}`, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );
@@ -25,7 +25,7 @@ describe('useOpenmrsInfinite', () => {
     const pageSize = 20;
     const expectedRowCount = 40;
     const { result } = renderHook(() =>
-      useOpenmrsInfinite(`http://localhost/2?limit=${pageSize}`, {
+      useEigenInfinite(`http://localhost/2?limit=${pageSize}`, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );
@@ -50,7 +50,7 @@ describe('useOpenmrsInfinite', () => {
     const pageSize = 100;
     const expectedRowCount = 1337;
     const { result } = renderHook(() =>
-      useOpenmrsInfinite(`http://localhost/3?limit=${pageSize}`, {
+      useEigenInfinite(`http://localhost/3?limit=${pageSize}`, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );

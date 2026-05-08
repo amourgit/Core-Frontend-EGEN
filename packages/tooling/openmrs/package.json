@@ -1,10 +1,10 @@
 {
-  "name": "openmrs",
+  "name": "eigen",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "main": "dist/index.js",
   "bin": {
-    "openmrs": "./dist/cli.js",
+    "eigen": "./dist/cli.js",
     "rspack": "./bin/rspack.js",
     "webpack": "./bin/webpack.js"
   },
@@ -20,18 +20,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/openmrs-esm-core.git"
+    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/openmrs-esm-core/issues"
+    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
   },
   "keywords": [
-    "openmrs",
+    "eigen",
     "microfrontends",
     "cli",
     "tool"
   ],
-  "homepage": "https://github.com/openmrs/openmrs-esm-core#readme",
+  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
   "dependencies": {
     "@egen/esm-app-shell": "workspace:*",
     "@egen/rspack-config": "workspace:*",
@@ -43,7 +43,7 @@
     "@swc/core": "1.12.6",
     "autoprefixer": "10.4.20",
     "axios": "^1.13.4",
-    "browserslist-config-openmrs": "^1.0.1",
+    "browserslist-config-igen": "^1.0.1",
     "chalk": "^4.1.2",
     "clean-webpack-plugin": "4.0.0",
     "copy-webpack-plugin": "11.0.0",

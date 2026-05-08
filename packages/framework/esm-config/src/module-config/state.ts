@@ -54,12 +54,12 @@ temporaryConfigStore.subscribe((state) => {
 });
 
 function setTemporaryConfig(value: Config) {
-  localStorage.setItem('openmrs:temporaryConfig', JSON.stringify(value));
+  localStorage.setItem('eigen:temporaryConfig', JSON.stringify(value));
 }
 
 function getTemporaryConfig(): Config {
   try {
-    return JSON.parse(localStorage.getItem('openmrs:temporaryConfig') || '{}');
+    return JSON.parse(localStorage.getItem('eigen:temporaryConfig') || '{}');
   } catch (e) {
     return {};
   }

@@ -17,7 +17,7 @@ export const mockConfig: ConfigSchema = {
     alt: 'Logo',
   },
   links: {
-    loginSuccess: '${openmrsSpaBase}/home',
+    loginSuccess: '${eigenSpaBase}/home',
   },
   showPasswordOnSeparateScreen: true,
 };

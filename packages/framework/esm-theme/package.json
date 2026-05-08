@@ -1,5 +1,5 @@
 {
-  "name": "@eigen/esm-theme",
+  "name": "@egen/esm-theme",
   "version": "1.0.0",
   "license": "MPL-2.0",
   "description": "EIGEN Theme System — token-based theming, dark mode, glass morphism",

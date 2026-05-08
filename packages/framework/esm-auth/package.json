@@ -22,7 +22,7 @@
   },
   "keywords": ["eigen", "auth", "iam", "keycloak", "jwt", "permissions"],
   "peerDependencies": {
-    "@eigen/esm-state": "9.x",
+    "@egen/esm-state": "9.x",
     "react": "18.x",
     "react-dom": "18.x",
     "zustand": "5.x"

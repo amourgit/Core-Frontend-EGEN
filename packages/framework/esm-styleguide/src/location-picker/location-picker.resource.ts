@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import useSwrImmutable from 'swr/immutable';
 import useSwrInfinite from 'swr/infinite';
-import { type FetchResponse, fhirBaseUrl, openmrsFetch } from '@egen/esm-api';
+import { type FetchResponse, fhirBaseUrl, eigenFetch } from '@egen/esm-api';
 import { type FHIRLocationResource } from '@egen/esm-emr-api';
 import { useDebounce } from '@egen/esm-react-utils';
 
@@ -41,7 +41,7 @@ export interface LoginLocationData {
 export function useLocationByUuid(locationUuid?: string) {
   const url = locationUuid ? `/ws/fhir2/R4/Location?_id=${locationUuid}` : null;
 
-  const { data, error, isLoading } = useSwrImmutable<FetchResponse<LocationResponse>>(url, openmrsFetch, {
+  const { data, error, isLoading } = useSwrImmutable<FetchResponse<LocationResponse>>(url, eigenFetch, {
     shouldRetryOnError(err) {
       if (err?.response?.status) {
         return err.response.status >= 500;
@@ -120,7 +120,7 @@ export function useLocations(locationTag?: string, count: number = 0, searchQuer
 
   const { data, isLoading, isValidating, setSize, error } = useSwrInfinite<FetchResponse<LocationResponse>, Error>(
     constructUrl,
-    openmrsFetch,
+    eigenFetch,
   );
 
   const memoizedLocations = useMemo(() => {

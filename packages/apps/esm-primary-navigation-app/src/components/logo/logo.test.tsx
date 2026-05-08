@@ -18,7 +18,7 @@ vi.mock('@egen/esm-framework', async (importOriginal) => {
 const mockUseConfig = vi.mocked(useConfig);
 
 describe('Logo', () => {
-  it('should display the OpenMRS logo by default', () => {
+  it('should display the EIGEN logo by default', () => {
     const mockConfig = { logo: { src: null, alt: null, name: null } };
     mockUseConfig.mockReturnValue(mockConfig as ConfigSchema);
 

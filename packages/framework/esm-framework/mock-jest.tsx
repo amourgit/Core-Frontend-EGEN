@@ -22,11 +22,11 @@ export { parseDate, formatDate, formatDatetime, formatTime, isOmrsDateToday } fr
 /* esm-globals */
 
 export function setupPaths(config: any) {
-  window.openmrsBase = config.apiUrl;
+  window.eigenBase = config.apiUrl;
   window.spaBase = config.spaPath;
   window.spaEnv = config.env || 'production';
   window.spaVersion = process.env.BUILD_VERSION ?? 'local';
-  window.getOpenmrsSpaBase = () => `${window.spaBase}/`;
+  window.getEigenSpaBase = () => `${window.spaBase}/`;
 }
 
 /* esm-dynamic-loading */
@@ -47,7 +47,7 @@ export const subscribeToFeatureFlag = jest.fn((name: string, callback) => callba
 /* esm-navigation */
 export { interpolateUrl, interpolateString } from '@egen/esm-navigation';
 export const navigate = jest.fn();
-export const getHistory = jest.fn(() => ['https://o3.openmrs.org/home']);
+export const getHistory = jest.fn(() => ['https://iam-central.ga/home']);
 export const clearHistory = jest.fn();
 export const goBackInHistory = jest.fn();
 
@@ -110,7 +110,7 @@ export const navigateAndLaunchWorkspace = jest.fn();
 export const useWorkspaces = jest.fn();
 export const useWorkspace2Context = jest.fn();
 
-export const OpenmrsDatePicker = jest.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
+export const EigenDatePicker = jest.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
   <>
     <label htmlFor={id}>{labelText}</label>
     <input
@@ -123,7 +123,7 @@ export const OpenmrsDatePicker = jest.fn(({ id, labelText, value, onChange, isIn
   </>
 ));
 
-export const OpenmrsDateRangePicker = jest.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
+export const EigenDateRangePicker = jest.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
   const [inputValue, setInputValue] = useState(() => {
     const [start, end] = value;
     const formattedStart = start ? dayjs(start).format('DD/MM/YYYY') : 'dd/mm/yyyy';

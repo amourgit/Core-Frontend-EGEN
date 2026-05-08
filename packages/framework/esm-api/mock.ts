@@ -4,8 +4,8 @@ import { createGlobalStore } from '@egen/esm-state/mock';
 import { type SessionStore } from './src/current-user';
 
 export const setSessionLocation = vi.fn(() => Promise.resolve());
-export const openmrsFetch = vi.fn((_url?: string) => new Promise(() => {}));
-export const openmrsObservableFetch = vi.fn(() => of({ data: { entry: [] } }));
+export const eigenFetch = vi.fn((_url?: string) => new Promise(() => {}));
+export const eigenObservableFetch = vi.fn(() => of({ data: { entry: [] } }));
 export function getCurrentUser() {
   return of({ authenticated: false });
 }

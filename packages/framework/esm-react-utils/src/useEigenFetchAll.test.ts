@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
-import { useOpenmrsFetchAll } from './useOpenmrsFetchAll';
-import { type OpenMRSPaginatedResponse } from './useOpenmrsPagination';
+import { useEigenFetchAll } from './useEigenFetchAll';
+import { type EigenPaginatedResponse } from './useEigenPagination';
 
 // returns an sequentially increasing int array of specified length starting at the specified start integer.
 export function getIntArray(start: number, length: number) {
@@ -11,7 +11,7 @@ export function getIntArray(start: number, length: number) {
 // This function mocks the return value of a server-side paginated API.
 // It returns a slice (page) of the array of integers [0...totalCount-1],
 // with the page defined  by the limit and startIndex in the url params.
-export async function getTestData(url: string, totalCount: number): Promise<OpenMRSPaginatedResponse<number>> {
+export async function getTestData(url: string, totalCount: number): Promise<EigenPaginatedResponse<number>> {
   const urlUrl = new URL(url, window.location.toString());
   const limit = Number.parseInt(urlUrl.searchParams.get('limit') ?? '50');
   const startIndex = Number.parseInt(urlUrl.searchParams.get('startIndex') ?? '0');
@@ -23,14 +23,14 @@ export async function getTestData(url: string, totalCount: number): Promise<Open
     urlUrl.searchParams.set('startIndex', startIndex + limit + '');
   }
   const links = hasNext ? [{ rel: 'next', uri: urlUrl.toString() }] : [];
-  return { results, links, totalCount } as OpenMRSPaginatedResponse<number>;
+  return { results, links, totalCount } as EigenPaginatedResponse<number>;
 }
 
-describe('useOpenmrsFetchAll', () => {
+describe('useEigenFetchAll', () => {
   it('should render all rows on if number of rows < pageSize', async () => {
     const expectedRowCount = 17;
     const { result } = renderHook(() =>
-      useOpenmrsFetchAll(`http://localhost/1`, {
+      useEigenFetchAll(`http://localhost/1`, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );
@@ -42,7 +42,7 @@ describe('useOpenmrsFetchAll', () => {
   it('should render all rows on if number of rows > pageSize with no partialData', async () => {
     const expectedRowCount = 150;
     const { result } = renderHook(() =>
-      useOpenmrsFetchAll(`http://localhost/2`, {
+      useEigenFetchAll(`http://localhost/2`, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );

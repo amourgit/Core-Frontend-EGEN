@@ -1,8 +1,8 @@
 // ============================================================
-// @eigen/esm-auth — Authentication & IAM Package
+// @egen/esm-auth — Authentication & IAM Package
 //
 // Usage dans un micro-frontend :
-//   import { useAuthContext, tokenManager, usePermissions } from '@eigen/esm-auth';
+//   import { useAuthContext, tokenManager, usePermissions } from '@egen/esm-auth';
 // ============================================================
 
 // ── Provider & Context ────────────────────────────────────────

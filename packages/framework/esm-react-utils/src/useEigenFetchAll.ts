@@ -4,12 +4,12 @@ import {
   useServerInfinite,
   type UseServerInfiniteOptions,
   type UseServerInfiniteReturnObject,
-} from './useOpenmrsInfinite';
+} from './useEigenInfinite';
 import {
-  type OpenMRSPaginatedResponse,
-  openmrsServerPaginationHandlers,
+  type EigenPaginatedResponse,
+  eigenServerPaginationHandlers,
   type ServerPaginationHandlers,
-} from './useOpenmrsPagination';
+} from './useEigenPagination';
 
 export interface UseServerFetchAllOptions<R> extends UseServerInfiniteOptions<R> {
   /**
@@ -22,26 +22,26 @@ export interface UseServerFetchAllOptions<R> extends UseServerInfiniteOptions<R>
 }
 
 /**
- * Most OpenMRS REST endpoints that return a list of objects, such as getAll or search, are server-side paginated.
- * This hook handles fetching results from *all* pages of a paginated OpenMRS REST endpoint, making multiple requests
+ * Most EIGEN REST endpoints that return a list of objects, such as getAll or search, are server-side paginated.
+ * This hook handles fetching results from *all* pages of a paginated EIGEN REST endpoint, making multiple requests
  * as needed.
  *
- * @see `useOpenmrsPagination`
- * @see `useOpenmrsInfinite`
+ * @see `useEigenPagination`
+ * @see `useEigenInfinite`
  * @see `useFhirFetchAll`
  *
- * @param url The URL of the paginated OpenMRS REST endpoint. Note that the `limit` GET param can be set to specify
+ * @param url The URL of the paginated EIGEN REST endpoint. Note that the `limit` GET param can be set to specify
  *            the page size; if not set, the page size defaults to the `webservices.rest.maxResultsDefault` value defined
  *            server-side.
  *            Similar to useSWRInfinite, this param can be null to disable fetching.
  * @param options The options object
- * @returns a UseOpenmrsInfiniteReturnObject object
+ * @returns a UseEigenInfiniteReturnObject object
  */
-export function useOpenmrsFetchAll<T>(
+export function useEigenFetchAll<T>(
   url: string | URL,
-  options: UseServerFetchAllOptions<OpenMRSPaginatedResponse<T>> = {},
-): UseServerInfiniteReturnObject<T, OpenMRSPaginatedResponse<T>> {
-  return useServerFetchAll<T, OpenMRSPaginatedResponse<T>>(url, openmrsServerPaginationHandlers, options);
+  options: UseServerFetchAllOptions<EigenPaginatedResponse<T>> = {},
+): UseServerInfiniteReturnObject<T, EigenPaginatedResponse<T>> {
+  return useServerFetchAll<T, EigenPaginatedResponse<T>>(url, eigenServerPaginationHandlers, options);
 }
 
 export function useServerFetchAll<T, R>(

@@ -1,5 +1,5 @@
 /** @module @category API */
-import { openmrsFetch, restBaseUrl, type FetchResponse } from '@egen/esm-api';
+import { eigenFetch, restBaseUrl, type FetchResponse } from '@egen/esm-api';
 import { getGlobalStore } from '@egen/esm-state';
 import { BehaviorSubject } from 'rxjs';
 import { type NewVisitPayload, type UpdateVisitPayload, type Visit } from './types';
@@ -101,19 +101,19 @@ getVisitStore().subscribe((state) => {
 });
 
 function setVisitSessionStorage(value: VisitStoreState) {
-  sessionStorage.setItem('openmrs:visitStoreState', JSON.stringify(value));
+  sessionStorage.setItem('eigen:visitStoreState', JSON.stringify(value));
 }
 
 function getVisitSessionStorage(): VisitStoreState | null {
   try {
-    return JSON.parse(sessionStorage.getItem('openmrs:visitStoreState') || 'null');
+    return JSON.parse(sessionStorage.getItem('eigen:visitStoreState') || 'null');
   } catch (e) {
     return null;
   }
 }
 
 /**
- * Creates a new visit by sending a POST request to the OpenMRS REST API.
+ * Creates a new visit by sending a POST request to the EIGEN REST API.
  *
  * @param payload The visit data to create, including patient UUID, visit type,
  *   start datetime, and other visit attributes.
@@ -132,7 +132,7 @@ function getVisitSessionStorage(): VisitStoreState | null {
  * ```
  */
 export function saveVisit(payload: NewVisitPayload, abortController: AbortController): Promise<FetchResponse<Visit>> {
-  return openmrsFetch(`${restBaseUrl}/visit`, {
+  return eigenFetch(`${restBaseUrl}/visit`, {
     signal: abortController.signal,
     method: 'POST',
     headers: {
@@ -143,7 +143,7 @@ export function saveVisit(payload: NewVisitPayload, abortController: AbortContro
 }
 
 /**
- * Updates an existing visit by sending a POST request to the OpenMRS REST API.
+ * Updates an existing visit by sending a POST request to the EIGEN REST API.
  *
  * @param uuid The UUID of the visit to update.
  * @param payload The visit data to update, such as stop datetime or attributes.
@@ -164,7 +164,7 @@ export function updateVisit(
   payload: UpdateVisitPayload,
   abortController: AbortController,
 ): Promise<FetchResponse<Visit>> {
-  return openmrsFetch(`${restBaseUrl}/visit/${uuid}`, {
+  return eigenFetch(`${restBaseUrl}/visit/${uuid}`, {
     signal: abortController.signal,
     method: 'POST',
     headers: {
@@ -184,7 +184,7 @@ export function getVisitsForPatient(
 ): Promise<FetchResponse<{ results: Array<Visit> }>> {
   const custom = v ?? defaultVisitCustomRepresentation;
 
-  return openmrsFetch(`${restBaseUrl}/visit?patient=${patientUuid}&v=${custom}`, {
+  return eigenFetch(`${restBaseUrl}/visit?patient=${patientUuid}&v=${custom}`, {
     signal: abortController.signal,
     method: 'GET',
     headers: {

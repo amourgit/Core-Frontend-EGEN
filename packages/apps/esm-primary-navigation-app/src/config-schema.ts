@@ -6,7 +6,7 @@ export const configSchema = {
       _type: Type.String,
       _default: '',
       _description:
-        'The path or URL to the logo image. If set to an empty string, the default OpenMRS SVG sprite will be used.',
+        'The path or URL to the logo image. If set to an empty string, the default EIGEN SVG sprite will be used.',
       _validators: [validators.isUrl],
     },
     alt: {
@@ -21,7 +21,7 @@ export const configSchema = {
     },
     link: {
       _type: Type.String,
-      _default: '${openmrsSpaBase}/home',
+      _default: '${eigenSpaBase}/home',
       _description: 'The link to redirect to when the logo is clicked',
       _validators: [validators.isUrl],
     },

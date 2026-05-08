@@ -23,11 +23,11 @@ export { parseDate, formatDate, formatDatetime, formatTime, isOmrsDateToday } fr
 /* esm-globals */
 
 export function setupPaths(config: any) {
-  window.openmrsBase = config.apiUrl;
+  window.eigenBase = config.apiUrl;
   window.spaBase = config.spaPath;
   window.spaEnv = config.env || 'production';
   window.spaVersion = process.env.BUILD_VERSION ?? 'local';
-  window.getOpenmrsSpaBase = () => `${window.spaBase}/`;
+  window.getEigenSpaBase = () => `${window.spaBase}/`;
 }
 
 /* esm-dynamic-loading */
@@ -48,7 +48,7 @@ export const subscribeToFeatureFlag = vi.fn((name: string, callback) => callback
 /* esm-navigation */
 export { interpolateUrl, interpolateString } from '@egen/esm-navigation';
 export const navigate = vi.fn();
-export const getHistory = vi.fn(() => ['https://o3.openmrs.org/home']);
+export const getHistory = vi.fn(() => ['https://iam-central.ga/home']);
 export const clearHistory = vi.fn();
 export const goBackInHistory = vi.fn();
 
@@ -111,7 +111,7 @@ export const navigateAndLaunchWorkspace = vi.fn();
 export const useWorkspaces = vi.fn();
 export const useWorkspace2Context = vi.fn();
 
-export const OpenmrsDatePicker = vi.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
+export const EigenDatePicker = vi.fn(({ id, labelText, value, onChange, isInvalid, invalidText }) => (
   <>
     <label htmlFor={id}>{labelText}</label>
     <input
@@ -124,7 +124,7 @@ export const OpenmrsDatePicker = vi.fn(({ id, labelText, value, onChange, isInva
   </>
 ));
 
-export const OpenmrsDateRangePicker = vi.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
+export const EigenDateRangePicker = vi.fn(({ id, labelText, value = [], onChange, isInvalid, invalidText }) => {
   const [inputValue, setInputValue] = useState(() => {
     const [start, end] = value;
     const formattedStart = start ? dayjs(start).format('DD/MM/YYYY') : 'dd/mm/yyyy';

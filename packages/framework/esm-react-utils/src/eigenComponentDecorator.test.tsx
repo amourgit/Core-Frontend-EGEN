@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { openmrsComponentDecorator } from './openmrsComponentDecorator';
+import { eigenComponentDecorator } from './eigenComponentDecorator';
 import { ComponentContext } from './ComponentContext';
 
-describe.skip('openmrs-component-decorator', () => {
+describe.skip('eigen-component-decorator', () => {
   const opts = {
     featureName: 'Test',
     throwErrorsToConsole: false,
@@ -12,7 +12,7 @@ describe.skip('openmrs-component-decorator', () => {
   };
 
   it('renders a component', async () => {
-    const DecoratedComp = openmrsComponentDecorator(opts)(CompThatWorks);
+    const DecoratedComp = eigenComponentDecorator(opts)(CompThatWorks);
     render(<DecoratedComp />);
 
     expect(await screen.findByText('The button')).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe.skip('openmrs-component-decorator', () => {
 
   it('catches any errors in the component tree and renders a ui explaining something bad happened', () => {
     const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
-    const DecoratedComp = openmrsComponentDecorator(opts)(CompThatThrows);
+    const DecoratedComp = eigenComponentDecorator(opts)(CompThatThrows);
     render(<DecoratedComp />);
     // TO-DO assert the UX for broken react app is showing
     expect(consoleError).toHaveBeenNthCalledWith(
@@ -33,13 +33,13 @@ describe.skip('openmrs-component-decorator', () => {
   });
 
   it('provides ComponentContext', () => {
-    const DecoratedComp = openmrsComponentDecorator(opts)(CompWithConfig);
+    const DecoratedComp = eigenComponentDecorator(opts)(CompWithConfig);
     render(<DecoratedComp />);
   });
 
   it('rendering a unsafe component in strict mode should log error in console', () => {
     const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
-    const UnsafeDecoratedCompnent = openmrsComponentDecorator(opts)(UnsafeComponent);
+    const UnsafeDecoratedCompnent = eigenComponentDecorator(opts)(UnsafeComponent);
     render(<UnsafeDecoratedCompnent />);
     expect(consoleError.mock.calls[0][0]).toContain('Warning: Using UNSAFE_componentWillMount');
     consoleError.mockRestore();
@@ -48,7 +48,7 @@ describe.skip('openmrs-component-decorator', () => {
   it('rendering an unsafe component without strict mode should not log an error in console', () => {
     const spy = vi.spyOn(console, 'error');
     const unsafeComponentOptions = Object.assign(opts, { strictMode: false });
-    const UnsafeDecoratedCompnent = openmrsComponentDecorator(unsafeComponentOptions)(UnsafeComponent);
+    const UnsafeDecoratedCompnent = eigenComponentDecorator(unsafeComponentOptions)(UnsafeComponent);
     render(<UnsafeDecoratedCompnent />);
     expect(spy).not.toHaveBeenCalled();
   });

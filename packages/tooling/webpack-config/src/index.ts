@@ -1,19 +1,19 @@
 /**
- * This is the base webpack config for all OpenMRS 3.x modules.
+ * This is the base webpack config for all EIGEN modules.
  *
  * ## Usage
  *
  * You can use it as simply as
  *
  * ```ts
- * module.exports = require('openmrs/default-webpack-config');
+ * module.exports = require('igen/default-webpack-config');
  * ```
  *
  * or you can customize the configuration using merges and overrides
  * like
  *
  * ```ts
- * const config = require('openmrs/default-webpack-config');
+ * const config = require('igen/default-webpack-config');
  * config.cssRuleConfig.rules = [myCustomRule];
  * module.exports = config;
  * ```
@@ -27,7 +27,7 @@
  * After you `yarn build --watch`, do something like
  * `watch "cp -R dist /path/to/packages/esm-patient-chart-app/webpack"`
  * and then change the webpack line from
- * `module.exports = require('openmrs/default-webpack-config');`
+ * `module.exports = require('igen/default-webpack-config');`
  * to
  * `module.exports = require('./webpack');`
  *
@@ -54,7 +54,7 @@ import {
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { StatsWriterPlugin } from 'webpack-stats-plugin';
 
-type OpenmrsWebpackConfig = Omit<Partial<WebpackConfiguration>, 'module' | 'output'> & {
+type EigenWebpackConfig = Omit<Partial<WebpackConfiguration>, 'module' | 'output'> & {
   module: ModuleOptions;
   output: Partial<WebpackConfiguration['output']>;
 };
@@ -101,14 +101,14 @@ function fileExistsSync(name: string) {
  * Array values will be concatenated with the existing array.
  * Make sure to modify this object and not reassign it.
  */
-export const overrides: Partial<OpenmrsWebpackConfig> = {};
+export const overrides: Partial<EigenWebpackConfig> = {};
 
 /**
  * The keys of this object will override the top-level keys
  * of the webpack config.
  * Make sure to modify this object and not reassign it.
  */
-export const additionalConfig: Partial<OpenmrsWebpackConfig> = {};
+export const additionalConfig: Partial<EigenWebpackConfig> = {};
 
 /**
  * This object will be merged into the webpack rule governing
@@ -168,7 +168,7 @@ export default (env: Record<string, string>, argv: Record<string, string> = {}) 
 
   if (!hasRoutesDefined) {
     console.error(
-      'This app does not define a routes.json. This file is required for this app to be used by the OpenMRS 3 App Shell.',
+      'This app does not define a routes.json. This file is required for this app to be used by the EIGEN App Shell.',
     );
     // key-smash error code
     // so this (hopefully) doesn't interfere with Webpack-specific exit codes
@@ -184,7 +184,7 @@ export default (env: Record<string, string>, argv: Record<string, string> = {}) 
     },
   };
 
-  const baseConfig: OpenmrsWebpackConfig = {
+  const baseConfig: EigenWebpackConfig = {
     // The only `entry` in the application is the app shell. Everything else is
     // a Webpack Module Federation "remote." This ensures that there is always
     // only one container context--i.e., if we had an entry point per module,

@@ -1,9 +1,9 @@
 // ============================================================
-// @eigen/esm-theme — Theme System Package
+// @egen/esm-theme — Theme System Package
 //
 // Usage :
-//   import { ThemeProvider, useTheme, themeUtils } from '@eigen/esm-theme';
-//   import '@eigen/esm-theme/globals.css';
+//   import { ThemeProvider, useTheme, themeUtils } from '@egen/esm-theme';
+//   import '@egen/esm-theme/globals.css';
 // ============================================================
 
 // Types

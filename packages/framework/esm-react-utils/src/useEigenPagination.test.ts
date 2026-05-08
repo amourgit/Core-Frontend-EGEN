@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
-import { useOpenmrsPagination, type OpenMRSPaginatedResponse } from './useOpenmrsPagination';
+import { useEigenPagination, type EigenPaginatedResponse } from './useEigenPagination';
 
 // returns an sequentially increasing int array of specified length starting at the specified start integer.
 export function getIntArray(start: number, length: number) {
@@ -10,7 +10,7 @@ export function getIntArray(start: number, length: number) {
 // This function mocks the return value of a server-side paginated API.
 // It returns a slice (page) of the array of integers [0...totalCount-1],
 // with the page defined  by the limit and startIndex in the url params.
-export async function getTestData(url: string, totalCount: number): Promise<OpenMRSPaginatedResponse<number>> {
+export async function getTestData(url: string, totalCount: number): Promise<EigenPaginatedResponse<number>> {
   const urlUrl = new URL(url, window.location.toString());
   const limit = Number.parseInt(urlUrl.searchParams.get('limit') ?? '50');
   const startIndex = Number.parseInt(urlUrl.searchParams.get('startIndex') ?? '0');
@@ -22,13 +22,13 @@ export async function getTestData(url: string, totalCount: number): Promise<Open
     urlUrl.searchParams.set('startIndex', startIndex + limit + '');
   }
   const links = hasNext ? [{ rel: 'next', uri: urlUrl.toString() }] : [];
-  return { results, links, totalCount } as OpenMRSPaginatedResponse<number>;
+  return { results, links, totalCount } as EigenPaginatedResponse<number>;
 }
 
-describe('useOpenmrsPagination', () => {
+describe('useEigenPagination', () => {
   it('should not fetch anything if url is null', async () => {
     const { result } = renderHook(() =>
-      useOpenmrsPagination(null as any, 50, {
+      useEigenPagination(null as any, 50, {
         fetcher: (url) => getTestData(url, 100).then((data) => ({ data }) as any),
       }),
     );
@@ -40,7 +40,7 @@ describe('useOpenmrsPagination', () => {
     const pageSize = 20;
     const expectedRowCount = 17;
     const { result } = renderHook(() =>
-      useOpenmrsPagination('http://localhost/1', pageSize, {
+      useEigenPagination('http://localhost/1', pageSize, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );
@@ -57,7 +57,7 @@ describe('useOpenmrsPagination', () => {
     const pageSize = 20;
     const expectedRowCount = 40;
     const { result } = renderHook(() =>
-      useOpenmrsPagination('http://localhost/2', pageSize, {
+      useEigenPagination('http://localhost/2', pageSize, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );
@@ -94,7 +94,7 @@ describe('useOpenmrsPagination', () => {
     const expectedRowCount = 1337;
     const expectedTotalPages = Math.ceil(expectedRowCount / pageSize);
     const { result } = renderHook(() =>
-      useOpenmrsPagination('http://localhost/3', pageSize, {
+      useEigenPagination('http://localhost/3', pageSize, {
         fetcher: (url) => getTestData(url, expectedRowCount).then((data) => ({ data }) as any),
       }),
     );

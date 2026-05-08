@@ -6,25 +6,25 @@ import { clearHistory, navigate } from '@egen/esm-navigation';
 import type { FetchResponse } from './types';
 import { defaultRedirectAuthFailureUrl, type EsmApiConfigObject } from './config-schema';
 
-/** The base URL for the OpenMRS REST API (e.g., '/ws/rest/v1'). */
+/** The base URL for the EIGEN REST API (e.g., '/ws/rest/v1'). */
 export const restBaseUrl = '/ws/rest/v1';
-/** The base URL for the OpenMRS FHIR R4 API (e.g., '/ws/fhir2/R4'). */
+/** The base URL for the EIGEN FHIR R4 API (e.g., '/ws/fhir2/R4'). */
 export const fhirBaseUrl = '/ws/fhir2/R4';
 /** The endpoint for session management operations. */
 export const sessionEndpoint = `${restBaseUrl}/session`;
 
 /**
- * Append `path` to the OpenMRS SPA base.
+ * Append `path` to the EIGEN SPA base.
  *
- * @param path The path to append to the OpenMRS base URL.
- * @returns The full URL with the OpenMRS base prepended. If the path is already
+ * @param path The path to append to the EIGEN base URL.
+ * @returns The full URL with the EIGEN base prepended. If the path is already
  *   an absolute URL (starting with 'http'), it is returned unchanged.
  *
  * @example
  *
  * ```ts
  * makeUrl('/foo/bar');
- * // => '/openmrs/foo/bar'
+ * // => '/eigen/foo/bar'
  * ```
  */
 export function makeUrl(path: string) {
@@ -35,32 +35,32 @@ export function makeUrl(path: string) {
     path = '/' + path;
   }
 
-  return window.openmrsBase + path;
+  return window.eigenBase + path;
 }
 
 /**
- * The openmrsFetch function is a wrapper around the
+ * The eigenFetch function is a wrapper around the
  * [browser's built-in fetch function](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch),
- * with extra handling for OpenMRS-specific API behaviors, such as
+ * with extra handling for EIGEN-specific API behaviors, such as
  * request headers, authentication, authorization, and the API urls.
  *
  * @param path A string url to make the request to. Note that the
- *   openmrs base url (by default `/openmrs`) will be automatically
+ *   eigen base url (by default `/eigen`) will be automatically
  *   prepended to the URL, so there is no need to include it.
  * @param fetchInit A [fetch init object](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Syntax).
  *   Note that the `body` property does not need to be `JSON.stringify()`ed
- *   because openmrsFetch will do that for you.
+ *   because eigenFetch will do that for you.
  * @returns A [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
  *   that resolves with a [Response object](https://developer.mozilla.org/en-US/docs/Web/API/Response).
- *   Note that the openmrs version of the Response object has already
+ *   Note that the eigen version of the Response object has already
  *   downloaded the HTTP response body as json, and has an additional
  *   `data` property with the HTTP response json as a javascript object.
  *
  * @example
  * ```js
- * import { openmrsFetch } from '@egen/esm-api'
+ * import { eigenFetch } from '@egen/esm-api'
  * const abortController = new AbortController();
- * openmrsFetch(`${restBaseUrl}/session', {signal: abortController.signal})
+ * eigenFetch(`${restBaseUrl}/session', {signal: abortController.signal})
  *   .then(response => {
  *     console.log(response.data.authenticated)
  *   })
@@ -68,7 +68,7 @@ export function makeUrl(path: string) {
  *     console.error(err.status);
  *   })
  * abortController.abort();
- * openmrsFetch(`${restBaseUrl}/session', {
+ * eigenFetch(`${restBaseUrl}/session', {
  *   method: 'POST',
  *   body: {
  *     username: 'hi',
@@ -87,22 +87,22 @@ export function makeUrl(path: string) {
  *
  * @category API
  */
-export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {}): Promise<FetchResponse<T>> {
+export function eigenFetch<T = any>(path: string, fetchInit: FetchConfig = {}): Promise<FetchResponse<T>> {
   if (typeof path !== 'string') {
-    throw Error("The first argument to @egen/api's openmrsFetch function must be a url string");
+    throw Error("The first argument to @egen/api's eigenFetch function must be a url string");
   }
 
   if (typeof fetchInit !== 'object') {
-    throw Error("The second argument to @egen/api's openmrsFetch function must be a plain object.");
+    throw Error("The second argument to @egen/api's eigenFetch function must be a plain object.");
   }
 
-  if (!window.openmrsBase) {
+  if (!window.eigenBase) {
     throw Error(
-      "@egen/api is running in a browser that doesn't have window.openmrsBase, which is provided by openmrs-module-spa's HTML file.",
+      "@egen/api is running in a browser that doesn't have window.eigenBase, which is provided by eigen-module-spa's HTML file.",
     );
   }
 
-  // Prefix the url with the openmrs spa base
+  // Prefix the url with the eigen spa base
   let url: string = makeUrl(path);
 
   // We're going to need some headers
@@ -118,7 +118,7 @@ export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {})
   }
 
   /* Add a request header to tell the server to respond with json,
-   * since frontend code almost always wants json and the OpenMRS
+   * since frontend code almost always wants json and the EIGEN
    * server won't give you json unless you explicitly ask for it.
    * If a different Accept header is preferred, pass it into the fetchInit.
    * If no Accept header is desired, pass it in explicitly as null.
@@ -131,7 +131,7 @@ export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {})
     delete fetchInit.headers.Accept;
   }
 
-  /* This tells the OpenMRS REST API not to return a WWW-Authenticate
+  /* This tells the EIGEN REST API not to return a WWW-Authenticate
    * header. Returning that header is useful when using the API, but
    * not from a UI.
    */
@@ -233,13 +233,13 @@ export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {})
               /* Make the fetch promise go into "rejected" status, with the best
                * possible stacktrace and error message.
                */
-              throw new OpenmrsFetchError(url, response, responseBody, requestStacktrace);
+              throw new EigenFetchError(url, response, responseBody, requestStacktrace);
             },
             (err) => {
               /* We weren't able to download a response body for this error.
                * Time to just give the best possible stacktrace and error message.
                */
-              throw new OpenmrsFetchError(url, response, null, requestStacktrace);
+              throw new EigenFetchError(url, response, null, requestStacktrace);
             },
           );
       }
@@ -248,21 +248,21 @@ export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {})
 }
 
 /**
- * The openmrsObservableFetch function is a wrapper around openmrsFetch
+ * The eigenObservableFetch function is a wrapper around eigenFetch
  * that returns an [Observable](https://rxjs-dev.firebaseapp.com/guide/observable)
  * instead of a promise. It exists in case using an Observable is
  * preferred or more convenient than a promise.
  *
- * @param url See [[openmrsFetch]]
- * @param fetchInit See [[openmrsFetch]]
+ * @param url See [[eigenFetch]]
+ * @param fetchInit See [[eigenFetch]]
  * @returns An Observable that produces exactly one Response object.
- * The response object is exactly the same as for [[openmrsFetch]].
+ * The response object is exactly the same as for [[eigenFetch]].
  *
  * @example
  *
  * ```js
- * import { openmrsObservableFetch } from '@egen/esm-api'
- * const subscription = openmrsObservableFetch(`${restBaseUrl}/session').subscribe(
+ * import { eigenObservableFetch } from '@egen/esm-api'
+ * const subscription = eigenObservableFetch(`${restBaseUrl}/session').subscribe(
  *   response => console.log(response.data),
  *   err => {throw err},
  *   () => console.log('finished')
@@ -276,9 +276,9 @@ export function openmrsFetch<T = any>(path: string, fetchInit: FetchConfig = {})
  *
  * @category API
  */
-export function openmrsObservableFetch<T>(url: string, fetchInit: FetchConfig = {}) {
+export function eigenObservableFetch<T>(url: string, fetchInit: FetchConfig = {}) {
   if (typeof fetchInit !== 'object') {
-    throw Error('The second argument to openmrsObservableFetch must be either omitted or an object');
+    throw Error('The second argument to eigenObservableFetch must be either omitted or an object');
   }
 
   const abortController = new AbortController();
@@ -288,7 +288,7 @@ export function openmrsObservableFetch<T>(url: string, fetchInit: FetchConfig = 
   return new Observable<FetchResponse<T>>((observer) => {
     let hasResponse = false;
 
-    openmrsFetch(url, fetchInit).then(
+    eigenFetch(url, fetchInit).then(
       (response) => {
         hasResponse = true;
         observer.next(response);
@@ -308,7 +308,7 @@ export function openmrsObservableFetch<T>(url: string, fetchInit: FetchConfig = 
   });
 }
 
-export class OpenmrsFetchError extends Error implements FetchError {
+export class EigenFetchError extends Error implements FetchError {
   constructor(url: string, response: Response, responseBody: ResponseBody | null, requestStacktrace: Error) {
     super();
     this.message = `Server responded with ${response.status} (${response.statusText}) for url ${url}. Check err.responseBody or network tab in dev tools for more info`;

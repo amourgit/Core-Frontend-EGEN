@@ -1,4 +1,4 @@
-import { fireOpenmrsEvent, type OpenmrsEventTypes, subscribeOpenmrsEvent } from '@egen/esm-framework/src/internal';
+import { fireEigenEvent, type EigenEventTypes, subscribeEigenEvent } from '@egen/esm-framework/src/internal';
 
 interface BeforeRoutingEventPayload {
   appsByNewStatus: {
@@ -28,7 +28,7 @@ function isBeforeRoutingEvent(event: Event): event is Event & { detail: BeforeRo
 
 let isEnabled = false;
 
-subscribeOpenmrsEvent('started', () => (isEnabled = true));
+subscribeEigenEvent('started', () => (isEnabled = true));
 
 // This event listener translates the single-spa:before-routing-event into a custom event
 // for the page about to be rendered
@@ -52,14 +52,14 @@ window.addEventListener('single-spa:before-routing-event', (event: Event) => {
             )
           : undefined;
 
-      const payload: OpenmrsEventTypes['before-page-changed'] = {
+      const payload: EigenEventTypes['before-page-changed'] = {
         cancelNavigation: event.detail.cancelNavigation,
         newPage,
         oldUrl: event.detail.oldUrl,
         newUrl: event.detail.newUrl,
       };
 
-      fireOpenmrsEvent('before-page-changed', payload);
+      fireEigenEvent('before-page-changed', payload);
     }
   }
 });

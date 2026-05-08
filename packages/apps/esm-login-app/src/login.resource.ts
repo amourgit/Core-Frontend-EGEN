@@ -4,7 +4,7 @@ import useSwrInfinite, { type SWRInfiniteResponse } from 'swr/infinite';
 import useSwrImmutable from 'swr/immutable';
 import {
   fhirBaseUrl,
-  openmrsFetch,
+  eigenFetch,
   refetchCurrentUser,
   restBaseUrl,
   type FetchResponse,
@@ -82,7 +82,7 @@ export function useLoginLocations(
   const { data, isLoading, isValidating, setSize, error, mutate } = useSwrInfinite<
     FetchResponse<LocationResponse>,
     Error
-  >(constructUrl, openmrsFetch);
+  >(constructUrl, eigenFetch);
 
   useEffect(() => {
     if (error) {
@@ -111,7 +111,7 @@ export async function performLogin(username: string, password: string): Promise<
   const token = window.btoa(`${username}:${password}`);
   const url = `${restBaseUrl}/session`;
 
-  return openmrsFetch(url, {
+  return eigenFetch(url, {
     headers: {
       Authorization: `Basic ${token}`,
     },
@@ -123,7 +123,7 @@ export async function performLogin(username: string, password: string): Promise<
 }
 export function useValidateLocationUuid(userPreferredLocationUuid: string) {
   const url = userPreferredLocationUuid ? `${fhirBaseUrl}/Location?_id=${userPreferredLocationUuid}` : null;
-  const { data, error, isLoading } = useSwrImmutable<FetchResponse<LocationResponse>>(url, openmrsFetch, {
+  const { data, error, isLoading } = useSwrImmutable<FetchResponse<LocationResponse>>(url, eigenFetch, {
     shouldRetryOnError(err) {
       if (err?.response?.status) {
         return err.response.status >= 500;

@@ -1,22 +1,22 @@
 import { vi, describe, expect, it, beforeEach } from 'vitest';
-import { openmrsFetch, isVersionSatisfied } from '@egen/esm-framework';
+import { eigenFetch, isVersionSatisfied } from '@egen/esm-framework';
 import {
   checkModules,
   hasInvalidDependencies,
   clearCache,
   type ResolvedBackendModuleType,
-} from './openmrs-backend-dependencies';
+} from './eigen-backend-dependencies';
 
 vi.mock('@egen/esm-framework', () => ({
-  openmrsFetch: vi.fn(),
+  eigenFetch: vi.fn(),
   isVersionSatisfied: vi.fn(),
   restBaseUrl: '/ws/rest/v1',
 }));
 
-const mockOpenmrsFetch = vi.mocked(openmrsFetch);
+const mockEigenFetch = vi.mocked(eigenFetch);
 const mockIsVersionSatisfied = vi.mocked(isVersionSatisfied);
 
-describe('openmrs-backend-dependencies', () => {
+describe('eigen-backend-dependencies', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     clearCache();
@@ -25,7 +25,7 @@ describe('openmrs-backend-dependencies', () => {
 
   describe('checkModules', () => {
     it('should return empty array when no modules have backend dependencies', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [],
           links: [],
@@ -43,7 +43,7 @@ describe('openmrs-backend-dependencies', () => {
     });
 
     it('should identify missing backend modules', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [{ uuid: 'webservices.rest', version: '2.24.0' }],
           links: [],
@@ -66,7 +66,7 @@ describe('openmrs-backend-dependencies', () => {
     });
 
     it('should identify version mismatches', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [{ uuid: 'webservices.rest', version: '2.24.0' }],
           links: [],
@@ -88,7 +88,7 @@ describe('openmrs-backend-dependencies', () => {
     });
 
     it('should mark satisfied dependencies as okay', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [{ uuid: 'webservices.rest', version: '2.24.0' }],
           links: [],
@@ -110,7 +110,7 @@ describe('openmrs-backend-dependencies', () => {
     });
 
     it('should handle multiple modules with mixed dependency states', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [
             { uuid: 'webservices.rest', version: '2.24.0' },
@@ -150,7 +150,7 @@ describe('openmrs-backend-dependencies', () => {
     });
 
     it('should include installed optional dependencies with required ones', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [
             { uuid: 'webservices.rest', version: '2.24.0' },
@@ -186,7 +186,7 @@ describe('openmrs-backend-dependencies', () => {
     });
 
     it('should extract version from optional dependencies with feature flags', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [
             { uuid: 'webservices.rest', version: '2.24.0' },
@@ -221,7 +221,7 @@ describe('openmrs-backend-dependencies', () => {
     });
 
     it('should cache results across multiple calls', async () => {
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [{ uuid: 'webservices.rest', version: '2.24.0' }],
           links: [],
@@ -236,7 +236,7 @@ describe('openmrs-backend-dependencies', () => {
       const result2 = await checkModules();
 
       // Should only fetch once due to caching
-      expect(mockOpenmrsFetch).toHaveBeenCalledTimes(1);
+      expect(mockEigenFetch).toHaveBeenCalledTimes(1);
       expect(result1).toBe(result2); // Same reference
     });
 
@@ -248,7 +248,7 @@ describe('openmrs-backend-dependencies', () => {
 
       const page2Modules = [{ uuid: 'module-50', version: '1.0.0' }];
 
-      mockOpenmrsFetch
+      mockEigenFetch
         .mockResolvedValueOnce({
           data: {
             results: page1Modules,
@@ -278,7 +278,7 @@ describe('openmrs-backend-dependencies', () => {
     it('should handle fetch errors gracefully by returning empty backend modules', async () => {
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      mockOpenmrsFetch.mockRejectedValue(new Error('Network error'));
+      mockEigenFetch.mockRejectedValue(new Error('Network error'));
 
       window.installedModules = [['@egen/esm-test-app', { backendDependencies: { 'webservices.rest': '2.0.0' } }]];
 
@@ -298,7 +298,7 @@ describe('openmrs-backend-dependencies', () => {
     it('should warn when reaching pagination limit', async () => {
       const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-      mockOpenmrsFetch.mockResolvedValue({
+      mockEigenFetch.mockResolvedValue({
         data: {
           results: [{ uuid: 'test-module', version: '1.0.0' }],
           links: [{ rel: 'next', uri: 'module?startIndex=50' }],

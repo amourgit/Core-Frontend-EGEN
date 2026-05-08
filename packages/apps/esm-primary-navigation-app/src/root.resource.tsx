@@ -1,7 +1,7 @@
-import { getCurrentUser, openmrsObservableFetch, restBaseUrl } from '@egen/esm-framework/src/internal';
+import { getCurrentUser, eigenObservableFetch, restBaseUrl } from '@egen/esm-framework/src/internal';
 
 export function getCurrentSession() {
-  return openmrsObservableFetch(`${restBaseUrl}/session`);
+  return eigenObservableFetch(`${restBaseUrl}/session`);
 }
 
 /**

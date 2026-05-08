@@ -3,9 +3,9 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { useConceptReferenceRange } from './use-concept-reference-range';
 import { swrWrapper } from '../test-utils';
 
-const mockOpenmrsFetch = vi.fn();
+const mockEigenFetch = vi.fn();
 vi.mock('@egen/esm-api', () => ({
-  openmrsFetch: (...args: any[]) => mockOpenmrsFetch(...args),
+  eigenFetch: (...args: any[]) => mockEigenFetch(...args),
   restBaseUrl: '/ws/rest/v1',
 }));
 
@@ -31,7 +31,7 @@ describe('useConceptReferenceRange', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.referenceRange).toBeUndefined();
-    expect(mockOpenmrsFetch).not.toHaveBeenCalled();
+    expect(mockEigenFetch).not.toHaveBeenCalled();
   });
 
   it('fetches concept data when conceptUuid is provided', async () => {
@@ -47,7 +47,7 @@ describe('useConceptReferenceRange', () => {
       },
     };
 
-    mockOpenmrsFetch.mockResolvedValue(mockResponse);
+    mockEigenFetch.mockResolvedValue(mockResponse);
 
     const { result } = renderUseConceptReferenceRange('test-concept-uuid');
 
@@ -62,13 +62,13 @@ describe('useConceptReferenceRange', () => {
     expect(result.current.referenceRange).toEqual({
       ...mockConceptReferenceRange,
     });
-    expect(mockOpenmrsFetch).toHaveBeenCalledWith(
+    expect(mockEigenFetch).toHaveBeenCalledWith(
       '/ws/rest/v1/conceptreferencerange/?concept=test-concept-uuid&v=full',
     );
   });
 
   it('returns loading state correctly', async () => {
-    mockOpenmrsFetch.mockImplementation(() => new Promise(() => { }));
+    mockEigenFetch.mockImplementation(() => new Promise(() => { }));
 
     const { result } = renderUseConceptReferenceRange('test-concept-uuid');
 
@@ -79,7 +79,7 @@ describe('useConceptReferenceRange', () => {
 
   it('returns error state on fetch failure', async () => {
     const mockError = new Error('Fetch failed');
-    mockOpenmrsFetch.mockRejectedValue(mockError);
+    mockEigenFetch.mockRejectedValue(mockError);
 
     const { result } = renderUseConceptReferenceRange('test-concept-uuid');
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { openmrsFetch } from '@egen/esm-api/mock';
+import { eigenFetch } from '@egen/esm-api/mock';
 import { configSchema } from '@egen/esm-config/mock';
 import { getExtensionInternalStore } from '@egen/esm-extensions/mock';
 import { createGlobalStore } from '@egen/esm-state/mock';
@@ -7,9 +7,9 @@ import {
   isDesktop as realIsDesktop,
   usePagination as realUsePagination,
   usePaginationInfo as realUsePaginationInfo,
-  useOpenmrsPagination as realUseOpenmrsrPagination,
-  useOpenmrsInfinite as realUseOpenmrsInfinite,
-  useOpenmrsFetchAll as realUseOpenmrsFetchAll,
+  useEigenPagination as realUseEigenPagination,
+  useEigenInfinite as realUseEigenInfinite,
+  useEigenFetchAll as realUseEigenFetchAll,
   useFhirPagination as realUseFhirPagination,
   useFhirInfinite as realUseFhirInfinite,
   useFhirFetchAll as realUseFhirFetchAll,
@@ -21,7 +21,7 @@ import * as utils from '@egen/esm-utils';
 
 export const ComponentContext = React.createContext(null);
 
-export const openmrsComponentDecorator = jest.fn().mockImplementation(() => (component) => component);
+export const eigenComponentDecorator = jest.fn().mockImplementation(() => (component) => component);
 
 export const useAttachments = jest.fn(() => ({
   isLoading: true,
@@ -79,9 +79,9 @@ export const useFeatureFlag = jest.fn().mockReturnValue(true);
 export const usePagination = jest.fn(realUsePagination);
 export const usePaginationInfo = jest.fn(realUsePaginationInfo);
 
-export const useOpenmrsPagination = jest.fn(realUseOpenmrsrPagination);
-export const useOpenmrsInfinite = jest.fn(realUseOpenmrsInfinite);
-export const useOpenmrsFetchAll = jest.fn(realUseOpenmrsFetchAll);
+export const useEigenPagination = jest.fn(realUseEigenPagination);
+export const useEigenInfinite = jest.fn(realUseEigenInfinite);
+export const useEigenFetchAll = jest.fn(realUseEigenFetchAll);
 export const useFhirPagination = jest.fn(realUseFhirPagination);
 export const useFhirInfinite = jest.fn(realUseFhirInfinite);
 export const useFhirFetchAll = jest.fn(realUseFhirFetchAll);
@@ -111,8 +111,8 @@ export const useAbortController = jest.fn(() => {
   } as AbortController;
 });
 
-export const useOpenmrsSWR = jest.fn((key: string | Array<any>) => {
-  return { data: openmrsFetch(key.toString()) };
+export const useEigenSWR = jest.fn((key: string | Array<any>) => {
+  return { data: eigenFetch(key.toString()) };
 });
 
 export const useDebounce = jest.fn().mockImplementation((value) => value);

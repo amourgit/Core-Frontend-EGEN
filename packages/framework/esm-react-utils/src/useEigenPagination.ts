@@ -1,10 +1,10 @@
 /** @module @category UI */
-import { type FetchResponse, makeUrl, openmrsFetch } from '@egen/esm-api';
+import { type FetchResponse, makeUrl, eigenFetch } from '@egen/esm-api';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import useSWR, { type SWRConfiguration } from 'swr';
 import useSWRImmutable from 'swr/immutable';
 
-export interface OpenMRSPaginatedResponse<T> {
+export interface EigenPaginatedResponse<T> {
   results: Array<T>;
   links: Array<{ rel: 'prev' | 'next'; uri: string }>;
   totalCount: number;
@@ -17,7 +17,7 @@ export interface UseServerPaginationOptions<R> {
   immutable?: boolean;
 
   /**
-   * The fetcher to use. Defaults to openmrsFetch
+   * The fetcher to use. Defaults to eigenFetch
    */
   fetcher?: (key: string) => Promise<FetchResponse<R>>;
 
@@ -28,11 +28,11 @@ export interface UseServerPaginationOptions<R> {
 }
 
 /**
- * Most OpenMRS REST endpoints that return a list of objects, such as getAll or search, are server-side paginated.
+ * Most EIGEN REST endpoints that return a list of objects, such as getAll or search, are server-side paginated.
  * The server limits the max number of results being returned, and multiple requests are needed to get the full data set
  * if its size exceeds this limit.
  * The max number of results per request is configurable server-side
- * with the key "webservices.rest.maxResultsDefault". See: https://openmrs.atlassian.net/wiki/spaces/docs/pages/25469882/REST+Module
+ * with the key "webservices.rest.maxResultsDefault". See: https://github.com/amourgit/wiki/spaces/docs/pages/25469882/REST+Module
  *
  * For any UI that displays a paginated view of the full data set, we MUST handle the server-side pagination properly,
  * or else the UI does not correctly display the full data set.
@@ -42,8 +42,8 @@ export interface UseServerPaginationOptions<R> {
  * Note that this hook is not suitable for use for situations that require client-side sorting or filtering
  * of the data set. In that case, all data must be loaded onto client-side first.
  *
- * @see `useOpenmrsInfinite`
- * @see `useOpenmrsFetchAll`
+ * @see `useEigenInfinite`
+ * @see `useEigenFetchAll`
  * @see `usePagination` for pagination of client-side data`
  * @see `useFhirPagination``
  *
@@ -56,16 +56,16 @@ export interface UseServerPaginationOptions<R> {
  * @param options The options object
  * @returns
  */
-export function useOpenmrsPagination<T>(
+export function useEigenPagination<T>(
   url: string | URL,
   pageSize: number,
-  options: UseServerPaginationOptions<OpenMRSPaginatedResponse<T>> = {},
+  options: UseServerPaginationOptions<EigenPaginatedResponse<T>> = {},
 ) {
-  return useServerPagination<T, OpenMRSPaginatedResponse<T>>(url, pageSize, openmrsServerPaginationHandlers, options);
+  return useServerPagination<T, EigenPaginatedResponse<T>>(url, pageSize, eigenServerPaginationHandlers, options);
 }
 
-type OpenmrsServerPaginationHandlers<T> = ServerPaginationHandlers<T, OpenMRSPaginatedResponse<T>>;
-export const openmrsServerPaginationHandlers: OpenmrsServerPaginationHandlers<any> = {
+type EigenServerPaginationHandlers<T> = ServerPaginationHandlers<T, EigenPaginatedResponse<T>>;
+export const eigenServerPaginationHandlers: EigenServerPaginationHandlers<any> = {
   getPaginatedUrl: (url: string | URL, limit: number, startIndex: number) => {
     if (url) {
       const urlUrl = new URL(makeUrl(url.toString()), window.location.toString());
@@ -112,7 +112,7 @@ export function useServerPagination<T, R>(
 ) {
   const { getPaginatedUrl, getTotalCount, getCurrentPageSize, getData } = serverPaginationHandlers;
   const { immutable, swrConfig } = options;
-  const fetcher: (key: string) => Promise<FetchResponse<R>> = options.fetcher ?? openmrsFetch;
+  const fetcher: (key: string) => Promise<FetchResponse<R>> = options.fetcher ?? eigenFetch;
   const [currentPage, setCurrentPage] = useState<number>(1); // 1-indexing instead of 0-indexing, to keep consistency with `usePagination`
 
   // Cache the totalCount and currentPageSize so we don't lose them

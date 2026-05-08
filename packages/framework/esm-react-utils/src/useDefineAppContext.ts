@@ -16,13 +16,13 @@ const namespaceOwners = new Map<string, symbol>();
  *
  * @example
  * ```ts
- * const { data: patient } = useSWR(`/ws/rest/v1/patient/${patientUuid}`, openmrsFetch);
+ * const { data: patient } = useSWR(`/ws/rest/v1/patient/${patientUuid}`, eigenFetch);
  * useDefineAppContext<PatientContext>('patient', patient ?? null);
  * ```
  *
  * @example
  * ```ts
- * const { data: patient } = useSWR(`/ws/rest/v1/patient/${patientUuid}`, openmrsFetch);
+ * const { data: patient } = useSWR(`/ws/rest/v1/patient/${patientUuid}`, eigenFetch);
  * const updatePatient = useDefineAppContext<PatientContext>('patient', patient ?? null);
  * updatePatient((patient) => {
  *  patient.name = 'Hector';

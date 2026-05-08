@@ -43,9 +43,9 @@ Object.defineProperty(globalThis, 'IS_REACT_ACT_ENVIRONMENT', {
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
-window.openmrsBase = '/openmrs';
+window.eigenBase = '/eigen';
 window.spaBase = '/spa';
-window.getOpenmrsSpaBase = () => '/openmrs/spa/';
+window.getEigenSpaBase = () => '/eigen/spa/';
 const { getComputedStyle } = window;
 window.getComputedStyle = (elt) => getComputedStyle(elt);
 

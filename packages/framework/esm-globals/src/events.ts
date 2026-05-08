@@ -2,7 +2,7 @@ export interface ConnectivityChangedEvent {
   online: boolean;
 }
 
-const connectivityChangedEventName = 'openmrs:connectivity-changed';
+const connectivityChangedEventName = 'eigen:connectivity-changed';
 
 /** @internal */
 export function dispatchConnectivityChanged(online: boolean) {
@@ -29,7 +29,7 @@ export function subscribeConnectivity(cb: (ev: ConnectivityChangedEvent) => void
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface PrecacheStaticDependenciesEvent {}
 
-const precacheStaticDependenciesEventName = 'openmrs:precache-static-dependencies';
+const precacheStaticDependenciesEventName = 'eigen:precache-static-dependencies';
 
 export function dispatchPrecacheStaticDependencies(data: PrecacheStaticDependenciesEvent = {}) {
   window.dispatchEvent(new CustomEvent(precacheStaticDependenciesEventName, { detail: data }));
@@ -81,10 +81,10 @@ export interface ShowSnackbarEvent {
   timeoutInMs?: number;
 }
 
-const notificationShownName = 'openmrs:notification-shown';
-const actionableNotificationShownName = 'openmrs:actionable-notification-shown';
-const toastShownName = 'openmrs:toast-shown';
-const snackbarShownName = 'openmrs:snack-bar-shown';
+const notificationShownName = 'eigen:notification-shown';
+const actionableNotificationShownName = 'eigen:actionable-notification-shown';
+const toastShownName = 'eigen:toast-shown';
+const snackbarShownName = 'eigen:snack-bar-shown';
 
 export function dispatchNotificationShown(data: ShowNotificationEvent) {
   window.dispatchEvent(new CustomEvent(notificationShownName, { detail: data }));

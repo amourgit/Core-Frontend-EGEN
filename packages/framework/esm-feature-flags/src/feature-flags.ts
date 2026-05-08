@@ -18,9 +18,9 @@ export const featureFlagsStore = getGlobalStore<FeatureFlagsStore>('feature-flag
 
 featureFlagsStore.subscribe((state) => {
   for (const [flagName, flag] of Object.entries(state.flags)) {
-    localStorage.setItem(`openmrs:feature-flag:${flagName}`, flag.enabled.toString());
+    localStorage.setItem(`eigen:feature-flag:${flagName}`, flag.enabled.toString());
     localStorage.setItem(
-      `openmrs:feature-flag-meta:${flagName}`,
+      `eigen:feature-flag-meta:${flagName}`,
       JSON.stringify({ label: flag.label, description: flag.description }),
     );
   }
@@ -29,9 +29,9 @@ featureFlagsStore.subscribe((state) => {
 function getFeatureFlagsFromLocalStorage() {
   const flags: FeatureFlagsStore['flags'] = {};
   for (const key of Object.keys(localStorage)) {
-    if (key.startsWith('openmrs:feature-flag:')) {
-      const flagName = key.replace('openmrs:feature-flag:', '');
-      const meta = JSON.parse(localStorage.getItem(`openmrs:feature-flag-meta:${flagName}`) || '{}');
+    if (key.startsWith('eigen:feature-flag:')) {
+      const flagName = key.replace('eigen:feature-flag:', '');
+      const meta = JSON.parse(localStorage.getItem(`eigen:feature-flag-meta:${flagName}`) || '{}');
       flags[flagName] = {
         enabled: localStorage.getItem(key) === 'true',
         ...meta,
@@ -70,12 +70,12 @@ export function registerFeatureFlag(flagName: string, label: string, description
 export function cleanupObsoleteFeatureFlags() {
   const flags = featureFlagsStore.getState().flags;
   Object.keys(localStorage)
-    .filter((key) => key.startsWith('openmrs:feature-flag:'))
+    .filter((key) => key.startsWith('eigen:feature-flag:'))
     .forEach((key) => {
-      const flagName = key.replace('openmrs:feature-flag:', '');
+      const flagName = key.replace('eigen:feature-flag:', '');
       if (!flags[flagName]) {
         localStorage.removeItem(key);
-        localStorage.removeItem(`openmrs:feature-flag-meta:${flagName}`);
+        localStorage.removeItem(`eigen:feature-flag-meta:${flagName}`);
       }
     });
 }

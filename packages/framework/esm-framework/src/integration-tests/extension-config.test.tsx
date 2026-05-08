@@ -9,7 +9,7 @@ import { attach, registerExtension, updateInternalExtensionStore } from '../../.
 import {
   ExtensionSlot,
   getSyncLifecycle,
-  openmrsComponentDecorator,
+  eigenComponentDecorator,
   useConfig,
   useExtensionStore,
 } from '../../../esm-react-utils/src';
@@ -72,7 +72,7 @@ describe('Interaction between configuration and extension systems', () => {
       },
     });
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-flintstone',
       featureName: 'The Flintstones',
       disableTranslations: true,
@@ -117,7 +117,7 @@ describe('Interaction between configuration and extension systems', () => {
       },
     });
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-flintstone',
       featureName: 'The Flintstones',
       disableTranslations: true,
@@ -168,7 +168,7 @@ describe('Interaction between configuration and extension systems', () => {
       },
     });
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-flintstone',
       featureName: 'The Flintstones',
       disableTranslations: true,
@@ -197,7 +197,7 @@ describe('Interaction between configuration and extension systems', () => {
     defineConfigSchema('esm-slaghoople', {});
     registerModuleLoad('esm-flintstone');
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-slaghoople',
       featureName: 'The Slaghooples',
       disableTranslations: true,
@@ -232,7 +232,7 @@ describe('Interaction between configuration and extension systems', () => {
     defineConfigSchema('esm-flintstone', { tie: { _default: 'green' } });
     registerModuleLoad('esm-flintstone');
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-quarry',
       featureName: 'The Flintstones',
       disableTranslations: true,
@@ -283,7 +283,7 @@ describe('Interaction between configuration and extension systems', () => {
       );
     }
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-flintstone',
       featureName: 'The Flintstones',
       disableTranslations: true,
@@ -364,7 +364,7 @@ describe('Interaction between configuration and extension systems', () => {
       );
     }
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,
@@ -423,7 +423,7 @@ describe('Interaction between configuration and extension systems', () => {
       );
     }
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,
@@ -479,7 +479,7 @@ describe('Interaction between configuration and extension systems', () => {
       );
     }
 
-    const App = openmrsComponentDecorator({
+    const App = eigenComponentDecorator({
       moduleName: 'esm-bedrock',
       featureName: 'Bedrock',
       disableTranslations: true,

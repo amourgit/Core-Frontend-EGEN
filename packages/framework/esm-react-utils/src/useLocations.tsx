@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getLocations, type Location } from '@egen/esm-emr-api';
 
 /**
- * A React hook that fetches and returns locations from the OpenMRS server.
+ * A React hook that fetches and returns locations from the EIGEN server.
  * Locations can be filtered by a tag UUID/name and/or a search query string.
  *
  * @param tagUuidOrName Optional tag UUID or name to filter locations by.

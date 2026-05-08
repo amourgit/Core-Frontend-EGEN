@@ -5,10 +5,10 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { useVisit } from './useVisit';
 import type { Visit } from '@egen/esm-emr-api';
 
-// Mock openmrsFetch
-const mockOpenmrsFetch = vi.fn();
+// Mock eigenFetch
+const mockEigenFetch = vi.fn();
 vi.mock('@egen/esm-api', () => ({
-  openmrsFetch: (...args: any[]) => mockOpenmrsFetch(...args),
+  eigenFetch: (...args: any[]) => mockEigenFetch(...args),
   restBaseUrl: '/ws/rest/v1',
 }));
 

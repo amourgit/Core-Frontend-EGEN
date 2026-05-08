@@ -161,8 +161,8 @@ export const EmptyCard = ({
 
 export { CardHeader, ErrorCard, Pagination, PageHeader, PageHeaderContent } from '@egen/esm-styleguide/src/internal';
 
-export const OpenmrsDatePicker = () => <span>OpenmrsDatePicker</span>;
-export const OpenmrsDateRangePicker = () => <span>OpenmrsDateRangePicker</span>;
+export const EigenDatePicker = () => <span>EigenDatePicker</span>;
+export const EigenDateRangePicker = () => <span>EigenDateRangePicker</span>;
 
 export const LocationPicker = vi.fn(({ onChange, selectedLocationUuid }) => {
   const locations = [

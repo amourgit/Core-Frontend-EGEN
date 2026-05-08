@@ -9,6 +9,6 @@ global.window.System = {
   register: vi.fn(),
 };
 
-global.window.openmrsBase = '/openmrs';
+global.window.eigenBase = '/eigen';
 global.window.spaBase = '/spa';
-global.window.getOpenmrsSpaBase = () => '/openmrs/spa/';
+global.window.getEigenSpaBase = () => '/eigen/spa/';

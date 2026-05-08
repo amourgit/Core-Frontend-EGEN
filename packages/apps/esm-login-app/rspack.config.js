@@ -1,1 +1,1 @@
-module.exports = require('openmrs/default-rspack-config');
+module.exports = require('igen/default-rspack-config');

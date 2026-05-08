@@ -1,11 +1,11 @@
-import fullLogo from './openmrs-logo-full.svg';
-import partialLogo from './openmrs-logo-partial.svg';
-import iconLogo from './openmrs-logo-icon.svg';
-import whiteLogo from './openmrs-logo-white.svg';
+import fullLogo from './eigen-logo-full.svg';
+import partialLogo from './eigen-logo-partial.svg';
+import iconLogo from './eigen-logo-icon.svg';
+import whiteLogo from './eigen-logo-white.svg';
 import { addSvg } from '../svg-utils';
 
 /**
- * Registers the default OpenMRS logo SVGs into the SVG sprite container.
+ * Registers the default EIGEN logo SVGs into the SVG sprite container.
  * This makes them available for use throughout the application via SVG use references.
  *
  * @internal

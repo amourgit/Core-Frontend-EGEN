@@ -21,30 +21,30 @@ const production = 'production';
 const allowedSuffixes = ['-app', '-widgets'];
 const { ModuleFederationPlugin } = container;
 
-const openmrsAddCookie = process.env.OMRS_ADD_COOKIE;
-const openmrsApiUrl = removeTrailingSlash(process.env.OMRS_API_URL || '/openmrs');
-const openmrsPublicPath = removeTrailingSlash(process.env.OMRS_PUBLIC_PATH || '/openmrs/spa');
-const openmrsProxyTarget = process.env.OMRS_PROXY_TARGET || 'https://dev3.openmrs.org/';
-const openmrsPageTitle = process.env.OMRS_PAGE_TITLE || 'OpenMRS';
-const openmrsFavicon = process.env.OMRS_FAVICON || `${openmrsPublicPath}/favicon.ico`;
-const openmrsEnvironment = process.env.OMRS_ENV || process.env.NODE_ENV || '';
-const openmrsOffline = process.env.OMRS_OFFLINE === 'enable';
-const openmrsDefaultLocale = process.env.OMRS_ESM_DEFAULT_LOCALE || 'en';
-const openmrsImportmapDef = process.env.OMRS_ESM_IMPORTMAP;
-const openmrsImportmapUrl = process.env.OMRS_ESM_IMPORTMAP_URL || `${openmrsPublicPath}/importmap.json`;
-const openmrsRoutesDef = process.env.OMRS_ROUTES;
-const openmrsRoutesUrl = process.env.OMRS_ROUTES_URL || `${openmrsPublicPath}/routes.registry.json`;
-const openmrsCoreApps = process.env.OMRS_ESM_CORE_APPS_DIR || resolve(__dirname, '../../apps');
-const openmrsConfigUrls = (process.env.OMRS_CONFIG_URLS || '')
+const eigenAddCookie = process.env.EIGEN_ADD_COOKIE;
+const eigenApiUrl = removeTrailingSlash(process.env.OMRS_API_URL || '/eigen');
+const eigenPublicPath = removeTrailingSlash(process.env.OMRS_PUBLIC_PATH || '/eigen/spa');
+const eigenProxyTarget = process.env.OMRS_PROXY_TARGET || 'https://dev.iam-central.ga/';
+const eigenPageTitle = process.env.OMRS_PAGE_TITLE || 'EIGEN';
+const eigenFavicon = process.env.OMRS_FAVICON || `${eigenPublicPath}/favicon.ico`;
+const eigenEnvironment = process.env.OMRS_ENV || process.env.NODE_ENV || '';
+const eigenOffline = process.env.OMRS_OFFLINE === 'enable';
+const eigenDefaultLocale = process.env.OMRS_ESM_DEFAULT_LOCALE || 'en';
+const eigenImportmapDef = process.env.OMRS_ESM_IMPORTMAP;
+const eigenImportmapUrl = process.env.OMRS_ESM_IMPORTMAP_URL || `${eigenPublicPath}/importmap.json`;
+const eigenRoutesDef = process.env.OMRS_ROUTES;
+const eigenRoutesUrl = process.env.OMRS_ROUTES_URL || `${eigenPublicPath}/routes.registry.json`;
+const eigenCoreApps = process.env.OMRS_ESM_CORE_APPS_DIR || resolve(__dirname, '../../apps');
+const eigenConfigUrls = (process.env.OMRS_CONFIG_URLS || '')
   .split(';')
   .filter((url) => url.length > 0)
   .map((url) => JSON.stringify(url))
   .join(', ');
-const openmrsJsCssAssets = (process.env.OMRS_JS_CSS_ASSETS || '')
+const eigenJsCssAssets = (process.env.OMRS_JS_CSS_ASSETS || '')
   .split(';')
   .filter((filePath) => filePath.length > 0);
 
-const openmrsCleanBeforeBuild =
+const eigenCleanBeforeBuild =
   (() => {
     try {
       return (
@@ -114,9 +114,9 @@ module.exports = (env, argv = []) => {
 
   const coreRoutes = {};
 
-  if (!isProd && checkDirectoryExists(openmrsCoreApps)) {
-    readdirSync(openmrsCoreApps).forEach((dir) => {
-      const appDir = resolve(openmrsCoreApps, dir);
+  if (!isProd && checkDirectoryExists(eigenCoreApps)) {
+    readdirSync(eigenCoreApps).forEach((dir) => {
+      const appDir = resolve(eigenCoreApps, dir);
       if (checkDirectoryExists(appDir)) {
         const { name, browser } = require(resolve(appDir, 'package.json'));
         const distDir = resolve(appDir, dirname(browser));
@@ -141,12 +141,12 @@ module.exports = (env, argv = []) => {
     });
   }
 
-  const assetsPatterns = openmrsJsCssAssets.map(asset => ({from: asset, to: 'assets'}));
+  const assetsPatterns = eigenJsCssAssets.map(asset => ({from: asset, to: 'assets'}));
 
   return {
     entry: resolve(__dirname, 'src/index.ts'),
     output: {
-      filename: isProd ? 'openmrs.[contenthash].js' : 'openmrs.js',
+      filename: isProd ? 'eigen.[contenthash].js' : 'eigen.js',
       chunkFilename: '[chunkhash].js',
       path: resolve(__dirname, outDir),
       publicPath: '',
@@ -155,15 +155,15 @@ module.exports = (env, argv = []) => {
     target: 'web',
     devServer: {
       compress: true,
-      open: [`${openmrsPublicPath}/`.substring(1)],
+      open: [`${eigenPublicPath}/`.substring(1)],
       devMiddleware: {
-        publicPath: `${openmrsPublicPath}/`,
+        publicPath: `${eigenPublicPath}/`,
       },
       historyApiFallback: {
         rewrites: [
           {
-            from: new RegExp(`^${escapeRegExp(openmrsPublicPath)}/.*(?!\\.(?!html).+$)`),
-            to: `${openmrsPublicPath}/index.html`,
+            from: new RegExp(`^${escapeRegExp(eigenPublicPath)}/.*(?!\\.(?!html).+$)`),
+            to: `${eigenPublicPath}/index.html`,
           },
         ],
       },
@@ -177,7 +177,7 @@ module.exports = (env, argv = []) => {
               return false;
             }
 
-            if (path.startsWith(openmrsPublicPath)) {
+            if (path.startsWith(eigenPublicPath)) {
               if (basename(path).indexOf('.') >= 0) {
                 return true;
               } else {
@@ -185,21 +185,21 @@ module.exports = (env, argv = []) => {
               }
             }
 
-            if (path.startsWith(openmrsApiUrl)) {
+            if (path.startsWith(eigenApiUrl)) {
               return true;
             }
 
             return false;
           },
-          target: openmrsProxyTarget,
+          target: eigenProxyTarget,
           changeOrigin: true,
           /**
            * @param {Request} proxyReq
            */
           onProxyReq(proxyReq) {
-            if (openmrsAddCookie) {
+            if (eigenAddCookie) {
               const origCookie = proxyReq.getHeader('cookie');
-              const newCookie = `${origCookie};${openmrsAddCookie}`;
+              const newCookie = `${origCookie};${eigenAddCookie}`;
               proxyReq.setHeader('cookie', newCookie);
             }
           },
@@ -217,10 +217,10 @@ module.exports = (env, argv = []) => {
            * @returns {string}
            */
           pathRewrite(path) {
-            if (path.startsWith(openmrsPublicPath)) {
+            if (path.startsWith(eigenPublicPath)) {
               const matcher = /^.*\/([^\/]*\.(?!html|js)[^.]+)$/i.exec(path);
               if (matcher) {
-                return `${openmrsPublicPath}/${matcher[1]}`;
+                return `${eigenPublicPath}/${matcher[1]}`;
               }
             }
 
@@ -238,7 +238,7 @@ module.exports = (env, argv = []) => {
     module: {
       rules: [
         {
-          test: /openmrs-esm-styleguide\.css$/,
+          test: /eigen-esm-styleguide.css$/,
           use: [
             isProd
               ? { loader: require.resolve(MiniCssExtractPlugin.loader) }
@@ -248,7 +248,7 @@ module.exports = (env, argv = []) => {
         },
         {
           test: /\.css$/,
-          exclude: [/openmrs-esm-styleguide\.css$/],
+          exclude: [/eigen-esm-styleguide.css$/],
           use: [
             isProd
               ? { loader: require.resolve(MiniCssExtractPlugin.loader) }
@@ -317,34 +317,34 @@ module.exports = (env, argv = []) => {
       },
     },
     plugins: [
-      openmrsCleanBeforeBuild && new CleanWebpackPlugin(),
+      eigenCleanBeforeBuild && new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         inject: false,
         scriptLoading: 'blocking',
-        publicPath: openmrsPublicPath,
+        publicPath: eigenPublicPath,
         template: resolve(__dirname, 'src/index.ejs'),
         templateParameters: {
-          openmrsApiUrl,
-          openmrsPublicPath,
-          openmrsFavicon,
-          openmrsPageTitle,
-          openmrsDefaultLocale,
-          openmrsImportmapDef,
-          openmrsImportmapUrl,
-          openmrsRoutesDef,
-          openmrsRoutesUrl,
-          openmrsOffline,
-          openmrsEnvironment,
-          openmrsConfigUrls,
-          openmrsCoreImportmap: appPatterns.length > 0 && JSON.stringify(coreImportmap),
-          openmrsCoreRoutes: Object.keys(coreRoutes).length > 0 && JSON.stringify(coreRoutes),
+          eigenApiUrl,
+          eigenPublicPath,
+          eigenFavicon,
+          eigenPageTitle,
+          eigenDefaultLocale,
+          eigenImportmapDef,
+          eigenImportmapUrl,
+          eigenRoutesDef,
+          eigenRoutesUrl,
+          eigenOffline,
+          eigenEnvironment,
+          eigenConfigUrls,
+          eigenCoreImportmap: appPatterns.length > 0 && JSON.stringify(coreImportmap),
+          eigenCoreRoutes: Object.keys(coreRoutes).length > 0 && JSON.stringify(coreRoutes),
         },
       }),
-      new HtmlWebpackTagsPlugin({ tags: openmrsJsCssAssets.map(fileName => 'assets/' + basename(fileName)) }),
+      new HtmlWebpackTagsPlugin({ tags: eigenJsCssAssets.map(fileName => 'assets/' + basename(fileName)) }),
       new WebpackPwaManifest({
-        name: 'OpenMRS',
-        short_name: 'OpenMRS',
-        publicPath: openmrsPublicPath,
+        name: 'EIGEN',
+        short_name: 'EIGEN',
+        publicPath: eigenPublicPath,
         description: 'Open source Health IT by and for the entire planet, starting with the developing world.',
         background_color: '#ffffff',
         theme_color: '#000000',
@@ -406,7 +406,7 @@ module.exports = (env, argv = []) => {
       }),
       isProd &&
         new MiniCssExtractPlugin({
-          filename: 'openmrs.[contenthash].css',
+          filename: 'eigen.[contenthash].css',
           ignoreOrder: true,
         }),
       new DefinePlugin({
@@ -417,14 +417,14 @@ module.exports = (env, argv = []) => {
       new BundleAnalyzerPlugin({
         analyzerMode: env?.analyze ? 'static' : 'disabled',
       }),
-      openmrsOffline
+      eigenOffline
         ? new InjectManifest({
             swSrc: resolve(__dirname, './src/service-worker/index.ts'),
             swDest: 'service-worker.js',
             maximumFileSizeToCacheInBytes: mode === production ? undefined : Number.MAX_SAFE_INTEGER,
             additionalManifestEntries: [
-              { url: openmrsImportmapUrl, revision: null },
-              { url: openmrsRoutesUrl, revision: null },
+              { url: eigenImportmapUrl, revision: null },
+              { url: eigenRoutesUrl, revision: null },
             ],
           })
         : new InjectManifest({

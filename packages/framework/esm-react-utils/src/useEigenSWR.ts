@@ -2,12 +2,12 @@
 import { useCallback, useMemo } from 'react';
 import type { SWRConfiguration } from 'swr';
 import useSWR from 'swr';
-import { type FetchConfig, openmrsFetch, type FetchResponse } from '@egen/esm-api';
+import { type FetchConfig, eigenFetch, type FetchResponse } from '@egen/esm-api';
 import useAbortController from './useAbortController';
 
 export type ArgumentsTuple = [any, ...unknown[]];
 export type Key = string | ArgumentsTuple | undefined | null;
-export type UseOpenmrsSWROptions = {
+export type UseEigenSWROptions = {
   abortController?: AbortController;
   fetchInit?: FetchConfig;
   url?: string | ((key: Key) => string);
@@ -24,23 +24,23 @@ function getUrl(key: Key, url?: string | ((key: Key) => string)): string {
   }
 
   throw new Error(
-    `When using useOpenmrsSWR with a key that is not a string, you must provide a url() function that converts the key to a valid url. The key for this hook is ${key}.`,
+    `When using useEigenSWR with a key that is not a string, you must provide a url() function that converts the key to a valid url. The key for this hook is ${key}.`,
   );
 }
 
 /**
  * @beta
  *
- * This hook is intended to simplify using openmrsFetch in useSWR, while also ensuring that
+ * This hook is intended to simplify using eigenFetch in useSWR, while also ensuring that
  * all useSWR usages properly use an abort controller, so that fetch requests are cancelled
  * if the React component unmounts.
  *
  * @example
  * ```tsx
- * import { useOpenmrsSWR } from "@egen/esm-framework";
+ * import { useEigenSWR } from "@egen/esm-framework";
  *
  * function MyComponent() {
- *  const { data } = useOpenmrsSWR(key);
+ *  const { data } = useEigenSWR(key);
  *
  *  return (
  *    // render something with data
@@ -49,14 +49,14 @@ function getUrl(key: Key, url?: string | ((key: Key) => string)): string {
  * ```
  *
  * Note that if you are using a complex SWR key you must provide a url function to the options parameter,
- * which translates the key into a URL to be sent to `openmrsFetch()`
+ * which translates the key into a URL to be sent to `eigenFetch()`
  *
  * @example
  * ```tsx
- * import { useOpenmrsSWR } from "@egen/esm-framework";
+ * import { useEigenSWR } from "@egen/esm-framework";
  *
  * function MyComponent() {
- *  const { data } = useOpenmrsSWR(['key', 'url'], { url: (key) => key[1] });
+ *  const { data } = useEigenSWR(['key', 'url'], { url: (key) => key[1] });
  *
  *  return (
  *    // render something with data
@@ -65,9 +65,9 @@ function getUrl(key: Key, url?: string | ((key: Key) => string)): string {
  * ```
  * @param key The SWR key to use
  * @param options An object of optional parameters to provide, including a {@link FetchConfig} object
- *   to pass to {@link openmrsFetch} or options to pass to SWR
+ *   to pass to {@link eigenFetch} or options to pass to SWR
  */
-export function useOpenmrsSWR<DataType = any, ErrorType = any>(key: Key, options: UseOpenmrsSWROptions = {}) {
+export function useEigenSWR<DataType = any, ErrorType = any>(key: Key, options: UseEigenSWROptions = {}) {
   const { abortController, fetchInit, url, swrConfig } = options;
   const ac = useAbortController();
   const abortSignal = useMemo<AbortSignal>(
@@ -78,7 +78,7 @@ export function useOpenmrsSWR<DataType = any, ErrorType = any>(key: Key, options
   const fetcher = useCallback(
     (key: Key) => {
       const url_ = getUrl(key, url);
-      return openmrsFetch(url_, { ...fetchInit, signal: abortSignal });
+      return eigenFetch(url_, { ...fetchInit, signal: abortSignal });
     },
     [abortSignal, fetchInit, url],
   );

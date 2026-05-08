@@ -2,7 +2,7 @@ import React, { type ComponentType, type ErrorInfo, Suspense } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { type Cache, SWRConfig, type SWRConfiguration } from 'swr';
 import type {} from '@egen/esm-globals';
-import { openmrsFetch, OpenmrsFetchError } from '@egen/esm-api';
+import { eigenFetch, EigenFetchError } from '@egen/esm-api';
 import { type ComponentConfig, type ExtensionData } from '@egen/esm-extensions';
 import { ComponentContext } from './ComponentContext';
 
@@ -19,7 +19,7 @@ const defaultSwrConfig: SWRConfiguration = {
   // max number of retries after requests have failed
   errorRetryCount: 3,
   // default fetcher function
-  fetcher: openmrsFetch,
+  fetcher: eigenFetch,
   // only revalidate once every 30 minutes
   focusThrottleInterval: 1800000,
   revalidateIfStale: true,
@@ -28,7 +28,7 @@ const defaultSwrConfig: SWRConfiguration = {
   revalidateOnReconnect: false,
   refreshInterval: 0,
   shouldRetryOnError: (error) => {
-    if (error instanceof OpenmrsFetchError) {
+    if (error instanceof EigenFetchError) {
       const status = error.response.status;
       // retry all server-side errors
       if (status >= 500) {
@@ -57,17 +57,17 @@ export interface ComponentDecoratorOptions {
   swrConfig?: Partial<Omit<SWRConfiguration, 'fetcher'>>;
 }
 
-export interface OpenmrsReactComponentProps {
+export interface EigenReactComponentProps {
   _extensionContext?: ExtensionData;
 }
 
-export interface OpenmrsReactComponentState {
+export interface EigenReactComponentState {
   caughtError: any;
   caughtErrorInfo: ErrorInfo | null;
   config: ComponentConfig;
 }
 
-export function openmrsComponentDecorator<T>(userOpts: ComponentDecoratorOptions) {
+export function eigenComponentDecorator<T>(userOpts: ComponentDecoratorOptions) {
   if (
     typeof userOpts !== 'object' ||
     typeof userOpts.featureName !== 'string' ||
@@ -80,13 +80,13 @@ export function openmrsComponentDecorator<T>(userOpts: ComponentDecoratorOptions
   const swrConfig = { ...defaultSwrConfig, ...opts.swrConfig };
 
   return function decorateComponent(Comp: ComponentType<T>): ComponentType<T> {
-    return class OpenmrsReactComponent extends React.Component<
-      OpenmrsReactComponentProps & T,
-      OpenmrsReactComponentState
+    return class EigenReactComponent extends React.Component<
+      EigenReactComponentProps & T,
+      EigenReactComponentState
     > {
-      static displayName = `OpenmrsReactComponent(${opts.featureName})`;
+      static displayName = `EigenReactComponent(${opts.featureName})`;
 
-      constructor(props: OpenmrsReactComponentProps & T) {
+      constructor(props: EigenReactComponentProps & T) {
         super(props);
         this.state = {
           caughtError: null,

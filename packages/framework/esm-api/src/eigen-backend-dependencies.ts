@@ -1,5 +1,5 @@
 /**
- * Defines the minimum required versions of OpenMRS backend modules that the
+ * Defines the minimum required versions of EIGEN backend modules that the
  * frontend framework depends on. These versions are checked at startup to ensure
  * compatibility between the frontend and backend.
  */

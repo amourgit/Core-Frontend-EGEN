@@ -1,5 +1,5 @@
-import type { OpenmrsAppRoutes } from '@egen/esm-framework';
+import type { EigenAppRoutes } from '@egen/esm-framework';
 
-export interface FrontendModule extends OpenmrsAppRoutes {
+export interface FrontendModule extends EigenAppRoutes {
   name: string;
 }

@@ -1,4 +1,4 @@
-/* The svg container is a div that contains all the OpenMRS svgs, with
+/* The svg container is a div that contains all the EIGEN svgs, with
  * an HTML id that can be referenced with the following code:
  * <svg role="img">
  *   <use link:href="#the-svg-id"></use>

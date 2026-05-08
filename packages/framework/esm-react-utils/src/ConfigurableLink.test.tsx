@@ -13,7 +13,7 @@ const mockNavigate = vi.mocked(navigate);
 describe(`ConfigurableLink`, () => {
   afterAll(vi.clearAllMocks);
 
-  const path = '${openmrsSpaBase}/home';
+  const path = '${eigenSpaBase}/home';
   beforeEach(() => {
     mockNavigate.mockClear();
   });
@@ -29,7 +29,7 @@ describe(`ConfigurableLink`, () => {
     // eslint-disable-next-line testing-library/no-node-access
     expect(link.closest('a')).toHaveClass('fancy-link');
     // eslint-disable-next-line testing-library/no-node-access
-    expect(link.closest('a')).toHaveAttribute('href', '/openmrs/spa/home');
+    expect(link.closest('a')).toHaveAttribute('href', '/eigen/spa/home');
   });
 
   it('calls navigate on normal click but not special clicks', async () => {

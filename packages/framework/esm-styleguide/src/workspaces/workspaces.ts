@@ -146,7 +146,7 @@ export function canCloseWorkspaceWithoutPrompting(name: string, ignoreChanges: b
  * - Calls the optional closeup callback if provided
  *
  * @deprecated migrate to workspace v2 and use closeWorkspaceGroup2 instead. See:
- * https://openmrs.atlassian.net/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
+ * https://github.com/amourgit/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
  */
 function closeWorkspaceGroup(groupName: string, onWorkspaceCloseup?: () => void) {
   const store = getWorkspaceStore();
@@ -211,7 +211,7 @@ interface LaunchWorkspaceGroupArg {
  * });
  *
  * @deprecated migrate to workspace v2 and use launchWorkspaceGroup2 instead. See:
- * https://openmrs.atlassian.net/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
+ * https://github.com/amourgit/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
  */
 export function launchWorkspaceGroup(groupName: string, args: LaunchWorkspaceGroupArg) {
   const workspaceGroupRegistration = getWorkspaceGroupRegistration(groupName);
@@ -300,7 +300,7 @@ function promptBeforeLaunchingWorkspace(
  *          a prop named `workspaceTitle` will override the title of the workspace.
  *
  * @deprecated migrate to workspace v2 and use launchWorkspace2 instead. See:
- * https://openmrs.atlassian.net/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
+ * https://github.com/amourgit/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
  */
 export function launchWorkspace<
   T extends DefaultWorkspaceProps | object = DefaultWorkspaceProps & { [key: string]: any },
@@ -397,7 +397,7 @@ export function launchWorkspace<
  * @param options.additionalProps Additional props to pass to the workspace component being launched.
  *
  * @deprecated migrate to workspace v2 and call launchWorkspace2 instead. See:
- * https://openmrs.atlassian.net/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
+ * https://github.com/amourgit/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
  */
 export function navigateAndLaunchWorkspace({
   targetUrl,
@@ -443,7 +443,7 @@ const defaultOptions: CloseWorkspaceOptions = {
  * @param options Options to close workspace
  *
  * @deprecated migrate to workspace v2 and call closeWorkspace from Workspace2DefinitionProps instead. See:
- * https://openmrs.atlassian.net/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
+ * https://github.com/amourgit/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
  */
 export function closeWorkspace(name: string, options: CloseWorkspaceOptions = {}): boolean {
   options = { ...defaultOptions, ...options };
@@ -558,7 +558,7 @@ export interface WorkspacesInfo {
 
 /**
  * @deprecated migrate to workspace v2. See:
- * https://openmrs.atlassian.net/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
+ * https://github.com/amourgit/wiki/spaces/docs/pages/615677981/Workspace+v2+Migration+Guide
  */
 export function useWorkspaces(): WorkspacesInfo {
   const { workspaceWindowState, openWorkspaces, prompt, workspaceGroup } = useStore(workspaceStore);

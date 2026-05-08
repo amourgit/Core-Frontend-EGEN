@@ -1,13 +1,13 @@
 import { type Concept } from './concept-resource';
-import { type OpenmrsResourceStrict, type OpenmrsResource } from './openmrs-resource';
+import { type EigenResourceStrict, type EigenResource } from './eigen-resource';
 
-export interface PersonAttribute extends OpenmrsResourceStrict {
-  attributeType?: OpenmrsResource;
+export interface PersonAttribute extends EigenResourceStrict {
+  attributeType?: EigenResource;
   value?: string;
   voided?: boolean;
 }
 
-export interface Person extends OpenmrsResourceStrict {
+export interface Person extends EigenResourceStrict {
   gender?: string;
   age?: number;
   birthdate?: string;
@@ -26,7 +26,7 @@ export interface Person extends OpenmrsResourceStrict {
   causeOfDeathNonCoded?: string | null;
 }
 
-export interface PersonName extends OpenmrsResourceStrict {
+export interface PersonName extends EigenResourceStrict {
   givenName?: string;
   middleName?: string;
   familyName?: string;
@@ -39,7 +39,7 @@ export interface PersonName extends OpenmrsResourceStrict {
   voided?: boolean;
 }
 
-export interface PersonAddress extends OpenmrsResourceStrict {
+export interface PersonAddress extends EigenResourceStrict {
   preferred?: boolean;
   cityVillage?: string;
   stateProvince?: string;

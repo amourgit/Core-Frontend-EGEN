@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 
 export const useLayoutType = jest.fn(() => 'tablet');
 
-export function openmrsFetch() {
+export function eigenFetch() {
   return new Promise(() => {});
 }
 
@@ -21,7 +21,7 @@ export function refetchCurrentUser() {
 
 export const ComponentContext = React.createContext(null);
 
-export const openmrsComponentDecorator = jest.fn().mockImplementation(() => (component) => component);
+export const eigenComponentDecorator = jest.fn().mockImplementation(() => (component) => component);
 
 export const Extension = jest.fn().mockImplementation((props: any) => {
   return <slot />;

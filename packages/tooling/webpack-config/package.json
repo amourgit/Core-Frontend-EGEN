@@ -14,21 +14,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/openmrs-esm-core.git"
+    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/openmrs-esm-core/issues"
+    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
   },
   "publishConfig": {
     "access": "public"
   },
   "keywords": [
-    "openmrs",
+    "eigen",
     "microfrontends",
     "webpack",
     "config"
   ],
-  "homepage": "https://github.com/openmrs/openmrs-esm-core#readme",
+  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
   "dependencies": {
     "@swc/core": "1.12.6",
     "clean-webpack-plugin": "4.0.0",

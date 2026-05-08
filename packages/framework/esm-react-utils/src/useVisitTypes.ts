@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 /**
  * A React hook that fetches and returns all available visit types from the
- * OpenMRS server. The data is fetched once when the component mounts.
+ * EIGEN server. The data is fetched once when the component mounts.
  *
  * @returns An array of VisitType objects. Returns an empty array while loading
  *   or if an error occurs.

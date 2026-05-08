@@ -1,6 +1,6 @@
 import {
   type FeatureFlagDefinition,
-  openmrsFetch,
+  eigenFetch,
   registerFeatureFlag,
   setFeatureFlag,
   restBaseUrl,
@@ -39,7 +39,7 @@ export function setupOptionalDependencies() {
   }, new Map());
 
   if (optionalDependencyFlags.size > 0) {
-    openmrsFetch<{ results: { uuid: string; version: string }[] }>(`${restBaseUrl}/module?v=custom:(uuid,version)`)
+    eigenFetch<{ results: { uuid: string; version: string }[] }>(`${restBaseUrl}/module?v=custom:(uuid,version)`)
       .then((response) => {
         (response.data.results ?? []).forEach((backendModule) => {
           if (optionalDependencyFlags.has(backendModule.uuid)) {

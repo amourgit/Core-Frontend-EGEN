@@ -21,20 +21,20 @@
     "extract-translations": "i18next 'src/**/*.component.tsx' --config='../../../tools/i18next-parser.config.js'"
   },
   "keywords": [
-    "openmrs",
+    "eigen",
     "microfrontends"
   ],
   "browserslist": [
-    "extends browserslist-config-openmrs"
+    "extends browserslist-config-igen"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/openmrs-esm-core.git"
+    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/openmrs-esm-core/issues"
+    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
   },
-  "homepage": "https://github.com/openmrs/openmrs-esm-core#readme",
+  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -50,7 +50,7 @@
     "@vitest/coverage-v8": "^4.0.18",
     "cross-env": "^7.0.3",
     "happy-dom": "^20.6.0",
-    "openmrs": "workspace:*",
+    "eigen": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^16.0.0",

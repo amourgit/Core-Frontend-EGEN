@@ -5,7 +5,7 @@ import { ConfigurableLink } from '@egen/esm-framework';
 export default function OfflineToolsAppMenuLink() {
   const { t } = useTranslation();
   return (
-    <ConfigurableLink to="${openmrsSpaBase}/offline-tools">
+    <ConfigurableLink to="${eigenSpaBase}/offline-tools">
       {t('offlineToolsAppMenuLink', 'Offline tools')}
     </ConfigurableLink>
   );

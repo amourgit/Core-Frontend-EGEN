@@ -1,2 +1,2 @@
-export { OpenmrsDatePicker, type OpenmrsDatePickerProps } from './openmrs-date-picker.component';
-export { OpenmrsDateRangePicker, type OpenmrsDateRangePickerProps } from './openmrs-date-range-picker.component';
+export { EigenDatePicker, type EigenDatePickerProps } from './eigen-date-picker.component';
+export { EigenDateRangePicker, type EigenDateRangePickerProps } from './eigen-date-range-picker.component';

@@ -1,7 +1,7 @@
 /** @module @category API */
 import { useMemo } from 'react';
 import useSWR from 'swr';
-import { openmrsFetch, type FetchResponse } from '@egen/esm-api';
+import { eigenFetch, type FetchResponse } from '@egen/esm-api';
 import { attachmentUrl, type AttachmentResponse } from '@egen/esm-emr-api';
 
 /**
@@ -32,7 +32,7 @@ import { attachmentUrl, type AttachmentResponse } from '@egen/esm-emr-api';
 export function useAttachments(patientUuid: string, includeEncounterless: boolean) {
   const { data, error, mutate, isLoading, isValidating } = useSWR<
     FetchResponse<{ results: Array<AttachmentResponse> }>
-  >(`${attachmentUrl}?patient=${patientUuid}&includeEncounterless=${includeEncounterless}`, openmrsFetch);
+  >(`${attachmentUrl}?patient=${patientUuid}&includeEncounterless=${includeEncounterless}`, eigenFetch);
 
   const results = useMemo(
     () => ({

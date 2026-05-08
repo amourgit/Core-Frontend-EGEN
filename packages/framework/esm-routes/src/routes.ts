@@ -1,5 +1,5 @@
 /** @module @category Routes Utilities */
-import type { OpenmrsAppRoutes, OpenmrsRoutes } from '@egen/esm-globals';
+import type { EigenAppRoutes, EigenRoutes } from '@egen/esm-globals';
 import { canAccessStorage } from '@egen/esm-utils';
 import { localStorageRoutesPrefix } from './constants';
 
@@ -11,11 +11,11 @@ const isEnabled = canAccessStorage();
  *
  * @internal
  * @param moduleName The name of the module the routes are for
- * @param routes Either an {@link OpenmrsAppRoutes} object, a string that represents a JSON
- *  version of an {@link OpenmrsAppRoutes} object or a string or URL that resolves to a
- *  JSON document that represents an {@link OpenmrsAppRoutes} object
+ * @param routes Either an {@link EigenAppRoutes} object, a string that represents a JSON
+ *  version of an {@link EigenAppRoutes} object or a string or URL that resolves to a
+ *  JSON document that represents an {@link EigenAppRoutes} object
  */
-export function addRoutesOverride(moduleName: string, routes: OpenmrsAppRoutes | string | URL) {
+export function addRoutesOverride(moduleName: string, routes: EigenAppRoutes | string | URL) {
   if (!isEnabled) {
     return;
   }
@@ -26,10 +26,10 @@ export function addRoutesOverride(moduleName: string, routes: OpenmrsAppRoutes |
     } else {
       try {
         const maybeRoutes = JSON.parse(routes);
-        if (isOpenmrsAppRoutes(maybeRoutes)) {
+        if (isEigenAppRoutes(maybeRoutes)) {
           return addRouteOverrideInternal(moduleName, maybeRoutes);
         } else {
-          console.error(`The supplied routes for ${moduleName} is not a valid OpenmrsAppRoutes object`, routes);
+          console.error(`The supplied routes for ${moduleName} is not a valid EigenAppRoutes object`, routes);
         }
       } catch (e) {
         console.error(`Could not add routes override for ${moduleName}: `, e);
@@ -37,7 +37,7 @@ export function addRoutesOverride(moduleName: string, routes: OpenmrsAppRoutes |
     }
   } else if (routes instanceof URL) {
     return addRouteOverrideInternal(moduleName, routes.toString());
-  } else if (isOpenmrsAppRoutes(routes)) {
+  } else if (isEigenAppRoutes(routes)) {
     return addRouteOverrideInternal(moduleName, routes);
   }
 
@@ -81,25 +81,25 @@ export function resetAllRoutesOverrides() {
   }
 }
 
-function addRouteOverrideInternal(moduleName: string, routes: OpenmrsAppRoutes | string) {
+function addRouteOverrideInternal(moduleName: string, routes: EigenAppRoutes | string) {
   const key = localStorageRoutesPrefix + moduleName;
   localStorage.setItem(key, JSON.stringify(routes));
 }
 
 /**
- * Simple type-predicate to ensure that the value can be treated as an OpenmrsAppRoutes
+ * Simple type-predicate to ensure that the value can be treated as an EigenAppRoutes
  * object.
  *
  * @internal
- * @param routes the object to check to see if it is an OpenmrsAppRoutes object
- * @returns true if the routes value is an OpenmrsAppRoutes
+ * @param routes the object to check to see if it is an EigenAppRoutes object
+ * @returns true if the routes value is an EigenAppRoutes
  */
-export function isOpenmrsAppRoutes(routes: OpenmrsAppRoutes | unknown): routes is OpenmrsAppRoutes {
+export function isEigenAppRoutes(routes: EigenAppRoutes | unknown): routes is EigenAppRoutes {
   if (routes && typeof routes === 'object') {
     const hasOwnProperty = Object.prototype.hasOwnProperty;
-    // we cast maybeRoutes as OpenmrsAppRoutes mainly so we can refer to the properties it should
+    // we cast maybeRoutes as EigenAppRoutes mainly so we can refer to the properties it should
     // have without repeated casts
-    const maybeRoutes = routes as OpenmrsAppRoutes;
+    const maybeRoutes = routes as EigenAppRoutes;
 
     if (hasOwnProperty.call(routes, 'pages')) {
       if (!Boolean(maybeRoutes.pages) || !Array.isArray(maybeRoutes.pages)) {
@@ -125,8 +125,8 @@ export function isOpenmrsAppRoutes(routes: OpenmrsAppRoutes | unknown): routes i
       }
     }
 
-    // Notice that we're essentially testing for things that cannot be treated as an OpenmrsAppRoutes
-    // object. This is because a completely empty object is a valid OpenmrsAppRoutes object.
+    // Notice that we're essentially testing for things that cannot be treated as an EigenAppRoutes
+    // object. This is because a completely empty object is a valid EigenAppRoutes object.
     return true;
   }
 
@@ -134,18 +134,18 @@ export function isOpenmrsAppRoutes(routes: OpenmrsAppRoutes | unknown): routes i
 }
 
 /**
- * Simple type-predicate to ensure that the value can be treated as an OpenmrsRoutes
+ * Simple type-predicate to ensure that the value can be treated as an EigenRoutes
  * object.
  *
  * @internal
- * @param routes the object to check to see if it is an OpenmrsRoutes object
- * @returns true if the routes value is an OpenmrsRoutes
+ * @param routes the object to check to see if it is an EigenRoutes object
+ * @returns true if the routes value is an EigenRoutes
  */
-export function isOpenmrsRoutes(routes: OpenmrsRoutes | unknown): routes is OpenmrsRoutes {
+export function isEigenRoutes(routes: EigenRoutes | unknown): routes is EigenRoutes {
   if (routes && typeof routes === 'object') {
-    const maybeRoutes = routes as OpenmrsRoutes;
+    const maybeRoutes = routes as EigenRoutes;
 
-    return Object.entries(maybeRoutes).every(([key, value]) => typeof key === 'string' && isOpenmrsAppRoutes(value));
+    return Object.entries(maybeRoutes).every(([key, value]) => typeof key === 'string' && isEigenAppRoutes(value));
   }
 
   return false;
