@@ -180,7 +180,7 @@ export function getOidcBase(realm?: string, hostname?: string): string {
  *
  * @example
  * // Dans app/api/auth/login/route.ts
- * import { resolveRealmFromRequest } from '@/lib/realm-resolver';
+ * import { resolveRealmFromRequest } from '../lib/realm-resolver';
  *
  * export async function POST(request: NextRequest) {
  *   const { realm, oidcBase, adminBase } = resolveRealmFromRequest(request);

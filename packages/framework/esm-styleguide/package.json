@@ -75,7 +75,8 @@
     "geopattern": "^1.2.3",
     "lodash-es": "^4.17.21",
     "react-aria-components": "^1.7.1",
-    "react-avatar": "^5.0.3"
+    "react-avatar": "^5.0.3",
+    "@igen/esm-auth": "workspace:*"
   },
   "peerDependencies": {
     "@egen/esm-api": "9.x",

@@ -8,15 +8,15 @@
 // ============================================================
 
 // ── Re-export depuis le vrai Provider ────────────────────────
-export { useAuthContext, AuthContext, AuthProvider } from '@/lib/auth/AuthProvider';
+export { useAuthContext, AuthContext, AuthProvider } from '../lib/auth-provider';
 
 // ── Types ────────────────────────────────────────────────────
-export type { AuthContextType } from '@/lib/auth-store.types';
+export type { AuthContextType } from '../lib/auth-store.types';
 
 // ── tokenStore (compatibilité descendante) ────────────────────
 // Les anciens composants qui importent tokenStore continuent de fonctionner.
-import { tokenManager, userDataStore } from '@/lib/security/token-manager';
-import { clientCookieManager }         from '@/lib/security/cookie-manager';
+import { tokenManager, userDataStore } from '../security/token-manager';
+import { clientCookieManager }         from '../security/cookie-manager';
 import type { CurrentUser }            from '@/lib/models/iam/auth.model';
 
 export const tokenStore = {

@@ -17,12 +17,12 @@ import {
   BackLink, CenteredLoader, ErrorBanner, EmptyState,
   glass,
 } from './ui/GlassUI';
-import { profilService } from '@/services/iam/authService';
-import { useIAMAuth } from '@/hooks/useIAMAuth';
+import { profilService } from '@igen/esm-auth';
+import { useIAMAuth } from '@igen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import type { PermissionEffective, Habilitations } from '@/lib/models/iam/auth.model';
+import type { PermissionEffective, Habilitations } from '@igen/esm-auth';
 import { AuthLayout } from './ui/AuthLayout';
 
 // ── Regrouper les permissions par domaine ─────────────────

@@ -60,7 +60,8 @@
     "workbox-routing": "^6.1.5",
     "workbox-strategies": "^6.1.5",
     "workbox-webpack-plugin": "^6.1.5",
-    "workbox-window": "^6.1.5"
+    "workbox-window": "^6.1.5",
+    "@igen/esm-auth": "workspace:*"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

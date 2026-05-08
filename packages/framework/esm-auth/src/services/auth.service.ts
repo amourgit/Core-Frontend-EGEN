@@ -15,9 +15,9 @@
 // ============================================================
 
 import { httpClient } from '@/lib/http-client';
-import { getCurrentRealm } from '@/lib/realm-resolver';
-import { tokenManager, userDataStore } from '@/lib/security/token-manager';
-import { decodeJWTUnsafe } from '@/lib/security/jwt-verifier';
+import { getCurrentRealm } from '../lib/realm-resolver';
+import { tokenManager, userDataStore } from '../security/token-manager';
+import { decodeJWTUnsafe } from '../security/jwt-verifier';
 import type { SessionResponse, CurrentUser } from '@/lib/models/iam/auth.model';
 
 // ── Config Keycloak ────────────────────────────────────────

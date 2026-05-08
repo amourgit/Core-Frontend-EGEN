@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { useAuthStore }     from '@/stores/auth.store';
+import { useAuthStore }     from '@igen/esm-auth';
 import { useRegistryStore } from '@/stores/registry.store';
 import { useTheme }         from '@/lib/theme';
 import { cn }               from '@/lib/utils';

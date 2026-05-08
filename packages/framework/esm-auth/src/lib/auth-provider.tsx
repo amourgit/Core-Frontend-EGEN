@@ -19,17 +19,17 @@ import {
 } from 'react';
 
 import type { CurrentUser }    from '@/lib/models/iam/auth.model';
-import type { AuthContextType } from '@/lib/auth-store.types';
+import type { AuthContextType } from '../lib/auth-store.types';
 import {
   getSession,
   logoutAndClean,
   scheduleTokenRefresh,
   cancelTokenRefresh,
-} from '@/services/iam/authService';
-import { tokenManager, userDataStore } from '@/lib/security/token-manager';
-import { clientCookieManager }         from '@/lib/security/cookie-manager';
-import { useAuthStore }                from '@/stores/auth.store';
-import { auditLogger }                 from '@/lib/security/audit-logger';
+} from '../services/auth.service';
+import { tokenManager, userDataStore } from '../security/token-manager';
+import { clientCookieManager }         from '../security/cookie-manager';
+import { useAuthStore }                from '../store/auth.store';
+import { auditLogger }                 from '../security/audit-logger';
 
 // ── Props ─────────────────────────────────────────────────────
 interface AuthProviderProps {

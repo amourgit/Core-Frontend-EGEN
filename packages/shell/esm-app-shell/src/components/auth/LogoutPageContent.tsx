@@ -9,7 +9,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldOff, Loader2 } from 'lucide-react';
-import { useIAMAuth } from '@/hooks/useIAMAuth';
+import { useIAMAuth } from '@igen/esm-auth';
 
 export default function LogoutPageContent() {
   const { logout } = useIAMAuth();

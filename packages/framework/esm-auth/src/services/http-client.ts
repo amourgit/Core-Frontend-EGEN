@@ -10,9 +10,9 @@
 //  - Jamais de contact direct avec localStorage pour les tokens
 // ============================================================
 
-import { tokenManager } from '@/lib/security/token-manager';
-import { auditLogger } from '@/lib/security/audit-logger';
-import { getCurrentRealm, resolveRealm } from '@/lib/realm-resolver';
+import { tokenManager } from '../security/token-manager';
+import { auditLogger } from '../security/audit-logger';
+import { getCurrentRealm, resolveRealm } from '../lib/realm-resolver';
 
 const BACKEND_BASE = import.meta.env.VITE_KEYCLOAK_URL || 'http://localhost:8000';
 const API_V1       = `${BACKEND_BASE}/api/v1`;

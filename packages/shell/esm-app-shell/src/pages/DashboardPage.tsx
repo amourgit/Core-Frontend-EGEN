@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from '@igen/esm-auth';
 import { useRegistryStore } from '@/stores/registry.store';
 import { Shield, Users, Activity, Building2, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';

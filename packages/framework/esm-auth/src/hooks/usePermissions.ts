@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from '../store/auth.store';
 
 /**
  * Hook de vérification des permissions pour les modules.

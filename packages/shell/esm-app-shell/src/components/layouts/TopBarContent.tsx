@@ -17,7 +17,7 @@ import { useGlass } from "@/hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 import { useAuth } from "@/hooks/useAuth";
-import { useIAMAuth } from '@/hooks/useIAMAuth';
+import { useIAMAuth } from '@igen/esm-auth';
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 import { navigationData, NavigationItem } from "@/services/navigation";

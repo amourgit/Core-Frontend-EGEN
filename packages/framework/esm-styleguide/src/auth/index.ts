@@ -1,5 +1,12 @@
-// @egen/esm-styleguide — Auth Components & System
-// Auth Pages
+// ============================================================
+// @igen/esm-styleguide — Auth UI Components
+//
+// ⚠️  Core auth logic lives in @igen/esm-auth.
+//     This module exports only UI pages & layouts.
+//     Import hooks, stores, security from @igen/esm-auth.
+// ============================================================
+
+// ── Auth UI Pages ────────────────────────────────────────────
 export { default as LoginPageContent }           from './LoginPageContent';
 export { default as LoginOrbitalAuth }           from './LoginOrbitalAuth';
 export { default as LogoutPageContent }          from './LogoutPageContent';
@@ -10,20 +17,22 @@ export { default as HabilitationsPageContent }   from './HabilitationsPageConten
 export { default as JournalPageContent }         from './JournalPageContent';
 export { default as SecuritePageContent }        from './SecuritePageContent';
 export { default as SessionsPageContent }        from './SessionsPageContent';
-// Auth UI
+
+// ── Auth UI Layouts ──────────────────────────────────────────
 export * from './ui/AuthLayout';
 export * from './ui/GlassUI';
 export * from './ui/AuthNavMenu';
-// Auth system
-export { AuthProvider, useAuthContext, AuthContext } from './lib/auth-provider';
-export type { AuthContextType }                      from './auth-store.types';
-export { tokenStore }                                from './auth-store';
-// Security
-export { tokenManager, userDataStore }               from './security/token-manager';
-export { clientCookieManager }                       from './security/cookie-manager';
-export { auditLogger }                               from './security/audit-logger';
-// Models
-export type { CurrentUser, AuthState, LoginResponse, SessionResponse, LoginCredentials } from './models/auth.model';
-// Services
-export { getSession, logoutAndClean, scheduleTokenRefresh, cancelTokenRefresh } from './services/auth.service';
-export { httpClient } from './services/http-client';
+
+// ── Re-exports from @igen/esm-auth (single source of truth) ──
+export {
+  AuthProvider,
+  useAuthContext,
+  AuthContext,
+  useAuth,
+  useIAMAuth,
+  usePermissions,
+  useKeycloakSession,
+  useSessionMonitor,
+  useAuthStore,
+} from '@igen/esm-auth';
+export type { AuthContextType, CurrentUser, AuthState } from '@igen/esm-auth';

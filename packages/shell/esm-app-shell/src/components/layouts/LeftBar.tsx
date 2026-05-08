@@ -19,8 +19,8 @@ import {
 } from 'lucide-react';
 
 import { useRegistryStore }  from '@/stores/registry.store';
-import { usePermissions }    from '@/hooks/usePermissions';
-import { useAuthStore }      from '@/stores/auth.store';
+import { usePermissions }    from '@igen/esm-auth';
+import { useAuthStore }      from '@igen/esm-auth';
 import { cn }                from '@/lib/utils';
 import { ScrollArea }        from '@/components/ui/scroll-area';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';

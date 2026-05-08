@@ -17,8 +17,8 @@
 // ============================================================
 
 import { useState, useCallback } from 'react';
-import { tokenManager } from '@/lib/security/token-manager';
-import { getCurrentRealm } from '@/lib/realm-resolver';
+import { tokenManager } from '../security/token-manager';
+import { getCurrentRealm } from '../lib/realm-resolver';
 
 export interface KeycloakSessionState {
   /** null = pas encore vérifié */

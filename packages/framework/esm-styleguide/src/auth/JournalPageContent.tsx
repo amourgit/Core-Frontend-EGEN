@@ -18,8 +18,8 @@ import {
   CenteredLoader, ErrorBanner, EmptyState, MetaPill,
   SectionDivider, glass,
 } from './ui/GlassUI';
-import { profilService } from '@/services/iam/authService';
-import type { JournalEntry } from '@/lib/models/iam/auth.model';
+import { profilService } from '@igen/esm-auth';
+import type { JournalEntry } from '@igen/esm-auth';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { AuthLayout } from './ui/AuthLayout';

@@ -14,7 +14,7 @@
 // ============================================================
 
 import { useMemo } from 'react';
-import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from '@igen/esm-auth';
 
 // ── Types retournés ───────────────────────────────────────────
 
