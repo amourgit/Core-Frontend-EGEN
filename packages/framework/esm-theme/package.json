@@ -2,16 +2,13 @@
   "name": "@egen/esm-theme",
   "version": "1.0.0",
   "license": "MPL-2.0",
-  "description": "EIGEN Theme System — token-based theming, dark mode, glass morphism",
+  "description": "EIGEN Theme System \u2014 compatibility shim re-exporting from @igen/esm-styleguide",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
-    },
-    "./globals.css": {
-      "default": "./src/globals.css"
     }
   },
   "source": true,
@@ -19,10 +16,17 @@
     "build": "tsc --project tsconfig.build.json",
     "lint": "eslint src"
   },
-  "keywords": ["eigen", "theme", "dark-mode", "glass-morphism", "css-variables"],
+  "keywords": [
+    "eigen",
+    "theme",
+    "dark-mode",
+    "glass-morphism",
+    "css-variables"
+  ],
   "peerDependencies": {
     "react": "18.x",
-    "react-dom": "18.x"
+    "react-dom": "18.x",
+    "@igen/esm-styleguide": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.3",

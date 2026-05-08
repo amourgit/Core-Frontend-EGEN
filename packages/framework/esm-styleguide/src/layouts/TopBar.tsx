@@ -21,7 +21,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { useAuthStore }     from '@/stores/auth.store';
 import { useRegistryStore } from '@/stores/registry.store';
-import { useTheme }         from '@/lib/theme';
+import { useTheme }         from '@igen/esm-styleguide/theme';
 import { cn }               from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button }           from '@/components/ui/button';

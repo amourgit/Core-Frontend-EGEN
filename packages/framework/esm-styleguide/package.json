@@ -31,6 +31,13 @@
     "./mock": {
       "import": "./mock.tsx",
       "require": "./mock-jest.tsx"
+    },
+    "./theme": {
+      "types": "./src/theme/index.ts",
+      "default": "./src/theme/index.ts"
+    },
+    "./globals.css": {
+      "default": "./src/theme/globals.css"
     }
   },
   "source": true,

@@ -19,7 +19,7 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-route
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 
-import { ThemeProvider }    from '@/lib/theme';
+import { ThemeProvider }    from '@igen/esm-styleguide/theme';
 import { AuthProvider }     from '@igen/esm-auth';
 import { useIAMAuth }       from '@igen/esm-auth';
 import { useAuthStore }     from '@igen/esm-auth';
