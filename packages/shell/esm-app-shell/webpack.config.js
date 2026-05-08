@@ -21,26 +21,26 @@ const production = 'production';
 const allowedSuffixes = ['-app', '-widgets'];
 const { ModuleFederationPlugin } = container;
 
-const eigenAddCookie = process.env.EIGEN_ADD_COOKIE;
-const eigenApiUrl = removeTrailingSlash(process.env.OMRS_API_URL || '/eigen');
-const eigenPublicPath = removeTrailingSlash(process.env.OMRS_PUBLIC_PATH || '/eigen/spa');
-const eigenProxyTarget = process.env.OMRS_PROXY_TARGET || 'https://dev.iam-central.ga/';
-const eigenPageTitle = process.env.OMRS_PAGE_TITLE || 'EIGEN';
-const eigenFavicon = process.env.OMRS_FAVICON || `${eigenPublicPath}/favicon.ico`;
-const eigenEnvironment = process.env.OMRS_ENV || process.env.NODE_ENV || '';
-const eigenOffline = process.env.OMRS_OFFLINE === 'enable';
-const eigenDefaultLocale = process.env.OMRS_ESM_DEFAULT_LOCALE || 'en';
-const eigenImportmapDef = process.env.OMRS_ESM_IMPORTMAP;
-const eigenImportmapUrl = process.env.OMRS_ESM_IMPORTMAP_URL || `${eigenPublicPath}/importmap.json`;
-const eigenRoutesDef = process.env.OMRS_ROUTES;
-const eigenRoutesUrl = process.env.OMRS_ROUTES_URL || `${eigenPublicPath}/routes.registry.json`;
-const eigenCoreApps = process.env.OMRS_ESM_CORE_APPS_DIR || resolve(__dirname, '../../apps');
-const eigenConfigUrls = (process.env.OMRS_CONFIG_URLS || '')
+const eigenAddCookie = process.env.IGEN_ADD_COOKIE;
+const eigenApiUrl = removeTrailingSlash(process.env.IGEN_API_URL || '/eigen');
+const eigenPublicPath = removeTrailingSlash(process.env.IGEN_PUBLIC_PATH || '/eigen/spa');
+const eigenProxyTarget = process.env.IGEN_PROXY_TARGET || 'https://dev.iam-central.ga/';
+const eigenPageTitle = process.env.IGEN_PAGE_TITLE || 'EIGEN';
+const eigenFavicon = process.env.IGEN_FAVICON || `${eigenPublicPath}/favicon.ico`;
+const eigenEnvironment = process.env.IGEN_ENV || process.env.NODE_ENV || '';
+const eigenOffline = process.env.IGEN_OFFLINE === 'enable';
+const eigenDefaultLocale = process.env.IGEN_DEFAULT_LOCALE || 'en';
+const eigenImportmapDef = process.env.IGEN_IMPORTMAP;
+const eigenImportmapUrl = process.env.IGEN_IMPORTMAP_URL || `${eigenPublicPath}/importmap.json`;
+const eigenRoutesDef = process.env.IGEN_ROUTES;
+const eigenRoutesUrl = process.env.IGEN_ROUTES_URL || `${eigenPublicPath}/routes.registry.json`;
+const eigenCoreApps = process.env.IGEN_CORE_APPS_DIR || resolve(__dirname, '../../apps');
+const eigenConfigUrls = (process.env.IGEN_CONFIG_URLS || '')
   .split(';')
   .filter((url) => url.length > 0)
   .map((url) => JSON.stringify(url))
   .join(', ');
-const eigenJsCssAssets = (process.env.OMRS_JS_CSS_ASSETS || '')
+const eigenJsCssAssets = (process.env.IGEN_JS_CSS_ASSETS || '')
   .split(';')
   .filter((filePath) => filePath.length > 0);
 

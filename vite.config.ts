@@ -4,50 +4,86 @@ import federation from '@originjs/vite-plugin-federation';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
+// ============================================================
+// IGEN CORE — Vite Configuration
+//
+// Architecture: Vite + Module Federation (primary bundler)
+//
+// MODULE FEDERATION STRATEGY:
+//  - Core is the HOST: exposes shared deps, loads remotes
+//  - Each micro-frontend is a REMOTE: served from own port
+//  - Shared singletons: React, Router, Zustand, Query
+//
+// ENV VARS:
+//  IGEN_IAM_URL     — IAM micro-frontend URL (default: localhost:3000)
+//  IGEN_API_URL     — Backend API URL (default: localhost:8080)
+//  IGEN_PORT        — Dev server port (default: 3001)
+// ============================================================
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const IAM_URL = env.VITE_IAM_URL || 'http://localhost:3000';
+
+  const IAM_URL   = env.IGEN_IAM_URL   || 'http://localhost:3000';
+  const API_URL   = env.IGEN_API_URL   || 'http://localhost:8080';
+  const DEV_PORT  = parseInt(env.IGEN_PORT || '3001', 10);
 
   return {
     plugins: [
       react(),
       tailwindcss(),
 
-      // ── Module Federation ─────────────────────────────────────
-      // En PROD : remoteEntry.js sert les modules compilés.
-      // En DEV  : si IAM n'est pas up, ModuleErrorBoundary gère l'erreur.
+      // ── Module Federation ───────────────────────────────────
+      // Core is the HOST shell.
+      // Remotes are loaded dynamically (see mf-loader.ts).
       federation({
-        name: 'core',
+        name: 'igen-core',
         remotes: {
-          // Format : nom@URL/remoteEntry.js
-          // L'IAM expose ses composants depuis ce point d'entrée
-          iam: `iam@${IAM_URL}/static/chunks/remoteEntry.js`,
+          // Each MF remote — add/remove as modules are deployed
+          // Format: <alias>@<url>/remoteEntry.js
+          iam: `iam@${IAM_URL}/assets/remoteEntry.js`,
         },
         shared: {
-          react:              { singleton: true, requiredVersion: '^18.3.1' },
-          'react-dom':        { singleton: true, requiredVersion: '^18.3.1' },
-          'react-router-dom': { singleton: true, requiredVersion: '^6.0.0' },
-          'framer-motion':    { singleton: true },
-          'lucide-react':     { singleton: false },
-          'zustand':          { singleton: true },
+          // Singletons — only ONE copy across the entire app
+          react:                   { singleton: true, requiredVersion: '^18.3.1' },
+          'react-dom':             { singleton: true, requiredVersion: '^18.3.1' },
+          'react-router-dom':      { singleton: true, requiredVersion: '^6.0.0' },
+          'zustand':               { singleton: true, requiredVersion: '^5.0.0' },
           '@tanstack/react-query': { singleton: true },
+          // Non-singleton — each module bundles its own
+          'framer-motion':         { singleton: false },
+          'lucide-react':          { singleton: false },
         },
       }),
     ],
 
     resolve: {
       alias: {
+        // @/ maps to shell src — used by shell components
         '@': path.resolve(__dirname, './packages/shell/esm-app-shell/src'),
+        // Package aliases for local development (monorepo)
+        '@igen/esm-auth':        path.resolve(__dirname, './packages/framework/esm-auth/src'),
+        '@igen/esm-styleguide':  path.resolve(__dirname, './packages/framework/esm-styleguide/src'),
+        '@igen/esm-framework':   path.resolve(__dirname, './packages/framework/esm-framework/src'),
+        '@igen/esm-api':         path.resolve(__dirname, './packages/framework/esm-api/src'),
+        '@igen/esm-config':      path.resolve(__dirname, './packages/framework/esm-config/src'),
+        '@igen/esm-state':       path.resolve(__dirname, './packages/framework/esm-state/src'),
+        '@igen/esm-utils':       path.resolve(__dirname, './packages/framework/esm-utils/src'),
       },
     },
 
     server: {
-      port: 3001,
+      port: DEV_PORT,
       cors: true,
-      // Proxy optionnel vers le backend IAM (évite les CORS en dev)
       proxy: {
-        '/api/auth': {
-          target: IAM_URL,
+        // Proxy /api → backend (avoids CORS in dev)
+        '/api': {
+          target: API_URL,
+          changeOrigin: true,
+          secure: false,
+        },
+        // Proxy /eigen → IGEN backend
+        '/eigen': {
+          target: API_URL,
           changeOrigin: true,
           secure: false,
         },
@@ -56,8 +92,23 @@ export default defineConfig(({ mode }) => {
 
     build: {
       target: 'esnext',
-      minify: false,        // requis pour MF en production
-      cssCodeSplit: false,
+      minify: false,         // Required for Module Federation runtime
+      cssCodeSplit: false,   // Required for MF CSS sharing
+      rollupOptions: {
+        output: {
+          // Consistent chunk naming for MF
+          chunkFileNames: 'assets/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash][extname]',
+        },
+      },
+    },
+
+    optimizeDeps: {
+      // Force pre-bundling of MF shared packages
+      include: [
+        'react', 'react-dom', 'react-router-dom',
+        'zustand', '@tanstack/react-query',
+      ],
     },
   };
 });
