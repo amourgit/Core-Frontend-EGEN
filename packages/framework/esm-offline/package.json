@@ -35,7 +35,7 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-egen"
+    "> 0.2%", "not dead", "not op_mini all"
   ],
   "repository": {
     "type": "git",
@@ -61,9 +61,9 @@
     "workbox-window": "^6.1.5"
   },
   "devDependencies": {
-    "@egen/esm-api": "workspace:*",
-    "@egen/esm-globals": "workspace:*",
-    "@egen/esm-state": "workspace:*",
+    "@egen/esm-api": "*",
+    "@egen/esm-globals": "*",
+    "@egen/esm-state": "*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@types/uuid": "^9.0.1",

@@ -38,8 +38,8 @@
   "dependencies": {
     "@carbon/react": "^1.92.1",
     "@internationalized/date": "^3.8.0",
-    "@egen/esm-framework": "workspace:*",
-    "@egen/esm-styleguide": "workspace:*",
+    "@egen/esm-framework": "*",
+    "@egen/esm-styleguide": "*",
     "dayjs": "^1.11.13",
     "dexie": "^3.0.3",
     "html-webpack-plugin": "^5.5.0",
@@ -64,7 +64,7 @@
     "workbox-strategies": "^6.1.5",
     "workbox-webpack-plugin": "^6.1.5",
     "workbox-window": "^6.1.5",
-    "@egen/esm-auth": "workspace:*"
+    "@egen/esm-auth": "*"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

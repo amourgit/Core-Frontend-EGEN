@@ -65,9 +65,9 @@
     "@egen/esm-state": "9.x"
   },
   "devDependencies": {
-    "@egen/esm-api": "workspace:*",
-    "@egen/esm-offline": "workspace:*",
-    "@egen/esm-state": "workspace:*",
+    "@egen/esm-api": "*",
+    "@egen/esm-offline": "*",
+    "@egen/esm-state": "*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",

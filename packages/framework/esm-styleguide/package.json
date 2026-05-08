@@ -60,7 +60,7 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-egen"
+    "> 0.2%", "not dead", "not op_mini all"
   ],
   "repository": {
     "type": "git",
@@ -83,7 +83,7 @@
     "lodash-es": "^4.17.21",
     "react-aria-components": "^1.7.1",
     "react-avatar": "^5.0.3",
-    "@egen/esm-auth": "workspace:*"
+    "@egen/esm-auth": "*"
   },
   "peerDependencies": {
     "@egen/esm-api": "9.x",
@@ -99,24 +99,24 @@
     "@egen/esm-utils": "9.x",
     "dayjs": "1.x",
     "i18next": "25.x",
-    "react": "18.x",
-    "react-dom": "18.x",
+    "react": "^18.0 || ^19.0",
+    "react-dom": "^18.0 || ^19.0",
     "react-i18next": "16.x",
     "rxjs": "6.x",
     "swr": "2.x"
   },
   "devDependencies": {
-    "@egen/esm-api": "workspace:*",
-    "@egen/esm-config": "workspace:*",
-    "@egen/esm-egen-api": "workspace:*",
-    "@egen/esm-error-handling": "workspace:*",
-    "@egen/esm-extensions": "workspace:*",
-    "@egen/esm-globals": "workspace:*",
-    "@egen/esm-navigation": "workspace:*",
-    "@egen/esm-react-utils": "workspace:*",
-    "@egen/esm-state": "workspace:*",
-    "@egen/esm-translations": "workspace:*",
-    "@egen/esm-utils": "workspace:*",
+    "@egen/esm-api": "*",
+    "@egen/esm-config": "*",
+    "@egen/esm-egen-api": "*",
+    "@egen/esm-error-handling": "*",
+    "@egen/esm-extensions": "*",
+    "@egen/esm-globals": "*",
+    "@egen/esm-navigation": "*",
+    "@egen/esm-react-utils": "*",
+    "@egen/esm-state": "*",
+    "@egen/esm-translations": "*",
+    "@egen/esm-utils": "*",
     "@rspack/cli": "1.3.15",
     "@rspack/core": "1.3.15",
     "@types/geopattern": "^1.2.9",

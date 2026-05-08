@@ -46,7 +46,7 @@
     "microfrontends"
   ],
   "browserslist": [
-    "extends browserslist-config-egen"
+    "> 0.2%", "not dead", "not op_mini all"
   ],
   "repository": {
     "type": "git",
@@ -60,37 +60,37 @@
     "access": "public"
   },
   "dependencies": {
-    "@egen/esm-api": "workspace:*",
-    "@egen/esm-config": "workspace:*",
-    "@egen/esm-context": "workspace:*",
-    "@egen/esm-dynamic-loading": "workspace:*",
-    "@egen/esm-error-handling": "workspace:*",
-    "@egen/esm-expression-evaluator": "workspace:*",
-    "@egen/esm-extensions": "workspace:*",
-    "@egen/esm-feature-flags": "workspace:*",
-    "@egen/esm-globals": "workspace:*",
-    "@egen/esm-navigation": "workspace:*",
-    "@egen/esm-offline": "workspace:*",
-    "@egen/esm-react-utils": "workspace:*",
-    "@egen/esm-routes": "workspace:*",
-    "@egen/esm-state": "workspace:*",
-    "@egen/esm-styleguide": "workspace:*",
-    "@egen/esm-translations": "workspace:*",
-    "@egen/esm-utils": "workspace:*",
-    "@egen/esm-egen-api": "workspace:*"
+    "@egen/esm-api": "*",
+    "@egen/esm-config": "*",
+    "@egen/esm-context": "*",
+    "@egen/esm-dynamic-loading": "*",
+    "@egen/esm-error-handling": "*",
+    "@egen/esm-expression-evaluator": "*",
+    "@egen/esm-extensions": "*",
+    "@egen/esm-feature-flags": "*",
+    "@egen/esm-globals": "*",
+    "@egen/esm-navigation": "*",
+    "@egen/esm-offline": "*",
+    "@egen/esm-react-utils": "*",
+    "@egen/esm-routes": "*",
+    "@egen/esm-state": "*",
+    "@egen/esm-styleguide": "*",
+    "@egen/esm-translations": "*",
+    "@egen/esm-utils": "*",
+    "@egen/esm-egen-api": "*"
   },
   "peerDependencies": {
     "dayjs": "1.x",
     "i18next": "25.x",
-    "react": "18.x",
-    "react-dom": "18.x",
+    "react": "^18.0 || ^19.0",
+    "react-dom": "^18.0 || ^19.0",
     "react-i18next": "16.x",
     "rxjs": "6.x",
     "single-spa": "6.x",
     "swr": "2.x"
   },
   "devDependencies": {
-    "@egen/typedoc-plugin-file-categories": "workspace:*",
+    "@egen/typedoc-plugin-file-categories": "*",
     "@rspack/cli": "1.3.15",
     "@rspack/core": "1.3.15",
     "@vitest/coverage-v8": "^4.0.18",

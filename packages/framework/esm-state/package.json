@@ -40,7 +40,7 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-egen"
+    "> 0.2%", "not dead", "not op_mini all"
   ],
   "repository": {
     "type": "git",
@@ -61,8 +61,8 @@
     "@egen/esm-utils": "9.x"
   },
   "devDependencies": {
-    "@egen/esm-globals": "workspace:*",
-    "@egen/esm-utils": "workspace:*",
+    "@egen/esm-globals": "*",
+    "@egen/esm-utils": "*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",

@@ -32,7 +32,7 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-egen"
+    "> 0.2%", "not dead", "not op_mini all"
   ],
   "repository": {
     "type": "git",
@@ -55,12 +55,12 @@
     "single-spa": "6.x"
   },
   "devDependencies": {
-    "@egen/esm-config": "workspace:*",
-    "@egen/esm-dynamic-loading": "workspace:*",
-    "@egen/esm-extensions": "workspace:*",
-    "@egen/esm-feature-flags": "workspace:*",
-    "@egen/esm-globals": "workspace:*",
-    "@egen/esm-utils": "workspace:*",
+    "@egen/esm-config": "*",
+    "@egen/esm-dynamic-loading": "*",
+    "@egen/esm-extensions": "*",
+    "@egen/esm-feature-flags": "*",
+    "@egen/esm-globals": "*",
+    "@egen/esm-utils": "*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",

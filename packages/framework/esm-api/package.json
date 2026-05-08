@@ -69,10 +69,10 @@
     "@egen/esm-navigation": "9.x"
   },
   "devDependencies": {
-    "@egen/esm-config": "workspace:*",
-    "@egen/esm-error-handling": "workspace:*",
-    "@egen/esm-globals": "workspace:*",
-    "@egen/esm-navigation": "workspace:*",
+    "@egen/esm-config": "*",
+    "@egen/esm-error-handling": "*",
+    "@egen/esm-globals": "*",
+    "@egen/esm-navigation": "*",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.29",
     "@vitest/coverage-v8": "^4.0.18",
