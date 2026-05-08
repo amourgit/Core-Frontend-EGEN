@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import useSWR from 'swr';
 import { eigenFetch, type FetchResponse } from '@egen/esm-api';
-import { attachmentUrl, type AttachmentResponse } from '@egen/esm-emr-api';
+import { attachmentUrl, type AttachmentResponse } from '@egen/esm-igen-api';
 
 /**
  * A React hook that fetches attachments for a patient using SWR for caching

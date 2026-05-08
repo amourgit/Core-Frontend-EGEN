@@ -1,5 +1,5 @@
 export * from './attachments';
-export * from './current-patient';
+export * from './patient';
 export * from './events';
 export * from './location';
 export * from './types';

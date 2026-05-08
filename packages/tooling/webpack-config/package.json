@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -28,7 +28,7 @@
     "webpack",
     "config"
   ],
-  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
   "dependencies": {
     "@swc/core": "1.12.6",
     "clean-webpack-plugin": "4.0.0",

@@ -41,16 +41,19 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-igen"
+    "last 3 chrome versions",
+    "last 3 firefox versions",
+    "last 3 safari versions",
+    "last 3 edge versions"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
   },
-  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -62,7 +65,7 @@
     "@egen/esm-api": "9.x",
     "@egen/esm-config": "9.x",
     "@egen/esm-context": "9.x",
-    "@egen/esm-emr-api": "9.x",
+    "@egen/esm-igen-api": "9.x",
     "@egen/esm-error-handling": "9.x",
     "@egen/esm-extensions": "9.x",
     "@egen/esm-feature-flags": "9.x",
@@ -82,7 +85,7 @@
     "@egen/esm-api": "workspace:*",
     "@egen/esm-config": "workspace:*",
     "@egen/esm-context": "workspace:*",
-    "@egen/esm-emr-api": "workspace:*",
+    "@egen/esm-igen-api": "workspace:*",
     "@egen/esm-error-handling": "workspace:*",
     "@egen/esm-extensions": "workspace:*",
     "@egen/esm-feature-flags": "workspace:*",

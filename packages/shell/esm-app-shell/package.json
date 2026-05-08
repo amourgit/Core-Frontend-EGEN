@@ -19,16 +19,19 @@
     "microfrontends"
   ],
   "browserslist": [
-    "extends browserslist-config-igen"
+    "last 3 chrome versions",
+    "last 3 firefox versions",
+    "last 3 safari versions",
+    "last 3 edge versions"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
   },
-  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
   "publishConfig": {
     "access": "public"
   },

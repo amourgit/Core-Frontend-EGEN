@@ -1,5 +1,5 @@
 export * from './attachments';
-export * from './current-patient';
+export * from './patient';
 export { subscribeEigenEvent, type EigenEvent, type EigenEventTypes } from './events';
 export * from './types';
 export * from './visit-utils';

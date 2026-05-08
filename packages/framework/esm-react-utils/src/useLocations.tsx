@@ -1,6 +1,6 @@
 /** @module @category API */
 import { useState, useEffect } from 'react';
-import { getLocations, type Location } from '@egen/esm-emr-api';
+import { getLocations, type Location } from '@egen/esm-igen-api';
 
 /**
  * A React hook that fetches and returns locations from the EIGEN server.

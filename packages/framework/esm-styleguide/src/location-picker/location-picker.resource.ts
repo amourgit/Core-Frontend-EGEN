@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import useSwrImmutable from 'swr/immutable';
 import useSwrInfinite from 'swr/infinite';
 import { type FetchResponse, fhirBaseUrl, eigenFetch } from '@egen/esm-api';
-import { type FHIRLocationResource } from '@egen/esm-emr-api';
+import { type FHIRLocationResource } from '@egen/esm-igen-api';
 import { useDebounce } from '@egen/esm-react-utils';
 
 export interface LocationResponse {

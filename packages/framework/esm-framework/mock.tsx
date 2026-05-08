@@ -8,7 +8,7 @@ import * as utils from '@egen/esm-utils';
 window.i18next = { ...window.i18next, language: 'en' };
 
 export * from '@egen/esm-api/mock';
-export * from '@egen/esm-emr-api/mock';
+export * from '@egen/esm-igen-api/mock';
 export * from '@egen/esm-config/mock';
 export * from '@egen/esm-context';
 export * from '@egen/esm-expression-evaluator/src/public';

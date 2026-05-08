@@ -50,12 +50,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
   },
-  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -64,7 +64,6 @@
     "@egen/esm-config": "workspace:*",
     "@egen/esm-context": "workspace:*",
     "@egen/esm-dynamic-loading": "workspace:*",
-    "@egen/esm-emr-api": "workspace:*",
     "@egen/esm-error-handling": "workspace:*",
     "@egen/esm-expression-evaluator": "workspace:*",
     "@egen/esm-extensions": "workspace:*",
@@ -77,7 +76,8 @@
     "@egen/esm-state": "workspace:*",
     "@egen/esm-styleguide": "workspace:*",
     "@egen/esm-translations": "workspace:*",
-    "@egen/esm-utils": "workspace:*"
+    "@egen/esm-utils": "workspace:*",
+    "@igen/esm-igen-api": "workspace:*"
   },
   "peerDependencies": {
     "dayjs": "1.x",

@@ -3,7 +3,7 @@ import type useSWR from 'swr';
 import type { BareFetcher, Key } from 'swr';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { useVisit } from './useVisit';
-import type { Visit } from '@egen/esm-emr-api';
+import type { Visit } from '@egen/esm-igen-api';
 
 // Mock eigenFetch
 const mockEigenFetch = vi.fn();

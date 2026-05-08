@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import dayjs from 'dayjs';
 import isToday from 'dayjs/plugin/isToday.js';
 import { eigenFetch, restBaseUrl } from '@egen/esm-api';
-import { defaultVisitCustomRepresentation, type Visit } from '@egen/esm-emr-api';
+import { defaultVisitCustomRepresentation, type Visit } from '@egen/esm-igen-api';
 import { useVisitContextStore } from './useVisitContextStore';
 
 dayjs.extend(isToday);

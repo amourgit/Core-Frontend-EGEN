@@ -1,6 +1,6 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { type Diagnosis } from '@egen/esm-emr-api';
+import { type Diagnosis } from '@egen/esm-igen-api';
 
 /* Please keep these stubs in alphabetical order for readability */
 

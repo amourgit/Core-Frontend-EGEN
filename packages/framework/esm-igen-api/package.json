@@ -1,8 +1,8 @@
 {
-  "name": "@egen/esm-emr-api",
+  "name": "@igen/esm-igen-api",
   "version": "9.0.2",
   "license": "MPL-2.0",
-  "description": "The javascript module for interacting with the EIGEN API",
+  "description": "EIGEN business API \u2014 patients, visits, encounters, observations",
   "type": "module",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,16 +39,19 @@
     "src": "src"
   },
   "browserslist": [
-    "extends browserslist-config-igen"
+    "last 3 chrome versions",
+    "last 3 firefox versions",
+    "last 3 safari versions",
+    "last 3 edge versions"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/Core-Frontend-EIGEN.git"
+    "url": "git+https://github.com/amourgit/Core-Frontend-IGEN.git"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/Core-Frontend-EIGEN/issues"
+    "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
   },
-  "homepage": "https://github.com/openmrs/Core-Frontend-EIGEN#readme",
+  "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
   "publishConfig": {
     "access": "public"
   },

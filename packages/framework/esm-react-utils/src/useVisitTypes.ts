@@ -1,5 +1,5 @@
 /** @module @category API */
-import { getVisitTypes, type VisitType } from '@egen/esm-emr-api';
+import { getVisitTypes, type VisitType } from '@egen/esm-igen-api';
 import { useEffect, useState } from 'react';
 
 /**
