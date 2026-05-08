@@ -1,3 +1,3 @@
-const { default: extendConfig, ...rest } = require('@egen/webpack-config');
-
-module.exports = Object.assign(extendConfig, rest);
+// igen/default-webpack-config
+// Forwards to @igen/webpack-config
+module.exports = require('../webpack-config/src/index');

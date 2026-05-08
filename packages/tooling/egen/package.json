@@ -1,12 +1,12 @@
 {
-  "name": "egen",
+  "name": "igen",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "main": "dist/index.js",
   "bin": {
-    "egen": "./dist/cli.js",
-    "rspack": "./bin/rspack.js",
-    "webpack": "./bin/webpack.js"
+    "igen": "./dist/cli.js",
+    "igen-rspack": "./bin/rspack.js",
+    "igen-webpack": "./bin/webpack.js"
   },
   "types": "dist/index.d.ts",
   "engines": {
@@ -26,10 +26,11 @@
     "url": "https://github.com/amourgit/Core-Frontend-IGEN/issues"
   },
   "keywords": [
-    "egen",
+    "igen",
+    "eigen",
     "microfrontends",
     "cli",
-    "tool"
+    "tooling"
   ],
   "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
   "dependencies": {
@@ -86,5 +87,10 @@
     "@types/semver": "^7",
     "@types/tar": "^4.0.3",
     "vitest": "^4.0.18"
+  },
+  "description": "EIGEN frontend tooling CLI \u2014 serve, build, assemble, deploy micro-frontends",
+  "exports": {
+    "./default-webpack-config": "./default-webpack-config.js",
+    "./default-rspack-config": "./default-rspack-config.js"
   }
 }

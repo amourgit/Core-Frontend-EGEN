@@ -458,3 +458,46 @@ yargs
   .help()
   .demandCommand()
   .strict().argv;
+
+
+yargs.command(
+  'serve',
+  'Starts the EIGEN dev server (alias for "develop").',
+  (argv) => argv
+    .option('backend', {
+      default: 'https://dev.iam-central.ga',
+      describe: 'Backend API URL.',
+      type: 'string',
+    })
+    .option('port', { type: 'number', describe: 'Dev server port.' }),
+  (argv) => runCommand('runDevelop', argv as any),
+);
+
+yargs.command(
+  'create-mf <name>',
+  'Scaffold a new EIGEN micro-frontend module.',
+  (argv) => argv
+    .positional('name', { type: 'string', describe: 'Module name (e.g. esm-my-module)' })
+    .option('scope', {
+      default: '@igen',
+      describe: 'NPM scope for the package.',
+      type: 'string',
+    })
+    .option('template', {
+      default: 'react',
+      choices: ['react', 'vanilla'],
+      describe: 'Project template to use.',
+    }),
+  (argv) => runCommand('runCreateMf', argv as any),
+);
+
+yargs.command(
+  'generate-route',
+  'Generate a new route entry in routes.json.',
+  (argv) => argv
+    .option('name', { type: 'string', describe: 'Route name.' })
+    .option('path', { type: 'string', describe: 'Route path.' }),
+  (argv) => {
+    console.log('🚧 igen generate-route — coming soon.');
+  },
+);

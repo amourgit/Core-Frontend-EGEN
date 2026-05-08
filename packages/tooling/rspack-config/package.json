@@ -1,5 +1,5 @@
 {
-  "name": "@egen/rspack-config",
+  "name": "@igen/rspack-config",
   "version": "9.0.2",
   "license": "MPL-2.0",
   "main": "dist/index.js",
@@ -23,10 +23,10 @@
     "access": "public"
   },
   "keywords": [
+    "igen",
     "eigen",
-    "microfrontends",
     "webpack",
-    "config"
+    "microfrontends"
   ],
   "homepage": "https://github.com/amourgit/Core-Frontend-IGEN#readme",
   "dependencies": {
@@ -48,5 +48,6 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
     "typescript": "^5.8.3"
-  }
+  },
+  "description": "EIGEN bundler config \u2014 rspack-config"
 }
