@@ -1,0 +1,1 @@
+{"version":3,"file":"usePatientPhoto.d.ts","sourceRoot":"","sources":["../../src/patient-photo/usePatientPhoto.ts"],"names":[],"mappings":"AAMA,MAAM,WAAW,qBAAqB;IACpC,IAAI,EAAE;QAAE,QAAQ,EAAE,MAAM,CAAC;QAAC,QAAQ,EAAE,MAAM,CAAA;KAAE,GAAG,IAAI,CAAC;IACpD,KAAK,CAAC,EAAE,KAAK,CAAC;IACd,SAAS,EAAE,OAAO,CAAC;CACpB;AAmBD,wBAAgB,eAAe,CAAC,WAAW,EAAE,MAAM,GAAG,qBAAqB,CAuB1E"}

@@ -1,0 +1,60 @@
+export declare const globals: {
+    Array: ArrayConstructor;
+    Boolean: BooleanConstructor;
+    Symbol: SymbolConstructor;
+    Infinity: number;
+    NaN: number;
+    Math: Math;
+    Number: NumberConstructor;
+    BigInt: BigIntConstructor;
+    String: StringConstructor;
+    RegExp: RegExpConstructor;
+    JSON: JSON;
+    isFinite: typeof isFinite;
+    isNaN: typeof isNaN;
+    parseFloat: typeof parseFloat;
+    parseInt: typeof parseInt;
+    decodeURI: typeof decodeURI;
+    encodeURI: typeof encodeURI;
+    encodeURIComponent: typeof encodeURIComponent;
+    Object: {
+        __proto__: any;
+        assign: any;
+        fromEntries: any;
+        hasOwn: any;
+        keys: any;
+        is: any;
+        values: any;
+    };
+};
+export declare const globalsAsync: {
+    Promise: PromiseConstructor;
+    Array: ArrayConstructor;
+    Boolean: BooleanConstructor;
+    Symbol: SymbolConstructor;
+    Infinity: number;
+    NaN: number;
+    Math: Math;
+    Number: NumberConstructor;
+    BigInt: BigIntConstructor;
+    String: StringConstructor;
+    RegExp: RegExpConstructor;
+    JSON: JSON;
+    isFinite: typeof isFinite;
+    isNaN: typeof isNaN;
+    parseFloat: typeof parseFloat;
+    parseInt: typeof parseInt;
+    decodeURI: typeof decodeURI;
+    encodeURI: typeof encodeURI;
+    encodeURIComponent: typeof encodeURIComponent;
+    Object: {
+        __proto__: any;
+        assign: any;
+        fromEntries: any;
+        hasOwn: any;
+        keys: any;
+        is: any;
+        values: any;
+    };
+};
+//# sourceMappingURL=globals.d.ts.map

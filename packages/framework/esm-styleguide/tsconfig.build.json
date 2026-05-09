@@ -3,8 +3,18 @@
   "compilerOptions": {
     "declarationDir": "dist",
     "emitDeclarationOnly": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
   "extends": "./tsconfig.json",
-  "exclude": ["**/*.test.*", "**/setup-tests.ts", "**/__mocks__/*"]
+  "exclude": [
+    "**/*.test.*",
+    "**/setup-tests.ts",
+    "**/__mocks__/*"
+  ]
 }

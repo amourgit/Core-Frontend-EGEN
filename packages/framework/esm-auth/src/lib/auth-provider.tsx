@@ -18,7 +18,7 @@ import {
   useState, useCallback, type ReactNode,
 } from 'react';
 
-import type { CurrentUser }    from '@/lib/models/iam/auth.model';
+import type { CurrentUser }    from '../models/auth.model';
 import type { AuthContextType } from '../lib/auth-store.types';
 import {
   getSession,
@@ -153,7 +153,7 @@ export function AuthProvider({ children, autoHydrate = true, onLogout, onLogin }
 
   // ── Connect httpClient logout callback ────────────────────
   useEffect(() => {
-    import('@/lib/http-client').then(({ httpClient }) => {
+    import('../services/http-client').then(({ httpClient }) => {
       httpClient.setLogoutCallback(() => doLogout(false));
     }).catch(() => {/* non-bloquant */});
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -82,3 +82,21 @@ export interface TenantConfig {
   theme?:  { primary: string; secondary: string };
   modules: Array<{ name: string; url: string; enabled: boolean }>;
 }
+
+// ── Alias types for backward compatibility ────────────────
+export type CoreConfig = CoreTenant;
+
+export interface MicrofrontendConfig {
+  id:       string;
+  url:      string;
+  scope:    string;
+  module:   string;
+  enabled:  boolean;
+}
+
+export interface RegistryEntry {
+  id:        string;
+  manifest:  MicroserviceManifest;
+  loaded:    boolean;
+  error?:    string;
+}

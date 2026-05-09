@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/snackbars/index.tsx"],"names":[],"mappings":"AAKA,OAAO,KAAK,EAAE,kBAAkB,EAAgB,MAAM,sBAAsB,CAAC;AAG7E,OAAO,EAAE,KAAK,kBAAkB,EAAE,KAAK,YAAY,EAAE,KAAK,YAAY,EAAE,MAAM,sBAAsB,CAAC;AAKrG;;;;GAIG;AACH,wBAAgB,eAAe,CAAC,MAAM,EAAE,WAAW,GAAG,IAAI,QAKzD;AAMD;;;GAGG;AACH,wBAAgB,YAAY,CAAC,QAAQ,EAAE,kBAAkB,QAWxD"}

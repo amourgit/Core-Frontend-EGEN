@@ -4,7 +4,7 @@
 // lib/auth-store.ts et lib/auth/AuthProvider.tsx
 // ============================================================
 
-import type { CurrentUser, AuthState } from '@/lib/models/iam/auth.model';
+import type { CurrentUser, AuthState } from '../models/auth.model';
 
 export interface AuthContextType extends AuthState {
   login: (

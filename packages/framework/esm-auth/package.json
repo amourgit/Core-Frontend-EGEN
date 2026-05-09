@@ -2,7 +2,7 @@
   "name": "@egen/esm-auth",
   "version": "1.0.0",
   "license": "MPL-2.0",
-  "description": "EGEN Authentication & IAM package — Keycloak, JWT, permissions, session",
+  "description": "EGEN Authentication & IAM package \u2014 Keycloak, JWT, permissions, session",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {
@@ -20,7 +20,14 @@
     "build": "tsc --project tsconfig.build.json",
     "lint": "eslint src"
   },
-  "keywords": ["egen", "auth", "iam", "keycloak", "jwt", "permissions"],
+  "keywords": [
+    "egen",
+    "auth",
+    "iam",
+    "keycloak",
+    "jwt",
+    "permissions"
+  ],
   "peerDependencies": {
     "@egen/esm-state": "9.x",
     "react": "^18.0 || ^19.0",
@@ -29,6 +36,7 @@
   },
   "devDependencies": {
     "typescript": "^5.8.3",
-    "react": "^19.2.5"
+    "react": "^19.2.5",
+    "vite": "^5.0.0"
   }
 }

@@ -85,3 +85,10 @@ export function isPublicPath(pathname: string): boolean {
   if (PUBLIC_EXACT_ROUTES.has(pathname)) return true;
   return PUBLIC_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
+
+// ── Keycloak Realm Header ─────────────────────────────────
+/** En-tête HTTP personnalisé pour transmettre le realm Keycloak */
+export const KEYCLOAK_REALM_HEADER = 'X-Keycloak-Realm';
+
+/** Realm Keycloak par défaut */
+export const DEFAULT_REALM = 'master';

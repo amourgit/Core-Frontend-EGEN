@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { CoreUser, CoreTenant } from '@/types/core';
+import type { CoreUser, CoreTenant } from '../types';
 
 interface AuthState {
   user:          CoreUser | null;

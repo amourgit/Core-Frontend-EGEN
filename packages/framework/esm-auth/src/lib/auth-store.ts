@@ -17,7 +17,7 @@ export type { AuthContextType } from '../lib/auth-store.types';
 // Les anciens composants qui importent tokenStore continuent de fonctionner.
 import { tokenManager, userDataStore } from '../security/token-manager';
 import { clientCookieManager }         from '../security/cookie-manager';
-import type { CurrentUser }            from '@/lib/models/iam/auth.model';
+import type { CurrentUser }            from '../models/auth.model';
 
 export const tokenStore = {
   setTokens(accessToken: string, _refreshToken: string, sessionId?: string): void {

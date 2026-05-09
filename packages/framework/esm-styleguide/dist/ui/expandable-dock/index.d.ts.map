@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/ui/expandable-dock/index.tsx"],"names":[],"mappings":"AACA,OAAc,EAAY,SAAS,EAAqB,MAAM,OAAO,CAAC;AAItE,UAAU,mBAAmB;IAC3B,aAAa,EAAE,SAAS,CAAC;IACzB,QAAQ,EAAE,SAAS,CAAC;IACpB,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB;AAED,QAAA,MAAM,cAAc,GAAI,yCAIrB,mBAAmB,4CA4GrB,CAAC;AAEF,eAAe,cAAc,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/numeric-observation/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,KAAK,uBAAuB,EAAE,MAAM,iCAAiC,CAAC;AACnG,OAAO,EACL,uBAAuB,EACvB,uBAAuB,EACvB,KAAK,yBAAyB,EAC9B,KAAK,0BAA0B,EAC/B,KAAK,kBAAkB,EACvB,KAAK,mBAAmB,GACzB,MAAM,wBAAwB,CAAC;AAChC,OAAO,EAAE,wBAAwB,EAAE,KAAK,8BAA8B,EAAE,MAAM,+BAA+B,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"service-worker.d.ts","sourceRoot":"","sources":["../src/service-worker.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,gBAAgB,CAAC;AAIzC;;;;;;GAMG;AACH,wBAAgB,yBAAyB,CAAC,SAAS,EAAE,MAAM,EAAE,eAAe,CAAC,EAAE,MAAM,oBAepF;AAED;;;;;;;GAOG;AACH,wBAAgB,oBAAoB,IAAI,OAAO,CAAC,OAAO,GAAG,SAAS,CAAC,CAEnE"}

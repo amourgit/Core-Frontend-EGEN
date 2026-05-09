@@ -14,11 +14,11 @@
 //   KEYCLOAK_CLIENT_SECRET      = (si client confidentiel, côté serveur uniquement)
 // ============================================================
 
-import { httpClient } from '@/lib/http-client';
+import { httpClient } from './http-client';
 import { getCurrentRealm } from '../lib/realm-resolver';
 import { tokenManager, userDataStore } from '../security/token-manager';
 import { decodeJWTUnsafe } from '../security/jwt-verifier';
-import type { SessionResponse, CurrentUser } from '@/lib/models/iam/auth.model';
+import type { SessionResponse, CurrentUser } from '../models/auth.model';
 
 // ── Config Keycloak ────────────────────────────────────────
 const KC_URL    = import.meta.env.VITE_KEYCLOAK_URL!;

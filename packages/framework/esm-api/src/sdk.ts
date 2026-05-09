@@ -22,8 +22,8 @@ export type {
   FetchHeaders,
   FetchResponseJson,
   FetchError,
-  FetchResponse,
 } from './egen-fetch';
+export type { FetchResponse } from './types';
 
 // User session
 export {

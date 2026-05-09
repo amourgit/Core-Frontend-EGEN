@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { MicroserviceManifest, MicroNavItem, MicroNavGroup } from '@/types/core';
+import type { MicroserviceManifest, MicroNavItem, MicroNavGroup } from '../types';
 
 interface RegistryState {
   manifests:   MicroserviceManifest[];

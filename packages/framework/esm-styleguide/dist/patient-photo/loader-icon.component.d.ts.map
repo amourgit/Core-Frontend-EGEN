@@ -1,0 +1,1 @@
+{"version":3,"file":"loader-icon.component.d.ts","sourceRoot":"","sources":["../../src/patient-photo/loader-icon.component.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,UAAU,eAAe;IACvB,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,KAAK,CAAC,EAAE,MAAM,CAAC;CAChB;AAED,QAAA,MAAM,UAAU,EAAE,KAAK,CAAC,EAAE,CAAC,eAAe,CAMzC,CAAC;AAEF,eAAe,UAAU,CAAC"}

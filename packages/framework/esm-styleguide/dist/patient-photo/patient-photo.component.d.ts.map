@@ -1,0 +1,1 @@
+{"version":3,"file":"patient-photo.component.d.ts","sourceRoot":"","sources":["../../src/patient-photo/patient-photo.component.tsx"],"names":[],"mappings":"AAUA,MAAM,WAAW,iBAAiB;IAChC,WAAW,EAAE,MAAM,CAAC;IACpB,WAAW,EAAE,MAAM,CAAC;IACpB,GAAG,CAAC,EAAE,MAAM,CAAC;CACd;AAED;;GAEG;AACH,wBAAgB,YAAY,CAAC,EAAE,WAAW,EAAE,WAAW,EAAE,GAAG,EAAE,EAAE,iBAAiB,2CA+EhF"}

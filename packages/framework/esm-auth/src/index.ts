@@ -50,6 +50,6 @@ export { useRegistryStore } from './store/registry.store';
 
 // ── Utilities ─────────────────────────────────────────────────
 export * from './utils-iam';
-export { resolveSubdomain }  from './lib/subdomain-resolver';
+export { resolveSubdomains }  from './lib/subdomain-resolver';
 export { resolveRealm }      from './lib/realm-resolver';
-export { IAM_NAV_ITEMS }     from './lib/iam-nav-static';
+export { iamNavItems }     from './lib/iam-nav-static';

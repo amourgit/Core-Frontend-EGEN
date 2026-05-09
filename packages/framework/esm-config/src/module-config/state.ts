@@ -230,9 +230,6 @@ export function getExtensionConfig(
         }
       });
     },
-    destroy() {
-      /* this is a no-op */
-    },
   };
 }
 
