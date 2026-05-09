@@ -40,7 +40,9 @@
     "src": "src"
   },
   "browserslist": [
-    "> 0.2%", "not dead", "not op_mini all"
+    "> 0.2%",
+    "not dead",
+    "not op_mini all"
   ],
   "repository": {
     "type": "git",
@@ -54,11 +56,12 @@
     "access": "public"
   },
   "dependencies": {
-    "zustand": "^4.5.5"
+    "zustand": "^5.0.0"
   },
   "peerDependencies": {
     "@egen/esm-globals": "9.x",
-    "@egen/esm-utils": "9.x"
+    "@egen/esm-utils": "9.x",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@egen/esm-globals": "*",

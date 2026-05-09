@@ -16,5 +16,5 @@ export interface EgenDateRangePickerProps extends Omit<DateRangePickerProps<Cale
 /**
  * A date range picker to enter or select a date and time range. Based on React Aria, but styled to look like Carbon.
  */
-export declare const EgenDateRangePicker: React.ForwardRefExoticComponent<Omit<EgenDateRangePickerProps, "ref"> & React.RefAttributes<HTMLDivElement>>;
+export declare const EgenDateRangePicker: React.ForwardRefExoticComponent<EgenDateRangePickerProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=egen-date-range-picker.component.d.ts.map

@@ -15,7 +15,7 @@ import { type MutableRefObject, useEffect, useRef } from 'react';
 export function useOnVisible(callBack: () => void) {
   // casting from type MutableRefObject<HTMLElement | undefined>,
   // which is not accepted as a ref to HTMLElement.
-  const ref = useRef<HTMLElement>() as MutableRefObject<HTMLElement>;
+  const ref = useRef<HTMLElement | undefined>(undefined) as unknown as MutableRefObject<HTMLElement>;
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

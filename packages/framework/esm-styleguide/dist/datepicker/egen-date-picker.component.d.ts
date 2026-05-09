@@ -23,5 +23,5 @@ export interface EgenDatePickerProps extends Omit<DatePickerProps<CalendarDate>,
 /**
  * A date picker component to select a single date. Based on React Aria, but styled to look like Carbon.
  */
-export declare const EgenDatePicker: React.ForwardRefExoticComponent<Omit<EgenDatePickerProps, "ref"> & React.RefAttributes<HTMLDivElement>>;
+export declare const EgenDatePicker: React.ForwardRefExoticComponent<EgenDatePickerProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=egen-date-picker.component.d.ts.map
