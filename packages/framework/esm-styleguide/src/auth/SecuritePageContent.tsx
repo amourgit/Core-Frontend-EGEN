@@ -17,7 +17,7 @@ import {
   Copy, Check, ChevronDown, Users,
 } from 'lucide-react';
 import {
-  GlassCard, PageContainer, PageHeader, BackLink,
+  GlassCard, PageContainer, GlassPageHeader as PageHeader, BackLink,
   CenteredLoader, ErrorBanner, glass,
 } from './ui/GlassUI';
 import { authService, extendedAuthService } from '@egen/esm-auth';

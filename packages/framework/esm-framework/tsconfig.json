@@ -1,5 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig.json",
   "extends": "../tsconfig.json",
-  "include": ["src/**/*.ts*"]
+  "include": [
+    "src/**/*.ts*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": [
+        "../esm-styleguide/src/*"
+      ],
+      "@/*": [
+        "../esm-styleguide/src/*"
+      ]
+    }
+  }
 }

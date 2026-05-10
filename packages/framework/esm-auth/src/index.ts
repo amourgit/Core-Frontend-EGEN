@@ -98,3 +98,9 @@ export {
 } from './security/constants';
 
 export { isPublicPath } from './security/constants';
+
+// ── Core Shared Types (MF/Module Federation) ──────────────────────
+export type {
+  MicroserviceManifest, MicroNavItem, MicroNavGroup,
+  TenantConfig, CoreUser,
+} from './types';

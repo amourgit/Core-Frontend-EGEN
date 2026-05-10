@@ -116,7 +116,7 @@ const TopSheetPortal = ({
   return createPortal(portalContent, container || document.body);
 };
 
-interface TopSheetOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TopSheetOverlayProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'ref'> {
   className?: string;
 }
 
@@ -134,17 +134,18 @@ const TopSheetOverlay = forwardRef<HTMLDivElement, TopSheetOverlayProps>(
     );
 
     return (
-      <motion.div
+      <div
         ref={ref}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
         onClick={handleClick}
         className={cn(
           "absolute inset-0 bg-black/20 backdrop-blur-sm",
           className
         )}
-        style={{ pointerEvents: isOpen ? "auto" : "none" }}
+        style={{
+          pointerEvents: isOpen ? "auto" : "none",
+          opacity: isOpen ? 1 : 0,
+          transition: "opacity 0.2s ease-out",
+        }}
         {...props}
       />
     );

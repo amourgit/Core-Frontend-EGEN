@@ -46,7 +46,7 @@ export declare function BackLink({ href, label }: {
     href: string;
     label?: string;
 }): import("react/jsx-runtime").JSX.Element;
-export declare function PageHeader({ icon: Icon, title, subtitle, iconBg, iconColor, badge, }: {
+export declare function GlassPageHeader({ icon: Icon, title, subtitle, iconBg, iconColor, badge, }: {
     icon: React.ElementType;
     title: string;
     subtitle?: string;

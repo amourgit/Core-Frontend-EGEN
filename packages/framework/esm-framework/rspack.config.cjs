@@ -74,6 +74,10 @@ module.exports = (env, argv = {}) => ({
   externalsType: 'module',
   externals: Object.keys(peerDependencies || {}),
   resolve: {
+    alias: {
+      '@/components': require('path').resolve(__dirname, '../esm-styleguide/src'),
+      '@': require('path').resolve(__dirname, '../esm-styleguide/src'),
+    },
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   optimization: {

@@ -163,7 +163,7 @@ export function BackLink({ href, label = 'Retour' }: { href: string; label?: str
 }
 
 // ── Page header avec icône ────────────────────────────────
-export function PageHeader({
+export function GlassPageHeader({
   icon: Icon,
   title,
   subtitle,

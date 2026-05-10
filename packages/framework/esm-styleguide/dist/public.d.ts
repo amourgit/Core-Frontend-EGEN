@@ -24,7 +24,7 @@ export { showSnackbar, type SnackbarDescriptor, type SnackbarType, type Snackbar
 export { showToast, type ToastDescriptor, type ToastType, type ToastNotificationMeta } from './toasts';
 export * from './workspaces/public';
 export { launchWorkspace2, launchWorkspaceGroup2, closeWorkspaceGroup2, getRegisteredWorkspace2Names, useWorkspace2Context, ActionMenuButton2, Workspace2, type Workspace2Definition, type Workspace2DefinitionProps, } from './workspaces2';
-export { ThemeProvider, ThemeSwitcher, useTheme, ThemeContext } from './theme/index';
+export { ThemeProvider, ThemeSwitcher, useTheme, ThemeContextType } from './theme/index';
 export * from './ui/index';
 export { BaseLayout, CoreBaseLayout, BaseContent, TopBar, LeftBar, LeftBarContent, TopBarContent, RightBarContent, StaggeredMenu, StaggeredMenuButton, AnimateAgentAI, BasePage, Frame, Section } from './layouts/index';
 export { GlassTimeCard, UserProfileCard, CardHeader } from './cards/index';

@@ -12,7 +12,7 @@ interface TopSheetPortalProps {
     className?: string;
 }
 declare const TopSheetPortal: ({ children, container, className, }: TopSheetPortalProps) => React.ReactPortal;
-interface TopSheetOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TopSheetOverlayProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'ref'> {
     className?: string;
 }
 declare const TopSheetOverlay: React.ForwardRefExoticComponent<TopSheetOverlayProps & React.RefAttributes<HTMLDivElement>>;

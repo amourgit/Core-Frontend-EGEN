@@ -13,7 +13,7 @@ import {
   Layers, Tag, Zap, Copy, Check, Info,
 } from 'lucide-react';
 import {
-  GlassCard, PageContainer, PageHeader,
+  GlassCard, PageContainer, GlassPageHeader as PageHeader,
   BackLink, CenteredLoader, ErrorBanner, EmptyState,
   glass,
 } from './ui/GlassUI';

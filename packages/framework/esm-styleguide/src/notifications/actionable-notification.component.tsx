@@ -46,8 +46,6 @@ export const ActionableNotificationComponent: React.FC<ActionableNotificationPro
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error Carbon prop types
   const CarbonNotif = ActionableNotification as React.ComponentType<Record<string, unknown>>;
   return (
     <CarbonNotif

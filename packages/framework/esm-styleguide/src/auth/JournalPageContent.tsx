@@ -14,7 +14,7 @@ import {
   Info,
 } from 'lucide-react';
 import {
-  GlassCard, PageContainer, PageHeader, BackLink,
+  GlassCard, PageContainer, GlassPageHeader as PageHeader, BackLink,
   CenteredLoader, ErrorBanner, EmptyState, MetaPill,
   SectionDivider, glass,
 } from './ui/GlassUI';
