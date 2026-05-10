@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="<%= egenDefaultLocale || 'fr' %>">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4F46E5" />
+  <title><%= egenPageTitle || 'EGEN' %></title>
+  <link rel="icon" href="<%= egenFavicon %>" />
+  <link rel="manifest" href="<%= egenPublicPath %>/manifest.json" />
+  <% if (egenCoreImportmap) { %>
+  <script type="importmap-shim"><%= egenCoreImportmap %></script>
+  <% } else if (egenImportmapDef) { %>
+  <script type="importmap-shim"><%= egenImportmapDef %></script>
+  <% } else { %>
+  <script async src="<%= egenImportmapUrl %>"></script>
+  <% } %>
+  <% if (egenRoutesDef) { %>
+  <script type="importmap-shim" id="routes-importmap"><%= egenRoutesDef %></script>
+  <% } else if (egenRoutesUrl) { %>
+  <script async src="<%= egenRoutesUrl %>" type="application/json" id="routes-config"></script>
+  <% } %>
+</head>
+<body>
+  <noscript>Cette application requiert JavaScript.</noscript>
+  <div id="root"></div>
+  <% if (egenConfigUrls && egenConfigUrls.length) { %>
+  <script>
+    window.egenConfigUrls = <%- JSON.stringify(egenConfigUrls) %>;
+  </script>
+  <% } %>
+  <script>
+    window.egenSpaBase = '<%= egenPublicPath %>';
+    window.egenApiBase = '<%= egenApiUrl %>';
+    window.egenEnvironment = '<%= egenEnvironment %>';
+    window.egenOffline = '<%= egenOffline %>';
+  </script>
+</body>
+</html>

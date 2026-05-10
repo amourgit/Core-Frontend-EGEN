@@ -1,28 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#4F46E5" />
-  <title>EGEN</title>
-  <link rel="icon" href="/egen/spa/favicon.ico" />
-  <link rel="manifest" href="/egen/spa/manifest.json" />
-  
-  <script async src="/egen/spa/importmap.json"></script>
-  
-  
-  <script async src="/egen/spa/routes.registry.json" type="application/json" id="routes-config"></script>
-  
-<meta name="theme-color" content="#000000" /><link rel="manifest" href="/egen/spa/manifest.e4f3a87c441f838278108c2099a463a1.json" /></head>
-<body>
-  <noscript>Cette application requiert JavaScript.</noscript>
-  <div id="root"></div>
-  
-  <script>
-    window.egenSpaBase = '/egen/spa';
-    window.egenApiBase = '/egen';
-    window.egenEnvironment = 'development';
-    window.egenOffline = 'false';
-  </script>
-</body>
+<html lang="en" data-default-lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EGEN</title>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/egen/spa/favicon.ico"
+    >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="importmap-type" content="systemjs-importmap">
+    
+
+    <link
+      rel="preload"
+      href="/egen/spa/importmap.json"
+      as="fetch"
+      crossorigin="anonymous"
+    >
+    <script type="systemjs-importmap" src="/egen/spa/importmap.json"></script>
+
+
+
+  <link
+    rel="preload"
+    href="/egen/spa/routes.registry.json"
+    as="fetch"
+    crossorigin="anonymous"
+  >
+  <script type="egen-routes" src="/egen/spa/routes.registry.json"></script>
+
+
+  <meta name="theme-color" content="#000000" /><link rel="manifest" href="/egen/spa/manifest.f8ee734511b0c35cc6b4fb8e62ca213a.json" /></head>
+  <body>
+    <script src="/egen/spa/egen.js"></script>
+    <div class="egen-toasts-container"></div>
+    <div class="egen-inline-notifications-container"></div>
+    <div class="egen-actionable-notifications-container"></div>
+    <div class="egen-snackbars-container"></div>
+    <div class="egen-modals-container"></div>
+    <div id="egen-left-nav-container"></div>
+    <div id="egen-workspaces-container"></div>
+    <div id="egen-top-nav-app-container"></div>
+    <div id="egen-apps-container"></div>
+    <template id="loading-spinner">
+      <div class="egen-loading-spinner">
+        <div data-inline-loading="" class="cds--inline-loading" role="alert" aria-live="assertive">
+          <div class="cds--inline-loading__animation">
+            <div data-inline-loading-spinner="" class="cds--loading cds--loading--small">
+              <svg class="cds--loading__svg" viewBox="-75 -75 150 150">
+                <circle class="cds--loading__background" cx="0" cy="0" r="26.8125"></circle>
+                <circle class="cds--loading__stroke" cx="0" cy="0" r="26.8125"></circle>
+              </svg>
+            </div>
+          </div>
+          <p data-inline-loading-text-active="" class="cds--inline-loading__text">Loading ...</p>
+        </div>
+      </div>
+    </template>
+    <template id="app-error">
+      <div class="egen-app-error">
+        <h1>Application Error</h1>
+        <p>Something went wrong. Please try reloading.</p>
+        <p>Contact your system administrator if the problem persists.</p>
+        <div id="buttons">
+          <button class="cds--btn cds--btn--primary" onclick="location.reload()">Reload</button>
+        </div>
+        <div class="cds--snippet cds--snippet--single" >
+          <div tabindex="0"  class="cds--snippet-container"
+            aria-label="Code Snippet Text">
+            <pre>
+              <code data-var="message"></code>
+            </pre>
+          </div>
+          <button data-copy-btn class="cds--copy-btn" type="button" tabindex="0" onclick="copyText(this.parentElement)">
+            <span class="cds--assistive-text cds--copy-btn__feedback">Copied!</span>
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="cds--snippet__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M14,5v9H5V5h9m0-1H5A1,1,0,0,0,4,5v9a1,1,0,0,0,1,1h9a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1Z"></path><path d="M2,9H1V2A1,1,0,0,1,2,1H9V2H2Z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </template>
+    <script>
+      initializeSpa({
+        apiUrl: "/egen",
+        spaPath: "/egen/spa",
+        env: "development",
+        offline: false,
+        configUrls: [],
+      });
+    </script>
+  </body>
 </html>

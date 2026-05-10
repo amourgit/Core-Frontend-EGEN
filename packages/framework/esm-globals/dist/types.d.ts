@@ -127,7 +127,7 @@ export type PageDefinition = {
      */
     offline?: boolean;
     /**
-     * If supplied, the page will be rendered within the DOM element with the specified ID. Defaults to "omrs-apps-container" if not supplied.
+     * If supplied, the page will be rendered within the DOM element with the specified ID. Defaults to "egen-apps-container" if not supplied.
      */
     containerDomId?: string;
 } & ({
