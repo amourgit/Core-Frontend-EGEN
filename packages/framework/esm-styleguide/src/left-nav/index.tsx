@@ -17,10 +17,10 @@ import styles from './left-nav.module.scss';
 interface LeftNavMenuProps extends SideNavProps {
   /**
    * Flag indicating if this component is a child of the header component.
-   * When true, the component renders the left nav menu.
-   * When false, it renders an empty fragment.
    */
   isChildOfHeader?: boolean;
+  /** HTML inert attribute */
+  inert?: boolean;
 }
 
 /**
@@ -38,12 +38,13 @@ export const LeftNavMenu = React.forwardRef<HTMLElement, LeftNavMenuProps>((prop
 
   if (props.isChildOfHeader && slotName && navMenuItems.length > 0) {
     return (
+      // @ts-ignore carbon strict types
       <SideNav
         aria-label={getCoreTranslation('leftNavigation', 'Left navigation')}
         className={styles.leftNav}
         expanded
         isFixedNav
-        inert={typeof inert === 'boolean' ? inert : undefined}
+        {...(inert ? { inert: '' } : {})}
         ref={ref}
         {...restProps}
       >

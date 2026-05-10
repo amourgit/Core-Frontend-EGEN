@@ -17,7 +17,7 @@ import { useIAMAuth, useJournal } from '@egen/esm-auth';
 import { profilService } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/Link';
 import type { JournalEntry, PermissionEffective } from '@egen/esm-auth';
 import { AuthLayout } from './ui/AuthLayout';
 import { GlassTimeCard } from "@/components/cards/glass-time-card"
@@ -26,7 +26,7 @@ import { GlassTimeCard } from "@/components/cards/glass-time-card"
 function CopyButton({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
   const copy = () => {
-    navigator.membreboard.writeText(value);
+    navigator?.clipboard?.writeText(value);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };

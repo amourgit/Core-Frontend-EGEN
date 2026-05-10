@@ -1,7 +1,7 @@
 import * as React from "react";
 import { type VariantProps } from "class-variance-authority";
 declare const buttonVariants: (props?: {
-    variant?: "default" | "link" | "ghost" | "iconButton";
+    variant?: "link" | "default" | "outline" | "ghost" | "iconButton";
     size?: "default" | "icon" | "sm" | "lg" | "icon-lg" | "icon-xl";
     shine?: boolean;
 } & import("class-variance-authority/types").ClassProp) => string;

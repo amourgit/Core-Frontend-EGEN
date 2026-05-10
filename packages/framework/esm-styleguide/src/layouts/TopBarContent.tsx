@@ -1,7 +1,7 @@
 
 // ─── Framework ────────────────────────────────────────────────────────────────
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { type Variants, type Transition, motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -100,7 +100,7 @@ const NavigationItemRow = ({
   item: NavigationItem; level: number; onHover: (i: NavigationItem, l: number) => void;
   isActive: boolean; onNavigate: (p: string) => void; index: number;
 }) => {
-  const Icon = item.icon;
+  const Icon = item.icon as React.ComponentType<React.SVGProps<SVGSVGElement>> | undefined;
   const hasChildren = !!item.children?.length;
   const { glass } = useThemeVariables();
 
@@ -122,7 +122,6 @@ const NavigationItemRow = ({
         transition:     "var(--transition-colors)",
         background:     isActive ? "var(--surface-accent)" : "transparent",
       }}
-      onMouseEnterCapture={undefined}
       className="hover:[background:var(--surface-glassHover)]"
     >
       <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
@@ -172,14 +171,14 @@ const ColumnWithSearch = ({
       animate={{
         opacity: 1, width: "45vw",
         transition: {
-          width:   { duration: 0.28, ease: "easeOut" },
+          width:   { duration: 0.28, ease: "easeOut" as const },
           opacity: { duration: 0.18, delay: 0.08 },
         },
       }}
       exit={{
         opacity: 0, width: 0,
         transition: {
-          width:   { duration: 0.28, ease: "easeIn" },
+          width:   { duration: 0.28, ease: "easeIn" as const },
           opacity: { duration: 0.12 },
         },
       }}
@@ -355,9 +354,9 @@ export const CascadingNavDropdown = ({
                 width: `${activeColumns.length * 45}vw`,
                 transition: {
                   opacity: { duration: 0.18 },
-                  y:       { duration: 0.28, type: "spring", stiffness: 200, damping: 20 },
+                  y:       { duration: 0.28, type: "spring" as const, stiffness: 200, damping: 20 },
                   scale:   { duration: 0.18 },
-                  width:   { duration: 0.28, ease: "easeOut" },
+                  width:   { duration: 0.28, ease: "easeOut" as const },
                 },
               }}
               exit={{ opacity: 0, y: -10, scale: 0.96, transition: { duration: 0.18 } }}
@@ -1004,7 +1003,7 @@ interface TreeItemProps {
 const TreeItem: React.FC<TreeItemProps> = ({ item, level, onSelect }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const hasChildren = !!item.children?.length;
-  const Icon = item.icon || Home;
+  const Icon = (item.icon || Home) as React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
   return (
     <div>

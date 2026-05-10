@@ -34,6 +34,15 @@ export interface CurrentUser {
   tenantId?: string;
   /** URL de l'avatar */
   avatarUrl?: string;
+  // ── Champs EIGEN spécifiques ──────────────────────────────
+  statut?: 'actif' | 'suspendu' | 'inactif';
+  is_admin?: boolean;
+  type_profil?: string;
+  telephone?: string;
+  identifiant_national?: string;
+  premiere_connexion?: string | null;
+  derniere_connexion?: string | null;
+  raison_suspension?: string | null;
 }
 
 // ── État d'authentification ───────────────────────────────────
@@ -98,4 +107,79 @@ export interface LoginCredentials {
   username: string;
   password: string;
   tenantId?: string;
+}
+
+// ── Extensions EIGEN spécifiques ────────────────────────────────
+
+/** Extension de CurrentUser avec les champs EIGEN */
+export interface CurrentUserExtended extends CurrentUser {
+  statut?: 'actif' | 'suspendu' | 'inactif';
+  is_admin?: boolean;
+  type_profil?: string;
+  telephone?: string;
+  identifiant_national?: string;
+  premiere_connexion?: string | null;
+  derniere_connexion?: string | null;
+  raison_suspension?: string | null;
+}
+
+/** Entrée dans le journal d'audit */
+export interface JournalEntry {
+  id: string;
+  action: string;
+  type_action?: string;
+  module?: string;
+  description?: string;
+  timestamp: string;
+  ip_address?: string;
+  user_agent?: string;
+  success: boolean;
+  autorise?: boolean;
+  permission_verifiee?: string;
+  ressource?: string;
+  request_id?: string;
+  raison?: string;
+  details?: Record<string, unknown>;
+}
+
+/** Permission effective calculée */
+export interface PermissionEffective {
+  code: string;
+  label?: string;
+  nom?: string;
+  source: string;
+  scope?: string;
+  domaine?: string;
+  ressource?: string;
+  action?: string;
+  perimetre?: string;
+}
+
+/** Habilitations regroupées d'un utilisateur */
+export interface Habilitations {
+  roles: string[];
+  roles_actifs?: string[];
+  permissions: PermissionEffective[];
+  groupes?: string[];
+  groupes_actifs?: string[];
+  profil_id?: string;
+}
+
+/** Session Keycloak active */
+export interface Session {
+  id?: string;
+  sessionId: string;
+  userId: string;
+  username?: string;
+  ipAddress?: string;
+  ip_address?: string;
+  start?: number;
+  lastAccess?: number;
+  last_activity?: string;
+  created_at?: string;
+  expires_at?: string;
+  clients?: Record<string, string>;
+  user_agent?: string;
+  status?: 'active' | 'inactive' | 'expired' | 'revoked';
+  activity_count?: number;
 }

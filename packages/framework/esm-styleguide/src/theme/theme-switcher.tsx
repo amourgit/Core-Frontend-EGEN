@@ -2,7 +2,7 @@
 
 
 import React, { useState, useRef } from 'react';
-import { useTheme } from './themeContext';
+import { useTheme } from './theme-context';
 import { Theme } from './types';
 import { Moon, Sun, Palette, Download, Upload, Check, ChevronDown } from 'lucide-react';
 

@@ -1,7 +1,7 @@
 /** @module @category Workspace */
 import React from 'react';
 export interface ActionMenuButtonProps2 {
-    icon: (props: object) => JSX.Element;
+    icon: (props: object) => React.ReactElement;
     label: string;
     tagContent?: string | React.ReactNode;
     workspaceToLaunch: {

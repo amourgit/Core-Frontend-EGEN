@@ -7,7 +7,7 @@ import { useWorkspaces } from '../workspaces';
 import styles from './action-menu-button.module.scss';
 
 interface TagsProps {
-  getIcon: (props: object) => JSX.Element;
+  getIcon: (props: object) => React.ReactElement;
   formOpenInTheBackground: boolean;
   tagContent?: string | React.ReactNode;
 }
@@ -27,7 +27,7 @@ function Tags({ getIcon, formOpenInTheBackground, tagContent }: TagsProps) {
 }
 
 export interface ActionMenuButtonProps {
-  getIcon: (props: object) => JSX.Element;
+  getIcon: (props: object) => React.ReactElement;
   label: string;
   iconDescription: string;
   handler: () => void;

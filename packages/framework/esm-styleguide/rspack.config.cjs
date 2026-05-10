@@ -78,6 +78,10 @@ module.exports = (env, argv = {}) => ({
   externalsType: 'module',
   externals: [...Object.keys(peerDependencies || {}),],
   resolve: {
+    alias: {
+      '@/components': resolve(__dirname, 'src'),
+      '@': resolve(__dirname, 'src'),
+    },
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   optimization: {

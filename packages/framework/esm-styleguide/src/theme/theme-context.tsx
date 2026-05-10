@@ -9,7 +9,7 @@ import {
   useCallback, useRef, ReactNode
 } from 'react';
 import { Theme, ThemeContextType, ThemeChangeEvent } from './types';
-import { ThemeLoader } from './themeLoader';
+import { ThemeLoader } from './theme-loader';
 
 // ─── Context ────────────────────────────────────────────────
 const ThemeContext = createContext<ThemeContextType | null>(null);

@@ -9,7 +9,7 @@
 
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 import {
   ShieldCheck, Activity, RefreshCw, Zap, Globe, Lock,
   CheckCircle2, AlertCircle, Clock, Eye, EyeOff,
@@ -20,7 +20,7 @@ import {
   GlassCard, PageContainer, PageHeader, BackLink,
   CenteredLoader, ErrorBanner, glass,
 } from './ui/GlassUI';
-import { authService } from '@egen/esm-auth';
+import { authService, extendedAuthService } from '@egen/esm-auth';
 import { useIAMAuth } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
@@ -57,7 +57,7 @@ function SessionStatsSection({ isAdmin }: { isAdmin: boolean }) {
     const load = async () => {
       setIsLoading(true);
       try {
-        const data = await authService.getSessionStats();
+        const data = await extendedAuthService.getSessionStats();
         setStats(data);
       } catch (e: any) {
         setError('Accès réservé aux administrateurs');
@@ -110,7 +110,7 @@ function TokenMetricsSection({ isAdmin }: { isAdmin: boolean }) {
     const load = async () => {
       setIsLoading(true);
       try {
-        setMetrics(await authService.getTokenMetrics());
+        setMetrics(await extendedAuthService.getTokenMetrics());
       } catch {}
       finally { setIsLoading(false); }
     };
@@ -141,7 +141,7 @@ function SyncStatusSection() {
   const load = async () => {
     setIsLoading(true);
     try {
-      const data = await authService.getSyncStatus();
+      const data = await extendedAuthService.getSyncStatus();
       setStatus(data);
     } catch (e: any) {
       setError(e?.message || 'Statut indisponible');
@@ -221,7 +221,7 @@ function TokenInspector() {
     setError(null);
     setResult(null);
     try {
-      const data = await authService.validateToken(tokenInput.trim());
+      const data = await extendedAuthService.validateToken(tokenInput.trim());
       setResult(data);
     } catch (e: any) {
       setError(e?.message || 'Erreur de validation');
@@ -231,7 +231,7 @@ function TokenInspector() {
   };
 
   const copy = (key: string, value: string) => {
-    navigator.membreboard.writeText(value);
+    navigator?.clipboard?.writeText(value);
     setCopied(key);
     setTimeout(() => setCopied(null), 1500);
   };

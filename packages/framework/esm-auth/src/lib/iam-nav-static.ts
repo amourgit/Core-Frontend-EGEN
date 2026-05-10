@@ -1,10 +1,14 @@
+import type React from 'react';
 // Navigation IAM embarquée en statique dans le Core
 // Source de vérité : iam/navigation (chargé via MF en prod)
 // Ce fichier sert de fallback quand IAM n'est pas encore disponible
 
 export interface NavItem {
   id: string; label: string; description?: string;
-  iconName?: string; path: string; badge?: string;
+  iconName?: string;
+  icon?: React.ComponentType<{ className?: string }> | React.ReactNode;
+  path: string;
+  badge?: string;
   group?: string; children?: NavItem[];
   requiredRoles?: string[];
 }

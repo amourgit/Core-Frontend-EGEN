@@ -6,7 +6,7 @@
 
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 import {
   Lock, Eye, EyeOff, ShieldCheck, CheckCircle2,
   AlertCircle, Loader2, ArrowLeft, KeyRound,
@@ -16,7 +16,7 @@ import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { OutlinedField } from '@/components/fields/fields';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/Link';
 import { AuthLayout } from './ui/AuthLayout';
 
 // ── Force du mot de passe ─────────────────────────────────

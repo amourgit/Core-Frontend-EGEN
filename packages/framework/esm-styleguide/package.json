@@ -60,7 +60,9 @@
     "src": "src"
   },
   "browserslist": [
-    "> 0.2%", "not dead", "not op_mini all"
+    "> 0.2%",
+    "not dead",
+    "not op_mini all"
   ],
   "repository": {
     "type": "git",
@@ -83,7 +85,9 @@
     "lodash-es": "^4.17.21",
     "react-aria-components": "^1.7.1",
     "react-avatar": "^5.0.3",
-    "@egen/esm-auth": "*"
+    "@egen/esm-auth": "*",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.5.0"
   },
   "peerDependencies": {
     "@egen/esm-api": "9.x",

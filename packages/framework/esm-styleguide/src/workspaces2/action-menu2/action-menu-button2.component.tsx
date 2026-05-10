@@ -9,7 +9,7 @@ import { launchWorkspace2, useWorkspace2Store } from '../workspace2';
 import styles from './action-menu-button2.module.scss';
 
 interface TagsProps {
-  getIcon: (props: object) => JSX.Element;
+  getIcon: (props: object) => React.ReactElement;
   hasUnsavedChanges: boolean;
   tagContent?: React.ReactNode;
 }
@@ -29,7 +29,7 @@ function Tags({ getIcon, hasUnsavedChanges, tagContent }: TagsProps) {
 }
 
 export interface ActionMenuButtonProps2 {
-  icon: (props: object) => JSX.Element;
+  icon: (props: object) => React.ReactElement;
   label: string;
   tagContent?: string | React.ReactNode;
   workspaceToLaunch: {

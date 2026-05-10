@@ -53,3 +53,48 @@ export * from './utils-iam';
 export { resolveSubdomains }  from './lib/subdomain-resolver';
 export { resolveRealm }      from './lib/realm-resolver';
 export { iamNavItems }     from './lib/iam-nav-static';
+
+// ── Realm Utilities (additional) ──────────────────────────────────
+export {
+  getCurrentRealm, getRealm, getAdminBase, getOidcBase,
+  extractSubdomain, clearRealmCache, resolveRealmFromRequest,
+} from './lib/realm-resolver';
+export type { ResolvedRealm } from './lib/realm-resolver';
+
+// ── Auth Services (extended) ───────────────────────────────────────
+export {
+  authService, profilService, adminUserService, adminSessionService,
+  storeAccessToken, storeRefreshToken, getStoredAccessToken, getStoredRefreshToken,
+  clearStoredTokens, extractErrorMessage,
+} from './services/auth.service';
+export type {
+  KcTokenResponse, KcUserInfo, KcUserRepresentation, KcSessionRepresentation,
+  KcCredentialRepresentation, KcRoleRepresentation, TokenRefreshCallbacks,
+} from './services/auth.service';
+
+// ── Extended Hooks ────────────────────────────────────────────────
+export { useChangePassword } from './hooks/useChangePassword';
+export { useJournal }        from './hooks/useJournal';
+export { useIAMSessions }    from './hooks/useIAMSessions';
+
+// ── Extended Types ────────────────────────────────────────────────
+export type {
+  CurrentUserExtended, JournalEntry, PermissionEffective,
+  Habilitations, Session,
+} from './models/auth.model';
+
+// ── Navigation ─────────────────────────────────────────────────────
+export { iamNavItems as navigationData, iamNavGroups } from './lib/iam-nav-static';
+export type { NavItem as NavigationItem, NavGroup } from './lib/iam-nav-static';
+
+// ── Extended Auth Service ──────────────────────────────────────────
+export { extendedAuthService } from './services/auth.service';
+
+// ── Security Constants ─────────────────────────────────────────────
+export {
+  STORAGE_KEYS, COOKIE_NAMES, TOKEN_TTL, INACTIVITY,
+  SESSION_MONITOR, PUBLIC_EXACT_ROUTES, PUBLIC_PREFIXES,
+  SECURITY_HEADERS,
+} from './security/constants';
+
+export { isPublicPath } from './security/constants';

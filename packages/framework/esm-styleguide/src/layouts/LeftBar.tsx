@@ -12,7 +12,7 @@
 
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 import {
   Shield, Home, ChevronDown, ChevronRight,
   Settings, Package, ExternalLink,

@@ -17,7 +17,7 @@ import {
   Search, Bell, Sun, Moon, LogOut, User,
   Settings, ChevronRight, Menu, X,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 
 import { useAuthStore }     from '@/stores/auth.store';
 import { useRegistryStore } from '@/stores/registry.store';

@@ -7,6 +7,6 @@ export declare function usePermissions(): {
     hasAnyRole: (roles: string[]) => boolean;
     hasAllRoles: (roles: string[]) => boolean;
     canAccessModule: (requiredRoles: string[]) => boolean;
-    roles: any;
+    roles: string[];
 };
 //# sourceMappingURL=usePermissions.d.ts.map

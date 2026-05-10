@@ -1,7 +1,7 @@
 
 // ─── Framework ────────────────────────────────────────────────────────────────
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence }      from "framer-motion";
+import { type Variants, type Transition, motion, AnimatePresence }      from "framer-motion";
 
 import { Link, useLocation }            from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const staggerVariants = {
 };
 
 const transitionProps = {
-  type: "tween", ease: "easeOut", duration: 0.2, staggerChildren: 0.1,
+  type: "tween" as const, ease: "easeOut" as const, duration: 0.2, staggerChildren: 0.1,
 };
 
 /** Variante d'apparition du panneau popup */
@@ -58,11 +58,11 @@ const popupVariants = {
   hidden: { opacity: 0, scale: 0.95, y: -6 },
   visible: {
     opacity: 1, scale: 1, y: 0,
-    transition: { type: "spring", stiffness: 320, damping: 22 },
+    transition: { type: "spring" as const, stiffness: 320, damping: 22 },
   },
   exit: {
     opacity: 0, scale: 0.95, y: -6,
-    transition: { duration: 0.15, ease: "easeIn" },
+    transition: { duration: 0.15, ease: "easeIn" as const },
   },
 };
 

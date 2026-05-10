@@ -170,14 +170,15 @@ const TopSheetTrigger = ({
   };
 
   if (asChild && React.isValidElement(children)) {
+    const childProps = children.props as Record<string, unknown>;
     return React.cloneElement(children, {
-      ...children.props,
-      className: cn(children.props.className, className),
+      ...childProps,
+      className: cn(childProps.className as string, className),
       onClick: (e: React.MouseEvent) => {
-        children.props.onClick?.(e);
+        (childProps.onClick as ((e: React.MouseEvent) => void))?.(e);
         handleClick();
       },
-    });
+    } as Record<string, unknown>);
   }
 
   return (
@@ -465,14 +466,15 @@ const TopSheetClose = ({
   };
 
   if (asChild && React.isValidElement(children)) {
+    const childProps = children.props as Record<string, unknown>;
     return React.cloneElement(children, {
-      ...children.props,
-      className: cn(children.props.className, className),
+      ...childProps,
+      className: cn(childProps.className as string, className),
       onClick: (e: React.MouseEvent) => {
-        children.props.onClick?.(e);
+        (childProps.onClick as ((e: React.MouseEvent) => void))?.(e);
         handleClick();
       },
-    });
+    } as Record<string, unknown>);
   }
 
   return (

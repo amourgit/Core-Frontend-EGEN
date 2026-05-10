@@ -365,7 +365,7 @@ const FrameRoot: React.FC<FrameRootProps> = ({
           animated && 'animate-pulse-slow'
         )}
         style={{
-          membrePath,
+          clipPath: membrePath,
           WebkitClipPath: membrePath,
         }}
       >
@@ -374,7 +374,7 @@ const FrameRoot: React.FC<FrameRootProps> = ({
           className="absolute inset-0"
           style={{
             background: `linear-gradient(135deg, ${color}80, ${color}40, ${color}80)`,
-            membrePath,
+            clipPath: membrePath,
             WebkitClipPath: membrePath,
           }}
         />
@@ -384,7 +384,7 @@ const FrameRoot: React.FC<FrameRootProps> = ({
           className="relative bg-slate-950/90"
           style={{
             margin: `${borderWidth}px`,
-            membrePath: getBorderClipPath(variant),
+            clipPath: getBorderClipPath(variant),
             WebkitClipPath: getBorderClipPath(variant),
           }}
         >

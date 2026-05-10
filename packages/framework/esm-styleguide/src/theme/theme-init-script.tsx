@@ -4,7 +4,7 @@
 // Doit être rendu AVANT tout autre contenu dans layout.tsx
 // ============================================================
 
-import { ThemeLoader } from './themeLoader';
+import { ThemeLoader } from './theme-loader';
 
 /**
  * Rendu côté serveur uniquement.

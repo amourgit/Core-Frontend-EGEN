@@ -14,34 +14,34 @@ export interface Session {
     clients: Record<string, string>;
 }
 export declare function useIAMAuth(): {
-    user: any;
-    isAuthenticated: any;
-    isLoading: any;
+    user: import("@egen/esm-auth").CurrentUser;
+    isAuthenticated: boolean;
+    isLoading: boolean;
     isLoginLoading: boolean;
     loginError: string;
-    permissions: any;
-    roles: any;
-    sessionId: any;
-    accessToken: any;
+    permissions: string[];
+    roles: string[];
+    sessionId: string;
+    accessToken: string;
     login: (credentials: LoginRequest, redirectTo?: string) => Promise<LoginResult>;
     logout: () => Promise<void>;
     clearLoginError: () => void;
-    hasPermission: any;
-    hasRole: any;
-    refreshUser: any;
+    hasPermission: (permission: string) => boolean;
+    hasRole: (role: string) => boolean;
+    refreshUser: () => Promise<void>;
 };
 export declare function useIAMSessions(): {
     sessions: Session[];
     isLoading: boolean;
     error: string;
-    currentSessionId: any;
+    currentSessionId: string;
     fetchSessions: () => Promise<void>;
     revokeSession: (sessionId: string) => Promise<{
         success: boolean;
         error?: undefined;
     } | {
         success: boolean;
-        error: any;
+        error: string;
     }>;
 };
 export declare function useChangePassword(): {
@@ -53,7 +53,7 @@ export declare function useChangePassword(): {
         error?: undefined;
     } | {
         success: boolean;
-        error: any;
+        error: string;
     }>;
     reset: () => void;
 };
@@ -72,7 +72,7 @@ export declare function useAdminResetPassword(): {
         error?: undefined;
     } | {
         success: boolean;
-        error: any;
+        error: string;
     }>;
     reset: () => void;
 };

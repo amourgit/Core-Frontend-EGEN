@@ -1,7 +1,7 @@
 /** @module @category UI */
 import React from 'react';
 export interface PageHeaderContentProps {
-    title: string | JSX.Element;
+    title: string | React.ReactElement;
     illustration: React.ReactElement;
     className?: string;
 }

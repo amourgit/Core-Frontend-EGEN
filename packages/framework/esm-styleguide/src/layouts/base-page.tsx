@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { type Variants, type Transition, motion, AnimatePresence } from "framer-motion";
 import {
   Loader2,
   X,
@@ -63,7 +63,7 @@ export default function BasePage({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mainContainerRef = React.useRef<HTMLDivElement>(null);
 
-  const customEasing = [0.16, 1, 0.3, 1];
+  const customEasing = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
   // Responsive breakpoints
   const isTablet = windowWidth < 700;
@@ -311,7 +311,7 @@ export default function BasePage({
         </div>
       </div>
 
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .no-scrollbar {
           scrollbar-width: none !important; /* Firefox */
           -ms-overflow-style: none !important; /* IE/Edge */
@@ -319,7 +319,7 @@ export default function BasePage({
         .no-scrollbar::-webkit-scrollbar {
           display: none !important; /* Chrome, Safari */
         }
-      `}</style>
+      ` }} />
     </div>
   );
 }

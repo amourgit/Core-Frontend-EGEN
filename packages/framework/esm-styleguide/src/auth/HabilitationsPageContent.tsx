@@ -6,7 +6,7 @@
 
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 import {
   Shield, ShieldCheck, Users, Key, ChevronDown, ChevronRight,
   RefreshCw, Search, Filter, CheckCircle2, Lock, Globe,
@@ -78,7 +78,7 @@ function PermissionCard({ perm, isExpanded, onToggle }: {
   const [copied, setCopied] = useState(false);
 
   const copy = () => {
-    navigator.membreboard.writeText(perm.code);
+    navigator?.clipboard?.writeText(perm.code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
@@ -225,8 +225,8 @@ function HabilitationsMainContent() {
     setIsLoading(true);
     setError(null);
     try {
-      const data = await profilService.getMesHabilitations();
-      setHab(data);
+      const data = await profilService.fetchMesHabilitations();
+      setHab(data as Habilitations);
     } catch (err: any) {
       setError(err?.message || 'Erreur lors du chargement');
     } finally {

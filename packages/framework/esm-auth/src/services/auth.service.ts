@@ -324,16 +324,28 @@ export const profilService = {
     const realmRoles  = userInfo.realm_access?.roles ?? [];
     const clientRoles = userInfo.resource_access?.[clientId]?.roles ?? [];
     const roles_actifs = [...new Set([...realmRoles, ...clientRoles])];
-
-    // On mappe les rôles comme "permissions" pour garder la compatibilité
-    const permissions = roles_actifs.map((code) => ({ code, label: code }));
-
+    const permissions = roles_actifs.map((code) => ({ code, label: code, source: 'role' as const }));
     return {
       profil_id:   userInfo.sub,
+      roles:       roles_actifs,
       roles_actifs,
       permissions,
-      groupes_actifs: [] as string[], // Keycloak ne retourne pas les groupes dans userinfo par défaut
+      groupes_actifs: [] as string[],
+      groupes: [] as string[],
     };
+  },
+
+  /** Récupère les habilitations de l'utilisateur courant via API */
+  async fetchMesHabilitations(): Promise<{ profil_id?: string; roles: string[]; roles_actifs?: string[]; permissions: { code: string; label?: string; source?: string }[]; groupes?: string[]; groupes_actifs?: string[] }> {
+    return httpClient.get<{ roles: string[]; permissions: { code: string; label?: string }[] }>('/habilitations/moi')
+      .then((data) => ({
+        roles: data?.roles ?? [],
+        roles_actifs: data?.roles ?? [],
+        permissions: (data?.permissions ?? []).map(p => ({ ...p, source: 'direct' as const })),
+        groupes_actifs: [],
+        groupes: [],
+      }))
+      .catch(() => ({ roles: [], roles_actifs: [], permissions: [], groupes_actifs: [], groupes: [] }));
   },
 
   /**
@@ -369,6 +381,12 @@ export const profilService = {
     });
     if (!res.ok) throw new Error(`Events failed: HTTP ${res.status}`);
     return res.json();
+  },
+
+  /** Récupère le journal de l'utilisateur courant (sans admin token) */
+  async fetchMonJournal(skip = 0, limit = 50): Promise<import('../models/auth.model').JournalEntry[]> {
+    return httpClient.get<import('../models/auth.model').JournalEntry[]>(`/compte/journal?skip=${skip}&limit=${limit}`)
+      .catch(() => []);
   },
 };
 
@@ -959,3 +977,23 @@ export function cancelTokenRefresh(): void {
     _refreshTimer = null;
   }
 }
+// ── Extended authService methods (EIGEN specific) ─────────────────
+export const extendedAuthService = {
+  async getSessionStats(): Promise<{ total: number; active: number; expired: number }> {
+    return httpClient.get<{ total: number; active: number; expired: number }>('/compte/session-stats')
+      .catch(() => ({ total: 0, active: 0, expired: 0 }));
+  },
+  async getTokenMetrics(): Promise<{ issued: number; refreshed: number; revoked: number }> {
+    return httpClient.get<{ issued: number; refreshed: number; revoked: number }>('/compte/token-metrics')
+      .catch(() => ({ issued: 0, refreshed: 0, revoked: 0 }));
+  },
+  async getSyncStatus(): Promise<{ synced: boolean; lastSync?: string }> {
+    return httpClient.get<{ synced: boolean; lastSync?: string }>('/compte/sync-status')
+      .catch(() => ({ synced: false }));
+  },
+  async validateToken(token?: string): Promise<{ valid: boolean; expiresIn?: number; subject?: string }> {
+    const body = token ? { token } : undefined;
+    const fn = body ? httpClient.post<{ valid: boolean; expiresIn?: number; subject?: string }>('/compte/validate-token', body) : httpClient.get<{ valid: boolean; expiresIn?: number; subject?: string }>('/compte/validate-token');
+    return fn.catch(() => ({ valid: false }));
+  },
+};

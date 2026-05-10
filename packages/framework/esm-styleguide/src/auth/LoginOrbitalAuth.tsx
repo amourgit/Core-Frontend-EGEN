@@ -9,7 +9,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 import {
   Lock, User, Eye, EyeOff, ShieldCheck, AlertCircle, Loader2,
   Fingerprint, Mic, ScanFace, Key, Smartphone, Usb,
@@ -19,7 +19,7 @@ import { useIAMAuth } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
 import { OutlinedField } from '@/components/fields/fields';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/Link';
 
 // ── Types ─────────────────────────────────────────────────
 interface AuthOption {

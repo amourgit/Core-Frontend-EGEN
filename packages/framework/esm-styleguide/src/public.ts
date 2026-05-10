@@ -39,26 +39,29 @@ export {
 } from './workspaces2';
 
 // ============================================================
-// EGEN — Core Extensions (Theme, UI, Auth, Layouts, Hooks)
+// EIGEN — Core Extensions (Theme, UI, Auth, Layouts, Hooks)
 // ============================================================
 
-// Theme System
-export * from './theme/index';
+// Theme System (explicit to avoid conflict with hooks/index useTheme)
+export { ThemeProvider, ThemeSwitcher, useTheme, ThemeContextType } from './theme/index';
 
-// UI Components (EGEN Primitives)
+// UI Components
 export * from './ui/index';
 
-// Layout Components
-export * from './layouts/index';
+// Layout Components (explicit to avoid conflict with page-header)
+export { BaseLayout, CoreBaseLayout, BaseContent, TopBar, LeftBar, LeftBarContent, TopBarContent,
+  RightBarContent, StaggeredMenu, StaggeredMenuButton, AnimateAgentAI,
+  BasePage, Frame, Section } from './layouts/index';
 
-// Cards
-export * from './cards/index';
+// Cards (explicit to avoid conflict with ./cards top-level export)
+export { GlassTimeCard, UserProfileCard, CardHeader } from './cards/index';
 
 // Fields
-export * from './fields/index';
+export { DynamicField } from './fields/index';
 
-// Hooks
-export * from './hooks/index';
+// Hooks (explicit - useTheme already exported from theme)
+export { useAuth, useGlass, useIAMAuth, useKeycloakSession,
+  usePermissions, useSessionMonitor } from './hooks/index';
 
-// Auth System
+// Auth UI System
 export * from './auth/index';

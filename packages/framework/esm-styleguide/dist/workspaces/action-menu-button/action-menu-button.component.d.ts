@@ -1,7 +1,7 @@
 /** @module @category Workspace */
 import React from 'react';
 export interface ActionMenuButtonProps {
-    getIcon: (props: object) => JSX.Element;
+    getIcon: (props: object) => React.ReactElement;
     label: string;
     iconDescription: string;
     handler: () => void;

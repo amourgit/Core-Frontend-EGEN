@@ -6,10 +6,14 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@/components/*": [
+        "./src/*"
+      ],
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "rootDir": "src"
   },
   "extends": "./tsconfig.json",
   "exclude": [

@@ -6,7 +6,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 import {
   Monitor, Smartphone, Tablet, Globe, Clock,
   LogOut, RefreshCw, Shield, AlertCircle, CheckCircle2,
@@ -15,7 +15,7 @@ import {
 import { useIAMSessions } from '@egen/esm-auth';
 import { useToast } from '@/components/ui/toast';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/Link';
 import type { Session } from '@egen/esm-auth';
 import { AuthLayout } from './ui/AuthLayout';
 

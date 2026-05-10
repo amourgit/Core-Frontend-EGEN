@@ -7,10 +7,10 @@ import { type SideNavProps } from '@carbon/react';
 interface LeftNavMenuProps extends SideNavProps {
     /**
      * Flag indicating if this component is a child of the header component.
-     * When true, the component renders the left nav menu.
-     * When false, it renders an empty fragment.
      */
     isChildOfHeader?: boolean;
+    /** HTML inert attribute */
+    inert?: boolean;
 }
 /**
  * This component renders the left nav in desktop mode. It's also used to render the same

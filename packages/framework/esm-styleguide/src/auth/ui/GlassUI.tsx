@@ -9,7 +9,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/Link';
 
 // ── Styles glass réutilisables ────────────────────────────
 export const glass = {

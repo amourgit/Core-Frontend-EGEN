@@ -6,7 +6,7 @@
 
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 import {
   Activity, Filter, Search, ChevronDown, Globe,
   Clock, CheckCircle2, XCircle, RefreshCw, Calendar,
@@ -179,7 +179,7 @@ function JournalMainContent() {
   const [error, setError] = useState<string | null>(null);
   const [skip, setSkip] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | number | null>(null);
   const [search, setSearch] = useState('');
   const [filterResult, setFilterResult] = useState<'all' | 'autorise' | 'refuse'>('all');
   const [totalLoaded, setTotalLoaded] = useState(0);
@@ -188,9 +188,9 @@ function JournalMainContent() {
     setIsLoading(true);
     setError(null);
     try {
-      const data = await profilService.getMonJournal(newSkip, PAGE_SIZE);
+      const data = await profilService.fetchMonJournal(newSkip, PAGE_SIZE);
       setEntries((prev) => reset ? data : [...prev, ...data]);
-      setTotalLoaded(reset ? data.length : (prev) => prev + data.length);
+      if (reset) { setTotalLoaded(data.length); } else { setTotalLoaded((prev) => prev + data.length); }
       setHasMore(data.length === PAGE_SIZE);
       setSkip(newSkip + data.length);
     } catch (err: any) {

@@ -15,6 +15,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         iconButton:
           "border border-border/50 hover:border-border/15 bg-primary disabled:bg-primary/40 hover:bg-primary backdrop-blur-sm disabled:text-primary-foreground/50 text-primary-foreground ring-1 ring-offset-transparent ring-transparent ring-offset-2 hover:ring-primary/15 hover:ring-offset-4 hover:ring-offset-black/20 shadow-button hover:shadow-button-hover",
+        outline:
+          "border border-border/50 bg-transparent hover:bg-accent hover:text-accent-foreground",
       },
       size: {
         sm: "h-8 px-3 text-xs",
