@@ -80,12 +80,12 @@ describe('PatientBannerPatientInfo', () => {
   it('renders the correct gender icon based on patient gender', () => {
     render(<PatientBannerPatientInfo patient={mockPatient} />);
 
-    expect(screen.getByText('', { selector: 'use[href="#omrs-icon-gender-male"]' })).toBeInTheDocument();
+    expect(screen.getByText('', { selector: 'use[href="#egen-icon-gender-male"]' })).toBeInTheDocument();
 
     const patientWithUnknownGender = { ...mockPatient, gender: 'unknown' };
 
     render(<PatientBannerPatientInfo patient={patientWithUnknownGender} />);
 
-    expect(screen.getByText('', { selector: 'use[href="#omrs-icon-gender-unknown"]' })).toBeInTheDocument();
+    expect(screen.getByText('', { selector: 'use[href="#egen-icon-gender-unknown"]' })).toBeInTheDocument();
   });
 });

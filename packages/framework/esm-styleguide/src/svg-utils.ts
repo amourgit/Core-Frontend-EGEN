@@ -10,7 +10,7 @@ const svgContainer = document.createElement('div');
 const appendContainer = () => {
   document.body.appendChild(svgContainer);
 };
-svgContainer.id = 'omrs-svgs-container';
+svgContainer.id = 'egen-svgs-container';
 svgContainer.style.display = 'none';
 
 if (document.readyState === 'complete') {

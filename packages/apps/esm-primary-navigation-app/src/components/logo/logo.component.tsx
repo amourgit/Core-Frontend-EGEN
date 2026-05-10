@@ -18,7 +18,7 @@ const Logo: React.FC = () => {
         logo.name
       ) : (
         <svg aria-label="EGEN Logo" role="img" width={110} height={40}>
-          <use href="#omrs-logo-white" />
+          <use href="#egen-logo-white" />
         </svg>
       )}
     </>

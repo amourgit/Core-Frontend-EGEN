@@ -17,7 +17,7 @@ export interface EmptyCardProps {
 export const EmptyCardIllustration = ({ width = '64', height = '64' }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 64 64">
-      <use href={`#omrs-empty-data-illustration`} />
+      <use href={`#egen-empty-data-illustration`} />
     </svg>
   );
 };

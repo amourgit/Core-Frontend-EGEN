@@ -12,5 +12,5 @@ is available. The goal is to make it easier to conditionally render configuratio
 ## Example
 
 ```tsx
-  <MaybeIcon icon='omrs-icon-baby' className={styles.myIconStyles} />
+  <MaybeIcon icon='egen-icon-baby' className={styles.myIconStyles} />
 ```

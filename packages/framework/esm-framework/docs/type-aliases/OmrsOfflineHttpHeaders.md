@@ -11,9 +11,9 @@ HTTP requests with these headers are handled in a special way by the SPA's servi
 
 ## Properties
 
-### x-omrs-offline-caching-strategy?
+### x-egen-offline-caching-strategy?
 
-> `optional` **x-omrs-offline-caching-strategy**: [`OmrsOfflineCachingStrategy`](OmrsOfflineCachingStrategy.md)
+> `optional` **x-egen-offline-caching-strategy**: [`OmrsOfflineCachingStrategy`](OmrsOfflineCachingStrategy.md)
 
 Defined in: [packages/framework/esm-offline/src/service-worker-http-headers.ts:37](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-http-headers.ts#L37)
 
@@ -21,9 +21,9 @@ Instructs the service worker to use a specific caching strategy for this request
 
 ***
 
-### x-omrs-offline-response-body?
+### x-egen-offline-response-body?
 
-> `optional` **x-omrs-offline-response-body**: `string`
+> `optional` **x-egen-offline-response-body**: `string`
 
 Defined in: [packages/framework/esm-offline/src/service-worker-http-headers.ts:27](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-http-headers.ts#L27)
 
@@ -33,9 +33,9 @@ the body in this header.
 
 ***
 
-### x-omrs-offline-response-status?
+### x-egen-offline-response-status?
 
-> `optional` **x-omrs-offline-response-status**: `` `${number}` ``
+> `optional` **x-egen-offline-response-status**: `` `${number}` ``
 
 Defined in: [packages/framework/esm-offline/src/service-worker-http-headers.ts:33](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-http-headers.ts#L33)
 

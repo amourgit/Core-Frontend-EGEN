@@ -280,28 +280,28 @@ function createConfigLoader(configUrls: Array<string>) {
 }
 
 function showNotifications() {
-  renderInlineNotifications(document.querySelector('.omrs-inline-notifications-container'));
+  renderInlineNotifications(document.querySelector('.egen-inline-notifications-container'));
   return;
 }
 
 function showActionableNotifications() {
-  renderActionableNotifications(document.querySelector('.omrs-actionable-notifications-container'));
+  renderActionableNotifications(document.querySelector('.egen-actionable-notifications-container'));
 }
 
 function showToasts() {
-  renderToasts(document.querySelector('.omrs-toasts-container'));
+  renderToasts(document.querySelector('.egen-toasts-container'));
 }
 
 function showWorkspacesAndActionMenu() {
-  renderWorkspaceWindowsAndMenu(document.querySelector('#omrs-workspaces-container'));
+  renderWorkspaceWindowsAndMenu(document.querySelector('#egen-workspaces-container'));
 }
 
 function showSnackbars() {
-  renderSnackbars(document.querySelector('.omrs-snackbars-container'));
+  renderSnackbars(document.querySelector('.egen-snackbars-container'));
 }
 
 function showModals() {
-  setupModals(document.querySelector('.omrs-modals-container'));
+  setupModals(document.querySelector('.egen-modals-container'));
 }
 
 function showLoadingSpinner() {
@@ -401,9 +401,9 @@ function setupOfflineCssClasses() {
   subscribeConnectivity(({ online }) => {
     const body = document.querySelector('body')!;
     if (online) {
-      body.classList.remove('omrs-offline');
+      body.classList.remove('egen-offline');
     } else {
-      body.classList.add('omrs-offline');
+      body.classList.add('egen-offline');
     }
   });
 }

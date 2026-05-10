@@ -17,7 +17,7 @@ import {
 window.i18next = { language: 'en' } as i18n;
 
 describe('Egen Dates', () => {
-  it('converts js Date object to omrs date string version', () => {
+  it('converts js Date object to egen date string version', () => {
     let date = dayjs('2018-03-19T00:05:03.999+0300', 'YYYY-MM-DDTHH:mm:ss.SSSZZ').toDate();
     expect(toOmrsIsoString(date, true)).toEqual('2018-03-18T21:05:03.999+0000');
   });
@@ -37,12 +37,12 @@ describe('Egen Dates', () => {
     expect(isOmrsDateStrict(undefined as any)).toEqual(false);
   });
 
-  it('converts omrs date string version to js Date object', () => {
+  it('converts egen date string version to js Date object', () => {
     expect(toDateObjectStrict('2018-03-19T00:00:00.000+0300')?.toUTCString()).toEqual('Sun, 18 Mar 2018 21:00:00 GMT');
     expect(toDateObjectStrict('2018-03-19')).toEqual(null);
   });
 
-  it('converts js Date object to omrs date string version', () => {
+  it('converts js Date object to egen date string version', () => {
     let date = dayjs('2018-03-19T00:05:03.999+0300', 'YYYY-MM-DDTHH:mm:ss.SSSZZ').toDate();
     expect(toOmrsIsoString(date, true)).toEqual('2018-03-18T21:05:03.999+0000');
   });

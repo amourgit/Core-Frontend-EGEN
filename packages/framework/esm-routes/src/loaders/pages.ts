@@ -219,7 +219,7 @@ export function finishRegisteringAllApps() {
     const index = appIndices.get(page.appName);
 
     const name = `${page.appName}-page-${index}`;
-    const containerDomId = page.containerDomId ?? 'omrs-apps-container';
+    const containerDomId = page.containerDomId ?? 'egen-apps-container';
     const containerDiv = document.getElementById(containerDomId);
     const appDomRootId = `single-spa-application:${name}`;
 

@@ -11,14 +11,14 @@ import { addSvg } from '../svg-utils';
  * @internal
  */
 export function setupLogo() {
-  addSvg('omrs-logo-full-color', fullLogo);
-  addSvg('omrs-logo-full-mono', fullLogo);
-  addSvg('omrs-logo-full-grey', fullLogo);
-  addSvg('omrs-logo-partial-color', partialLogo);
-  addSvg('omrs-logo-partial-mono', partialLogo);
-  addSvg('omrs-logo-partial-grey', partialLogo);
-  addSvg('omrs-logo-icon-color', iconLogo);
-  addSvg('omrs-logo-icon-mono', iconLogo);
-  addSvg('omrs-logo-icon-grey', iconLogo);
-  addSvg('omrs-logo-white', whiteLogo);
+  addSvg('egen-logo-full-color', fullLogo);
+  addSvg('egen-logo-full-mono', fullLogo);
+  addSvg('egen-logo-full-grey', fullLogo);
+  addSvg('egen-logo-partial-color', partialLogo);
+  addSvg('egen-logo-partial-mono', partialLogo);
+  addSvg('egen-logo-partial-grey', partialLogo);
+  addSvg('egen-logo-icon-color', iconLogo);
+  addSvg('egen-logo-icon-mono', iconLogo);
+  addSvg('egen-logo-icon-grey', iconLogo);
+  addSvg('egen-logo-white', whiteLogo);
 }

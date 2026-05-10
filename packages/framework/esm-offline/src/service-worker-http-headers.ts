@@ -1,8 +1,8 @@
 /** @module @category Offline */
 
-export const omrsOfflineResponseBodyHttpHeaderName = 'x-omrs-offline-response-body';
-export const omrsOfflineResponseStatusHttpHeaderName = 'x-omrs-offline-response-status';
-export const omrsOfflineCachingStrategyHttpHeaderName = 'x-omrs-offline-caching-strategy';
+export const omrsOfflineResponseBodyHttpHeaderName = 'x-egen-offline-response-body';
+export const omrsOfflineResponseStatusHttpHeaderName = 'x-egen-offline-response-status';
+export const omrsOfflineCachingStrategyHttpHeaderName = 'x-egen-offline-caching-strategy';
 
 /**
  *

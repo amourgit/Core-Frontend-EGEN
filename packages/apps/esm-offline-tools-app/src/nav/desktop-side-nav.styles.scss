@@ -27,11 +27,11 @@
   }
 }
 
-:global(.omrs-breakpoint-gt-tablet) .link > div {
+:global(.egen-breakpoint-gt-tablet) .link > div {
   padding-top: layout.$spacing-05;
 }
 
-:global(.omrs-breakpoint-gt-tablet) .link > div a:nth-child(1) {
+:global(.egen-breakpoint-gt-tablet) .link > div a:nth-child(1) {
   height: layout.$spacing-07;
   color: $ui-04;
   padding: 0 0 0 layout.$spacing-05;

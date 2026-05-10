@@ -33,7 +33,7 @@ const isoFormat = 'YYYY-MM-DDTHH:mm:ss.SSSZZ';
  * The format should be YYYY-MM-DDTHH:mm:ss.SSSZZ
  */
 export function isOmrsDateStrict(omrsPayloadString: string): boolean {
-  // omrs format 2018-03-19T00:00:00.000+0300
+  // egen format 2018-03-19T00:00:00.000+0300
   if (omrsPayloadString === null || omrsPayloadString === undefined || omrsPayloadString.trim().length !== 28) {
     return false;
   }

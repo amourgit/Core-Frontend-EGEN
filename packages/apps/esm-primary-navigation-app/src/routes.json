@@ -9,7 +9,7 @@
       "routeRegex": "^(?!(?:login|change-password)/?)",
       "online": true,
       "offline": true,
-      "containerDomId": "omrs-top-nav-app-container"
+      "containerDomId": "egen-top-nav-app-container"
     },
     {
       "component": "redirect",

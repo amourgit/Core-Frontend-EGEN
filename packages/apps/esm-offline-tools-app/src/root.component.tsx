@@ -10,7 +10,7 @@ const Root: React.FC = () => {
   return (
     <BrowserRouter basename={window.getEgenSpaBase()}>
       <DesktopSideNav />
-      <div className={classNames('omrs-main-content', styles.mainContentContainer)}>
+      <div className={classNames('egen-main-content', styles.mainContentContainer)}>
         <Routes>
           <Route path="offline-tools" element={<Home />} />
           <Route path="offline-tools/:page" element={<OfflineToolsPage />}>

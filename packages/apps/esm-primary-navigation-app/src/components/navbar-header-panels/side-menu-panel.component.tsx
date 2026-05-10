@@ -22,7 +22,7 @@ const SideMenuPanel: React.FC<SideMenuPanelProps> = ({ expanded, hidePanel }) =>
   const layout = useLayoutType();
   const { mode } = useLeftNavStore();
 
-  const leftNavContainer = window.document.getElementById('omrs-left-nav-container');
+  const leftNavContainer = window.document.getElementById('egen-left-nav-container');
   return (
     <>
       {(!isDesktop(layout) || mode === 'collapsed') && expanded && <LeftNavMenu ref={menuRef} isChildOfHeader />}
