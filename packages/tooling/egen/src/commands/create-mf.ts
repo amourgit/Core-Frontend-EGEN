@@ -85,9 +85,9 @@ export const routes = require('../routes.json');
   writeFileSync(join(dir, 'webpack.config.js'), `module.exports = require('egen/default-webpack-config');
 `);
 
-  console.log(\`✅ Created micro-frontend: \${packageName}\`);
-  console.log(\`   Directory: \${dir}\`);
-  console.log(\`\n   Next steps:\`);
-  console.log(\`   cd \${name}\`);
-  console.log(\`   egen serve\`);
+  console.log(`✅ Created micro-frontend: ${packageName}`);
+  console.log(`   Directory: ${dir}`);
+  console.log(`\n   Next steps:`);
+  console.log(`   cd ${name}`);
+  console.log(`   egen serve`);
 }

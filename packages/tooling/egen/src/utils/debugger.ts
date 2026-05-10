@@ -34,7 +34,7 @@ function startDevServer(configPath: string, port: number, useRspack: boolean = f
   const config = loadConfig(configPath);
 
   const devServerOptions = {
-    ...config.devServer,
+    ...(config as Record<string, unknown>).devServer as Record<string, unknown>,
     port,
     static: dirname(configPath),
   };
@@ -43,11 +43,13 @@ function startDevServer(configPath: string, port: number, useRspack: boolean = f
   if (!useRspack) {
     const compiler = webpack(config as WebpackConfiguration);
 
-    server = new WebpackDevServer(devServerOptions as WebpackDevServer.Configuration, compiler);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    server = new WebpackDevServer(devServerOptions as WebpackDevServer.Configuration, compiler as any);
   } else {
     const compiler = rspack(config as RspackConfiguration);
 
-    server = new RspackDevServer(devServerOptions as RspackDevServerConfiguration, compiler);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    server = new RspackDevServer(devServerOptions as RspackDevServerConfiguration, compiler as any);
   }
 
   server.startCallback(() => {

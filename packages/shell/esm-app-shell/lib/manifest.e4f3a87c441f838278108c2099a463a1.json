@@ -1,0 +1,47 @@
+{
+  "icons": [
+    {
+      "src": "/egen/spa/icon_512x512.cf4c5f47f804754c6efe27bad6e4c681.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/egen/spa/icon_384x384.a19cdf14a00ace788f345389162bfb69.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/egen/spa/icon_256x256.c52ee5900df6c1ef43de8956092036c9.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/egen/spa/icon_192x192.1407848dfc4c61a3e63e50cda96acc49.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/egen/spa/icon_144x144.385bfb0413e97ea9728b75452fe2c253.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/egen/spa/icon_128x128.af1cc95dea03d3fabb3da55efd94647f.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/egen/spa/icon_96x96.b5533c537841f7f72a67ce509f4de37a.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "EGEN",
+  "short_name": "EGEN",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Open source Health IT by and for the entire planet, starting with the developing world.",
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}

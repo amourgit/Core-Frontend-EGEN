@@ -304,6 +304,7 @@ module.exports = (env, argv = []) => {
         url: false,
       },
       alias: {
+        '@': resolve(__dirname, 'src'),
         'lodash.debounce': 'lodash-es/debounce',
         'lodash.findlast': 'lodash-es/findLast',
         'lodash.isequal': 'lodash-es/isEqual',
@@ -360,6 +361,10 @@ module.exports = (env, argv = []) => {
       }),
       new ModuleFederationPlugin({
         name,
+        remotes: {
+          // Micro-frontend IAM — chargé dynamiquement en runtime
+          iam: `iam@${process.env.IAM_REMOTE_URL || 'http://localhost:3001'}/remoteEntry.js`,
+        },
         shared: sharedDependencies.reduce((obj, depName) => {
           // This just attempts to align the requiredVersion with what we usually have in peerDependencies
           let version = dependencies[depName];
@@ -419,7 +424,7 @@ module.exports = (env, argv = []) => {
       }),
       egenOffline
         ? new InjectManifest({
-            swSrc: resolve(__dirname, './src/service-worker/index.ts'),
+            swSrc: resolve(__dirname, './src/service-worker/index.js'),
             swDest: 'service-worker.js',
             maximumFileSizeToCacheInBytes: mode === production ? undefined : Number.MAX_SAFE_INTEGER,
             additionalManifestEntries: [
@@ -428,7 +433,7 @@ module.exports = (env, argv = []) => {
             ],
           })
         : new InjectManifest({
-            swSrc: resolve(__dirname, './src/service-worker/noop.ts'),
+            swSrc: resolve(__dirname, './src/service-worker/noop.js'),
             swDest: 'service-worker.js',
             // this is a no-op service worker, so we don't want to cache anything
             maximumFileSizeToCacheInBytes: 0,
