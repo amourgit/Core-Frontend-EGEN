@@ -53,6 +53,9 @@
     "@egen/esm-globals": "9.x",
     "@egen/esm-state": "9.x"
   },
+  "dependencies": {
+    "zustand": "^5.0.0"
+  },
   "devDependencies": {
     "@egen/esm-globals": "*",
     "@egen/esm-state": "*",
