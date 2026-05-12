@@ -4,9 +4,9 @@
     "module": "esnext",
     "target": "es2015",
     "allowSyntheticDefaultImports": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "strictNullChecks": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "declaration": true,
     "declarationDir": "dist",
@@ -21,7 +21,16 @@
       "es2018",
       "es2020",
       "es2022"
+    ],
+    "allowImportingTsExtensions": true,
+    "types": [
+      "vite/client",
+      "node",
+      "fhir",
+      "webpack-env"
     ]
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }

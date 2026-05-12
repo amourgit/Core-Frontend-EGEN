@@ -62,7 +62,7 @@ function JournalRow({ entry, isExpanded, onToggle }: {
   onToggle: () => void;
 }) {
   const rc = resultConfig(entry.autorise);
-  const ActionIcon = actionIcon(entry.type_action);
+  const ActionIcon = actionIcon(entry.type_action ?? '');
   const { date, time } = formatDateTime(entry.timestamp);
 
   return (

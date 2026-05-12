@@ -172,7 +172,7 @@ function SessionCard({
         {!isCurrent && isActive && (
           <Button
             variant="outline" size="sm"
-            onClick={() => onRevoke(session.id)}
+            onClick={() => onRevoke(session.id ?? '')}
             disabled={isRevoking}
             className="flex-shrink-0 text-red-400 hover:text-red-300 hover:bg-red-500/10 border-red-500/20 text-xs h-8"
           >

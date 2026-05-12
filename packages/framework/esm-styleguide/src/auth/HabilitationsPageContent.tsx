@@ -252,8 +252,8 @@ function HabilitationsMainContent() {
   // Filtrer les permissions
   const filteredPerms = (hab?.permissions || []).filter((p) => {
     const matchSearch = !search || p.code.toLowerCase().includes(search.toLowerCase())
-      || p.nom.toLowerCase().includes(search.toLowerCase())
-      || p.domaine.toLowerCase().includes(search.toLowerCase());
+      || (p.nom ?? '').toLowerCase().includes(search.toLowerCase())
+      || (p.domaine ?? '').toLowerCase().includes(search.toLowerCase());
     const matchSource = filterSource === 'all' || p.source.startsWith(filterSource);
     return matchSearch && matchSource;
   });
@@ -293,8 +293,8 @@ function HabilitationsMainContent() {
         >
           {[
             { label: 'Permissions', value: hab.permissions.length, icon: Key, color: 'text-blue-300', bg: glass.blue },
-            { label: 'Rôles actifs', value: hab.roles_actifs.length, icon: Shield, color: 'text-purple-300', bg: glass.purple },
-            { label: 'Groupes',     value: hab.groupes_actifs.length, icon: Users, color: 'text-green-300', bg: glass.green },
+            { label: 'Rôles actifs', value: (hab.roles_actifs ?? []).length, icon: Shield, color: 'text-purple-300', bg: glass.purple },
+            { label: 'Groupes',     value: (hab.groupes_actifs ?? []).length, icon: Users, color: 'text-green-300', bg: glass.green },
           ].map(({ label, value, icon: Icon, color, bg }) => (
             <GlassCard key={label} animate={false} className="flex flex-col items-center gap-1 py-4 px-3 text-center">
               <div className="w-8 h-8 rounded-xl flex items-center justify-center mb-1"
@@ -355,13 +355,13 @@ function HabilitationsMainContent() {
       {!isLoading && !error && hab && (
         <>
           {/* Rôles actifs */}
-          {hab.roles_actifs.length > 0 && (
+          {(hab.roles_actifs ?? []).length > 0 && (
             <GlassCard className="mb-4" delay={0.05}>
               <h3 className="text-xs font-medium text-white/40 uppercase tracking-wider mb-3 flex items-center gap-2">
                 <Shield className="w-3.5 h-3.5" /> Rôles actifs
               </h3>
               <div className="flex flex-wrap gap-2">
-                {hab.roles_actifs.map((role) => (
+                {(hab.roles_actifs ?? []).map((role) => (
                   <span key={role} className="px-3 py-1.5 rounded-xl text-sm text-purple-300 font-medium"
                     style={{ background: glass.purple, border: `1px solid ${glass.purpleBorder}` }}
                   >
@@ -373,13 +373,13 @@ function HabilitationsMainContent() {
           )}
 
           {/* Groupes actifs */}
-          {hab.groupes_actifs.length > 0 && (
+          {(hab.groupes_actifs ?? []).length > 0 && (
             <GlassCard className="mb-4" delay={0.1}>
               <h3 className="text-xs font-medium text-white/40 uppercase tracking-wider mb-3 flex items-center gap-2">
                 <Users className="w-3.5 h-3.5" /> Groupes actifs
               </h3>
               <div className="flex flex-wrap gap-2">
-                {hab.groupes_actifs.map((g) => (
+                {(hab.groupes_actifs ?? []).map((g) => (
                   <span key={g} className="px-3 py-1.5 rounded-xl text-sm text-green-300 font-medium"
                     style={{ background: glass.green, border: `1px solid ${glass.greenBorder}` }}
                   >
