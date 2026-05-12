@@ -1,3 +1,3 @@
-// egen/default-rspack-config
-// Forwards to @egen/rspack-config
-module.exports = require('../rspack-config/src/index');
+// igen/default-rspack-config
+// Forwards to @igen/rspack-config (compiled)
+module.exports = require('../rspack-config/dist/index');

@@ -5,7 +5,7 @@
 // ============================================================
 
 import { Outlet }   from 'react-router-dom';
-import { TooltipProvider } from '@/components/ui/tooltip';
+import { TooltipProvider } from '../ui/tooltip';
 
 import TopBarContent  from './TopBarContent';
 import LeftBarContent from './LeftBarContent';

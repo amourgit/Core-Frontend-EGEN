@@ -20,8 +20,8 @@ import {
 } from './ui/GlassUI';
 import { profilService } from '@egen/esm-auth';
 import type { JournalEntry } from '@egen/esm-auth';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { cn } from '../lib/utils';
+import { Button } from '../ui/button';
 import { AuthLayout } from './ui/AuthLayout';
 
 const PAGE_SIZE = 20;

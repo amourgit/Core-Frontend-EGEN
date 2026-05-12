@@ -13,34 +13,34 @@ import {
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
 import { useTheme, useThemeVariables } from "@egen/esm-styleguide/theme";
-import { useGlass } from "@/hooks/useGlass";
+import { useGlass } from "../hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
-import { useAuth } from "@/hooks/useAuth";
-import { useIAMAuth } from '@/hooks/useIAMAuth';
+import { useAuth } from "../hooks/useAuth";
+import { useIAMAuth } from '../hooks/useIAMAuth';
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
-import { navigationData, NavigationItem } from "@/services/navigation";
+import { navigationData, NavigationItem } from "../services/navigation";
 
 // ─── Composants UI ────────────────────────────────────────────────────────────
 import {
   Popover, PopoverContent, PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import ExpandableDock from "@/components/ui/expandable-dock";
+} from "../ui/popover";
+import { Button } from "../ui/button";
+import ExpandableDock from "../ui/expandable-dock";
 import {
   TopSheet, TopSheetClose, TopSheetContent, TopSheetDescription,
   TopSheetFooter, TopSheetHeader, TopSheetTitle, TopSheetTrigger,
-} from "@/components/ui/top-sheet";
-import { toast, useToast } from "@/components/ui/toast";
+} from "../ui/top-sheet";
+import { toast, useToast } from "../ui/toast";
 
 // ─── Widgets / layouts ───────────────────────────────────────────────────────
-import UserProfileCard from "@/components/cards/user-profile-card";
-import StructureInfoCard from "@/components/widgets/structure-info-cards";
-import SearchPopup from "@/components/searchPopup";
-import MagicRings from "@/components/MagicRings";
-import MenuToggleButton from "@/components/layouts/StaggeredMenuButton";
-import StaggeredMenuPanel from "@/components/layouts/StaggeredMenu";
+import UserProfileCard from "../cards/user-profile-card";
+import StructureInfoCard from "../widgets/structure-info-cards";
+import SearchPopup from "../searchPopup";
+import MagicRings from "../MagicRings";
+import MenuToggleButton from "./StaggeredMenuButton";
+import StaggeredMenuPanel from "./StaggeredMenu";
 
 // ─── Données statiques ────────────────────────────────────────────────────────
 const LANGUAGES = [

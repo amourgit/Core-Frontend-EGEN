@@ -19,9 +19,9 @@ import {
 } from './ui/GlassUI';
 import { profilService } from '@egen/esm-auth';
 import { useIAMAuth } from '@egen/esm-auth';
-import { useToast } from '@/components/ui/toast';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { useToast } from '../ui/toast';
+import { Button } from '../ui/button';
+import { cn } from '../lib/utils';
 import type { PermissionEffective, Habilitations } from '@egen/esm-auth';
 import { AuthLayout } from './ui/AuthLayout';
 

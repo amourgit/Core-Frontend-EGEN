@@ -14,8 +14,8 @@ import {
   X,
 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Button } from '../button';
+import { cn } from '../../lib/utils';
 
 type Variant = 'default' | 'success' | 'error' | 'warning';
 type Position =

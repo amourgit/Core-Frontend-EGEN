@@ -6,15 +6,15 @@
 
 
 import React from 'react';
-import { Link } from '@/lib/Link';
+import { Link } from '../../lib/Link';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   User, Shield, Activity, Monitor, KeyRound,
   ShieldCheck, LogOut, ChevronRight,
 } from 'lucide-react';
-import { useIAMAuth } from '@/hooks/useIAMAuth';
-import { cn } from '@/lib/utils';
+import { useIAMAuth } from '../../hooks/useIAMAuth';
+import { cn } from '../../lib/utils';
 
 // ── Config de la navigation ───────────────────────────────
 interface NavItem {

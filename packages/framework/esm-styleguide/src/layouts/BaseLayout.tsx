@@ -15,7 +15,7 @@ import { motion }   from 'framer-motion';
 
 import TopBar  from './TopBar';
 import LeftBar from './LeftBar';
-import { TooltipProvider } from '@/components/ui/tooltip';
+import { TooltipProvider } from '../ui/tooltip';
 
 export default function BaseLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
-import { cn } from "@/lib/utils"
+import { cn } from "../lib/utils"
 import { AlertTriangle, AlertCircle, CheckCircle, LucideIcon } from "lucide-react"
 
 export interface ValidationRule {

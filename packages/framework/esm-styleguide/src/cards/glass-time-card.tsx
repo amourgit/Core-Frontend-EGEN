@@ -5,7 +5,7 @@ import * as React from "react"
 import { useState, useEffect } from "react"
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
-import { useGlass } from "@/hooks/useGlass"
+import { useGlass } from "../hooks/useGlass"
 import { useTheme } from "@egen/esm-styleguide/theme"
 
 // ─── Types ───────────────────────────────────────────────────────────────────

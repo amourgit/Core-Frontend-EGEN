@@ -15,7 +15,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 interface TopSheetContextValue {
   isOpen: boolean;

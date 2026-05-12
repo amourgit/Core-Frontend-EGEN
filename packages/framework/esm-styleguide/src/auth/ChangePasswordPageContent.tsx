@@ -12,11 +12,11 @@ import {
   AlertCircle, Loader2, ArrowLeft, KeyRound,
 } from 'lucide-react';
 import { useChangePassword } from '@egen/esm-auth';
-import { useToast } from '@/components/ui/toast';
-import { Button } from '@/components/ui/button';
-import { OutlinedField } from '@/components/fields/fields';
+import { useToast } from '../ui/toast';
+import { Button } from '../ui/button';
+import { OutlinedField } from '../fields/fields';
 import { useNavigate } from 'react-router-dom';
-import { Link } from '@/lib/Link';
+import { Link } from '../lib/Link';
 import { AuthLayout } from './ui/AuthLayout';
 
 // ── Force du mot de passe ─────────────────────────────────

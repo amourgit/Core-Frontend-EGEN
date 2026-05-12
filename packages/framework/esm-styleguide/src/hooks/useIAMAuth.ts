@@ -18,10 +18,10 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '@/lib/auth/AuthProvider';
-import { tokenManager }   from '@/lib/security/token-manager';
-import { useSessionMonitor } from '@/hooks/useSessionMonitor';
-import { getCurrentRealm }   from '@/lib/realm-resolver';
+import { useAuthContext } from '../lib/auth/AuthProvider';
+import { tokenManager }   from '../lib/security/token-manager';
+import { useSessionMonitor } from './useSessionMonitor';
+import { getCurrentRealm }   from '../lib/realm-resolver';
 import {
   authService,
   profilService,
@@ -30,7 +30,7 @@ import {
   storeRefreshToken,
   extractErrorMessage,
   type KcSessionRepresentation,
-} from '@/services/iam/authService';
+} from '../services/iam/authService';
 
 // ── Types ─────────────────────────────────────────────────────
 

@@ -22,9 +22,9 @@ import {
 } from './ui/GlassUI';
 import { authService, extendedAuthService } from '@egen/esm-auth';
 import { useIAMAuth } from '@egen/esm-auth';
-import { useToast } from '@/components/ui/toast';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { useToast } from '../ui/toast';
+import { Button } from '../ui/button';
+import { cn } from '../lib/utils';
 import { AuthLayout } from './ui/AuthLayout';
 
 // ── Carte métrique ────────────────────────────────────────

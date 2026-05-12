@@ -1,8 +1,8 @@
 "use client"
 
 import { useNavigate } from 'react-router-dom'
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "../ui/button"
+import { Badge } from "../ui/badge"
 import {
   Mail,
   Phone,
@@ -13,7 +13,7 @@ import {
   ArrowRight,
   Loader2,
 } from "lucide-react"
-import { useAuthContext } from "@/lib/auth-store"
+import { useAuthContext } from "../lib/auth-store"
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

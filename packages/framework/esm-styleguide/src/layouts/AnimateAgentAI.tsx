@@ -1,4 +1,4 @@
-import MagicRings from "@/components/MagicRings";
+import MagicRings from "../MagicRings";
 
 const AnimateAgentAI = () => {
   return (

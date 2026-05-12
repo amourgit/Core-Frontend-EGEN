@@ -12,9 +12,9 @@ import {
   KeyRound, ArrowLeft, User, Mail, CheckCircle2,
   ShieldAlert, Loader2, Phone, Info,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { OutlinedField } from '@/components/fields/fields';
-import { Link } from '@/lib/Link';
+import { Button } from '../ui/button';
+import { OutlinedField } from '../fields/fields';
+import { Link } from '../lib/Link';
 import { useNavigate } from 'react-router-dom';
 
 // ── Arrière-plan ──────────────────────────────────────────

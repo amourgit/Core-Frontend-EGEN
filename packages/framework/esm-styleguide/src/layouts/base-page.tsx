@@ -5,9 +5,9 @@ import {
   Loader2,
   X,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { CompactTopBar } from "@/components/topbar";
-import AnimeSphereAnimation from "@/components/widgets/anime-sphere-animation";
+import { cn } from "../lib/utils";
+import { CompactTopBar } from "../topbar";
+import AnimeSphereAnimation from "../widgets/anime-sphere-animation";
 import Layout from "./BaseContent";
 
 interface LayoutProps {

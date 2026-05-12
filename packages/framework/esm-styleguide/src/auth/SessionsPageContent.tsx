@@ -13,9 +13,9 @@ import {
   Loader2, ArrowLeft, Wifi, WifiOff,
 } from 'lucide-react';
 import { useIAMSessions } from '@egen/esm-auth';
-import { useToast } from '@/components/ui/toast';
-import { Button } from '@/components/ui/button';
-import { Link } from '@/lib/Link';
+import { useToast } from '../ui/toast';
+import { Button } from '../ui/button';
+import { Link } from '../lib/Link';
 import type { Session } from '@egen/esm-auth';
 import { AuthLayout } from './ui/AuthLayout';
 

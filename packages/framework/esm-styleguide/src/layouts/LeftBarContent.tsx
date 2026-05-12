@@ -14,14 +14,14 @@ import {
 } from "lucide-react";
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
-import { useGlass } from "@/hooks/useGlass";
+import { useGlass } from "../hooks/useGlass";
 
 // ─── Composants UI ────────────────────────────────────────────────────────────
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Badge }      from "@/components/ui/badge";
+import { ScrollArea } from "../ui/scroll-area";
+import { Badge }      from "../ui/badge";
 
 // ─── Utilitaires ──────────────────────────────────────────────────────────────
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 // ============================================================================
 // VARIANTES FRAMER-MOTION

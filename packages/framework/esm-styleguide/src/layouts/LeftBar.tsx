@@ -18,14 +18,14 @@ import {
   Settings, Package, ExternalLink,
 } from 'lucide-react';
 
-import { useRegistryStore }  from '@/stores/registry.store';
-import { usePermissions }    from '@/hooks/usePermissions';
-import { useAuthStore }      from '@/stores/auth.store';
-import { cn }                from '@/lib/utils';
-import { ScrollArea }        from '@/components/ui/scroll-area';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Badge }             from '@/components/ui/badge';
-import type { MicroNavItem, MicroserviceManifest } from '@/types/core';
+import { useRegistryStore }  from '../stores/registry.store';
+import { usePermissions }    from '../hooks/usePermissions';
+import { useAuthStore }      from '../stores/auth.store';
+import { cn }                from '../lib/utils';
+import { ScrollArea }        from '../ui/scroll-area';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { Badge }             from '../ui/badge';
+import type { MicroNavItem, MicroserviceManifest } from '../types/core';
 
 // ── Icône Lucide dynamique depuis un nom string ──────────────
 // Le manifest expose le nom d'icône (string), on le résout ici

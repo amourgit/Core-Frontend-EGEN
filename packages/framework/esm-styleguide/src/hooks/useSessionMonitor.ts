@@ -25,14 +25,14 @@
 // ============================================================
 
 import { useEffect, useRef, useCallback } from 'react';
-import { useAuthContext } from '@/lib/auth/AuthProvider';
-import { tokenManager }  from '@/lib/security/token-manager';
-import { auditLogger }   from '@/lib/security/audit-logger';
-import { getCurrentRealm } from '@/lib/realm-resolver';
+import { useAuthContext } from '../lib/auth/AuthProvider';
+import { tokenManager }  from '../lib/security/token-manager';
+import { auditLogger }   from '../lib/security/audit-logger';
+import { getCurrentRealm } from '../lib/realm-resolver';
 import {
   SESSION_MONITOR,
   INACTIVITY,
-} from '@/lib/security/constants';
+} from '../lib/security/constants';
 
 // Grace period post-login (session Keycloak pas encore propagée)
 const LOGIN_GRACE_PERIOD_MS = 8_000;

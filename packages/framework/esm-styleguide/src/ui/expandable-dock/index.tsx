@@ -1,7 +1,7 @@
 
 import React, { useState, ReactNode, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 interface ExpandableDockProps {
   headerContent: ReactNode;

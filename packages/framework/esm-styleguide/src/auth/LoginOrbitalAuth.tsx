@@ -16,10 +16,10 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { useIAMAuth } from '@egen/esm-auth';
-import { useToast } from '@/components/ui/toast';
-import { Button } from '@/components/ui/button';
-import { OutlinedField } from '@/components/fields/fields';
-import { Link } from '@/lib/Link';
+import { useToast } from '../ui/toast';
+import { Button } from '../ui/button';
+import { OutlinedField } from '../fields/fields';
+import { Link } from '../lib/Link';
 
 // ── Types ─────────────────────────────────────────────────
 interface AuthOption {

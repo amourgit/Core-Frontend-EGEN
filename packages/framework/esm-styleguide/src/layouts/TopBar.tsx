@@ -19,13 +19,13 @@ import {
 } from 'lucide-react';
 import { type Variants, type Transition, motion, AnimatePresence } from 'framer-motion';
 
-import { useAuthStore }     from '@/stores/auth.store';
-import { useRegistryStore } from '@/stores/registry.store';
+import { useAuthStore }     from '../stores/auth.store';
+import { useRegistryStore } from '../stores/registry.store';
 import { useTheme }         from '@egen/esm-styleguide/theme';
-import { cn }               from '@/lib/utils';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button }           from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { cn }               from '../lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Button }           from '../ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 interface TopBarProps {
   onToggleSidebar?: () => void;

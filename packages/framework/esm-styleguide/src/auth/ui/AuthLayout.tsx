@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { AuthNavMenu } from './AuthNavMenu';
-import { CompactTopBar } from '@/components/layouts/TopBarContent';
+import { CompactTopBar } from '../../layouts/TopBarContent';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
