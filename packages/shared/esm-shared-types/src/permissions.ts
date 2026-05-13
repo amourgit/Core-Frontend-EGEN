@@ -1,19 +1,7 @@
-/** Source d'une permission (directe, via rôle, via groupe, délégation) */
-export type PermissionSource = 'direct' | `role:${string}` | `groupe:${string}` | `delegation:${string}`;
+import type { IPermission, IGroupe, AccessLevel } from './base.js';
+import type { IRole } from './auth.js';
 
-/** Niveau d'accès frontend */
-export type AccessLevel = 'none' | 'read' | 'write' | 'admin';
-
-/** Permission atomique sur une ressource */
-export interface IPermission {
-  id: string;
-  code: string;
-  nom?: string;
-  domaine?: string;
-  description?: string;
-  source: PermissionSource;
-  niveau?: AccessLevel;
-}
+export type { PermissionSource, AccessLevel } from './base.js';
 
 /** Habilitations complètes d'un utilisateur */
 export interface IHabilitations {
@@ -33,10 +21,21 @@ export interface IPermissionCheck {
 
 /** Config des permissions d'un micro-frontend */
 export interface IMicroFrontendPermissions {
-  /** Permissions requises pour afficher le module */
   required?: string[];
-  /** Permissions pour les fonctionnalités avancées */
   advanced?: string[];
-  /** Si true, le module est visible mais désactivé sans les permissions */
   gracefulDegradation?: boolean;
+}
+
+/** Vérifie l'accès à partir d'une liste de permissions */
+export function hasPermissionCode(permissions: IPermission[], code: string): boolean {
+  return permissions.some(p => p.code === code);
+}
+
+/** Niveau d'accès effectif sur un domaine */
+export function getEffectiveLevel(permissions: IPermission[], domain: string): AccessLevel {
+  const domainPerms = permissions.filter(p => p.domaine === domain);
+  if (domainPerms.some(p => p.niveau === 'admin')) return 'admin';
+  if (domainPerms.some(p => p.niveau === 'write')) return 'write';
+  if (domainPerms.some(p => p.niveau === 'read'))  return 'read';
+  return 'none';
 }

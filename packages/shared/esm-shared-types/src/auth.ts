@@ -1,3 +1,8 @@
+import type { IPermission } from './base.js';
+
+export type { IPermission } from './base.js';
+export type { IGroupe }     from './base.js';
+
 /** Rôle d'un utilisateur dans le système */
 export interface IRole {
   id: string;
@@ -5,13 +10,6 @@ export interface IRole {
   code: string;
   description?: string;
   permissions?: IPermission[];
-}
-
-/** Groupe d'appartenance d'un utilisateur */
-export interface IGroupe {
-  id: string;
-  nom: string;
-  domaine?: string;
 }
 
 /** Session utilisateur active */
