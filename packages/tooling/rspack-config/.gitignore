@@ -1,0 +1,5 @@
+# Le dist/ de rspack-config est COMMITTÉ intentionnellement.
+# Il doit être disponible sans avoir à rebuild le tooling au premier clone.
+# Ne PAS ajouter dist/ ici.
+node_modules/
+*.log
