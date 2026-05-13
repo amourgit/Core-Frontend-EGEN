@@ -9,11 +9,14 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "target": "ES2020",
-    "paths": {
-      "@igen/esm-shared-types": ["../esm-shared-types/src/index.ts"]
-    }
+    "target": "ES2020"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "**/*.test.*"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.*"
+  ]
 }

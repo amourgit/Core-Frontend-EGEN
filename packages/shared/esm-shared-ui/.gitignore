@@ -1,0 +1,3 @@
+# dist/ committé intentionnellement — requis par les packages dépendants au clone
+node_modules/
+*.log

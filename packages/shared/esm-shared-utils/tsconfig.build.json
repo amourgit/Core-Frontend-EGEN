@@ -1,4 +1,14 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "dist", "**/*.test.*", "**/*.spec.*"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ],
+  "compilerOptions": {
+    "noEmit": false,
+    "composite": true,
+    "allowImportingTsExtensions": false
+  }
 }

@@ -1,0 +1,1 @@
+{"version":3,"file":"PermissionBoundary.d.ts","sourceRoot":"","sources":["../src/PermissionBoundary.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAG1B,UAAU,uBAAuB;IAC/B,UAAU,EAAE,MAAM,CAAC;IACnB,QAAQ,EAAE,CAAC,OAAO,EAAE,OAAO,KAAK,KAAK,CAAC,SAAS,CAAC;CACjD;AAED;;;;;;;GAOG;AACH,wBAAgB,kBAAkB,CAAC,EAAE,UAAU,EAAE,QAAQ,EAAE,EAAE,uBAAuB,2CAInF"}
