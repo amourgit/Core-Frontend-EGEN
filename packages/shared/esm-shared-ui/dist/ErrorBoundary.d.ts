@@ -18,7 +18,7 @@ export declare class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
     };
     componentDidCatch(error: Error, info: ErrorInfo): void;
     reset(): void;
-    render(): string | number | boolean | import("react/jsx-runtime").JSX.Element | Iterable<React.ReactNode>;
+    render(): string | number | boolean | Iterable<React.ReactNode> | import("react/jsx-runtime").JSX.Element;
 }
 export {};
 //# sourceMappingURL=ErrorBoundary.d.ts.map

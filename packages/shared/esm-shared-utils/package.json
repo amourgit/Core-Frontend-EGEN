@@ -1,7 +1,7 @@
 {
   "name": "@igen/esm-shared-utils",
   "version": "9.0.2",
-  "description": "Utilitaires partagés entre tous les micro-frontends IGEN",
+  "description": "Utilitaires partag\u00e9s entre tous les micro-frontends IGEN",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,9 +12,12 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist"
   },
