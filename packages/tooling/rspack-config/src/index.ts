@@ -349,6 +349,9 @@ export default (env: Record<string, string>, argv: Record<string, string> = {}) 
     ].filter(Boolean),
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.scss', '.json'],
+      // extensionAlias: resout les imports TypeScript ESM (.js) vers .ts/.tsx
+      // Solution long-terme: un seul endroit, couvre tout le monorepo sans toucher les sources
+      extensionAlias: { '.js': ['.ts', '.tsx', '.js'], '.jsx': ['.tsx', '.jsx'], '.mjs': ['.mts', '.mjs'] },
       alias: {
         '@egen/esm-framework': '@egen/esm-framework/src/internal',
         'lodash.debounce': 'lodash-es/debounce',
