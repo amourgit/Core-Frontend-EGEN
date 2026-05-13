@@ -1,1 +1,0 @@
-{"version":3,"file":"workspace-renderer.component.d.ts","sourceRoot":"","sources":["../../../src/workspaces/container/workspace-renderer.component.tsx"],"names":[],"mappings":"AAMA,OAAO,EAAE,KAAK,aAAa,EAAE,MAAM,eAAe,CAAC;AAGnD,UAAU,sBAAsB;IAC9B,SAAS,EAAE,aAAa,CAAC;IACzB,uBAAuB,CAAC,EAAE,MAAM,CAAC;CAClC;AAED,wBAAgB,iBAAiB,CAAC,EAAE,SAAS,EAAE,uBAAuB,EAAE,EAAE,sBAAsB,2CAmC/F"}

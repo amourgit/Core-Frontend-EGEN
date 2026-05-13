@@ -1,1 +1,0 @@
-{"version":3,"file":"TopBarContent.d.ts","sourceRoot":"","sources":["../../src/layouts/TopBarContent.tsx"],"names":[],"mappings":"AA8RA,eAAO,MAAM,oBAAoB,GAAI,8BAGlC;IACD,UAAU,CAAC,EAAE,CAAC,IAAI,EAAE,MAAM,KAAK,IAAI,CAAC;IACpC,WAAW,CAAC,EAAE,MAAM,EAAE,CAAC;CACxB,4CAqGA,CAAC;AAKF,eAAO,MAAM,aAAa,GAAI,eAAoB;IAAE,SAAS,CAAC,EAAE,MAAM,CAAA;CAAE,4CAilBvE,CAAC;AA8DF,eAAe,aAAa,CAAC"}
