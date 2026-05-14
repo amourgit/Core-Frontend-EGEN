@@ -7,7 +7,7 @@
   "main": "src/index.ts",
   "source": true,
   "scripts": {
-    "start": "egen develop",
+    "start": "igen develop --importmap '{\"imports\":{}}'",
     "serve": "webpack serve --mode=development",
     "debug": "npm run serve",
     "test": "cross-env TZ=UTC vitest run --passWithNoTests",
@@ -18,14 +18,18 @@
     "analyze": "webpack --mode=production --env analyze=true",
     "typescript": "tsc",
     "lint": "eslint src --ext ts,tsx",
-    "extract-translations": "i18next 'src/**/*.component.tsx' 'src/**/*.extension.tsx' 'src/**/*.modal.tsx' --config='../../../tools/i18next-parser.config.js'"
+    "extract-translations": "i18next 'src/**/*.component.tsx' 'src/**/*.extension.tsx' 'src/**/*.modal.tsx' --config='../../../tools/i18next-parser.config.js'",
+    "start:connected": "igen develop --backend http://localhost:8080",
+    "start:remote": "igen develop --backend https://dev.iam-central.ga"
   },
   "keywords": [
     "egen",
     "microfrontends"
   ],
   "browserslist": [
-    "> 0.2%", "not dead", "not op_mini all"
+    "> 0.2%",
+    "not dead",
+    "not op_mini all"
   ],
   "repository": {
     "type": "git",
