@@ -294,6 +294,15 @@ module.exports = (env, argv = []) => {
       },
     },
     resolve: {
+      // extensionAlias: résout les imports TypeScript ESM (.js → .ts/.tsx)
+      // Nécessaire car esm-framework/esm-styleguide utilisent moduleResolution:node16
+      // qui impose des extensions .js explicites dans les imports TypeScript.
+      extensionAlias: {
+        '.js':  ['.ts', '.tsx', '.js'],
+        '.jsx': ['.tsx', '.jsx'],
+        '.mjs': ['.mts', '.mjs'],
+        '.cjs': ['.cts', '.cjs'],
+      },
       mainFields: ['module', 'main'],
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.scss'],
       fallback: {
