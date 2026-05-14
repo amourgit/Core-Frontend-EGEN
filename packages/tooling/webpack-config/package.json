@@ -47,6 +47,14 @@
     "@types/lodash-es": "4.17.12",
     "typescript": "^5.8.3"
   },
-  "description": "EGEN bundler config \u2014 webpack-config",
-  "peerDependencies": {}
+  "description": "EGEN bundler config — webpack-config",
+  "peerDependencies": {
+    "webpack": "^5.106.2",
+    "webpack-cli": "^6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "webpack-cli": {
+      "optional": true
+    }
+  }
 }

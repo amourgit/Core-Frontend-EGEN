@@ -69,7 +69,7 @@
     "swc-loader": "0.2.6",
     "tar": "^6.0.5",
     "typescript": "5.8.3",
-    "webpack": "5.99.9",
+    "webpack": "5.106.2",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "6.0.1",
     "webpack-dev-server": "5.2.3",
@@ -87,7 +87,7 @@
     "@types/tar": "^4.0.3",
     "vitest": "^4.0.18"
   },
-  "description": "EGEN frontend tooling CLI \u2014 serve, build, assemble, deploy micro-frontends",
+  "description": "EGEN frontend tooling CLI — serve, build, assemble, deploy micro-frontends",
   "exports": {
     "./default-webpack-config": "./default-webpack-config.js",
     "./default-rspack-config": "./default-rspack-config.js"

@@ -25,7 +25,7 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "postinstall": "rm -rf packages/tooling/webpack-config/node_modules/webpack packages/tooling/webpack-config/node_modules/webpack-cli || true"
+    "postinstall": "rm -rf packages/tooling/webpack-config/node_modules/webpack packages/tooling/webpack-config/node_modules/webpack-cli packages/tooling/webpack-config/node_modules/webpack-dev-server || true"
   },
   "dependencies": {
     "@originjs/vite-plugin-federation": "^1.4.1",
@@ -104,19 +104,5 @@
     "*.{ts,tsx}": "eslint --cache --fix --max-warnings 0",
     "*.{css,scss,ts,tsx}": "prettier --write --list-different"
   },
-  "packageManager": "npm@10.0.0",
-  "overrides": {
-    "@eigen/webpack-config": {
-      "webpack": "5.106.2"
-    },
-    "@igen/webpack-config": {
-      "webpack": "5.106.2"
-    },
-    "webpack-config": {
-      "webpack": "5.106.2"
-    }
-  },
-  "resolutions": {
-    "webpack": "5.106.2"
-  }
+  "packageManager": "npm@10.9.7"
 }
