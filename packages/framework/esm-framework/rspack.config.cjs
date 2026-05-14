@@ -34,17 +34,12 @@ module.exports = (env, argv = {}) => ({
       },
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        use: 'swc-loader',
-        options: {
-          jsc: {
-            parser: {
-              syntax: 'typescript',
-              tsx: true,
-              transform: {
-                react: {
-                  runtime: 'automatic',
-                },
-              },
+        use: {
+          loader: 'swc-loader',
+          options: {
+            jsc: {
+              parser: { syntax: 'typescript', tsx: true },
+              transform: { react: { runtime: 'automatic' } },
             },
           },
         },
@@ -66,26 +61,38 @@ module.exports = (env, argv = {}) => ({
   },
   devServer: {
     disableHostCheck: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
+    headers: { 'Access-Control-Allow-Origin': '*' },
   },
   watch: false,
   externalsType: 'module',
   externals: Object.keys(peerDependencies || {}),
   resolve: {
-    alias: {
-      '@/components': require('path').resolve(__dirname, '../esm-styleguide/src'),
-      '@': require('path').resolve(__dirname, '../esm-styleguide/src'),
+    // extensionAlias: résout les imports TypeScript ESM (.js → .ts/.tsx)
+    // Solution long terme — couvre tous les fichiers présents et futurs
+    extensionAlias: {
+      '.js':  ['.ts', '.tsx', '.js'],
+      '.jsx': ['.tsx', '.jsx'],
+      '.mjs': ['.mts', '.mjs'],
+      '.cjs': ['.cts', '.cjs'],
     },
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    alias: {
+      '@/components': resolve(__dirname, '../esm-styleguide/src'),
+      '@': resolve(__dirname, '../esm-styleguide/src'),
+    },
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
   },
   optimization: {
     minimize: true,
-    minimizer: [new rspack.SwcJsMinimizerRspackPlugin(), new rspack.LightningCssMinimizerRspackPlugin()],
+    minimizer: [
+      new rspack.SwcJsMinimizerRspackPlugin(),
+      new rspack.LightningCssMinimizerRspackPlugin(),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new rspack.CssExtractRspackPlugin({
+      filename: 'egen-esm-framework.css',
+    }),
     new BundleAnalyzerPlugin({
       analyzerMode: env && env.analyze ? 'static' : 'disabled',
     }),
