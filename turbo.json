@@ -94,6 +94,16 @@
         "src/**/*.modal.tsx",
         "src/**/*.resource.ts"
       ]
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
     }
   }
 }
