@@ -12,6 +12,12 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "paths": {
+      "@igen/esm-shared-types": [
+        "../esm-shared-types/dist/index"
+      ]
+    },
+    "moduleResolution": "node"
   }
 }

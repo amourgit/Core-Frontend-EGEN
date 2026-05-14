@@ -12,6 +12,20 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "paths": {
+      "@igen/esm-shared-types": [
+        "../esm-shared-types/dist/index"
+      ],
+      "@igen/esm-shared-utils": [
+        "../esm-shared-utils/dist/index"
+      ],
+      "@igen/esm-shared-hooks": [
+        "../esm-shared-hooks/dist/index"
+      ]
+    },
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }
 }
