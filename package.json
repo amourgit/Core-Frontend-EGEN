@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "dev": "turbo run dev --filter='@egen/esm-app-shell'",
-    "start": "turbo run start",
+    "start": "turbo run start --filter='@egen/esm-app-shell'",
     "build": "turbo run build",
     "build:apps": "turbo run build --filter='@egen/*-app'",
     "setup": "npm install && turbo run build",
@@ -25,7 +25,9 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "postinstall": "rm -rf packages/tooling/webpack-config/node_modules/webpack packages/tooling/webpack-config/node_modules/webpack-cli packages/tooling/webpack-config/node_modules/webpack-dev-server || true"
+    "postinstall": "rm -rf packages/tooling/webpack-config/node_modules/webpack packages/tooling/webpack-config/node_modules/webpack-cli packages/tooling/webpack-config/node_modules/webpack-dev-server || true",
+    "start:all": "turbo run start",
+    "start:mf": "turbo run start --filter='!@egen/esm-app-shell'"
   },
   "dependencies": {
     "@originjs/vite-plugin-federation": "^1.4.1",
