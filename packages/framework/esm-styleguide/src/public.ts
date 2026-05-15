@@ -43,7 +43,7 @@ export {
 // ============================================================
 
 // Theme System (explicit to avoid conflict with hooks/index useTheme)
-export { ThemeProvider, ThemeSwitcher, useTheme, ThemeContextType } from './theme/index';
+export { ThemeProvider, ThemeSwitcher, useTheme, type ThemeContextType } from './theme/index';
 
 // UI Components
 export * from './ui/index';
