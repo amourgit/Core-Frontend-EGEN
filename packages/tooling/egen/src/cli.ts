@@ -112,7 +112,9 @@ yargs.command(
   async (args) => {
     let port: number;
     if (args.port === undefined) {
-      port = await getAvailablePort(8080);
+      // Add PID-based offset to avoid port conflicts when running in parallel
+      const pidOffset = (process.pid % 100) * 10;
+      port = await getAvailablePort(8080 + pidOffset);
     } else {
       // handle case where user has specified a port to run on
       if (!(await isPortAvailable(args.port))) {
@@ -224,7 +226,9 @@ yargs.command(
   async (args) => {
     let port: number;
     if (args.port === undefined) {
-      port = await getAvailablePort(8080);
+      // Add PID-based offset to avoid port conflicts when running in parallel
+      const pidOffset = (process.pid % 100) * 10;
+      port = await getAvailablePort(8080 + pidOffset);
     } else {
       // handle case where user has specified a port to run on
       if (!(await isPortAvailable(args.port))) {
@@ -426,7 +430,7 @@ yargs.command(
       .default('host', 'localhost')
       .describe('host', 'The host name or IP for the server to use.')
       .string('backend')
-      .default('backend', 'https://dev.iam-central.ga/')
+      .default('backend', 'https://dev3.openmrs.org/')
       .describe('backend', 'The backend to proxy API requests to.')
       .string('add-cookie')
       .default('add-cookie', '')

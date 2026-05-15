@@ -1,0 +1,685 @@
+{
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 8014,
+      "sizes": {
+        "javascript": 8014
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "4.js"
+      ],
+      "auxiliaryFiles": [
+        "4.js.map"
+      ],
+      "hash": "c6ee4d9d4d31c524",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 624,
+      "sizes": {
+        "javascript": 624
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app"
+      ],
+      "files": [
+        "84.js"
+      ],
+      "auxiliaryFiles": [
+        "84.js.map"
+      ],
+      "hash": "caa66e9534edd43a",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 48317,
+      "sizes": {
+        "javascript": 48317
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "123.js"
+      ],
+      "auxiliaryFiles": [
+        "123.js.map"
+      ],
+      "hash": "14577eef3356592f",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: default)",
+      "size": 84,
+      "sizes": {
+        "consume-shared": 84
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "2235d4683a3171de",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 3258632,
+      "sizes": {
+        "javascript": 3258632
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "257.js"
+      ],
+      "auxiliaryFiles": [
+        "257.js.map"
+      ],
+      "hash": "a921c6568758d75a",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7120,
+      "sizes": {
+        "javascript": 7120
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "266.js"
+      ],
+      "auxiliaryFiles": [
+        "266.js.map"
+      ],
+      "hash": "d7dbcdab80c0c39c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 3677041,
+      "sizes": {
+        "javascript": 3677041
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "285.js"
+      ],
+      "auxiliaryFiles": [
+        "285.js.map"
+      ],
+      "hash": "0e976c74469c4ec5",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 505,
+      "sizes": {
+        "javascript": 505
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "300.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "22d01a0f6f990530",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 17403,
+      "sizes": {
+        "javascript": 17403
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "326.js"
+      ],
+      "auxiliaryFiles": [
+        "326.js.map"
+      ],
+      "hash": "e228d5847d6c28ce",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 6601,
+      "sizes": {
+        "javascript": 6601
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "400.js"
+      ],
+      "auxiliaryFiles": [
+        "400.js.map"
+      ],
+      "hash": "b651f15bb77116dd",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 90308,
+      "sizes": {
+        "javascript": 90308
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "420.js"
+      ],
+      "auxiliaryFiles": [
+        "420.js.map"
+      ],
+      "hash": "929fb47db2fefa80",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "b7df17f39cf8abac",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 2526823,
+      "sizes": {
+        "consume-shared": 126,
+        "javascript": 2526697
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "481.js"
+      ],
+      "auxiliaryFiles": [
+        "481.js.map"
+      ],
+      "hash": "04cdc82fbd542d9e",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 23481,
+      "sizes": {
+        "javascript": 42,
+        "share-init": 462,
+        "runtime": 22977
+      },
+      "names": [
+        "@egen/esm-devtools-app"
+      ],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app"
+      ],
+      "files": [
+        "egen-esm-devtools-app.js"
+      ],
+      "auxiliaryFiles": [
+        "egen-esm-devtools-app.js.map"
+      ],
+      "hash": "7562bd0848e3f8a7",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 137481,
+      "sizes": {
+        "javascript": 137481
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "531.js"
+      ],
+      "auxiliaryFiles": [
+        "531.js.map"
+      ],
+      "hash": "e7cb45d8b05d0c2c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7120,
+      "sizes": {
+        "javascript": 7120
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "540.js"
+      ],
+      "auxiliaryFiles": [
+        "540.js.map"
+      ],
+      "hash": "4d6b4c791ca1a7d3",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: default)",
+      "size": 84,
+      "sizes": {
+        "consume-shared": 84
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "0d8c65a9bf5d4b0a",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 8014,
+      "sizes": {
+        "javascript": 8014
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "623.js"
+      ],
+      "auxiliaryFiles": [
+        "623.js.map"
+      ],
+      "hash": "cb6e611f82b1c522",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "ed5520dfc687b4f7",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 85041,
+      "sizes": {
+        "javascript": 85041
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "662.js"
+      ],
+      "auxiliaryFiles": [
+        "662.js.map"
+      ],
+      "hash": "0846a29237d41279",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "548cecf990e63fec",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "2f556629855aaffa",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "9981d7176d64b1af",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 163792,
+      "sizes": {
+        "javascript": 163792
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "770.js"
+      ],
+      "auxiliaryFiles": [
+        "770.js.map"
+      ],
+      "hash": "f607128ec71e8016",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 24524,
+      "sizes": {
+        "javascript": 624,
+        "consume-shared": 42,
+        "share-init": 462,
+        "runtime": 23396
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "main.js"
+      ],
+      "auxiliaryFiles": [
+        "main.js.map"
+      ],
+      "hash": "9ec54d71606c41a9",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 501593,
+      "sizes": {
+        "javascript": 501593
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "873.js"
+      ],
+      "auxiliaryFiles": [
+        "873.js.map"
+      ],
+      "hash": "68e4b6a14089687b",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 137481,
+      "sizes": {
+        "javascript": 137481
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "923.js"
+      ],
+      "auxiliaryFiles": [
+        "923.js.map"
+      ],
+      "hash": "038c3c9e1b3f0109",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7120,
+      "sizes": {
+        "javascript": 7120
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-devtools-app",
+        "main"
+      ],
+      "files": [
+        "930.js"
+      ],
+      "auxiliaryFiles": [
+        "930.js.map"
+      ],
+      "hash": "1e877894378b73e7",
+      "childrenByOrder": {}
+    }
+  ]
+}

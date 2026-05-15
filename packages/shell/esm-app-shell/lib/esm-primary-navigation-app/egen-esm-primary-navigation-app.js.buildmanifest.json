@@ -1,0 +1,1743 @@
+{
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 3258632,
+      "sizes": {
+        "javascript": 3258632
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "257.js"
+      ],
+      "auxiliaryFiles": [
+        "257.js.map"
+      ],
+      "hash": "52393c7e21b6ab71",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "439.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "73eb6809725d7c11",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "723.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "70a7e3c65b5e83bb",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 587,
+      "sizes": {
+        "javascript": 587
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "795.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "8005d82c13f20d00",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "890.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "2d1b5cdb67b9e86c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 137481,
+      "sizes": {
+        "javascript": 137481
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "961.js"
+      ],
+      "auxiliaryFiles": [
+        "961.js.map"
+      ],
+      "hash": "a11a9e4f2db99225",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "986.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "623c392f360e836e",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "1119.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "9a82b62880af300e",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "1197.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "26a3f10083fabb0a",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 2552868,
+      "sizes": {
+        "consume-shared": 210,
+        "javascript": 2552658
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "1481.js"
+      ],
+      "auxiliaryFiles": [
+        "1481.js.map"
+      ],
+      "hash": "5134283ece9a075d",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 505398,
+      "sizes": {
+        "javascript": 505398
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "1716.js"
+      ],
+      "auxiliaryFiles": [
+        "1716.js.map"
+      ],
+      "hash": "76ea8b4e0a8a5507",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "2146.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "30c99233361767f8",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 19062,
+      "sizes": {
+        "javascript": 19062
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "2267.js"
+      ],
+      "auxiliaryFiles": [
+        "2267.js.map"
+      ],
+      "hash": "7aa05bc5cb7da6ac",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 555,
+      "sizes": {
+        "javascript": 555
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "2690.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "c9dd428839779c1e",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "b6ea866c2ed771c5",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 648,
+      "sizes": {
+        "javascript": 648
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "3099.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "bd2aaf648e7a9199",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 3274069,
+      "sizes": {
+        "javascript": 3274069
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "3252.js"
+      ],
+      "auxiliaryFiles": [
+        "3252.js.map"
+      ],
+      "hash": "97cda61d20d1cd9d",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 151083,
+      "sizes": {
+        "javascript": 151083
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app"
+      ],
+      "files": [
+        "3552.js"
+      ],
+      "auxiliaryFiles": [
+        "3552.js.map"
+      ],
+      "hash": "ddaae5866b1989f9",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "3584.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "1c9aabb5b7d2da68",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "55b96866f53fb65c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 640,
+      "sizes": {
+        "javascript": 640
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4055.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "45ebd0665b9e7fc7",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 553,
+      "sizes": {
+        "javascript": 553
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4132.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "839c5daeb2e09a97",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 40132,
+      "sizes": {
+        "javascript": 40132
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4257.js"
+      ],
+      "auxiliaryFiles": [
+        "4257.js.map"
+      ],
+      "hash": "c64a5ad6716ffd30",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4300.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "474fe0e69a91ba2c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 561,
+      "sizes": {
+        "javascript": 561
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4335.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "acd9942f4cb1af8c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4618.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "1e8311c27ee30f0e",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4652.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "3188744e184846f3",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "f2d372b537eb43db",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "4944.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "2ee4294f7414b21c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "5173.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "5c64f88450b7b22f",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "5241.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "d76346209237a1ca",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "5442.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "7aff57e2fc643304",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "b81bdf11e8fc5c4b",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 137481,
+      "sizes": {
+        "javascript": 137481
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "5531.js"
+      ],
+      "auxiliaryFiles": [
+        "5531.js.map"
+      ],
+      "hash": "82bc7357e58498f5",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 8014,
+      "sizes": {
+        "javascript": 8014
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "5623.js"
+      ],
+      "auxiliaryFiles": [
+        "5623.js.map"
+      ],
+      "hash": "31d2b48347cb751f",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 511,
+      "sizes": {
+        "javascript": 511
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "5661.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "7fb81f7bc79a7901",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 163792,
+      "sizes": {
+        "javascript": 163792
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "5770.js"
+      ],
+      "auxiliaryFiles": [
+        "5770.js.map"
+      ],
+      "hash": "6222dd2c1da84df7",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "83c90daa1ae7ba15",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 588,
+      "sizes": {
+        "javascript": 588
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6022.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "d74e944017e57fc4",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 491658,
+      "sizes": {
+        "javascript": 491658
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6160.js"
+      ],
+      "auxiliaryFiles": [
+        "6160.js.map"
+      ],
+      "hash": "d6003d790bbeaea1",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 17403,
+      "sizes": {
+        "javascript": 17403
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6326.js"
+      ],
+      "auxiliaryFiles": [
+        "6326.js.map"
+      ],
+      "hash": "940bc14bcbc61f21",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 575,
+      "sizes": {
+        "javascript": 575
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6468.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "8cbf64479ed592dc",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7120,
+      "sizes": {
+        "javascript": 7120
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6540.js"
+      ],
+      "auxiliaryFiles": [
+        "6540.js.map"
+      ],
+      "hash": "68a79f286fd24215",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6589.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "eeb697d42d195e49",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 568,
+      "sizes": {
+        "javascript": 568
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6679.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "7a4804e24d36a9de",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "72e8f775a5219f14",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6840.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "9797a6da68b5e08f",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "6859.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "0d7545570e529e78",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "7097.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "3820025439c8c2bd",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "7159.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "64d519d554726f64",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "7617.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "6d43c8e061337cbd",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 25069,
+      "sizes": {
+        "javascript": 42,
+        "share-init": 630,
+        "runtime": 24397
+      },
+      "names": [
+        "@egen/esm-primary-navigation-app"
+      ],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app"
+      ],
+      "files": [
+        "egen-esm-primary-navigation-app.js"
+      ],
+      "auxiliaryFiles": [
+        "egen-esm-primary-navigation-app.js.map"
+      ],
+      "hash": "840fdeaf1115b4e6",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 137481,
+      "sizes": {
+        "javascript": 137481
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "7923.js"
+      ],
+      "auxiliaryFiles": [
+        "7923.js.map"
+      ],
+      "hash": "60fd30c0cecdaa40",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 8014,
+      "sizes": {
+        "javascript": 8014
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8004.js"
+      ],
+      "auxiliaryFiles": [
+        "8004.js.map"
+      ],
+      "hash": "847c0711974dbcd4",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 27735,
+      "sizes": {
+        "javascript": 27735
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8038.js"
+      ],
+      "auxiliaryFiles": [
+        "8038.js.map"
+      ],
+      "hash": "6715ac21123e08c3",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8163.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "bff8b40ecba2cd48",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7120,
+      "sizes": {
+        "javascript": 7120
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8266.js"
+      ],
+      "auxiliaryFiles": [
+        "8266.js.map"
+      ],
+      "hash": "6e74d936cf15ea65",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8349.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "2875bfa36b520392",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8371.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "879cfbb19422b5af",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8618.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "4c89fdee5dc73768",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 328742,
+      "sizes": {
+        "consume-shared": 336,
+        "javascript": 302823,
+        "share-init": 630,
+        "runtime": 24953
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "main.js"
+      ],
+      "auxiliaryFiles": [
+        "main.js.map"
+      ],
+      "hash": "c46e6cd91e20f00b",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7120,
+      "sizes": {
+        "javascript": 7120
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "8930.js"
+      ],
+      "auxiliaryFiles": [
+        "8930.js.map"
+      ],
+      "hash": "4f0c39c89e2489f8",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: default)",
+      "size": 126,
+      "sizes": {
+        "consume-shared": 126
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "45d4ea780a8e06b0",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 48317,
+      "sizes": {
+        "javascript": 48317
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9123.js"
+      ],
+      "auxiliaryFiles": [
+        "9123.js.map"
+      ],
+      "hash": "7c32de08701db6ab",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 567,
+      "sizes": {
+        "javascript": 567
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9214.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "76a459ee89f1ffdf",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 151824,
+      "sizes": {
+        "consume-shared": 84,
+        "javascript": 151740
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app"
+      ],
+      "files": [
+        "9473.js"
+      ],
+      "auxiliaryFiles": [
+        "9473.js.map"
+      ],
+      "hash": "6b9bec1cae997e04",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 595,
+      "sizes": {
+        "javascript": 595
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9538.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "75cd594d7b11d857",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9569.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "32b1a8aedd47eb7d",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 9935,
+      "sizes": {
+        "javascript": 9935
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9640.js"
+      ],
+      "auxiliaryFiles": [
+        "9640.js.map"
+      ],
+      "hash": "617edab5c2a3328b",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 85041,
+      "sizes": {
+        "javascript": 85041
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9662.js"
+      ],
+      "auxiliaryFiles": [
+        "9662.js.map"
+      ],
+      "hash": "18946b7e2888b939",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 357,
+      "sizes": {
+        "javascript": 357
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9879.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "3a72f0755f9a26a1",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9895.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "2bf1fb6285cf7cdd",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9900.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "4c6d3bc594eeb1de",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 558,
+      "sizes": {
+        "javascript": 558
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9913.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "d2616087eb71261e",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 316104,
+      "sizes": {
+        "javascript": 316104
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-primary-navigation-app",
+        "main"
+      ],
+      "files": [
+        "9942.js"
+      ],
+      "auxiliaryFiles": [
+        "9942.js.map"
+      ],
+      "hash": "857d41a1185e98c4",
+      "childrenByOrder": {}
+    }
+  ]
+}

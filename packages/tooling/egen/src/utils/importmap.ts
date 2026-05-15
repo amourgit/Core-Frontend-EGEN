@@ -18,12 +18,12 @@ async function readImportmap(path: string, backend?: string, spaPath?: string) {
         return await fetchRemoteImportmap(`${backend}${spaPath}importmap.json`);
       } catch (e) {
         logWarn(
-          `Could not read importmap from ${backend}${spaPath}importmap.json. Falling back to import map from https://dev.iam-central.ga/egen/spa/importmap.json: ${e}`,
+          `Could not read importmap from ${backend}${spaPath}importmap.json. Falling back to OpenMRS reference import map: ${e}`,
         );
       }
     }
 
-    return fetchRemoteImportmap('https://dev.iam-central.ga/egen/spa/importmap.json');
+    return fetchRemoteImportmap('https://dev3.openmrs.org/openmrs/spa/importmap.json');
   }
 
   return '{"imports":{}}';
@@ -38,12 +38,12 @@ async function readRoutes(path: string, backend?: string, spaPath?: string) {
         return await fetchRemoteRoutes(`${backend}${spaPath}routes.registry.json`);
       } catch (e) {
         logWarn(
-          `Could not read routes registry from ${backend}${spaPath}routes.registry.json. Falling back to routes registry from https://dev.iam-central.ga/egen/spa/routes.registry.json: ${e}`,
+          `Could not read routes registry from ${backend}${spaPath}routes.registry.json. Falling back to OpenMRS reference routes: ${e}`,
         );
       }
     }
 
-    return fetchRemoteRoutes('https://dev.iam-central.ga/egen/spa/routes.registry.json');
+    return fetchRemoteRoutes('https://dev3.openmrs.org/openmrs/spa/routes.registry.json');
   }
 
   return '{}';
@@ -179,8 +179,9 @@ export async function runProject(
   const routes = {};
   const watchedRoutesPaths = {};
 
-  // Track the starting port, which is one more than the last used port
-  let nextPortToCheck = basePort + 1;
+  // Add random offset based on process ID to avoid port conflicts when running in parallel
+  const pidOffset = (process.pid % 100) * 10;
+  let nextPortToCheck = basePort + 1 + pidOffset;
 
   logInfo('Loading dynamic import map and routes ...');
 
