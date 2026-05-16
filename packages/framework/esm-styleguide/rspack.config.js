@@ -79,7 +79,15 @@ module.exports = (env, argv = {}) => ({
   },
   watch: false,
   externalsType: 'module',
-  externals: [...Object.keys(peerDependencies || {})],
+  externals: [
+    ...Object.keys(peerDependencies || {}),
+    // Sous-chemins React : doivent être external pour éviter le double-bundling
+    // Le shell (host MF) les expose comme shared singletons via ModuleFederationPlugin
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
+    'react-dom/client',
+    'react-dom/server',
+  ],
   resolve: {
     // extensionAlias : résout les imports TypeScript ESM avec extension .js
     // explicite vers les fichiers .ts/.tsx réels sur le disque.

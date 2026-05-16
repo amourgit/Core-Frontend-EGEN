@@ -295,7 +295,34 @@ export default (env: Record<string, string>, argv: Record<string, string> = {}) 
         exposes: {
           './start': srcFile,
         },
-        shared: [...Object.keys(peerDependencies), '@egen/esm-framework/src/internal'].reduce((obj, depName) => {
+        shared: [
+          ...Object.keys(peerDependencies),
+          '@egen/esm-framework/src/internal',
+          // Sous-chemins React : toujours partagés comme singletons MF
+          // pour éviter le crash "Cannot read properties of undefined (reading 'ReactCurrentDispatcher')"
+          'react/jsx-runtime',
+          'react/jsx-dev-runtime',
+          'react-dom/client',
+        ].reduce((obj, depName) => {
+          // Gérer les sous-chemins React (pas dans peerDependencies directement)
+          if (depName === 'react/jsx-runtime' || depName === 'react/jsx-dev-runtime' || depName === 'react-dom/client') {
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
+            const basePackage = depName.startsWith('react-dom') ? 'react-dom' : 'react';
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
+            const baseVersion = require(`${basePackage}/package.json`).version;
+            const majorVersion = `${baseVersion.split('.')[0]}.x`;
+            obj[depName] = {
+              requiredVersion: majorVersion,
+              strictVersion: false,
+              singleton: true,
+              eager: false,
+              import: depName,
+              shareKey: depName,
+              shareScope: 'default',
+            };
+            return obj;
+          }
+
           if (depName === 'swr') {
             // SWR is annoying with Module Federation
             // See: https://github.com/webpack/webpack/issues/16125 and https://github.com/vercel/swr/issues/2356

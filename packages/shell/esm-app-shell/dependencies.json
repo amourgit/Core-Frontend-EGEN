@@ -3,6 +3,8 @@
   "i18next",
   "dayjs",
   "react",
+  "react/jsx-runtime",
+  "react-dom/client",
   "react-dom",
   "react-router-dom",
   "react-i18next",

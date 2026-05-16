@@ -65,7 +65,13 @@ module.exports = (env, argv = {}) => ({
   },
   watch: false,
   externalsType: 'module',
-  externals: Object.keys(peerDependencies || {}),
+  externals: [
+    ...Object.keys(peerDependencies || {}),
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
+    'react-dom/client',
+    'react-dom/server',
+  ],
   resolve: {
     // extensionAlias: résout les imports TypeScript ESM (.js → .ts/.tsx)
     // Solution long terme — couvre tous les fichiers présents et futurs

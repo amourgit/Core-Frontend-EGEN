@@ -1,1 +1,0 @@
-{"$schema":"https://json.egen.org/routes.schema.json","pages":[{"component":"implementerTools","route":true},{"component":"globalImplementerTools","route":true}],"extensions":[{"name":"implementer-tools-button","slot":"top-nav-actions-slot","component":"implementerToolsButton","order":20}],"version":"9.0.2"}

@@ -391,6 +391,38 @@ module.exports = (env, argv = []) => {
 
           const eager = depName === 'dayjs';
 
+          // react/jsx-runtime et react-dom/client ne sont pas des packages npm autonomes
+          // Leur version est dérivée de react / react-dom
+          if (depName === 'react/jsx-runtime') {
+            const reactPkg = require('react/package.json');
+            obj['react/jsx-runtime'] = {
+              requiredVersion: `${semver.parse(reactPkg.version).major}.x`,
+              strictVersion: false,
+              singleton: true,
+              eager: false,
+              import: 'react/jsx-runtime',
+              shareKey: 'react/jsx-runtime',
+              shareScope: 'default',
+              version: reactPkg.version,
+            };
+            return obj;
+          }
+
+          if (depName === 'react-dom/client') {
+            const rdPkg = require('react-dom/package.json');
+            obj['react-dom/client'] = {
+              requiredVersion: `${semver.parse(rdPkg.version).major}.x`,
+              strictVersion: false,
+              singleton: true,
+              eager: false,
+              import: 'react-dom/client',
+              shareKey: 'react-dom/client',
+              shareScope: 'default',
+              version: rdPkg.version,
+            };
+            return obj;
+          }
+
           if (depName === 'swr') {
             // SWR is annoying with Module Federation
             // See: https://github.com/webpack/webpack/issues/16125 and https://github.com/vercel/swr/issues/2356
