@@ -1,78 +1,9 @@
-@egen/esm-help-menu-app:build: 
-@egen/esm-help-menu-app:build: > @egen/esm-help-menu-app@9.0.2 build
-@egen/esm-help-menu-app:build: > webpack --mode=production
-@egen/esm-help-menu-app:build: 
-[webpack-cli] TypeError: The 'compilation' argument must be an instance of Compilation
-@egen/esm-devtools-app:build:     at ModuleFederationPlugin.getCompilationHooks (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/ModuleFederationPlugin.js:59:10)
-@egen/esm-devtools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/HoistContainerReferencesPlugin.js:36:33
-@egen/esm-devtools-app:build:     at Hook.eval [as call] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:31:1)
-@egen/esm-devtools-app:build:     at Hook.CALL_DELEGATE [as _call] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:16:14)
-@egen/esm-devtools-app:build:     at Compiler.newCompilation (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1342:30)
-@egen/esm-devtools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1387:29
-@egen/esm-devtools-app:build:     at Hook.eval [as callAsync] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:6:1)
-@egen/esm-devtools-app:build:     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:21:14)
-@egen/esm-devtools-app:build:     at Compiler.compile (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1382:28)
-@egen/esm-devtools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:638:12
-[webpack-cli] TypeError: The 'compilation' argument must be an instance of Compilation
-@egen/esm-primary-navigation-app:build:     at ModuleFederationPlugin.getCompilationHooks (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/ModuleFederationPlugin.js:59:10)
-@egen/esm-primary-navigation-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/HoistContainerReferencesPlugin.js:36:33
-@egen/esm-primary-navigation-app:build:     at Hook.eval [as call] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:31:1)
-@egen/esm-primary-navigation-app:build:     at Hook.CALL_DELEGATE [as _call] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:16:14)
-@egen/esm-primary-navigation-app:build:     at Compiler.newCompilation (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1342:30)
-@egen/esm-primary-navigation-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1387:29
-@egen/esm-primary-navigation-app:build:     at Hook.eval [as callAsync] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:6:1)
-@egen/esm-primary-navigation-app:build:     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:21:14)
-@egen/esm-primary-navigation-app:build:     at Compiler.compile (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1382:28)
-@egen/esm-primary-navigation-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:638:12
-npm error Lifecycle script `build` failed with error:
-npm error code 2
-npm error path /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/apps/esm-devtools-app
-npm error workspace @egen/esm-devtools-app@9.0.2
-npm error location /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/apps/esm-devtools-app
-npm error command failed
-npm error command sh -c webpack --mode=production
-
-⠙
-[webpack-cli] TypeError: The 'compilation' argument must be an instance of Compilation
-@egen/esm-help-menu-app:build:     at ModuleFederationPlugin.getCompilationHooks (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/ModuleFederationPlugin.js:59:10)
-@egen/esm-help-menu-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/HoistContainerReferencesPlugin.js:36:33
-@egen/esm-help-menu-app:build:     at Hook.eval [as call] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:31:1)
-@egen/esm-help-menu-app:build:     at Hook.CALL_DELEGATE [as _call] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:16:14)
-@egen/esm-help-menu-app:build:     at Compiler.newCompilation (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1342:30)
-@egen/esm-help-menu-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1387:29
-@egen/esm-help-menu-app:build:     at Hook.eval [as callAsync] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:6:1)
-@egen/esm-help-menu-app:build:     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:21:14)
-@egen/esm-help-menu-app:build:     at Compiler.compile (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1382:28)
-@egen/esm-help-menu-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:638:12
-[webpack-cli] TypeError: The 'compilation' argument must be an instance of Compilation
-@egen/esm-offline-tools-app:build:     at ModuleFederationPlugin.getCompilationHooks (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/ModuleFederationPlugin.js:59:10)
-@egen/esm-offline-tools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/HoistContainerReferencesPlugin.js:36:33
-@egen/esm-offline-tools-app:build:     at Hook.eval [as call] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:31:1)
-@egen/esm-offline-tools-app:build:     at Hook.CALL_DELEGATE [as _call] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:16:14)
-@egen/esm-offline-tools-app:build:     at Compiler.newCompilation (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1342:30)
-@egen/esm-offline-tools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1387:29
-@egen/esm-offline-tools-app:build:     at Hook.eval [as callAsync] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:6:1)
-@egen/esm-offline-tools-app:build:     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:21:14)
-@egen/esm-offline-tools-app:build:     at Compiler.compile (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1382:28)
-@egen/esm-offline-tools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:638:12
-[webpack-cli] TypeError: The 'compilation' argument must be an instance of Compilation
-@egen/esm-implementer-tools-app:build:     at ModuleFederationPlugin.getCompilationHooks (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/ModuleFederationPlugin.js:59:10)
-@egen/esm-implementer-tools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/tooling/webpack-config/node_modules/webpack/lib/container/HoistContainerReferencesPlugin.js:36:33
-@egen/esm-implementer-tools-app:build:     at Hook.eval [as call] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:31:1)
-@egen/esm-implementer-tools-app:build:     at Hook.CALL_DELEGATE [as _call] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:16:14)
-@egen/esm-implementer-tools-app:build:     at Compiler.newCompilation (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1342:30)
-@egen/esm-implementer-tools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1387:29
-@egen/esm-implementer-tools-app:build:     at Hook.eval [as callAsync] (eval at create (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:6:1)
-@egen/esm-implementer-tools-app:build:     at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/tapable/lib/Hook.js:21:14)
-@egen/esm-implementer-tools-app:build:     at Compiler.compile (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:1382:28)
-@egen/esm-implementer-tools-app:build:     at /home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/node_modules/webpack/lib/Compiler.js:638:12
-
- ERROR  @egen/esm-devtools-app#build: command (/home/president/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/apps/esm-devtools-app) /usr/bin/npm run build exited (2)
-
- Tasks:    30 successful, 36 total
-Cached:    30 cached, 36 total
-  Time:    3.418s 
-Failed:    @egen/esm-devtools-app#build
-
- ERROR  run failed: command  exited (2)
-president@civitas:~/Github/National/EGEN/FRONTEND ALLs/Core-Frontend-EGEN/packages/framework$ 
+========== packages/framework/esm-styleguide/package.json ==========
+========== packages/framework/esm-auth/package.json ==========
+========== packages/framework/esm-theme/package.json ==========
+========== packages/apps/esm-devtools-app/package.json ==========
+========== packages/apps/esm-help-menu-app/package.json ==========
+========== packages/apps/esm-implementer-tools-app/package.json ==========
+========== packages/apps/esm-login-app/package.json ==========
+========== packages/apps/esm-offline-tools-app/package.json ==========
+========== packages/apps/esm-primary-navigation-app/package.json ==========

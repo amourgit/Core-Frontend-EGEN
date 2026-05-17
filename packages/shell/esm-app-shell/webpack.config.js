@@ -314,6 +314,18 @@ module.exports = (env, argv = []) => {
       },
       alias: {
         '@': resolve(__dirname, 'src'),
+        // ─── FIX: force react & react-dom vers une instance singleton unique ───────
+        // Sans cet alias, npm workspace peut installer une copie locale de react-dom
+        // dans esm-react-utils/node_modules/ — ce qui casse createRoot() avec :
+        //   "Cannot set properties of undefined (setting 'usingClientEntryPoint')"
+        // car les __SECRET_INTERNALS__ de la copie locale ne sont pas initialisés
+        // par rapport à l'instance MF partagée.
+        'react': resolve(dirname(require.resolve('react/package.json'))),
+        'react-dom': resolve(dirname(require.resolve('react-dom/package.json'))),
+        'react-dom/client': resolve(dirname(require.resolve('react-dom/package.json')), 'client.js'),
+        'react/jsx-runtime': resolve(dirname(require.resolve('react/package.json')), 'jsx-runtime.js'),
+        'react/jsx-dev-runtime': resolve(dirname(require.resolve('react/package.json')), 'jsx-dev-runtime.js'),
+        // ─────────────────────────────────────────────────────────────────────────
         'lodash.debounce': 'lodash-es/debounce',
         'lodash.findlast': 'lodash-es/findLast',
         'lodash.isequal': 'lodash-es/isEqual',

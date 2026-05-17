@@ -381,6 +381,19 @@ export default (env: Record<string, string>, argv: Record<string, string> = {}) 
       extensionAlias: { '.js': ['.ts', '.tsx', '.js'], '.jsx': ['.tsx', '.jsx'], '.mjs': ['.mts', '.mjs'] },
       alias: {
         '@egen/esm-framework': '@egen/esm-framework/src/internal',
+        // ─── FIX: force react & react-dom vers une instance singleton unique ───────
+        // Sans cet alias, npm workspace peut installer une copie locale de react-dom
+        // dans un package (ex: esm-react-utils/node_modules/) causant deux instances
+        // distinctes de react-dom. createRoot() plante alors avec :
+        //   "Cannot set properties of undefined (setting 'usingClientEntryPoint')"
+        // car les __SECRET_INTERNALS__ de la copie locale ne sont pas initialisés
+        // par rapport à l'instance MF partagée. Cet alias garantit un singleton.
+        'react': dirname(require.resolve('react/package.json')),
+        'react-dom': dirname(require.resolve('react-dom/package.json')),
+        'react-dom/client': `${dirname(require.resolve('react-dom/package.json'))}/client.js`,
+        'react/jsx-runtime': `${dirname(require.resolve('react/package.json'))}/jsx-runtime.js`,
+        'react/jsx-dev-runtime': `${dirname(require.resolve('react/package.json'))}/jsx-dev-runtime.js`,
+        // ─────────────────────────────────────────────────────────────────────────
         'lodash.debounce': 'lodash-es/debounce',
         'lodash.findlast': 'lodash-es/findLast',
         'lodash.omit': 'lodash-es/omit',
