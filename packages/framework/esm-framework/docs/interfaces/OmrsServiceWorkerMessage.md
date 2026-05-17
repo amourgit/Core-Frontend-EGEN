@@ -1,6 +1,6 @@
-[O3 Framework](../API.md) / OmrsServiceWorkerMessage
+[O3 Framework](../API.md) / EgenServiceWorkerMessage
 
-# Interface: OmrsServiceWorkerMessage\<MessageTypeTypeIdentifier\>
+# Interface: EgenServiceWorkerMessage\<MessageTypeTypeIdentifier\>
 
 Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:25](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-messaging.ts#L25)
 

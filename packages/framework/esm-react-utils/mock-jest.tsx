@@ -131,7 +131,7 @@ export const isDesktop = jest.fn(realIsDesktop);
 
 export const useLocations = jest.fn().mockReturnValue([]);
 
-export const toOmrsIsoString = jest.fn().mockImplementation((date: Date) => date.toISOString());
+export const toEgenIsoString = jest.fn().mockImplementation((date: Date) => date.toISOString());
 
 export const toDateObjectStrict = jest.fn().mockImplementation((date: string) => new Date(date));
 

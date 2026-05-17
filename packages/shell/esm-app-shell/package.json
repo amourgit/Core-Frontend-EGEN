@@ -6,10 +6,10 @@
   "scripts": {
     "start": "npm run watch",
     "test": "cross-env TZ=UTC vitest run --passWithNoTests",
-    "watch": "cross-env OMRS_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"development\" OMRS_OFFLINE=\"disable\" webpack serve --mode development",
-    "watch:ref": "cross-env OMRS_ESM_IMPORTMAP_URL=\"https://dev3.iam-central.ga/egen/spa/importmap.json\" OMRS_OFFLINE=\"disable\" OMRS_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"development\" webpack serve --mode development",
-    "build:production": "cross-env OMRS_ESM_IMPORTMAP_URL=\"https://dev3.iam-central.ga/egen/spa/importmap.json\" OMRS_OFFLINE=\"enable\" OMRS_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"production\" webpack --mode production",
-    "build:development": "cross-env OMRS_OFFLINE=\"enable\" OMRS_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"development\" webpack --mode development",
+    "watch": "cross-env EGEN_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"development\" EGEN_OFFLINE=\"disable\" webpack serve --mode development",
+    "watch:ref": "cross-env EGEN_ESM_IMPORTMAP_URL=\"https://dev3.iam-central.ga/egen/spa/importmap.json\" EGEN_OFFLINE=\"disable\" EGEN_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"development\" webpack serve --mode development",
+    "build:production": "cross-env EGEN_ESM_IMPORTMAP_URL=\"https://dev3.iam-central.ga/egen/spa/importmap.json\" EGEN_OFFLINE=\"enable\" EGEN_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"production\" webpack --mode production",
+    "build:development": "cross-env EGEN_OFFLINE=\"enable\" EGEN_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"development\" webpack --mode development",
     "build": "npm run build:production && npm run build:development",
     "analyze": "webpack --mode=production --env analyze=true",
     "lint": "eslint src --ext ts,tsx"

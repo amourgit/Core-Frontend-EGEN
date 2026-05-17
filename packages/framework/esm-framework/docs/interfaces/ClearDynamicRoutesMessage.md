@@ -6,7 +6,7 @@ Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:34](
 
 ## Extends
 
-- [`OmrsServiceWorkerMessage`](OmrsServiceWorkerMessage.md)\<`"clearDynamicRoutes"`\>
+- [`EgenServiceWorkerMessage`](EgenServiceWorkerMessage.md)\<`"clearDynamicRoutes"`\>
 
 ## Properties
 
@@ -18,4 +18,4 @@ Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:26](
 
 #### Inherited from
 
-[`OmrsServiceWorkerMessage`](OmrsServiceWorkerMessage.md).[`type`](OmrsServiceWorkerMessage.md#type)
+[`EgenServiceWorkerMessage`](EgenServiceWorkerMessage.md).[`type`](EgenServiceWorkerMessage.md#type)

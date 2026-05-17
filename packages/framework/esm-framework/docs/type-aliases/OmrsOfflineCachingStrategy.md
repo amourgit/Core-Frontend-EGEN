@@ -1,8 +1,8 @@
-[O3 Framework](../API.md) / OmrsOfflineCachingStrategy
+[O3 Framework](../API.md) / EgenOfflineCachingStrategy
 
-# Type Alias: OmrsOfflineCachingStrategy
+# Type Alias: EgenOfflineCachingStrategy
 
-> **OmrsOfflineCachingStrategy** = `"network-only-or-cache-only"` \| `"network-first"`
+> **EgenOfflineCachingStrategy** = `"network-only-or-cache-only"` \| `"network-first"`
 
 Defined in: [packages/framework/esm-offline/src/service-worker-http-headers.ts:15](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-http-headers.ts#L15)
 

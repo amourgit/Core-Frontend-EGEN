@@ -1,7 +1,7 @@
 import {
   fetchCurrentPatient,
   makeUrl,
-  messageOmrsServiceWorker,
+  messageEgenServiceWorker,
   setupDynamicOfflineDataHandler,
 } from '@egen/esm-framework';
 import { cacheForOfflineHeaders } from './constants';
@@ -19,7 +19,7 @@ export function setupOffline() {
       return absoluteExpectedUrls.every((url) => keys.includes(url));
     },
     async sync(identifier) {
-      await messageOmrsServiceWorker({
+      await messageEgenServiceWorker({
         type: 'registerDynamicRoute',
         pattern: `/ws/fhir2/R4/Patient/${identifier}`,
       });

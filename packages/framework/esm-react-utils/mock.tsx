@@ -136,7 +136,7 @@ export const isDesktop = vi.fn(realIsDesktop);
 
 export const useLocations = vi.fn(() => []);
 
-export const toOmrsIsoString = vi.fn((date: Date) => date.toISOString());
+export const toEgenIsoString = vi.fn((date: Date) => date.toISOString());
 
 export const toDateObjectStrict = vi.fn((date: string) => new Date(date));
 

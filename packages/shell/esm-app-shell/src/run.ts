@@ -15,12 +15,12 @@ import {
   isEgenAppRoutes,
   isEgenRoutes,
   localStorageRoutesPrefix,
-  messageOmrsServiceWorker,
+  messageEgenServiceWorker,
   egenFetch,
   provide,
   registerApp,
   registerDefaultCalendar,
-  registerOmrsServiceWorker,
+  registerEgenServiceWorker,
   renderActionableNotifications,
   renderInlineNotifications,
   renderLoadingSpinner,
@@ -321,7 +321,7 @@ function registerCoreExtensions() {
 
 async function setupOffline() {
   try {
-    await registerOmrsServiceWorker(`${window.getEgenSpaBase()}service-worker.js`);
+    await registerEgenServiceWorker(`${window.getEgenSpaBase()}service-worker.js`);
     await activateOfflineCapability();
     setupOfflineStaticDependencyPrecaching();
   } catch (error) {
@@ -370,7 +370,7 @@ async function precacheGlobalStaticDependencies() {
   // This ensures that a lot of user/session related functions also work offline.
   const sessionPathUrl = new URL(`${window.egenBase}${restBaseUrl}/session`, window.location.origin).href;
 
-  await messageOmrsServiceWorker({
+  await messageEgenServiceWorker({
     type: 'registerDynamicRoute',
     url: sessionPathUrl,
     strategy: 'network-first',
@@ -386,7 +386,7 @@ async function precacheGlobalStaticDependencies() {
 
 async function precacheImportMap() {
   const importMap = await window.importMapOverrides.getCurrentPageMap();
-  await messageOmrsServiceWorker({
+  await messageEgenServiceWorker({
     type: 'onImportMapChanged',
     importMap,
   });

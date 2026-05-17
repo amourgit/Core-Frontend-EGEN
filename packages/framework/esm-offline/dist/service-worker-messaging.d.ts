@@ -1,26 +1,26 @@
 /** @module @category Offline */
 import type { ImportMap } from '@egen/esm-globals';
-import type { OmrsOfflineCachingStrategy } from './service-worker-http-headers';
+import type { EgenOfflineCachingStrategy } from './service-worker-http-headers';
 /**
  * Sends the specified message to the application's service worker.
  * @param message The message to be sent.
  * @returns A promise which completes when the message has been successfully processed by the Service Worker.
  */
-export declare function messageOmrsServiceWorker(message: KnownOmrsServiceWorkerMessages): Promise<MessageServiceWorkerResult<any>>;
-export interface OmrsServiceWorkerMessage<MessageTypeTypeIdentifier extends string> {
+export declare function messageEgenServiceWorker(message: KnownEgenServiceWorkerMessages): Promise<MessageServiceWorkerResult<any>>;
+export interface EgenServiceWorkerMessage<MessageTypeTypeIdentifier extends string> {
     type: MessageTypeTypeIdentifier;
 }
-export interface OnImportMapChangedMessage extends OmrsServiceWorkerMessage<'onImportMapChanged'> {
+export interface OnImportMapChangedMessage extends EgenServiceWorkerMessage<'onImportMapChanged'> {
     importMap: ImportMap;
 }
-export interface ClearDynamicRoutesMessage extends OmrsServiceWorkerMessage<'clearDynamicRoutes'> {
+export interface ClearDynamicRoutesMessage extends EgenServiceWorkerMessage<'clearDynamicRoutes'> {
 }
-export interface RegisterDynamicRouteMessage extends OmrsServiceWorkerMessage<'registerDynamicRoute'> {
+export interface RegisterDynamicRouteMessage extends EgenServiceWorkerMessage<'registerDynamicRoute'> {
     pattern?: string;
     url?: string;
-    strategy?: OmrsOfflineCachingStrategy;
+    strategy?: EgenOfflineCachingStrategy;
 }
-export type KnownOmrsServiceWorkerMessages = OnImportMapChangedMessage | ClearDynamicRoutesMessage | RegisterDynamicRouteMessage;
+export type KnownEgenServiceWorkerMessages = OnImportMapChangedMessage | ClearDynamicRoutesMessage | RegisterDynamicRouteMessage;
 export interface MessageServiceWorkerResult<T> {
     success: boolean;
     result?: T;

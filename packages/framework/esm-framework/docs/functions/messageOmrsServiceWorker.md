@@ -1,8 +1,8 @@
-[O3 Framework](../API.md) / messageOmrsServiceWorker
+[O3 Framework](../API.md) / messageEgenServiceWorker
 
-# Function: messageOmrsServiceWorker()
+# Function: messageEgenServiceWorker()
 
-> **messageOmrsServiceWorker**(`message`): `Promise`\<[`MessageServiceWorkerResult`](../interfaces/MessageServiceWorkerResult.md)\<`any`\>\>
+> **messageEgenServiceWorker**(`message`): `Promise`\<[`MessageServiceWorkerResult`](../interfaces/MessageServiceWorkerResult.md)\<`any`\>\>
 
 Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:11](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-messaging.ts#L11)
 
@@ -12,7 +12,7 @@ Sends the specified message to the application's service worker.
 
 ### message
 
-[`KnownOmrsServiceWorkerMessages`](../type-aliases/KnownOmrsServiceWorkerMessages.md)
+[`KnownEgenServiceWorkerMessages`](../type-aliases/KnownEgenServiceWorkerMessages.md)
 
 The message to be sent.
 

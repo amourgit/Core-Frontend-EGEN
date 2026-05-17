@@ -2,7 +2,7 @@
 
 # Function: useEgenFetchAll()
 
-> **useEgenFetchAll**\<`T`\>(`url`, `options`): `UseServerInfiniteReturnObject`\<`T`, `OpenMRSPaginatedResponse`\<`T`\>\>
+> **useEgenFetchAll**\<`T`\>(`url`, `options`): `UseServerInfiniteReturnObject`\<`T`, `egenPaginatedResponse`\<`T`\>\>
 
 Defined in: [packages/framework/esm-react-utils/src/useEgenFetchAll.ts:40](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-react-utils/src/useEgenFetchAll.ts#L40)
 
@@ -29,13 +29,13 @@ The URL of the paginated Egen REST endpoint. Note that the `limit` GET param can
 
 ### options
 
-[`UseServerFetchAllOptions`](../interfaces/UseServerFetchAllOptions.md)\<`OpenMRSPaginatedResponse`\<`T`\>\> = `{}`
+[`UseServerFetchAllOptions`](../interfaces/UseServerFetchAllOptions.md)\<`egenPaginatedResponse`\<`T`\>\> = `{}`
 
 The options object
 
 ## Returns
 
-`UseServerInfiniteReturnObject`\<`T`, `OpenMRSPaginatedResponse`\<`T`\>\>
+`UseServerInfiniteReturnObject`\<`T`, `egenPaginatedResponse`\<`T`\>\>
 
 a UseEgenInfiniteReturnObject object
 

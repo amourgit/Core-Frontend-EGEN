@@ -32,29 +32,29 @@ const isoFormat = 'YYYY-MM-DDTHH:mm:ss.SSSZZ';
  * This function checks whether a date string is the EGEN ISO format.
  * The format should be YYYY-MM-DDTHH:mm:ss.SSSZZ
  */
-export function isOmrsDateStrict(omrsPayloadString: string): boolean {
+export function isEgenDateStrict(egenPayloadString: string): boolean {
   // egen format 2018-03-19T00:00:00.000+0300
-  if (omrsPayloadString === null || omrsPayloadString === undefined || omrsPayloadString.trim().length !== 28) {
+  if (egenPayloadString === null || egenPayloadString === undefined || egenPayloadString.trim().length !== 28) {
     return false;
   }
-  omrsPayloadString = omrsPayloadString.trim();
+  egenPayloadString = egenPayloadString.trim();
 
   // 11th character will always be T
-  if (omrsPayloadString[10] !== 'T') {
+  if (egenPayloadString[10] !== 'T') {
     return false;
   }
 
   // checking time format
-  if (omrsPayloadString[13] !== ':' || omrsPayloadString[16] !== ':' || omrsPayloadString[19] !== '.') {
+  if (egenPayloadString[13] !== ':' || egenPayloadString[16] !== ':' || egenPayloadString[19] !== '.') {
     return false;
   }
 
   // checking UTC offset format
-  if (!(omrsPayloadString[23] === '+' || omrsPayloadString[23] === '-')) {
+  if (!(egenPayloadString[23] === '+' || egenPayloadString[23] === '-')) {
     return false;
   }
 
-  return dayjs(omrsPayloadString, isoFormat).isValid();
+  return dayjs(egenPayloadString, isoFormat).isValid();
 }
 
 /**
@@ -63,7 +63,7 @@ export function isOmrsDateStrict(omrsPayloadString: string): boolean {
  * @param date The date to check.
  * @returns `true` if the date is today, `false` otherwise.
  */
-export function isOmrsDateToday(date: DateInput) {
+export function isEgenDateToday(date: DateInput) {
   return dayjs(date).isToday();
 }
 
@@ -71,18 +71,18 @@ export function isOmrsDateToday(date: DateInput) {
  * Converts the object to a date object if it is an EGEN ISO date time string.
  * Otherwise returns null.
  */
-export function toDateObjectStrict(omrsDateString: string): Date | null {
-  if (!isOmrsDateStrict(omrsDateString)) {
+export function toDateObjectStrict(egenDateString: string): Date | null {
+  if (!isEgenDateStrict(egenDateString)) {
     return null;
   }
 
-  return dayjs(omrsDateString, isoFormat).toDate();
+  return dayjs(egenDateString, isoFormat).toDate();
 }
 
 /**
  * Formats the input to EGEN ISO format: "YYYY-MM-DDTHH:mm:ss.SSSZZ".
  */
-export function toOmrsIsoString(date: DateInput, toUTC = false): string {
+export function toEgenIsoString(date: DateInput, toUTC = false): string {
   let d = dayjs(date);
 
   if (toUTC) {

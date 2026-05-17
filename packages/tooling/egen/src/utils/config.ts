@@ -23,19 +23,19 @@ export function loadWebpackConfig(options: WebpackOptions = {}) {
   const variables: Record<string, unknown> = {};
 
   if (typeof options.backend === 'string') {
-    variables.OMRS_PROXY_TARGET = options.backend;
+    variables.EGEN_PROXY_TARGET = options.backend;
   }
 
   if (typeof options.spaPath === 'string') {
-    variables.OMRS_PUBLIC_PATH = options.spaPath;
+    variables.EGEN_PUBLIC_PATH = options.spaPath;
   }
 
   if (typeof options.apiUrl === 'string') {
-    variables.OMRS_API_URL = options.apiUrl;
+    variables.EGEN_API_URL = options.apiUrl;
   }
 
   if (typeof options.pageTitle === 'string') {
-    variables.OMRS_PAGE_TITLE = options.pageTitle;
+    variables.EGEN_PAGE_TITLE = options.pageTitle;
   }
 
   if (typeof options.addCookie === 'string') {
@@ -43,29 +43,29 @@ export function loadWebpackConfig(options: WebpackOptions = {}) {
   }
 
   if (typeof options.supportOffline === 'boolean') {
-    variables.OMRS_OFFLINE = options.supportOffline ? 'enable' : 'disable';
+    variables.EGEN_OFFLINE = options.supportOffline ? 'enable' : 'disable';
   }
 
   if (Array.isArray(options.configUrls)) {
-    variables.OMRS_CONFIG_URLS = options.configUrls.join(';');
+    variables.EGEN_CONFIG_URLS = options.configUrls.join(';');
   }
 
   if (typeof options.env === 'string') {
-    variables.OMRS_ENV = options.env;
+    variables.EGEN_ENV = options.env;
     variables.NODE_ENV = options.env;
   }
 
   if (typeof options.defaultLocale === 'string') {
-    variables.OMRS_ESM_DEFAULT_LOCALE = options.defaultLocale;
+    variables.EGEN_ESM_DEFAULT_LOCALE = options.defaultLocale;
   }
 
   if (typeof options.importmap === 'object') {
     switch (options.importmap.type) {
       case 'inline':
-        variables.OMRS_ESM_IMPORTMAP = options.importmap.value;
+        variables.EGEN_ESM_IMPORTMAP = options.importmap.value;
         break;
       case 'url':
-        variables.OMRS_ESM_IMPORTMAP_URL = options.importmap.value;
+        variables.EGEN_ESM_IMPORTMAP_URL = options.importmap.value;
         break;
     }
   }
@@ -73,24 +73,24 @@ export function loadWebpackConfig(options: WebpackOptions = {}) {
   if (typeof options.routes === 'object') {
     switch (options.routes.type) {
       case 'inline':
-        variables.OMRS_ROUTES = options.routes.value;
+        variables.EGEN_ROUTES = options.routes.value;
         break;
       case 'url':
-        variables.OMRS_ROUTES_URL = options.routes.value;
+        variables.EGEN_ROUTES_URL = options.routes.value;
         break;
     }
   }
 
   if (typeof options.coreAppsDir === 'string') {
-    variables.OMRS_ESM_CORE_APPS_DIR = options.coreAppsDir;
+    variables.EGEN_ESM_CORE_APPS_DIR = options.coreAppsDir;
   }
 
   if (typeof options.fresh === 'boolean') {
-    variables.OMRS_CLEAN_BEFORE_BUILD = options.fresh;
+    variables.EGEN_CLEAN_BEFORE_BUILD = options.fresh;
   }
 
   if (Array.isArray(options.assets)) {
-    variables.OMRS_JS_CSS_ASSETS = options.assets.join(';');
+    variables.EGEN_JS_CSS_ASSETS = options.assets.join(';');
   }
 
   setEnvVariables(variables);

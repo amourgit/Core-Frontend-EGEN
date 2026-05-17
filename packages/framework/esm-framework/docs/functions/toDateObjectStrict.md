@@ -2,7 +2,7 @@
 
 # Function: toDateObjectStrict()
 
-> **toDateObjectStrict**(`omrsDateString`): `null` \| `Date`
+> **toDateObjectStrict**(`egenDateString`): `null` \| `Date`
 
 Defined in: packages/framework/esm-utils/dist/dates/date-util.d.ts:24
 
@@ -11,7 +11,7 @@ Otherwise returns null.
 
 ## Parameters
 
-### omrsDateString
+### egenDateString
 
 `string`
 

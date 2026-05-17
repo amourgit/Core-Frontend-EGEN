@@ -101,8 +101,8 @@
 - [~~OfflinePatientDataSyncState~~](interfaces/OfflinePatientDataSyncState.md)
 - [~~OfflinePatientDataSyncHandler~~](interfaces/OfflinePatientDataSyncHandler.md)
 - [~~OfflinePatientArgs~~](interfaces/OfflinePatientArgs.md)
-- [messageOmrsServiceWorker](functions/messageOmrsServiceWorker.md)
-- [OmrsServiceWorkerMessage](interfaces/OmrsServiceWorkerMessage.md)
+- [messageEgenServiceWorker](functions/messageEgenServiceWorker.md)
+- [EgenServiceWorkerMessage](interfaces/EgenServiceWorkerMessage.md)
 - [OnImportMapChangedMessage](interfaces/OnImportMapChangedMessage.md)
 - [ClearDynamicRoutesMessage](interfaces/ClearDynamicRoutesMessage.md)
 - [RegisterDynamicRouteMessage](interfaces/RegisterDynamicRouteMessage.md)
@@ -264,10 +264,10 @@
 
 ## Date and Time
 
-- [isOmrsDateStrict](functions/isOmrsDateStrict.md)
-- [isOmrsDateToday](functions/isOmrsDateToday.md)
+- [isEgenDateStrict](functions/isEgenDateStrict.md)
+- [isEgenDateToday](functions/isEgenDateToday.md)
 - [toDateObjectStrict](functions/toDateObjectStrict.md)
-- [toOmrsIsoString](functions/toOmrsIsoString.md)
+- [toEgenIsoString](functions/toEgenIsoString.md)
 - [parseDate](functions/parseDate.md)
 - [registerDefaultCalendar](functions/registerDefaultCalendar.md)
 - [getDefaultCalendar](functions/getDefaultCalendar.md)

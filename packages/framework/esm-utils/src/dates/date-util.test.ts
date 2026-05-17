@@ -3,9 +3,9 @@ import dayjs from 'dayjs';
 import timezoneMock from 'timezone-mock';
 import type { i18n } from 'i18next';
 import {
-  toOmrsIsoString,
+  toEgenIsoString,
   toDateObjectStrict,
-  isOmrsDateStrict,
+  isEgenDateStrict,
   formatDate,
   formatDatetime,
   formatTime,
@@ -19,22 +19,22 @@ window.i18next = { language: 'en' } as i18n;
 describe('Egen Dates', () => {
   it('converts js Date object to egen date string version', () => {
     let date = dayjs('2018-03-19T00:05:03.999+0300', 'YYYY-MM-DDTHH:mm:ss.SSSZZ').toDate();
-    expect(toOmrsIsoString(date, true)).toEqual('2018-03-18T21:05:03.999+0000');
+    expect(toEgenIsoString(date, true)).toEqual('2018-03-18T21:05:03.999+0000');
   });
 
   it('checks if a string is egen date', () => {
-    expect(isOmrsDateStrict('2018-03-19T00:00:00.000+0300')).toEqual(true);
-    expect(isOmrsDateStrict(' 2018-03-19T00:00:00.000+0300 ')).toEqual(true);
-    expect(isOmrsDateStrict('2023-10-06T12:56:56.065-0400')).toEqual(true);
+    expect(isEgenDateStrict('2018-03-19T00:00:00.000+0300')).toEqual(true);
+    expect(isEgenDateStrict(' 2018-03-19T00:00:00.000+0300 ')).toEqual(true);
+    expect(isEgenDateStrict('2023-10-06T12:56:56.065-0400')).toEqual(true);
     // the exclusion test cases are important for strictness
-    expect(isOmrsDateStrict('2018-03-19 00:00:00.000+0300')).toEqual(false);
-    expect(isOmrsDateStrict('2018-03-19T00:00:00.000+03:00')).toEqual(false);
-    expect(isOmrsDateStrict('2018-03-19T00:00:00.000 0300')).toEqual(false);
-    expect(isOmrsDateStrict('2018-03-19T00:00:00 000+0300')).toEqual(false);
-    expect(isOmrsDateStrict('2018-03-1')).toEqual(false);
-    expect(isOmrsDateStrict('')).toEqual(false);
-    expect(isOmrsDateStrict(null as any)).toEqual(false);
-    expect(isOmrsDateStrict(undefined as any)).toEqual(false);
+    expect(isEgenDateStrict('2018-03-19 00:00:00.000+0300')).toEqual(false);
+    expect(isEgenDateStrict('2018-03-19T00:00:00.000+03:00')).toEqual(false);
+    expect(isEgenDateStrict('2018-03-19T00:00:00.000 0300')).toEqual(false);
+    expect(isEgenDateStrict('2018-03-19T00:00:00 000+0300')).toEqual(false);
+    expect(isEgenDateStrict('2018-03-1')).toEqual(false);
+    expect(isEgenDateStrict('')).toEqual(false);
+    expect(isEgenDateStrict(null as any)).toEqual(false);
+    expect(isEgenDateStrict(undefined as any)).toEqual(false);
   });
 
   it('converts egen date string version to js Date object', () => {
@@ -44,7 +44,7 @@ describe('Egen Dates', () => {
 
   it('converts js Date object to egen date string version', () => {
     let date = dayjs('2018-03-19T00:05:03.999+0300', 'YYYY-MM-DDTHH:mm:ss.SSSZZ').toDate();
-    expect(toOmrsIsoString(date, true)).toEqual('2018-03-18T21:05:03.999+0000');
+    expect(toEgenIsoString(date, true)).toEqual('2018-03-18T21:05:03.999+0000');
   });
 
   it("formats 'Today' with respect to the locale", () => {

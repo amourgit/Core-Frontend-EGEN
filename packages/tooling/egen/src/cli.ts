@@ -430,7 +430,7 @@ yargs.command(
       .default('host', 'localhost')
       .describe('host', 'The host name or IP for the server to use.')
       .string('backend')
-      .default('backend', 'https://dev3.openmrs.org/')
+      .default('backend', 'https://dev3.egen.org/')
       .describe('backend', 'The backend to proxy API requests to.')
       .string('add-cookie')
       .default('add-cookie', '')

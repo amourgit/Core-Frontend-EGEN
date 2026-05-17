@@ -1,8 +1,8 @@
-[O3 Framework](../API.md) / toOmrsIsoString
+[O3 Framework](../API.md) / toEgenIsoString
 
-# Function: toOmrsIsoString()
+# Function: toEgenIsoString()
 
-> **toOmrsIsoString**(`date`, `toUTC?`): `string`
+> **toEgenIsoString**(`date`, `toUTC?`): `string`
 
 Defined in: packages/framework/esm-utils/dist/dates/date-util.d.ts:28
 

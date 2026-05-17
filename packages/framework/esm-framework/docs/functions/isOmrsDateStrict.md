@@ -1,8 +1,8 @@
-[O3 Framework](../API.md) / isOmrsDateStrict
+[O3 Framework](../API.md) / isEgenDateStrict
 
-# Function: isOmrsDateStrict()
+# Function: isEgenDateStrict()
 
-> **isOmrsDateStrict**(`omrsPayloadString`): `boolean`
+> **isEgenDateStrict**(`egenPayloadString`): `boolean`
 
 Defined in: packages/framework/esm-utils/dist/dates/date-util.d.ts:12
 
@@ -11,7 +11,7 @@ The format should be YYYY-MM-DDTHH:mm:ss.SSSZZ
 
 ## Parameters
 
-### omrsPayloadString
+### egenPayloadString
 
 `string`
 

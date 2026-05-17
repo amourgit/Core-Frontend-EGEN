@@ -1,7 +1,7 @@
-[O3 Framework](../API.md) / omrsOfflineCachingStrategyHttpHeaderName
+[O3 Framework](../API.md) / egenOfflineCachingStrategyHttpHeaderName
 
-# Variable: omrsOfflineCachingStrategyHttpHeaderName
+# Variable: egenOfflineCachingStrategyHttpHeaderName
 
-> `const` **omrsOfflineCachingStrategyHttpHeaderName**: `"x-egen-offline-caching-strategy"` = `'x-egen-offline-caching-strategy'`
+> `const` **egenOfflineCachingStrategyHttpHeaderName**: `"x-egen-offline-caching-strategy"` = `'x-egen-offline-caching-strategy'`
 
 Defined in: [packages/framework/esm-offline/src/service-worker-http-headers.ts:5](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-http-headers.ts#L5)

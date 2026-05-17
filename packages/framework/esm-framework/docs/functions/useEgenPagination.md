@@ -46,7 +46,7 @@ The number of results to return per page / fetch. Note that this value MUST NOT 
 
 ### options
 
-[`UseServerPaginationOptions`](../interfaces/UseServerPaginationOptions.md)\<`OpenMRSPaginatedResponse`\<`T`\>\> = `{}`
+[`UseServerPaginationOptions`](../interfaces/UseServerPaginationOptions.md)\<`egenPaginatedResponse`\<`T`\>\> = `{}`
 
 The options object
 
@@ -110,7 +110,7 @@ The error object thrown by the fetcher function.
 
 ### mutate
 
-> **mutate**: `KeyedMutator`\<`FetchResponse`\<`OpenMRSPaginatedResponse`\<`T`\>\>\>
+> **mutate**: `KeyedMutator`\<`FetchResponse`\<`egenPaginatedResponse`\<`T`\>\>\>
 
 ### paginated
 

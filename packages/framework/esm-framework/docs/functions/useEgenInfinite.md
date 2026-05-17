@@ -2,7 +2,7 @@
 
 # Function: useEgenInfinite()
 
-> **useEgenInfinite**\<`T`\>(`url`, `options`): `UseServerInfiniteReturnObject`\<`T`, `OpenMRSPaginatedResponse`\<`T`\>\>
+> **useEgenInfinite**\<`T`\>(`url`, `options`): `UseServerInfiniteReturnObject`\<`T`, `egenPaginatedResponse`\<`T`\>\>
 
 Defined in: [packages/framework/esm-react-utils/src/useEgenInfinite.ts:102](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-react-utils/src/useEgenInfinite.ts#L102)
 
@@ -37,13 +37,13 @@ The URL of the paginated rest endpoint. Note that the `limit` GET param can be s
 
 ### options
 
-[`UseServerInfiniteOptions`](../interfaces/UseServerInfiniteOptions.md)\<`OpenMRSPaginatedResponse`\<`T`\>\> = `{}`
+[`UseServerInfiniteOptions`](../interfaces/UseServerInfiniteOptions.md)\<`egenPaginatedResponse`\<`T`\>\> = `{}`
 
 The options object
 
 ## Returns
 
-`UseServerInfiniteReturnObject`\<`T`, `OpenMRSPaginatedResponse`\<`T`\>\>
+`UseServerInfiniteReturnObject`\<`T`, `egenPaginatedResponse`\<`T`\>\>
 
 a UseServerInfiniteReturnObject object
 

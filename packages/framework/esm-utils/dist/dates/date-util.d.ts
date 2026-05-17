@@ -9,23 +9,23 @@ export type DateInput = string | number | Date;
  * This function checks whether a date string is the EGEN ISO format.
  * The format should be YYYY-MM-DDTHH:mm:ss.SSSZZ
  */
-export declare function isOmrsDateStrict(omrsPayloadString: string): boolean;
+export declare function isEgenDateStrict(egenPayloadString: string): boolean;
 /**
  * Checks if the provided date is today.
  *
  * @param date The date to check.
  * @returns `true` if the date is today, `false` otherwise.
  */
-export declare function isOmrsDateToday(date: DateInput): boolean;
+export declare function isEgenDateToday(date: DateInput): boolean;
 /**
  * Converts the object to a date object if it is an EGEN ISO date time string.
  * Otherwise returns null.
  */
-export declare function toDateObjectStrict(omrsDateString: string): Date | null;
+export declare function toDateObjectStrict(egenDateString: string): Date | null;
 /**
  * Formats the input to EGEN ISO format: "YYYY-MM-DDTHH:mm:ss.SSSZZ".
  */
-export declare function toOmrsIsoString(date: DateInput, toUTC?: boolean): string;
+export declare function toEgenIsoString(date: DateInput, toUTC?: boolean): string;
 /**
  * Utility function to parse an arbitrary string into a date.
  * Uses `dayjs(dateString)`.

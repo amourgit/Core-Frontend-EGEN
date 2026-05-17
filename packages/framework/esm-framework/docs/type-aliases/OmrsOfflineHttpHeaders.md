@@ -1,8 +1,8 @@
-[O3 Framework](../API.md) / OmrsOfflineHttpHeaders
+[O3 Framework](../API.md) / EgenOfflineHttpHeaders
 
-# Type Alias: OmrsOfflineHttpHeaders
+# Type Alias: EgenOfflineHttpHeaders
 
-> **OmrsOfflineHttpHeaders** = `object`
+> **EgenOfflineHttpHeaders** = `object`
 
 Defined in: [packages/framework/esm-offline/src/service-worker-http-headers.ts:21](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-http-headers.ts#L21)
 
@@ -13,7 +13,7 @@ HTTP requests with these headers are handled in a special way by the SPA's servi
 
 ### x-egen-offline-caching-strategy?
 
-> `optional` **x-egen-offline-caching-strategy**: [`OmrsOfflineCachingStrategy`](OmrsOfflineCachingStrategy.md)
+> `optional` **x-egen-offline-caching-strategy**: [`EgenOfflineCachingStrategy`](EgenOfflineCachingStrategy.md)
 
 Defined in: [packages/framework/esm-offline/src/service-worker-http-headers.ts:37](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-http-headers.ts#L37)
 

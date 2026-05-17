@@ -1,8 +1,8 @@
-[O3 Framework](../API.md) / isOmrsDateToday
+[O3 Framework](../API.md) / isEgenDateToday
 
-# Function: isOmrsDateToday()
+# Function: isEgenDateToday()
 
-> **isOmrsDateToday**(`date`): `boolean`
+> **isEgenDateToday**(`date`): `boolean`
 
 Defined in: packages/framework/esm-utils/dist/dates/date-util.d.ts:19
 

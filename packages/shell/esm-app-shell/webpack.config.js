@@ -24,7 +24,7 @@ const { ModuleFederationPlugin } = container;
 const egenAddCookie = process.env.EGEN_ADD_COOKIE;
 const egenApiUrl = removeTrailingSlash(process.env.EGEN_API_URL || '/egen');
 const egenPublicPath = removeTrailingSlash(process.env.EGEN_PUBLIC_PATH || '/egen/spa');
-const egenProxyTarget = process.env.EGEN_PROXY_TARGET || 'https://dev3.openmrs.org/';
+const egenProxyTarget = process.env.EGEN_PROXY_TARGET || 'https://dev3.egen.org/';
 const egenPageTitle = process.env.EGEN_PAGE_TITLE || 'EGEN';
 const egenFavicon = process.env.EGEN_FAVICON || `${egenPublicPath}/favicon.ico`;
 const egenEnvironment = process.env.EGEN_ENV || process.env.NODE_ENV || '';
@@ -48,10 +48,10 @@ const egenCleanBeforeBuild =
   (() => {
     try {
       return (
-        process.env.OMRS_CLEAN_BEFORE_BUILD === undefined ||
-        (typeof process.env.OMRS_CLEAN_BEFORE_BUILD === 'boolean' && process.env.OMRS_CLEAN_BEFORE_BUILD) ||
-        (typeof process.env.OMRS_CLEAN_BEFORE_BUILD === 'string' &&
-          process.env.OMRS_CLEAN_BEFORE_BUILD.toLowerCase() !== 'false')
+        process.env.EGEN_CLEAN_BEFORE_BUILD === undefined ||
+        (typeof process.env.EGEN_CLEAN_BEFORE_BUILD === 'boolean' && process.env.EGEN_CLEAN_BEFORE_BUILD) ||
+        (typeof process.env.EGEN_CLEAN_BEFORE_BUILD === 'string' &&
+          process.env.EGEN_CLEAN_BEFORE_BUILD.toLowerCase() !== 'false')
       );
     } catch {
       // this is intensionally a no-op

@@ -6,7 +6,7 @@ Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:36](
 
 ## Extends
 
-- [`OmrsServiceWorkerMessage`](OmrsServiceWorkerMessage.md)\<`"registerDynamicRoute"`\>
+- [`EgenServiceWorkerMessage`](EgenServiceWorkerMessage.md)\<`"registerDynamicRoute"`\>
 
 ## Properties
 
@@ -20,7 +20,7 @@ Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:37](
 
 ### strategy?
 
-> `optional` **strategy**: [`OmrsOfflineCachingStrategy`](../type-aliases/OmrsOfflineCachingStrategy.md)
+> `optional` **strategy**: [`EgenOfflineCachingStrategy`](../type-aliases/EgenOfflineCachingStrategy.md)
 
 Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:39](https://github.com/egen/egen-esm-core/blob/main/packages/framework/esm-offline/src/service-worker-messaging.ts#L39)
 
@@ -34,7 +34,7 @@ Defined in: [packages/framework/esm-offline/src/service-worker-messaging.ts:26](
 
 #### Inherited from
 
-[`OmrsServiceWorkerMessage`](OmrsServiceWorkerMessage.md).[`type`](OmrsServiceWorkerMessage.md#type)
+[`EgenServiceWorkerMessage`](EgenServiceWorkerMessage.md).[`type`](EgenServiceWorkerMessage.md#type)
 
 ***
 

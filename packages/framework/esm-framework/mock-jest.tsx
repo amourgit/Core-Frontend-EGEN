@@ -17,7 +17,7 @@ export * from '@egen/esm-state/mock';
 export * from '@egen/esm-styleguide/mock';
 export * from '@egen/esm-translations/mock';
 
-export { parseDate, formatDate, formatDatetime, formatTime, isOmrsDateToday } from '@egen/esm-utils';
+export { parseDate, formatDate, formatDatetime, formatTime, isEgenDateToday } from '@egen/esm-utils';
 
 /* esm-globals */
 

@@ -6,7 +6,7 @@ import { Workbox } from 'workbox-window';
  * @param [registerOptions] The service worker options associated with this instance.
  * @returns A promise which resolves to the registered {@link Workbox} instance which manages the SW.
  */
-export declare function registerOmrsServiceWorker(scriptUrl: string, registerOptions?: object): Promise<Workbox>;
+export declare function registerEgenServiceWorker(scriptUrl: string, registerOptions?: object): Promise<Workbox>;
 /**
  * If a service worker has been registered, returns a promise that resolves to a {@link Workbox}
  * instance which is used by the application to manage that service worker.
@@ -15,5 +15,5 @@ export declare function registerOmrsServiceWorker(scriptUrl: string, registerOpt
  * returns a promise which immediately resolves to `undefined`.
  * @returns A promise which either resolves to `undefined` or to the app's {@link Workbox} instance.
  */
-export declare function getOmrsServiceWorker(): Promise<Workbox | undefined>;
+export declare function getEgenServiceWorker(): Promise<Workbox | undefined>;
 //# sourceMappingURL=service-worker.d.ts.map
