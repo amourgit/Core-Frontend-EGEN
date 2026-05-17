@@ -156,14 +156,3 @@ export function __cleanup() {
     _unsubscribeSessionError = undefined;
   }
 }
-Terminé
-
-Voici les 3 fichiers complets à copier/coller :
-
-Fichier 1 → packages/framework/esm-api/src/current-user.ts Le contenu complet est affiché ci-dessus. Les changements clés : le bloc // ─── Internal session-error bus ─── ajouté après les imports, et la fonction handleSessionResponse à la fin corrigée avec _notifySessionError + reject(error).
-
-Fichier 2 → packages/framework/esm-api/src/public.ts Fichier court — seule différence avec l'original : la ligne subscribeToSessionErrors, ajoutée dans la liste des exports.
-
-Fichier 3 → packages/framework/esm-react-utils/src/useSession.ts Les changements : import de subscribeToSessionErrors, 3 nouvelles variables module-level (_rejectCurrentPromise, _unsubscribeSessionError), le new Promise<Session>((resolve, reject) avec la souscription au bus d'erreurs, et le __cleanup mis à jour.
-
-
