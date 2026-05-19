@@ -1,0 +1,31 @@
+{
+  "name": "@igen/mock-server",
+  "version": "1.0.0",
+  "description": "Mock server and MSW handlers for IGEN frontend development without a backend",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./msw/handlers": "./src/msw/handlers.ts",
+    "./msw/node": "./src/msw/node.ts",
+    "./msw/browser": "./src/msw/browser.ts",
+    "./data": "./src/data/index.ts"
+  },
+  "scripts": {
+    "start": "tsx src/dev-server.ts",
+    "start:watch": "tsx watch src/dev-server.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "msw": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.3"
+  }
+}

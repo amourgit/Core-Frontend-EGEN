@@ -472,3 +472,5 @@ function handleSessionResponse(result: Promise<FetchResponse<Session>>) {
         _notifySessionError(error);
         reject(error);
       });
+  });
+}
