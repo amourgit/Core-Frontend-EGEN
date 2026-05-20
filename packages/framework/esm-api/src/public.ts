@@ -16,5 +16,5 @@ export {
 } from './current-user';
 export * from './environment';
 export * from './types';
-export * from './eigen-fetch';
-export * from './eigen-backend-dependencies';
+export * from './igen-fetch';
+export * from './igen-backend-dependencies';
