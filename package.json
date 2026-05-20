@@ -27,7 +27,10 @@
     "format:check": "prettier --check .",
     "postinstall": "rm -rf packages/tooling/webpack-config/node_modules/webpack packages/tooling/webpack-config/node_modules/webpack-cli packages/tooling/webpack-config/node_modules/webpack-dev-server || true",
     "start:all": "turbo run start",
-    "start:mf": "turbo run start --filter='!@egen/esm-app-shell'"
+    "start:mf": "turbo run start --filter='!@egen/esm-app-shell'",
+    "mock:server": "tsx packages/tooling/mock-server/src/dev-server.ts",
+    "dev:mock": "concurrently \"npm run mock:server\" \"npm run dev\"",
+    "mock:install": "cd packages/tooling/mock-server && npm install"
   },
   "dependencies": {
     "@originjs/vite-plugin-federation": "^1.4.1",
@@ -100,7 +103,9 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.10",
-    "webpack": "^5.106.2"
+    "webpack": "^5.106.2",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix --max-warnings 0",

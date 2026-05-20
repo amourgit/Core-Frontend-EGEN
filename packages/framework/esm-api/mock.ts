@@ -21,3 +21,6 @@ export const refetchCurrentUser = vi.fn();
 export const setUserLanguage = vi.fn();
 export const setUserProperties = vi.fn();
 export const userHasAccess = vi.fn();
+
+// Added by fix: subscribeToSessionErrors is needed since we added it to public API
+export const subscribeToSessionErrors = vi.fn((_listener: (err: Error) => void) => vi.fn());

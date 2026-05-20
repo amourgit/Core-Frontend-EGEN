@@ -52,9 +52,29 @@ export const usePatient = vi.fn(() => ({
   error: null,
 }));
 
+// Default mock session: authenticated admin.
+// Override in individual tests: useSession.mockReturnValue(SESSION_UNAUTHENTICATED)
 export const useSession = vi.fn(() => ({
-  authenticated: false,
-  sessionId: '',
+  authenticated: true,
+  sessionId: 'mock-sess-admin-aabbccdd',
+  locale: 'fr',
+  allowedLocales: ['fr', 'en'],
+  user: {
+    uuid: 'user-admin-001',
+    display: 'Samuel Admin',
+    username: 'admin',
+    systemId: 'admin',
+    userProperties: { defaultLocale: 'fr' },
+    person: { uuid: 'person-001', display: 'Samuel Admin', preferredName: { givenName: 'Samuel', familyName: 'Admin' } },
+    privileges: [
+      { uuid: 'priv-001', name: 'View Users',   display: 'View Users'   },
+      { uuid: 'priv-002', name: 'Manage Users', display: 'Manage Users' },
+    ],
+    roles: [{ uuid: 'role-001', name: 'System Developer', display: 'System Developer' }],
+    retired: false,
+    locale: 'fr',
+    allowedLocales: ['fr', 'en'],
+  },
 }));
 
 export const useLayoutType = vi.fn(() => 'desktop');

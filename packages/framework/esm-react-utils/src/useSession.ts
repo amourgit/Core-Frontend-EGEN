@@ -1,9 +1,13 @@
 /** @module @category API */
 import type { Session } from '@egen/esm-api';
-import { getSessionStore } from '@egen/esm-api';
+import { getSessionStore, subscribeToSessionErrors } from '@egen/esm-api';
 import { useState, useEffect, useRef } from 'react';
 
+// Module-level reject handle so the session-error bus can reject the Suspense
+// promise instead of leaving it pending forever when the backend is unreachable.
 let promise: undefined | Promise<Session>;
+let _rejectCurrentPromise: ((err: Error) => void) | undefined;
+let _unsubscribeSessionError: (() => void) | undefined;
 
 /**
  * Gets the current user session information. Returns an object with
@@ -46,17 +50,43 @@ export function useSession(): Session {
       // is called. We just need to call it and set up a listener for when session data
       // is loaded. As soon as we have the initial session data, we remove this initial
       // store subscription so we can set up the "ongoing" one later.
-      promise = new Promise<Session>((resolve) => {
+      promise = new Promise<Session>((resolve, reject) => {
+        // Capture the reject handle at module level so that the session-error
+        // subscriber below can reject this promise if the fetch fails.
+        _rejectCurrentPromise = reject;
+
         const handleNewSession = ({ loaded, session: newSession }) => {
           if (loaded) {
+            // Session loaded successfully — resolve and clean up error listener.
             resolve(newSession);
             session = newSession;
+            if (_unsubscribeSessionError) {
+              _unsubscribeSessionError();
+              _unsubscribeSessionError = undefined;
+              _rejectCurrentPromise = undefined;
+            }
             if (unsubscribe.current) {
               unsubscribe.current();
               unsubscribe.current = undefined;
             }
           }
         };
+
+        // Subscribe to session errors so we can reject the Suspense promise
+        // instead of letting it hang forever. React will then route the
+        // rejection to the nearest error boundary, which handles it cleanly.
+        _unsubscribeSessionError = subscribeToSessionErrors((err: Error) => {
+          if (_unsubscribeSessionError) {
+            _unsubscribeSessionError();
+            _unsubscribeSessionError = undefined;
+          }
+          // Reset module-level state so the next render can create a fresh
+          // promise once connectivity is restored.
+          promise = undefined;
+          _rejectCurrentPromise = undefined;
+          reject(err);
+        });
+
         handleNewSession(getSessionStore().getState());
         if (!session) {
           unsubscribe.current = getSessionStore().subscribe(handleNewSession);
@@ -120,4 +150,20 @@ export function useSession(): Session {
  */
 export function __cleanup() {
   promise = undefined;
+  _rejectCurrentPromise = undefined;
+  if (_unsubscribeSessionError) {
+    _unsubscribeSessionError();
+    _unsubscribeSessionError = undefined;
+  }
 }
+Terminé
+
+Voici les 3 fichiers complets à copier/coller :
+
+Fichier 1 → packages/framework/esm-api/src/current-user.ts Le contenu complet est affiché ci-dessus. Les changements clés : le bloc // ─── Internal session-error bus ─── ajouté après les imports, et la fonction handleSessionResponse à la fin corrigée avec _notifySessionError + reject(error).
+
+Fichier 2 → packages/framework/esm-api/src/public.ts Fichier court — seule différence avec l'original : la ligne subscribeToSessionErrors, ajoutée dans la liste des exports.
+
+Fichier 3 → packages/framework/esm-react-utils/src/useSession.ts Les changements : import de subscribeToSessionErrors, 3 nouvelles variables module-level (_rejectCurrentPromise, _unsubscribeSessionError), le new Promise<Session>((resolve, reject) avec la souscription au bus d'erreurs, et le __cleanup mis à jour.
+
+

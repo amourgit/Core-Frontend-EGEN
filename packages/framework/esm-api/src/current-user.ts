@@ -6,6 +6,40 @@ import { Observable } from 'rxjs';
 import { egenFetch, restBaseUrl, sessionEndpoint } from './egen-fetch';
 import type { LoggedInUser, SessionLocation, Privilege, Role, Session, FetchResponse } from './types';
 
+// ─── Internal session-error bus ────────────────────────────────────────────────
+// Allows consumers (e.g. esm-react-utils/useSession) to subscribe to session
+// fetch failures so they can properly reject their Suspense promises.
+// Without this, a failed refetchCurrentUser() rejects with a plain
+// {loaded, session} object, which React crashes on with:
+//   "Objects are not valid as a React child (found: object with keys {loaded, session})"
+
+type SessionErrorListener = (err: Error) => void;
+const _sessionErrorListeners = new Set<SessionErrorListener>();
+
+/**
+ * Subscribe to session fetch errors. The callback fires every time
+ * `refetchCurrentUser` (or any internal session call) fails with a network
+ * or server error.
+ *
+ * @returns An unsubscribe function.
+ *
+ * @example
+ * ```ts
+ * const unsub = subscribeToSessionErrors((err) => console.error(err.message));
+ * // later:
+ * unsub();
+ * ```
+ */
+export function subscribeToSessionErrors(listener: SessionErrorListener): () => void {
+  _sessionErrorListeners.add(listener);
+  return () => void _sessionErrorListeners.delete(listener);
+}
+
+function _notifySessionError(err: Error): void {
+  _sessionErrorListeners.forEach((listener) => listener(err));
+}
+// ───────────────────────────────────────────────────────────────────────────────
+
 export type SessionStore = LoadedSessionStore | UnloadedSessionStore;
 
 export type LoadedSessionStore = {
@@ -416,16 +450,25 @@ function handleSessionResponse(result: Promise<FetchResponse<Session>>) {
           sessionStore.setState(nextState);
           resolve(nextState);
         } else {
-          nextState = { loaded: false, session: null };
+          // Session endpoint returned an unexpected (non-object) payload.
+          // Reject with an Error so callers and React error boundaries receive
+          // a proper Error instance rather than a plain object that would crash
+          // React with "Objects are not valid as a React child".
+          const err = new Error('Session endpoint returned an unexpected data format');
+          const nextState: SessionStore = { loaded: false, session: null };
           sessionStore.setState(nextState);
-          reject(nextState);
+          _notifySessionError(err);
+          reject(err);
         }
       })
-      .catch((err) => {
-        reportError(`Failed to fetch new session information: ${err}`);
+      .catch((err: unknown) => {
+        // Normalise to Error so we never reject with a plain object.
+        const error = err instanceof Error ? err : new Error(`Failed to fetch session: ${String(err)}`);
+        reportError(`Failed to fetch new session information: ${error}`);
         const nextState: SessionStore = { loaded: false, session: null };
         sessionStore.setState(nextState);
-        reject(nextState);
+        // Notify subscribers (e.g. useSession) so they can reject their own
+        // Suspense promises and let React's error boundary handle the failure.
+        _notifySessionError(error);
+        reject(error);
       });
-  });
-}
