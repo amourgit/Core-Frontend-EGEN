@@ -12,7 +12,8 @@
     "build:development": "cross-env EGEN_OFFLINE=\"enable\" EGEN_CLEAN_BEFORE_BUILD=\"true\" NODE_ENV=\"development\" webpack --mode development",
     "build": "npm run build:production && npm run build:development",
     "analyze": "webpack --mode=production --env analyze=true",
-    "lint": "eslint src --ext ts,tsx"
+    "lint": "eslint src --ext ts,tsx",
+    "dev": "npm run watch"
   },
   "keywords": [
     "egen",
