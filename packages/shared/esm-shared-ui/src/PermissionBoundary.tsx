@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePermissions } from '@igen/esm-shared-hooks';
+import { usePermissions } from '@egen/esm-shared-hooks';
 
 interface PermissionBoundaryProps {
   permission: string;

@@ -6,9 +6,9 @@
  *   1. Run `npx msw init packages/shell/esm-app-shell/public --save` once
  *      to copy mockServiceWorker.js into the public folder.
  *   2. Import and start this worker in the shell's entry point when
- *      `process.env.NODE_ENV === 'development'` and `IGEN_MOCK === 'true'`.
+ *      `process.env.NODE_ENV === 'development'` and `egen_MOCK === 'true'`.
  *
- * The shell already enables this automatically via the IGEN_MOCK env var.
+ * The shell already enables this automatically via the egen_MOCK env var.
  * See packages/shell/esm-app-shell/src/index.ts for the integration point.
  */
 

@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     this.props.onError?.(error, info);
-    console.error('[IGEN ErrorBoundary]', error, info.componentStack);
+    console.error('[egen ErrorBoundary]', error, info.componentStack);
   }
 
   reset() {
@@ -40,7 +40,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
         return <>{this.props.fallback(this.state.error, this.reset)}</>;
       }
       return (
-        <div className="igen-error-boundary" role="alert">
+        <div className="egen-error-boundary" role="alert">
           <h2>Une erreur est survenue dans ce module</h2>
           <p>{this.state.error.message}</p>
           <button onClick={this.reset}>Réessayer</button>

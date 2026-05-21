@@ -1,7 +1,7 @@
 {
-  "name": "@igen/esm-shared-ui",
+  "name": "@egen/esm-shared-ui",
   "version": "9.0.2",
-  "description": "Composants UI partag\u00e9s entre tous les micro-frontends IGEN",
+  "description": "Composants UI partag\u00e9s entre tous les micro-frontends egen",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,9 +26,9 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@igen/esm-shared-types": "*",
-    "@igen/esm-shared-utils": "*",
-    "@igen/esm-shared-hooks": "*"
+    "@egen/esm-shared-types": "*",
+    "@egen/esm-shared-utils": "*",
+    "@egen/esm-shared-hooks": "*"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

@@ -9,7 +9,7 @@ interface AccessGuardProps {
     children: React.ReactNode;
 }
 /**
- * Garde d'accès basée sur les permissions IGEN.
+ * Garde d'accès basée sur les permissions egen.
  * Enveloppe les zones sensibles d'un micro-frontend.
  *
  * @example

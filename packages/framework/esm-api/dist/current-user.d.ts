@@ -1,5 +1,21 @@
 import { Observable } from 'rxjs';
 import type { LoggedInUser, SessionLocation, Privilege, Role, Session } from './types';
+type SessionErrorListener = (err: Error) => void;
+/**
+ * Subscribe to session fetch errors. The callback fires every time
+ * `refetchCurrentUser` (or any internal session call) fails with a network
+ * or server error.
+ *
+ * @returns An unsubscribe function.
+ *
+ * @example
+ * ```ts
+ * const unsub = subscribeToSessionErrors((err) => console.error(err.message));
+ * // later:
+ * unsub();
+ * ```
+ */
+export declare function subscribeToSessionErrors(listener: SessionErrorListener): () => void;
 export type SessionStore = LoadedSessionStore | UnloadedSessionStore;
 export type LoadedSessionStore = {
     loaded: true;

@@ -1,4 +1,4 @@
-import type { IPermission, AccessLevel } from '@igen/esm-shared-types';
+import type { IPermission, AccessLevel } from '@egen/esm-shared-types';
 /** Vérifie si une liste de permissions contient un code donné */
 export declare function hasPermission(permissions: IPermission[], code: string): boolean;
 /** Vérifie si toutes les permissions requises sont présentes */

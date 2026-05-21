@@ -1,5 +1,5 @@
 import { Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
-import { usePermissions } from '@igen/esm-shared-hooks';
+import { usePermissions } from '@egen/esm-shared-hooks';
 /**
  * Render prop pour conditionner le rendu sur une permission.
  *

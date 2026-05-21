@@ -1,4 +1,4 @@
-import type { IPermissionCheck, AccessLevel } from '@igen/esm-shared-types';
+import type { IPermissionCheck, AccessLevel } from '@egen/esm-shared-types';
 interface UsePermissionsOptions {
     /** Permissions requises (toutes doivent être présentes) */
     required?: string[];
@@ -14,7 +14,7 @@ interface UsePermissionsResult {
 }
 /**
  * Hook pour vérifier les permissions frontend d'un utilisateur.
- * S'intègre avec le store d'auth IGEN (esm-auth).
+ * S'intègre avec le store d'auth egen (esm-auth).
  *
  * @example
  * const { hasAccess } = usePermissions({ required: ['patient:read'] });

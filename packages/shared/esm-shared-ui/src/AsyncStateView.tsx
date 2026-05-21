@@ -1,5 +1,5 @@
 import React from 'react';
-import type { AsyncResult } from '@igen/esm-shared-types';
+import type { AsyncResult } from '@egen/esm-shared-types';
 
 interface AsyncStateViewProps<T> {
   state: AsyncResult<T>;
@@ -21,8 +21,8 @@ interface AsyncStateViewProps<T> {
 export function AsyncStateView<T>({
   state,
   renderSuccess,
-  renderLoading = () => <div className="igen-spinner" aria-label="Chargement…" />,
-  renderError = (msg) => <div className="igen-error" role="alert">{msg}</div>,
+  renderLoading = () => <div className="egen-spinner" aria-label="Chargement…" />,
+  renderError = (msg) => <div className="egen-error" role="alert">{msg}</div>,
   renderIdle = () => null,
 }: AsyncStateViewProps<T>) {
   switch (state.status) {

@@ -29,9 +29,9 @@
     "start:all": "turbo run start",
     "start:mf": "turbo run start --filter='!@egen/esm-app-shell'",
     "mock:server": "tsx packages/tooling/mock-server/src/dev-server.ts",
-    "dev:mock": "concurrently \"npm run mock:server\" \"cross-env IGEN_PROXY_TARGET=http://localhost:3333/ npm run dev\"",
+    "dev:mock": "concurrently \"npm run mock:server\" \"cross-env EGEN_PROXY_TARGET=http://localhost:3333/ npm run dev\"",
     "mock:install": "cd packages/tooling/mock-server && npm install",
-    "watch:mock": "concurrently \"npm run mock:server\" \"cross-env IGEN_PROXY_TARGET=http://localhost:3333/ turbo run dev --filter='@igen/esm-app-shell'\""
+    "watch:mock": "concurrently \"npm run mock:server\" \"cross-env EGEN_PROXY_TARGET=http://localhost:3333/ turbo run dev --filter='@egen/esm-app-shell'\""
   },
   "dependencies": {
     "@originjs/vite-plugin-federation": "^1.4.1",

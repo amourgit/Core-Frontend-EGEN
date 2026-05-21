@@ -1,7 +1,7 @@
 import { jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
-import { usePermissions } from '@igen/esm-shared-hooks';
+import { usePermissions } from '@egen/esm-shared-hooks';
 /**
- * Garde d'accès basée sur les permissions IGEN.
+ * Garde d'accès basée sur les permissions egen.
  * Enveloppe les zones sensibles d'un micro-frontend.
  *
  * @example

@@ -17,7 +17,7 @@
  *     environment: 'happy-dom',
  *     mockReset: true,
  *     setupFiles: [
- *       '@igen/mock-server/setup',          // ← add this
+ *       '@egen/mock-server/setup',          // ← add this
  *       './setup-tests.ts',
  *     ],
  *   },
@@ -28,7 +28,7 @@
  * ─────────────────────────────────
  * ```ts
  * import { setMockSession, SESSION_VIEWER, SESSION_UNAUTHENTICATED }
- *   from '@igen/mock-server/msw/node';
+ *   from '@egen/mock-server/msw/node';
  *
  * describe('viewer access', () => {
  *   beforeEach(() => setMockSession(SESSION_VIEWER));
@@ -42,12 +42,12 @@
  * OVERRIDING A SINGLE HANDLER
  * ─────────────────────────────
  * ```ts
- * import { server } from '@igen/mock-server/msw/node';
+ * import { server } from '@egen/mock-server/msw/node';
  * import { http, HttpResponse } from 'msw';
  *
  * it('handles 500 on location fetch', () => {
  *   server.use(
- *     http.get('/igen/ws/rest/v1/location', () =>
+ *     http.get('/egen/ws/rest/v1/location', () =>
  *       new HttpResponse(null, { status: 500 })
  *     )
  *   );

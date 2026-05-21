@@ -1,7 +1,7 @@
 {
-  "name": "@igen/esm-shared-utils",
+  "name": "@egen/esm-shared-utils",
   "version": "9.0.2",
-  "description": "Utilitaires partag\u00e9s entre tous les micro-frontends IGEN",
+  "description": "Utilitaires partag\u00e9s entre tous les micro-frontends egen",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@igen/esm-shared-types": "*"
+    "@egen/esm-shared-types": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

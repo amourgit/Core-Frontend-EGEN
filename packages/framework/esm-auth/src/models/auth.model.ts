@@ -34,7 +34,7 @@ export interface CurrentUser {
   tenantId?: string;
   /** URL de l'avatar */
   avatarUrl?: string;
-  // ── Champs EIGEN spécifiques ──────────────────────────────
+  // ── Champs Eegen spécifiques ──────────────────────────────
   statut?: 'actif' | 'suspendu' | 'inactif';
   is_admin?: boolean;
   type_profil?: string;
@@ -109,9 +109,9 @@ export interface LoginCredentials {
   tenantId?: string;
 }
 
-// ── Extensions EIGEN spécifiques ────────────────────────────────
+// ── Extensions Eegen spécifiques ────────────────────────────────
 
-/** Extension de CurrentUser avec les champs EIGEN */
+/** Extension de CurrentUser avec les champs Eegen */
 export interface CurrentUserExtended extends CurrentUser {
   statut?: 'actif' | 'suspendu' | 'inactif';
   is_admin?: boolean;

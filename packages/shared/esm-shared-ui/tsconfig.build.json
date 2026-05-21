@@ -14,13 +14,13 @@
     "outDir": "dist",
     "rootDir": "src",
     "paths": {
-      "@igen/esm-shared-types": [
+      "@egen/esm-shared-types": [
         "../esm-shared-types/dist/index"
       ],
-      "@igen/esm-shared-utils": [
+      "@egen/esm-shared-utils": [
         "../esm-shared-utils/dist/index"
       ],
-      "@igen/esm-shared-hooks": [
+      "@egen/esm-shared-hooks": [
         "../esm-shared-hooks/dist/index"
       ]
     },

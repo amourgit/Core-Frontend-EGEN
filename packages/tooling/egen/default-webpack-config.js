@@ -1,3 +1,3 @@
-// igen/default-webpack-config
-// Forwards to @igen/webpack-config (compiled)
+// egen/default-webpack-config
+// Forwards to @egen/webpack-config (compiled)
 module.exports = require('../webpack-config/dist/index');

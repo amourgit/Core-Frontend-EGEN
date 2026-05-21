@@ -1,11 +1,11 @@
 #!/usr/bin/env tsx
 /**
- * @file IGEN Mock HTTP Server (Express)
+ * @file egen Mock HTTP Server (Express)
  *
- * Runs on http://localhost:3333 and mimics the IGEN backend REST API.
+ * Runs on http://localhost:3333 and mimics the egen backend REST API.
  * Point the webpack proxy at this server by setting:
  *
- *   IGEN_PROXY_TARGET=http://localhost:3333/
+ *   EGEN_PROXY_TARGET=http://localhost:3333/
  *
  * in packages/shell/esm-app-shell/.env  (already done — see that file).
  *
@@ -54,7 +54,7 @@ function decodeBasicAuth(header: string | undefined): { username: string; passwo
   return { username: decoded.slice(0, colon), password: decoded.slice(colon + 1) };
 }
 
-const BASE = '/igen/ws/rest/v1';
+const BASE = '/egen/ws/rest/v1';
 
 // ─── Session endpoints ────────────────────────────────────────────────────────
 
@@ -158,7 +158,7 @@ app.all('*', (req, res) => {
 // ─── Start ────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {
-  console.log(`\n\x1b[32m✓ IGEN Mock Server running on http://localhost:${PORT}\x1b[0m`);
+  console.log(`\n\x1b[32m✓ egen Mock Server running on http://localhost:${PORT}\x1b[0m`);
   console.log(`  Session active: \x1b[36m${currentSession.user?.username ?? 'unauthenticated'}\x1b[0m`);
-  console.log(`  Proxy target:   set IGEN_PROXY_TARGET=http://localhost:${PORT}/ in your .env\n`);
+  console.log(`  Proxy target:   set EGEN_PROXY_TARGET=http://localhost:${PORT}/ in your .env\n`);
 });

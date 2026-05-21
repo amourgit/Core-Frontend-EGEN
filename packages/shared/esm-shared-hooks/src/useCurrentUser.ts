@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { IUser } from '@igen/esm-shared-types';
+import type { IUser } from '@egen/esm-shared-types';
 
 interface UseCurrentUserResult {
   user: IUser | null;
@@ -8,7 +8,7 @@ interface UseCurrentUserResult {
 }
 
 /**
- * Hook pour accéder à l'utilisateur courant depuis le store IGEN.
+ * Hook pour accéder à l'utilisateur courant depuis le store egen.
  *
  * @example
  * const { user, isAuthenticated } = useCurrentUser();
@@ -18,7 +18,7 @@ export function useCurrentUser(): UseCurrentUserResult {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const store = (window as any).__IGEN_AUTH_STORE__;
+    const store = (window as any).__egen_AUTH_STORE__;
     if (!store) {
       setIsLoading(false);
       return;

@@ -1,13 +1,13 @@
 /**
- * @file MSW (Mock Service Worker) request handlers for the IGEN REST API.
+ * @file MSW (Mock Service Worker) request handlers for the egen REST API.
  *
  * These handlers intercept HTTP calls at the fetch level — they work
  * identically in:
  *   • Vitest (via msw/node)   → packages/tooling/mock-server/src/msw/node.ts
  *   • Browser dev mode        → packages/tooling/mock-server/src/msw/browser.ts
  *
- * The URL prefix is driven by `window.egenBase` which defaults to `/igen`.
- * In tests, the base is set to `/igen` in setup-tests.ts.
+ * The URL prefix is driven by `window.egenBase` which defaults to `/egen`.
+ * In tests, the base is set to `/egen` in setup-tests.ts.
  */
 
 import { http, HttpResponse, type PathParams } from 'msw';
@@ -26,12 +26,12 @@ import {
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-/** Wrap a value the way the IGEN REST API does: { data: value }. */
+/** Wrap a value the way the egen REST API does: { data: value }. */
 function apiOk<T>(data: T, status = 200) {
   return HttpResponse.json({ data }, { status });
 }
 
-/** Return a standard IGEN REST error envelope. */
+/** Return a standard egen REST error envelope. */
 function apiError(message: string, status = 400) {
   return HttpResponse.json(
     { error: { globalErrors: [{ message }], fieldErrors: {} } },
@@ -51,7 +51,7 @@ let currentSession = { ...SESSION_ADMIN };
 
 // ─── REST v1 base path ───────────────────────────────────────────────────────
 
-const BASE = '/igen/ws/rest/v1';
+const BASE = '/egen/ws/rest/v1';
 
 // ─── Handlers ────────────────────────────────────────────────────────────────
 
@@ -166,9 +166,9 @@ export const handlers = [
     return HttpResponse.json(user);
   }),
 
-  // ── Fallback: log unhandled IGEN API calls ────────────────────────────────
+  // ── Fallback: log unhandled egen API calls ────────────────────────────────
   http.all(`${BASE}/*`, ({ request }) => {
-    console.warn(`[MSW] Unhandled IGEN API call: ${request.method} ${request.url}`);
+    console.warn(`[MSW] Unhandled egen API call: ${request.method} ${request.url}`);
     return new HttpResponse(null, { status: 501 });
   }),
 ];

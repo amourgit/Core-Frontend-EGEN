@@ -14,7 +14,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "paths": {
-      "@igen/esm-shared-types": [
+      "@egen/esm-shared-types": [
         "../esm-shared-types/dist/index"
       ]
     },

@@ -2,7 +2,7 @@ import type { IMicroFrontendPermissions } from './permissions';
 
 /** Métadonnées d'un micro-frontend enregistré dans le CORE */
 export interface IMicroFrontendMeta {
-  /** Nom unique du module (ex: @igen/esm-patient-app) */
+  /** Nom unique du module (ex: @egen/esm-patient-app) */
   name: string;
   /** Version du module */
   version?: string;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePermissions } from '@igen/esm-shared-hooks';
+import { usePermissions } from '@egen/esm-shared-hooks';
 
 interface AccessGuardProps {
   /** Permissions requises (toutes) */
@@ -12,7 +12,7 @@ interface AccessGuardProps {
 }
 
 /**
- * Garde d'accès basée sur les permissions IGEN.
+ * Garde d'accès basée sur les permissions egen.
  * Enveloppe les zones sensibles d'un micro-frontend.
  *
  * @example

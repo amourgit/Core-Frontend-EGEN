@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 /**
  * Hook pour vérifier les permissions frontend d'un utilisateur.
- * S'intègre avec le store d'auth IGEN (esm-auth).
+ * S'intègre avec le store d'auth egen (esm-auth).
  *
  * @example
  * const { hasAccess } = usePermissions({ required: ['patient:read'] });
@@ -20,8 +20,8 @@ export function usePermissions(options = {}) {
             return;
         }
         setIsLoading(true);
-        // Résolution via le store global IGEN (injecté par le CORE)
-        const store = window.__IGEN_AUTH_STORE__;
+        // Résolution via le store global egen (injecté par le CORE)
+        const store = window.__egen_AUTH_STORE__;
         const userPermissions = store?.getState?.()?.permissions?.map((p) => p.code) ?? [];
         const result = required.map(perm => ({
             requiredPermission: perm,

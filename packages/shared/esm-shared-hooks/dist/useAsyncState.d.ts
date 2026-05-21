@@ -1,4 +1,4 @@
-import type { AsyncResult } from '@igen/esm-shared-types';
+import type { AsyncResult } from '@egen/esm-shared-types';
 /**
  * Hook générique pour gérer l'état d'une opération async (idle/loading/success/error).
  *

@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import type { AsyncResult, IApiError } from '@igen/esm-shared-types';
+import type { AsyncResult, IApiError } from '@egen/esm-shared-types';
 
 /**
  * Hook générique pour gérer l'état d'une opération async (idle/loading/success/error).

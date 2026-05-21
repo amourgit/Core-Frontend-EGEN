@@ -15,7 +15,7 @@ export class ErrorBoundary extends Component {
     }
     componentDidCatch(error, info) {
         this.props.onError?.(error, info);
-        console.error('[IGEN ErrorBoundary]', error, info.componentStack);
+        console.error('[egen ErrorBoundary]', error, info.componentStack);
     }
     reset() {
         this.setState({ error: null });
@@ -25,7 +25,7 @@ export class ErrorBoundary extends Component {
             if (this.props.fallback) {
                 return _jsx(_Fragment, { children: this.props.fallback(this.state.error, this.reset) });
             }
-            return (_jsxs("div", { className: "igen-error-boundary", role: "alert", children: [_jsx("h2", { children: "Une erreur est survenue dans ce module" }), _jsx("p", { children: this.state.error.message }), _jsx("button", { onClick: this.reset, children: "R\u00E9essayer" })] }));
+            return (_jsxs("div", { className: "egen-error-boundary", role: "alert", children: [_jsx("h2", { children: "Une erreur est survenue dans ce module" }), _jsx("p", { children: this.state.error.message }), _jsx("button", { onClick: this.reset, children: "R\u00E9essayer" })] }));
         }
         return this.props.children;
     }

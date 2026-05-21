@@ -39,7 +39,7 @@ export {
 } from './workspaces2';
 
 // ============================================================
-// EIGEN — Core Extensions (Theme, UI, Auth, Layouts, Hooks)
+// Eegen — Core Extensions (Theme, UI, Auth, Layouts, Hooks)
 // ============================================================
 
 // Theme System (explicit to avoid conflict with hooks/index useTheme)

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { AsyncResult } from '@igen/esm-shared-types';
+import type { AsyncResult } from '@egen/esm-shared-types';
 interface AsyncStateViewProps<T> {
     state: AsyncResult<T>;
     renderSuccess: (data: T) => React.ReactNode;

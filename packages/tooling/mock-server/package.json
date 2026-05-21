@@ -1,7 +1,7 @@
 {
-  "name": "@igen/mock-server",
+  "name": "@egen/mock-server",
   "version": "1.0.0",
-  "description": "Mock server and MSW handlers for IGEN frontend development without a backend",
+  "description": "Mock server and MSW handlers for egen frontend development without a backend",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",

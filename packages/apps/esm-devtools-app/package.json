@@ -8,7 +8,7 @@
   "main": "src/index.ts",
   "source": true,
   "scripts": {
-    "start": "igen develop --importmap '{\"imports\":{}}'",
+    "start": "egen develop --importmap '{\"imports\":{}}'",
     "serve": "webpack serve --mode=development",
     "debug": "npm run serve",
     "test": "cross-env TZ=UTC vitest run --passWithNoTests",
@@ -20,8 +20,8 @@
     "typescript": "tsc",
     "lint": "eslint src --ext ts,tsx",
     "extract-translations": "i18next 'src/**/*.tsx' --config='../../../tools/i18next-parser.config.js'",
-    "start:connected": "igen develop --backend http://localhost:8080",
-    "start:remote": "igen develop --backend https://dev.iam-central.ga"
+    "start:connected": "egen develop --backend http://localhost:8080",
+    "start:remote": "egen develop --backend https://dev.iam-central.ga"
   },
   "keywords": [
     "egen",

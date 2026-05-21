@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 /**
- * Hook pour accéder à l'utilisateur courant depuis le store IGEN.
+ * Hook pour accéder à l'utilisateur courant depuis le store egen.
  *
  * @example
  * const { user, isAuthenticated } = useCurrentUser();
@@ -9,7 +9,7 @@ export function useCurrentUser() {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        const store = window.__IGEN_AUTH_STORE__;
+        const store = window.__egen_AUTH_STORE__;
         if (!store) {
             setIsLoading(false);
             return;

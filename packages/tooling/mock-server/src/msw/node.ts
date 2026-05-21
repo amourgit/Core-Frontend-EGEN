@@ -5,7 +5,7 @@
  *
  * ```ts
  * // setup-tests.ts
- * import { server } from '@igen/mock-server/msw/node';
+ * import { server } from '@egen/mock-server/msw/node';
  *
  * beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }));
  * afterEach(() => server.resetHandlers());
@@ -14,14 +14,14 @@
  *
  * To override handlers for a specific test:
  * ```ts
- * import { server, setMockSession, SESSION_VIEWER } from '@igen/mock-server/msw/node';
+ * import { server, setMockSession, SESSION_VIEWER } from '@egen/mock-server/msw/node';
  * import { http, HttpResponse } from 'msw';
  *
  * it('shows viewer UI', () => {
  *   setMockSession(SESSION_VIEWER);
  *   // or override completely:
  *   server.use(
- *     http.get('/igen/ws/rest/v1/session', () =>
+ *     http.get('/egen/ws/rest/v1/session', () =>
  *       HttpResponse.json({ data: SESSION_VIEWER })
  *     )
  *   );

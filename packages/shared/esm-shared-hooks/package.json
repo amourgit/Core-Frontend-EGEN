@@ -1,7 +1,7 @@
 {
-  "name": "@igen/esm-shared-hooks",
+  "name": "@egen/esm-shared-hooks",
   "version": "9.0.2",
-  "description": "Hooks React partag\u00e9s entre tous les micro-frontends IGEN",
+  "description": "Hooks React partag\u00e9s entre tous les micro-frontends egen",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,7 +26,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@igen/esm-shared-types": "*"
+    "@egen/esm-shared-types": "*"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

@@ -1,5 +1,5 @@
 /**
- * @file Mock data for the IGEN backend API.
+ * @file Mock data for the egen backend API.
  * Shapes match the TypeScript interfaces in
  * packages/framework/esm-api/src/types/user-resource.ts exactly.
  *

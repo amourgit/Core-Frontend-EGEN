@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@igen/esm-shared-utils';
+import { cn } from '@egen/esm-shared-utils';
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -13,11 +13,11 @@ const MAX_WIDTHS = {
   xl: '1280px', '2xl': '1536px', '3xl': '1920px', full: '100%',
 };
 
-/** Conteneur de page standardisé pour tous les MFEs IGEN */
+/** Conteneur de page standardisé pour tous les MFEs egen */
 export function PageContainer({ children, maxWidth = 'xl', className, padded = true }: PageContainerProps) {
   return (
     <div
-      className={cn('igen-page-container', padded && 'igen-page-container--padded', className)}
+      className={cn('egen-page-container', padded && 'egen-page-container--padded', className)}
       style={{ maxWidth: MAX_WIDTHS[maxWidth], margin: '0 auto', width: '100%' }}
     >
       {children}

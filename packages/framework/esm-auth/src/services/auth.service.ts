@@ -977,7 +977,7 @@ export function cancelTokenRefresh(): void {
     _refreshTimer = null;
   }
 }
-// ── Extended authService methods (EIGEN specific) ─────────────────
+// ── Extended authService methods (Eegen specific) ─────────────────
 export const extendedAuthService = {
   async getSessionStats(): Promise<{ total: number; active: number; expired: number }> {
     return httpClient.get<{ total: number; active: number; expired: number }>('/compte/session-stats')

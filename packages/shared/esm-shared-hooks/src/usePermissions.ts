@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { IPermissionCheck, AccessLevel } from '@igen/esm-shared-types';
+import type { IPermissionCheck, AccessLevel } from '@egen/esm-shared-types';
 
 interface UsePermissionsOptions {
   /** Permissions requises (toutes doivent être présentes) */
@@ -18,7 +18,7 @@ interface UsePermissionsResult {
 
 /**
  * Hook pour vérifier les permissions frontend d'un utilisateur.
- * S'intègre avec le store d'auth IGEN (esm-auth).
+ * S'intègre avec le store d'auth egen (esm-auth).
  *
  * @example
  * const { hasAccess } = usePermissions({ required: ['patient:read'] });
@@ -41,8 +41,8 @@ export function usePermissions(options: UsePermissionsOptions = {}): UsePermissi
 
     setIsLoading(true);
 
-    // Résolution via le store global IGEN (injecté par le CORE)
-    const store = (window as any).__IGEN_AUTH_STORE__;
+    // Résolution via le store global egen (injecté par le CORE)
+    const store = (window as any).__egen_AUTH_STORE__;
     const userPermissions: string[] = store?.getState?.()?.permissions?.map(
       (p: { code: string }) => p.code
     ) ?? [];
