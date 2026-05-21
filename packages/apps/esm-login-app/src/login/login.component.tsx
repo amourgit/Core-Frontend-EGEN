@@ -110,9 +110,13 @@ const Login: React.FC = () => {
               }
             }
 
-            egenNavigate({ to });
+            // Différer la navigation pour laisser React terminer son cycle
+            // de commit avant que Single SPA démonte ce composant.
+            // Sans ce defer, React tente un removeChild sur des nœuds déjà
+            // supprimés par l'unmount de Single SPA → NotFoundError.
+            queueMicrotask(() => egenNavigate({ to }));
           } else {
-            navigate('/login/location');
+            queueMicrotask(() => navigate('/login/location'));
           }
         } else {
           setErrorMessage(t('invalidCredentials', 'Invalid username or password'));
