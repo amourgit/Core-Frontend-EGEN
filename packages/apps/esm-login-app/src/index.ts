@@ -11,6 +11,11 @@ const moduleName = '@egen/esm-login-app';
 const options = {
   featureName: 'login',
   moduleName,
+  // React 18 StrictMode double-monte/démonte les composants en développement.
+  // Combiné avec le cycle de vie Single SPA, cela cause un removeChild sur
+  // des nœuds DOM déjà retirés → NotFoundError.
+  // StrictMode n'a aucun effet en production — désactivé uniquement ici.
+  strictMode: false,
 };
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');

@@ -35,6 +35,9 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [showPasswordField, setShowPasswordField] = useState(false);
+  // Navigation différée : useEffect navigue APRÈS le commit React
+  // pour éviter le conflit entre Single SPA unmount et React commit phase
+  const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const usernameInputRef = useRef<HTMLInputElement>(null);
 
@@ -59,6 +62,15 @@ const Login: React.FC = () => {
       }
     }
   }, [showPasswordField, showPasswordOnSeparateScreen]);
+
+  // Navigation post-login : s'exécute après que React a commité toutes ses
+  // mutations DOM. Évite le removeChild race condition entre React StrictMode
+  // (double-mount en dev) et le unmount Single SPA.
+  useEffect(() => {
+    if (pendingNavigation) {
+      egenNavigate({ to: pendingNavigation });
+    }
+  }, [pendingNavigation]);
 
   const continueLogin = useCallback(() => {
     const currentUsername = usernameInputRef.current?.value?.trim();
@@ -110,13 +122,14 @@ const Login: React.FC = () => {
               }
             }
 
-            // Différer la navigation pour laisser React terminer son cycle
-            // de commit avant que Single SPA démonte ce composant.
-            // Sans ce defer, React tente un removeChild sur des nœuds déjà
-            // supprimés par l'unmount de Single SPA → NotFoundError.
-            queueMicrotask(() => egenNavigate({ to }));
+            // Navigation différée via state → useEffect.
+            // useEffect s'exécute après le commit DOM React, garantissant
+            // que Single SPA peut démontrer proprement sans conflit.
+            setPendingNavigation(to);
           } else {
-            queueMicrotask(() => navigate('/login/location'));
+            // navigate() de react-router : même MFE, pas de démontage Single SPA
+            // → safe de l'appeler directement
+            navigate('/login/location');
           }
         } else {
           setErrorMessage(t('invalidCredentials', 'Invalid username or password'));
