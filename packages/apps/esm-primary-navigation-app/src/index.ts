@@ -22,6 +22,10 @@ export const importTranslation = require.context('../translations', false, /.jso
 const options = {
   featureName: 'primary navigation',
   moduleName,
+  // React 18 StrictMode double-mounts components during development.
+  // Combined with Single SPA lifecycle, this causes removeChild errors on already-removed DOM nodes.
+  // StrictMode has no effect in production—disabled to prevent race conditions.
+  strictMode: false,
 };
 
 export function startupApp() {

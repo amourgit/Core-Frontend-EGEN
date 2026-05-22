@@ -7,7 +7,7 @@ import { type ComponentConfig, type ExtensionData } from '@egen/esm-extensions';
 import { ComponentContext } from './ComponentContext';
 
 const defaultOpts = {
-  strictMode: true,
+  strictMode: false,  // Disabled by default with Single SPA. StrictMode double-mount incompatible with Single SPA lifecycle.
   throwErrorsToConsole: true,
   disableTranslations: false,
 };

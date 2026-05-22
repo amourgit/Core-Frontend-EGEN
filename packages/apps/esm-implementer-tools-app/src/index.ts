@@ -9,6 +9,10 @@ const moduleName = '@egen/esm-implementer-tools-app';
 const options = {
   featureName: 'Implementer Tools',
   moduleName,
+  // React 18 StrictMode double-mounts components during development.
+  // Combined with Single SPA lifecycle, this causes removeChild errors on already-removed DOM nodes.
+  // StrictMode has no effect in production—disabled to prevent race conditions.
+  strictMode: false,
 };
 
 export const implementerTools = getSyncLifecycle(implementerToolsComponent, options);

@@ -166,6 +166,17 @@ export const handlers = [
     return HttpResponse.json(user);
   }),
 
+  // ── SPA Configuration ─────────────────────────────────────────────────────
+  // GET /egen/spa/routes.registry.json — empty by default (routes loaded dynamically)
+  http.get('/egen/spa/routes.registry.json', () => {
+    return HttpResponse.json({});
+  }),
+
+  // GET /egen/spa/importmap.json — empty by default (importmap loaded dynamically)
+  http.get('/egen/spa/importmap.json', () => {
+    return HttpResponse.json({ imports: {} });
+  }),
+
   // ── Fallback: log unhandled egen API calls ────────────────────────────────
   http.all(`${BASE}/*`, ({ request }) => {
     console.warn(`[MSW] Unhandled egen API call: ${request.method} ${request.url}`);

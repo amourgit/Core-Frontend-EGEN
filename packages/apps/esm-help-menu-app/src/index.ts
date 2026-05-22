@@ -8,6 +8,10 @@ export const importTranslation = require.context('../translations', false, /.jso
 const options = {
   featureName: 'help-menu',
   moduleName: '@egen/esm-help-menu-app',
+  // React 18 StrictMode double-mounts components during development.
+  // Combined with Single SPA lifecycle, this causes removeChild errors on already-removed DOM nodes.
+  // StrictMode has no effect in production—disabled to prevent race conditions.
+  strictMode: false,
 };
 
 export const root = getAsyncLifecycle(() => import('./root.component'), options);

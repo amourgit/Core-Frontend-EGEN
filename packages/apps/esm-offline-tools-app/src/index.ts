@@ -23,6 +23,10 @@ const moduleName = '@egen/esm-offline-tools-app';
 const options = {
   featureName: 'offline-tools',
   moduleName,
+  // React 18 StrictMode double-mounts components during development.
+  // Combined with Single SPA lifecycle, this causes removeChild errors on already-removed DOM nodes.
+  // StrictMode has no effect in production—disabled to prevent race conditions.
+  strictMode: false,
 };
 
 export const offlineTools = getSyncLifecycle(offlineToolsComponent, options);

@@ -148,6 +148,18 @@ app.post(`${BASE}/user/:uuid`, (req, res) => {
   res.json(user);
 });
 
+// ─── SPA Configuration endpoints ──────────────────────────────────────────────
+
+// GET /egen/spa/routes.registry.json — empty by default (routes loaded dynamically)
+app.get('/egen/spa/routes.registry.json', (_req, res) => {
+  res.json({});
+});
+
+// GET /egen/spa/importmap.json — empty by default (importmap loaded dynamically)
+app.get('/egen/spa/importmap.json', (_req, res) => {
+  res.json({ imports: {} });
+});
+
 // ─── Catch-all: log unhandled routes ─────────────────────────────────────────
 
 app.all('*', (req, res) => {
