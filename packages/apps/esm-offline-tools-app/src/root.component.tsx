@@ -8,7 +8,13 @@ import styles from './root.styles.scss';
 
 const Root: React.FC = () => {
   return (
-    <BrowserRouter basename={window.getEgenSpaBase()}>
+    <BrowserRouter
+      basename={window.getEgenSpaBase()}
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <DesktopSideNav />
       <div className={classNames('egen-main-content', styles.mainContentContainer)}>
         <Routes>
