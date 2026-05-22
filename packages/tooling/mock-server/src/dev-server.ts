@@ -43,7 +43,10 @@ app.use((req: Request, _res: Response, next: NextFunction) => {
 });
 
 // ─── Active session (mutated by login/logout/set-location) ───────────────────
-let currentSession: Session = { ...SESSION_ADMIN };
+// Session initiale : non authentifiée.
+// Le mock simule un vrai backend — l'utilisateur doit se connecter.
+// Credentials : admin/admin  ou  viewer/viewer  (voir CREDENTIALS_MAP dans data/index.ts)
+let currentSession: Session = { ...SESSION_UNAUTHENTICATED };
 
 // ─── Helper: decode Basic-auth header ────────────────────────────────────────
 function decodeBasicAuth(header: string | undefined): { username: string; password: string } | null {
@@ -94,8 +97,15 @@ app.post(`${BASE}/session`, (req, res) => {
     return;
   }
 
-  console.log(`  \x1b[32m[mock] Login OK — user: ${matched.user?.username}\x1b[0m`);
-  currentSession = { ...matched };
+  const username = matched.user?.username;
+  console.log(`  \x1b[32m[mock] Login OK — user: ${username}\x1b[0m`);
+  // On retire sessionLocation de la réponse POST pour forcer le passage
+  // par /login/location (route interne React Router) plutôt que egenNavigate
+  // vers /home qui n'a pas de MFE enregistré en développement.
+  // La location sera choisie dans le LocationPicker, puis la vraie
+  // navigation vers /home se fera via egenNavigate dans le location picker.
+  const { sessionLocation: _dropped, ...sessionWithoutLocation } = matched;
+  currentSession = sessionWithoutLocation as Session;
   res.json({ data: currentSession });
 });
 

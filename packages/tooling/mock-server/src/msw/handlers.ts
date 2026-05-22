@@ -47,7 +47,8 @@ function decodeBasicAuth(authHeader: string | null) {
 }
 
 // Active mock session (mutated by login / logout / set-location handlers).
-let currentSession = { ...SESSION_ADMIN };
+// Session initiale non authentifiée — reproduit le comportement réel.
+let currentSession = { ...SESSION_UNAUTHENTICATED };
 
 // ─── REST v1 base path ───────────────────────────────────────────────────────
 
@@ -99,7 +100,9 @@ export const handlers = [
       );
     }
 
-    currentSession = { ...matchedSession };
+    // Supprimer sessionLocation pour forcer le passage par /login/location
+    const { sessionLocation: _dropped, ...sessionWithoutLocation } = matchedSession;
+    currentSession = sessionWithoutLocation as typeof SESSION_ADMIN;
     return HttpResponse.json({ data: currentSession });
   }),
 
