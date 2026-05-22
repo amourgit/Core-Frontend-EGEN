@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 import { useRegistryStore }  from '../stores/registry.store';
-import { usePermissions }    from '../hooks/usePermissions';
+import { usePermissions }    from '@egen/esm-auth';
 import { useAuthStore }      from '../stores/auth.store';
 import { cn }                from '../lib/utils';
 import { ScrollArea }        from '../ui/scroll-area';

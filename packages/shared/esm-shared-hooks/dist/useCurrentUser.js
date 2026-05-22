@@ -9,7 +9,7 @@ export function useCurrentUser() {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        const store = window.__egen_AUTH_STORE__;
+        const store = window.__EGEN_AUTH_STORE__;
         if (!store) {
             setIsLoading(false);
             return;

@@ -16,8 +16,8 @@ import { useTheme, useThemeVariables } from "@egen/esm-styleguide/theme";
 import { useGlass } from "../hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
-import { useAuth } from "../hooks/useAuth";
-import { useIAMAuth } from '../hooks/useIAMAuth';
+import { useAuth } from "@egen/esm-auth";
+import { useIAMAuth } from '@egen/esm-auth';
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 import { navigationData, NavigationItem } from "../services/navigation";

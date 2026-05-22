@@ -60,8 +60,10 @@ export { GlassTimeCard, UserProfileCard, CardHeader } from './cards/index';
 export { DynamicField } from './fields/index';
 
 // Hooks (explicit - useTheme already exported from theme)
-export { useAuth, useGlass, useIAMAuth, useKeycloakSession,
-  usePermissions, useSessionMonitor } from './hooks/index';
+export { useAuth, useIAMAuth, useKeycloakSession,
+  usePermissions, useSessionMonitor } from '@egen/esm-auth';
+
+export { useGlass } from './hooks/useGlass';
 
 // Auth UI System
 export * from './auth/index';

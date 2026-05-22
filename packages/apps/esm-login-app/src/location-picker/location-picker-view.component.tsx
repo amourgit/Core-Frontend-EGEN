@@ -13,7 +13,7 @@ import {
 } from '@egen/esm-framework';
 import { useDefaultLocation, useLocationCount } from './location-picker.resource';
 import type { ConfigSchema } from '../config-schema';
-import type { LoginReferrer } from '../login/login.component';
+// import type { LoginReferer } from '../login/login.component';
 import styles from './location-picker.scss';
 
 interface LocationPickerProps {
@@ -56,7 +56,7 @@ const LocationPickerView: React.FC<LocationPickerProps> = ({ hideWelcomeMessage,
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { state } = useLocation() as unknown as Omit<Location, 'state'> & {
-    state: LoginReferrer;
+    state: any;
   };
 
   const changeLocation = useCallback(
