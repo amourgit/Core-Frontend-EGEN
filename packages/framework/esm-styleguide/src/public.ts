@@ -77,7 +77,16 @@ export { BaseLayout, CoreBaseLayout, BaseContent, TopBar, LeftBar, LeftBarConten
 export { GlassTimeCard, UserProfileCard, CardHeader } from './cards/index';
 
 // Fields
-export { DynamicField } from './fields/index';
+export { DynamicField } from './fields/dynamic-field';
+export {
+  OutlinedField,
+  FilledField,
+  StandardField,
+  type BaseFieldProps,
+  type ValidationConfig,
+  type ValidationRule,
+  type FieldIcon,
+} from './fields/fields';
 
 // Hooks (explicit - useTheme already exported from theme)
 export { useAuth, useIAMAuth, useKeycloakSession,

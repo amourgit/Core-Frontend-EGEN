@@ -131,40 +131,122 @@ function ErrorBanner({ message }: { message: string }) {
 
 // ── Formulaire Credentials (compact) ──────────────────────
 function CredentialsForm({ onClose }: { onClose: () => void }) {
-  const router       = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams]  = useSearchParams();
   const { login, isLoginLoading, loginError, clearLoginError } = useIAMAuth();
-  const { toast } = useToast();
+  const { toast }       = useToast();
 
-  const [username,     setUsername]     = useState('');
-  const [password,     setPassword]     = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [username,          setUsername]          = useState('');
+  const [password,          setPassword]          = useState('');
+  const [showPassword,      setShowPassword]      = useState(false);
+  const [userValidState,    setUserValidState]    = useState<'idle'|'error'|'warning'|'success'>('idle');
+  const [passValidState,    setPassValidState]    = useState<'idle'|'error'|'warning'|'success'>('idle');
+  // loginError externe déclenche l'état error forcé sur les champs
+  const [forceError,        setForceError]        = useState(false);
 
   const returnUrl = searchParams.get('returnUrl') || '/home';
 
+  // Effacer l'erreur serveur dès que l'utilisateur recommence à taper
   useEffect(() => {
-    if (loginError && (username || password)) clearLoginError();
-  }, [username, password, loginError, clearLoginError]);
+    if (forceError && (username || password)) {
+      setForceError(false);
+      clearLoginError();
+    }
+  }, [username, password]);
+
+  // Propager l'erreur serveur → état error des champs
+  useEffect(() => {
+    if (loginError) setForceError(true);
+  }, [loginError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim() || !password.trim()) return;
-    
+
     const result = await login(
       { username: username.trim(), password },
       decodeURIComponent(returnUrl),
     );
-    
+
     if (result.success) {
-      toast({ variant: 'success', title: 'Connexion réussie', description: 'Redirection...', duration: 2000 });
+      toast({ variant: 'success', title: 'Connexion réussie', description: 'Redirection…', duration: 2000 });
     } else {
       toast({
-        variant: 'destructive',
-        title: 'Échec de la connexion',
-        description: result.error || 'Vérifiez vos identifiants',
+        variant:     'destructive',
+        title:       'Échec de la connexion',
+        description: result.error || 'Identifiants invalides — réessayez.',
       });
     }
   };
+
+  // ── Règles de validation ────────────────────────────────
+  // Fond glass du card orb (sombre) — utilisé pour le labelBg
+  const GLASS_BG = 'rgba(9,9,18,0.82)';
+
+  const usernameValidation = {
+    rules: [
+      {
+        regex:   /^.{0,2}$/,
+        message: 'Au moins 3 caractères requis',
+        type:    'error' as const,
+      },
+      {
+        regex:   /[^a-zA-Z0-9._@-]/,
+        message: 'Caractères autorisés : lettres, chiffres, . _ @ -',
+        type:    'warning' as const,
+      },
+      {
+        regex:   /^[a-zA-Z0-9._@-]{3,}$/,
+        message: 'Identifiant valide',
+        type:    'success' as const,
+      },
+    ],
+    realTimeValidation: true,
+    triggerVibration:   true,
+    showIcons:          true,
+    showMessages:       true,
+    debounceMs:         300,
+  };
+
+  const passwordValidation = {
+    rules: [
+      {
+        regex:   /^.{0,5}$/,
+        message: 'Minimum 6 caractères',
+        type:    'error' as const,
+      },
+      {
+        regex:   /^[a-zA-Z]+$/,
+        message: 'Ajoutez des chiffres ou symboles pour plus de sécurité',
+        type:    'warning' as const,
+      },
+      {
+        regex:   /^(?=.*[a-zA-Z])(?=.*[0-9\W]).{6,}$/,
+        message: 'Mot de passe robuste',
+        type:    'success' as const,
+      },
+    ],
+    realTimeValidation: true,
+    triggerVibration:   true,
+    showIcons:          true,
+    showMessages:       true,
+    debounceMs:         400,
+  };
+
+  // Erreur serveur → règles qui forcent l'état error sur tous les champs
+  const serverErrorValidation = {
+    rules: [
+      { regex: /^$/, message: loginError || 'Identifiants invalides', type: 'error' as const },
+    ],
+    realTimeValidation: true,
+    showIcons:          true,
+    showMessages:       false,
+  };
+
+  // Le bouton est actif seulement si les deux champs sont valides (success)
+  const isFormReady = userValidState === 'success' && passValidState === 'success' && !isLoginLoading;
+
+  // Padding droit du champ password : icône validation + bouton eye
+  const passRightPadding = passValidState !== 'idle' ? '4.5rem' : '2.75rem';
 
   return (
     <motion.div
@@ -178,9 +260,9 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
       {/* ── En-tête compact ── */}
       <div
         style={{
-          display:    'flex',
-          alignItems: 'center',
-          gap:        'var(--space-2)',
+          display:      'flex',
+          alignItems:   'center',
+          gap:          'var(--space-2)',
           marginBottom: 'var(--space-4)',
         }}
       >
@@ -198,49 +280,50 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
           }}
         >
           <ShieldCheck
-            style={{
-              width:  'var(--icon-sm)',
-              height: 'var(--icon-sm)',
-              color:  '#ffffff',
-            }}
+            style={{ width: 'var(--icon-sm)', height: 'var(--icon-sm)', color: '#ffffff' }}
           />
         </div>
         <div>
           <h2
             style={{
-              fontSize:    'var(--fs-sm)',
-              fontWeight:  'var(--fw-bold)',
-              color:       '#ffffff',
-              lineHeight:  'var(--fs-sm-lh)',
+              fontSize:   'var(--fs-sm)',
+              fontWeight: 'var(--fw-bold)',
+              color:      '#ffffff',
+              lineHeight: 'var(--fs-sm-lh)',
             }}
           >
             Connexion sécurisée
           </h2>
-          <p
-            style={{
-              fontSize: 'var(--fs-xs)',
-              color:    'rgba(255,255,255,0.40)',
-            }}
-          >
+          <p style={{ fontSize: 'var(--fs-xs)', color: 'rgba(255,255,255,0.40)' }}>
             IAM Local · Accès sécurisé
           </p>
         </div>
       </div>
 
       {/* ── Formulaire ── */}
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }} noValidate>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}
+        noValidate
+      >
+        {/* ── Champ Identifiant ── */}
         <OutlinedField
           label="Identifiant"
           type="text"
           value={username}
           onChange={setUsername}
           fieldIcon={{ icon: User, position: 'left' }}
-          placeholder="Nom d'utilisateur"
           autoComplete="username"
           required
           disabled={isLoginLoading}
+          labelBg={GLASS_BG}
+          validation={forceError ? serverErrorValidation : usernameValidation}
+          onValidationChange={(v) =>
+            setUserValidState(v ? v.type as 'error'|'warning'|'success' : 'idle')
+          }
         />
 
+        {/* ── Champ Mot de passe + bouton eye ── */}
         <div style={{ position: 'relative' }}>
           <OutlinedField
             label="Mot de passe"
@@ -251,13 +334,21 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
             autoComplete="current-password"
             required
             disabled={isLoginLoading}
+            labelBg={GLASS_BG}
+            rightPadding={passRightPadding}
+            validation={forceError ? serverErrorValidation : passwordValidation}
+            onValidationChange={(v) =>
+              setPassValidState(v ? v.type as 'error'|'warning'|'success' : 'idle')
+            }
           />
+          {/* Bouton eye — se déplace selon la présence de l'icône de validation */}
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
             style={{
               position:   'absolute',
-              right:      'var(--space-3)',
+              right:      passValidState !== 'idle' ? '2.5rem' : '0.75rem',
               top:        '50%',
               transform:  'translateY(-50%)',
               color:      'rgba(255,255,255,0.40)',
@@ -265,7 +356,9 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
               border:     'none',
               cursor:     'pointer',
               padding:    'var(--space-1)',
-              transition: 'var(--transition-colors)',
+              transition: 'right var(--dur-normal,200ms) ease, color var(--dur-normal,200ms) ease',
+              display:    'flex',
+              alignItems: 'center',
             }}
             tabIndex={-1}
           >
@@ -276,6 +369,7 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
+        {/* ── Mot de passe oublié ── */}
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Link
             to="/auth/forgot"
@@ -285,14 +379,16 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
               transition: 'var(--transition-colors)',
             }}
           >
-            Mot de passe oublié ?
+            Mot de passe oublié&nbsp;?
           </Link>
         </div>
 
+        {/* ── Bannière erreur serveur ── */}
         <AnimatePresence>
           {loginError && <ErrorBanner message={loginError} />}
         </AnimatePresence>
 
+        {/* ── Bouton de soumission ── */}
         <Button
           type="submit"
           style={{
@@ -302,12 +398,14 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
             fontSize:   'var(--fs-sm)',
             position:   'relative',
             overflow:   'hidden',
-            background: 'linear-gradient(135deg, var(--primary-900) 0%, var(--info-800) 100%)',
+            background: isFormReady
+              ? 'linear-gradient(135deg, var(--primary-600) 0%, var(--info-600) 100%)'
+              : 'linear-gradient(135deg, var(--primary-900) 0%, var(--info-800) 100%)',
             border:     '1px solid rgba(255,255,255,0.12)',
+            transition: 'background var(--dur-moderate,300ms) ease',
           }}
-          disabled={isLoginLoading || !username.trim() || !password.trim()}
+          disabled={!isFormReady}
         >
-          {/* Hover overlay */}
           <span
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
             style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%)' }}
@@ -318,7 +416,7 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
                 style={{ width: 'var(--icon-xs)', height: 'var(--icon-xs)' }}
                 className="animate-spin"
               />
-              Connexion...
+              Connexion…
             </span>
           ) : (
             <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
@@ -332,12 +430,12 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
       {/* ── Pied de formulaire ── */}
       <div
         style={{
-          marginTop:     'var(--space-3)',
-          paddingTop:    'var(--space-3)',
-          borderTop:     '1px solid rgba(255,255,255,0.10)',
-          display:       'flex',
-          alignItems:    'center',
-          justifyContent:'space-between',
+          marginTop:      'var(--space-3)',
+          paddingTop:     'var(--space-3)',
+          borderTop:      '1px solid rgba(255,255,255,0.10)',
+          display:        'flex',
+          alignItems:     'center',
+          justifyContent: 'space-between',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-1-5, 0.375rem)' }}>
@@ -350,9 +448,7 @@ function CredentialsForm({ onClose }: { onClose: () => void }) {
               background:   'var(--success-400)',
             }}
           />
-          <span style={{ fontSize: 'var(--fs-xs)', color: 'rgba(255,255,255,0.30)' }}>
-            SSL/TLS
-          </span>
+          <span style={{ fontSize: 'var(--fs-xs)', color: 'rgba(255,255,255,0.30)' }}>SSL/TLS</span>
         </div>
         <Link
           to="/modules/compte/creer"

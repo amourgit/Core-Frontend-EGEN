@@ -1,9 +1,10 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect, useRef } from "react"
-import { AlertTriangle, AlertCircle, CheckCircle, LucideIcon } from "lucide-react"
+import { useState, useEffect, useRef, useCallback } from "react"
+import { AlertTriangle, AlertCircle, CheckCircle, type LucideIcon } from "lucide-react"
 
+// ── Règles de validation ──────────────────────────────────────────────
 export interface ValidationRule {
   regex: RegExp
   message: string
@@ -16,6 +17,8 @@ export interface ValidationConfig {
   triggerVibration?: boolean
   showIcons?: boolean
   showMessages?: boolean
+  /** Délai en ms avant la validation temps-réel (debounce) */
+  debounceMs?: number
 }
 
 export interface FieldIcon {
@@ -24,7 +27,6 @@ export interface FieldIcon {
 }
 
 export interface BaseFieldProps {
-  // Propriétés de base
   label?: string
   placeholder?: string
   type?: "text" | "email" | "password" | "tel" | "url" | "number" | "search"
@@ -35,17 +37,20 @@ export interface BaseFieldProps {
   required?: boolean
   autoComplete?: string
   autoFocus?: boolean
-  
-  // Icône de champ (différente de l'icône de validation)
   fieldIcon?: FieldIcon
-  
-  // Configuration de validation
   validation?: ValidationConfig
-  
-  // Callbacks personnalisés
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onValidationChange?: (validation: ValidationRule | null) => void
+  /**
+   * Couleur de fond du label flottant — obligatoire sur fond glass/translucide
+   * pour que le label "coupe" visuellement la bordure.
+   * Exemple : "rgba(15,23,42,0.75)" pour un card glass sombre.
+   * Par défaut transparent (context classique).
+   */
+  labelBg?: string
+  /** Padding horizontal supplémentaire côté droit (ex. quand bouton eye présent) */
+  rightPadding?: string
 }
 
 const defaultValidation: ValidationConfig = {
@@ -53,348 +58,265 @@ const defaultValidation: ValidationConfig = {
   realTimeValidation: true,
   triggerVibration: true,
   showIcons: true,
-  showMessages: true
+  showMessages: true,
+  debounceMs: 0,
 }
 
-const defaultIcons = {
-  warning: AlertTriangle,
-  error: AlertCircle,
-  success: CheckCircle,
-}
+// ── Couleurs de validation via CSS vars du thème ──────────────────────
+const VALIDATION_COLORS = {
+  success: {
+    text:   "var(--success-400, #4ade80)",
+    border: "var(--success-500, #22c55e)",
+    msg:    "var(--success-400, #4ade80)",
+  },
+  error: {
+    text:   "var(--error-400, #f87171)",
+    border: "var(--error-500, #ef4444)",
+    msg:    "var(--error-400, #f87171)",
+  },
+  warning: {
+    text:   "var(--warning-400, #fbbf24)",
+    border: "var(--warning-500, #f59e0b)",
+    msg:    "var(--warning-400, #fbbf24)",
+  },
+} as const
 
+// ── Hook de validation avec debounce ─────────────────────────────────
 const useFieldValidation = (
   inputValue: string,
   validation: ValidationConfig,
   onValidationChange?: (validation: ValidationRule | null) => void
 ) => {
   const [currentValidation, setCurrentValidation] = useState<ValidationRule | null>(null)
-  const [isAnimating, setIsAnimating] = useState(false)
+  const [isAnimating,       setIsAnimating]       = useState(false)
+  const [animationType,     setAnimationType]     = useState<"error"|"success"|"warning"|null>(null)
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const triggerVibration = (type: "warning" | "error" | "success") => {
+  const triggerAnimation = useCallback((type: "warning" | "error" | "success") => {
     if (!validation.triggerVibration) return
-
+    setAnimationType(type)
     setIsAnimating(true)
-
-    // Vibration du navigateur si supportée
     if (navigator.vibrate) {
-      const vibrationPatterns = {
-        error: [100, 50, 100],
-        warning: [50, 30, 50],
-        success: [30]
-      }
-      navigator.vibrate(vibrationPatterns[type])
+      const patterns = { error: [100, 50, 100], warning: [50, 30, 50], success: [30] }
+      navigator.vibrate(patterns[type])
     }
+    setTimeout(() => { setIsAnimating(false); setAnimationType(null) }, 700)
+  }, [validation.triggerVibration])
 
-    // Animation CSS
-    setTimeout(() => setIsAnimating(false), 600)
-  }
-
-  // Validation en temps réel
   useEffect(() => {
-    if (!validation.realTimeValidation || !inputValue || validation.rules.length === 0) {
-      const newValidation = null
-      setCurrentValidation(newValidation)
-      onValidationChange?.(newValidation)
-      return
-    }
+    if (debounceRef.current) clearTimeout(debounceRef.current)
 
-    // Trouve la première règle qui ne passe pas
-    const failedRule = validation.rules.find((rule) => !rule.regex.test(inputValue))
-
-    if (failedRule) {
-      if (currentValidation?.type !== failedRule.type) {
-        triggerVibration(failedRule.type)
+    const delay = validation.debounceMs ?? 0
+    debounceRef.current = setTimeout(() => {
+      if (!validation.realTimeValidation || !inputValue || validation.rules.length === 0) {
+        setCurrentValidation(null)
+        onValidationChange?.(null)
+        return
       }
-      setCurrentValidation(failedRule)
-      onValidationChange?.(failedRule)
-    } else {
-      // Toutes les règles passent - cherche une règle de succès
-      const successRule = validation.rules.find((rule) => rule.type === "success" && rule.regex.test(inputValue))
-      if (successRule && currentValidation?.type !== "success") {
-        triggerVibration("success")
-        setCurrentValidation(successRule)
-        onValidationChange?.(successRule)
-      } else if (!successRule) {
-        const newValidation = null
-        setCurrentValidation(newValidation)
-        onValidationChange?.(newValidation)
-      }
-    }
-  }, [inputValue, validation.rules, validation.realTimeValidation, currentValidation?.type, onValidationChange])
 
-  return { currentValidation, isAnimating }
+      const failedRule = validation.rules.find(r => !r.regex.test(inputValue))
+      if (failedRule) {
+        if (currentValidation?.type !== failedRule.type) triggerAnimation(failedRule.type)
+        setCurrentValidation(failedRule)
+        onValidationChange?.(failedRule)
+      } else {
+        const successRule = validation.rules.find(r => r.type === "success" && r.regex.test(inputValue))
+        if (successRule) {
+          if (currentValidation?.type !== "success") triggerAnimation("success")
+          setCurrentValidation(successRule)
+          onValidationChange?.(successRule)
+        } else {
+          setCurrentValidation(null)
+          onValidationChange?.(null)
+        }
+      }
+    }, delay)
+
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue, validation.realTimeValidation, validation.rules, validation.debounceMs])
+
+  return { currentValidation, isAnimating, animationType }
 }
 
-// Composant pour l'icône de validation avec animation de slide
+// ── Icône de validation animée ────────────────────────────────────────
 const ValidationIcon: React.FC<{
   currentValidation: ValidationRule | null
   showIcons: boolean
-}> = ({ currentValidation, showIcons }) => {
+  animationType: "error" | "success" | "warning" | null
+}> = ({ currentValidation, showIcons, animationType }) => {
   const [isVisible, setIsVisible] = useState(false)
+  const [prevType,  setPrevType]  = useState<string | null>(null)
+  const [isSwapping, setIsSwapping] = useState(false)
 
   useEffect(() => {
     if (currentValidation && showIcons) {
-      // Petit délai avant de déclencher l'animation
-      setTimeout(() => setIsVisible(true), 50)
+      if (prevType && prevType !== currentValidation.type) {
+        // Transition entre états : sortie puis entrée
+        setIsSwapping(true)
+        setIsVisible(false)
+        setTimeout(() => {
+          setPrevType(currentValidation.type)
+          setIsSwapping(false)
+          setTimeout(() => setIsVisible(true), 30)
+        }, 200)
+      } else {
+        setPrevType(currentValidation.type)
+        setTimeout(() => setIsVisible(true), 50)
+      }
     } else {
       setIsVisible(false)
+      if (!currentValidation) setTimeout(() => setPrevType(null), 300)
     }
   }, [currentValidation, showIcons])
 
   if (!showIcons || !currentValidation) return null
 
-  const IconComponent = defaultIcons[currentValidation.type as keyof typeof defaultIcons]
+  const IconMap = { success: CheckCircle, error: AlertCircle, warning: AlertTriangle }
+  const IconComponent = IconMap[currentValidation.type as keyof typeof IconMap]
   if (!IconComponent) return null
 
-  const getIconColor = () => {
-    switch (currentValidation.type) {
-      case "success":
-        return "text-green-500"
-      case "error":
-        return "text-red-500"
-      case "warning":
-        return "text-blue-500"
-      default:
-        return "text-gray-500"
-    }
-  }
+  const color = VALIDATION_COLORS[currentValidation.type as keyof typeof VALIDATION_COLORS]?.text
+    ?? "rgba(255,255,255,0.5)"
+
+  // Animation selon le type
+  const iconAnim = animationType === "error"
+    ? "validIconShake 0.5s ease-out"
+    : animationType === "success"
+      ? "validIconBounce 0.5s ease-out"
+      : "validIconSlide 0.35s cubic-bezier(0.16,1,0.3,1)"
 
   return (
     <div
-      className={`
-        absolute right-3 top-1/2 transform -translate-y-1/2 z-10
-        transition-all duration-500 ease-out
-        ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}
-      `}
       style={{
-        transitionProperty: "opacity, transform"
+        position:          "absolute",
+        right:             "0.75rem",
+        top:               "50%",
+        transform:         isVisible && !isSwapping ? "translateY(-50%) scale(1)" : "translateY(-50%) scale(0.5)",
+        opacity:           isVisible && !isSwapping ? 1 : 0,
+        transition:        "opacity 0.25s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1)",
+        zIndex:            10,
+        pointerEvents:     "none",
       }}
     >
-      <IconComponent className={`h-5 w-5 ${getIconColor()} transition-colors duration-500`} />
+      <IconComponent
+        style={{
+          width:    "1.125rem",
+          height:   "1.125rem",
+          color,
+          animation: isVisible ? iconAnim : "none",
+          filter:   `drop-shadow(0 0 6px ${color})`,
+        }}
+      />
     </div>
   )
 }
 
-// Composant pour l'icône de champ (left ou label)
+// ── Icône de champ (position left ou label) ───────────────────────────
 const FieldIconComponent: React.FC<{
   fieldIcon?: FieldIcon
-  validationColor?: string
-}> = ({ fieldIcon, validationColor }) => {
+  color?: string
+}> = ({ fieldIcon, color }) => {
   if (!fieldIcon) return null
-
-  const IconComponent = fieldIcon.icon
-  const colorClass = validationColor || "bg-transparent text-white"
-
+  const Ic = fieldIcon.icon
   return (
-    <IconComponent 
-      className={`h-4 w-4 ${colorClass} transition-colors duration-500`}
+    <Ic
+      style={{
+        width:      "1rem",
+        height:     "1rem",
+        color:      color ?? "rgba(255,255,255,0.5)",
+        transition: "color var(--dur-normal,200ms) ease",
+        flexShrink: 0,
+      }}
     />
   )
 }
 
-// Composant FilledField
-export const FilledField: React.FC<BaseFieldProps> = ({
-  label,
-  placeholder = " ",
-  type = "text",
-  value = "",
-  onChange,
-  className = "",
-  disabled = false,
-  required = false,
-  autoComplete,
-  autoFocus,
-  fieldIcon,
-  validation = defaultValidation,
-  onFocus,
-  onBlur,
-  onValidationChange,
-}) => {
-  const [inputValue, setInputValue] = useState(value)
-  const [isFocused, setIsFocused] = useState(false)
-  const fieldRef = useRef<HTMLDivElement>(null)
+// ── Message de validation animé ───────────────────────────────────────
+const ValidationMessage: React.FC<{
+  currentValidation: ValidationRule | null
+  showMessages: boolean
+  fieldId: string
+}> = ({ currentValidation, showMessages, fieldId }) => {
+  const [visible, setVisible] = useState(false)
+  const [text,    setText]    = useState<ValidationRule | null>(null)
 
-  const { currentValidation, isAnimating } = useFieldValidation(
-    inputValue,
-    validation,
-    onValidationChange
-  )
-
-  // Synchronisation avec la valeur externe
   useEffect(() => {
-    if (value !== inputValue) {
-      setInputValue(value)
+    if (currentValidation && showMessages) {
+      setText(currentValidation)
+      setTimeout(() => setVisible(true), 30)
+    } else {
+      setVisible(false)
+      setTimeout(() => setText(null), 250)
     }
-  }, [value, inputValue])
+  }, [currentValidation, showMessages])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value
-    setInputValue(newValue)
-    onChange?.(newValue)
-  }
+  if (!text) return null
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(true)
-    onFocus?.(e)
-  }
+  const color = VALIDATION_COLORS[text.type as keyof typeof VALIDATION_COLORS]?.msg
+    ?? "rgba(255,255,255,0.5)"
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(false)
-    onBlur?.(e)
-  }
-
-  const getValidationClasses = () => {
-    if (!currentValidation) return {
-      border: "border-gray-300 dark:border-gray-600",
-      label: "text-gray-500 dark:text-gray-400",
-      input: "text-gray-900 dark:text-white",
-      message: "",
-      focus: "focus:border-blue-600 dark:focus:border-blue-500"
-    }
-
-    switch (currentValidation.type) {
-      case "success":
-        return {
-          border: "border-green-600 dark:border-green-500",
-          label: "text-green-600 dark:text-green-500",
-          input: "text-green-600 dark:text-green-500",
-          message: "text-green-600 dark:text-green-400",
-          focus: "focus:border-green-600 dark:focus:border-green-500"
-        }
-      case "error":
-        return {
-          border: "border-red-600 dark:border-red-500",
-          label: "text-red-600 dark:text-red-500",
-          input: "text-red-600 dark:text-red-500",
-          message: "text-red-600 dark:text-red-400",
-          focus: "focus:border-red-600 dark:focus:border-red-500"
-        }
-      case "warning":
-        return {
-          border: "border-blue-600 dark:border-blue-500",
-          label: "text-blue-600 dark:text-blue-500",
-          input: "text-blue-600 dark:text-blue-500",
-          message: "text-blue-600 dark:text-blue-400",
-          focus: "focus:border-blue-600 dark:focus:border-blue-500"
-        }
-      default:
-        return {
-          border: "border-gray-300 dark:border-gray-600",
-          label: "text-white dark:text-gray-400",
-          input: "text-gray-900 dark:text-white",
-          message: "",
-          focus: "focus:border-blue-600 dark:focus:border-blue-500"
-        }
-    }
-  }
-
-  const validationClasses = getValidationClasses()
-  const hasLeftIcon = fieldIcon?.position === "left"
-  const hasLabelIcon = fieldIcon?.position === "label"
+  const prefixes = { success: "✓", error: "✕", warning: "⚠" }
+  const prefix = prefixes[text.type as keyof typeof prefixes] ?? ""
 
   return (
-    <div className={className}>
-      <div className="relative" ref={fieldRef}>
-        {/* Icône à gauche du champ */}
-        {hasLeftIcon && (
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 z-10">
-            <FieldIconComponent fieldIcon={fieldIcon} validationColor={validationClasses.label} />
-          </div>
-        )}
-
-        <input
-          type={type}
-          id={`filled_${label?.toLowerCase().replace(/\s+/g, '_')}`}
-          value={inputValue}
-          onChange={handleInputChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          disabled={disabled}
-          required={required}
-          autoComplete={autoComplete}
-          autoFocus={autoFocus}
-          className={`
-            block rounded-t-lg pb-2.5 pt-5 w-full text-sm bg-transparent 
-            border-0 border-b-2 appearance-none
-            focus:outline-none focus:ring-0 peer transition-all duration-500
-            ${validationClasses.border} ${validationClasses.focus} ${validationClasses.input}
-            ${isAnimating ? 'animate-pulse' : ''}
-            ${hasLeftIcon ? 'pl-10 pr-2.5' : 'px-2.5'}
-            ${validation.showIcons && currentValidation ? 'pr-12' : ''}
-            disabled:cursor-not-allowed disabled:opacity-50
-          `}
-          style={{
-            backgroundColor: 'rgba(0,0,0,0)',
-            WebkitBoxShadow: '0 0 0 1000px rgba(0,0,0,0) inset',
-            WebkitTextFillColor: '#ffffff',
-            WebkitAppearance: 'none',
-            MozAppearance: 'textfield',
-            colorScheme: 'dark',
-          } as React.CSSProperties}
-          placeholder={placeholder}
-          aria-describedby={validation.showMessages && currentValidation ? `filled_${label?.toLowerCase().replace(/\s+/g, '_')}_help` : undefined}
-        />
-        
-        {label && (
-          <label
-            htmlFor={`filled_${label?.toLowerCase().replace(/\s+/g, '_')}`}
-            className={`
-              absolute text-sm duration-500 transform -translate-y-4 scale-75 top-4 z-10 origin-[0]
-              peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 
-              peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto
-              flex items-center gap-1.5 bg-transparent text-white
-              ${hasLeftIcon ? 'start-10' : 'start-2.5'}
-              ${validationClasses.label}
-            `}
-          >
-            {hasLabelIcon && <FieldIconComponent fieldIcon={fieldIcon} validationColor={validationClasses.label} />}
-            <span>
-              {label}
-              {required && <span className="text-red-500 ml-1">*</span>}
-            </span>
-          </label>
-        )}
-        
-        <ValidationIcon 
-          currentValidation={currentValidation} 
-          showIcons={validation.showIcons || false}
-        />
-      </div>
-      
-      {validation.showMessages && currentValidation && (
-        <p 
-          id={`filled_${label?.toLowerCase().replace(/\s+/g, '_')}_help`}
-          className={`mt-2 text-xs ${validationClasses.message} transition-all duration-500 opacity-0 animate-fadeIn`}
-          style={{
-            animation: "fadeIn 0.5s ease-out forwards"
-          }}
-        >
-          <span className="font-medium">
-            {currentValidation.type === 'success' && 'Well done!'}
-            {currentValidation.type === 'error' && 'Oh, snapp!'}
-            {currentValidation.type === 'warning' && 'Attention!'}
-          </span>{' '}
-          {currentValidation.message}
-        </p>
-      )}
-      
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-4px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </div>
+    <p
+      id={`${fieldId}_help`}
+      style={{
+        marginTop:   "0.375rem",
+        fontSize:    "var(--fs-xs, 0.75rem)",
+        color,
+        opacity:     visible ? 1 : 0,
+        transform:   visible ? "translateY(0)" : "translateY(-6px)",
+        transition:  "opacity 0.25s ease, transform 0.25s ease",
+        display:     "flex",
+        alignItems:  "center",
+        gap:         "0.25rem",
+        fontWeight:  "500",
+        letterSpacing: "0.01em",
+        filter:      `drop-shadow(0 0 4px ${color}40)`,
+        paddingLeft: "0.125rem",
+      }}
+    >
+      <span style={{ fontFamily: "monospace", fontSize: "0.85em", opacity: 0.8 }}>{prefix}</span>
+      {text.message}
+    </p>
   )
 }
 
-// Composant OutlinedField
+// ──────────────────────────────────────────────────────────────────────
+// KEYFRAMES inline partagés entre tous les composants Field
+// ──────────────────────────────────────────────────────────────────────
+const FIELD_KEYFRAMES = `
+@keyframes validIconShake {
+  0%,100%{ transform: translateY(-50%) scale(1) rotate(0deg); }
+  15%    { transform: translateY(-50%) scale(1.15) rotate(-12deg); }
+  30%    { transform: translateY(-50%) scale(1.1)  rotate(10deg); }
+  45%    { transform: translateY(-50%) scale(1.05) rotate(-8deg); }
+  60%    { transform: translateY(-50%) scale(1.02) rotate(5deg); }
+}
+@keyframes validIconBounce {
+  0%  { transform: translateY(-50%) scale(0.5); opacity:0; }
+  60% { transform: translateY(-60%) scale(1.2); opacity:1; }
+  80% { transform: translateY(-45%) scale(0.95); }
+  100%{ transform: translateY(-50%) scale(1);  opacity:1; }
+}
+@keyframes validIconSlide {
+  0%  { transform: translateY(-50%) scale(0.5) translateX(8px); opacity:0; }
+  100%{ transform: translateY(-50%) scale(1)   translateX(0);   opacity:1; }
+}
+@keyframes fieldShake {
+  0%,100%{ transform: translateX(0); }
+  20%    { transform: translateX(-5px); }
+  40%    { transform: translateX(5px); }
+  60%    { transform: translateX(-3px); }
+  80%    { transform: translateX(3px); }
+}
+`
+
+// ──────────────────────────────────────────────────────────────────────
+// OutlinedField — Champ avec bordure Material Design adapté glass
+// ──────────────────────────────────────────────────────────────────────
 export const OutlinedField: React.FC<BaseFieldProps> = ({
   label,
   placeholder = " ",
@@ -411,390 +333,312 @@ export const OutlinedField: React.FC<BaseFieldProps> = ({
   onFocus,
   onBlur,
   onValidationChange,
+  labelBg,
+  rightPadding,
 }) => {
   const [inputValue, setInputValue] = useState(value)
-  const [isFocused, setIsFocused] = useState(false)
-  const fieldRef = useRef<HTMLDivElement>(null)
+  const [isFocused,  setIsFocused]  = useState(false)
 
-  const { currentValidation, isAnimating } = useFieldValidation(
-    inputValue,
-    validation,
-    onValidationChange
+  const { currentValidation, isAnimating, animationType } = useFieldValidation(
+    inputValue, validation, onValidationChange,
   )
 
-  // Synchronisation avec la valeur externe
   useEffect(() => {
-    if (value !== inputValue) {
-      setInputValue(value)
-    }
-  }, [value, inputValue])
+    if (value !== inputValue) setInputValue(value)
+  }, [value]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value
-    setInputValue(newValue)
-    onChange?.(newValue)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value); onChange?.(e.target.value)
   }
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => { setIsFocused(true);  onFocus?.(e) }
+  const handleBlur  = (e: React.FocusEvent<HTMLInputElement>) => { setIsFocused(false); onBlur?.(e)  }
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(true)
-    onFocus?.(e)
-  }
+  // Couleurs dynamiques selon l'état
+  const stateColor = currentValidation
+    ? VALIDATION_COLORS[currentValidation.type as keyof typeof VALIDATION_COLORS]
+    : null
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(false)
-    onBlur?.(e)
-  }
+  const borderColor = stateColor
+    ? stateColor.border
+    : isFocused
+      ? "var(--primary-400, #818cf8)"
+      : "rgba(255,255,255,0.20)"
 
-  const getValidationClasses = () => {
-    if (!currentValidation) return {
-      border: "border-gray-300 dark:border-gray-600",
-      label: "bg-transparent text-white dark:text-gray-400",
-      input: "bg-transparent text-white dark:text-white",
-      message: "",
-      focus: "focus:border-blue-600 dark:focus:border-blue-500"
-    }
+  const labelColor = stateColor
+    ? stateColor.text
+    : isFocused
+      ? "var(--primary-300, #a5b4fc)"
+      : "rgba(255,255,255,0.50)"
 
-    switch (currentValidation.type) {
-      case "success":
-        return {
-          border: "border-green-600 dark:border-green-500",
-          label: "text-green-600 dark:text-green-500",
-          input: "text-green-600 dark:text-green-500",
-          message: "text-green-600 dark:text-green-400",
-          focus: "focus:border-green-600 dark:focus:border-green-500"
-        }
-      case "error":
-        return {
-          border: "border-red-600 dark:border-red-500",
-          label: "text-red-600 dark:text-red-500",
-          input: "text-red-600 dark:text-red-500",
-          message: "text-red-600 dark:text-red-400",
-          focus: "focus:border-red-600 dark:focus:border-red-500"
-        }
-      case "warning":
-        return {
-          border: "border-blue-600 dark:border-blue-500",
-          label: "text-blue-600 dark:text-blue-500",
-          input: "text-blue-600 dark:text-blue-500",
-          message: "text-blue-600 dark:text-blue-400",
-          focus: "focus:border-blue-600 dark:focus:border-blue-500"
-        }
-      default:
-        return {
-          border: "border-gray-300 dark:border-gray-600",
-          label: "text-white dark:text-gray-400 bg-transparent text-white",
-          input: "text-gray-900 dark:text-white",
-          message: "",
-          focus: "focus:border-blue-600 dark:focus:border-blue-500"
-        }
-    }
-  }
-
-  const validationClasses = getValidationClasses()
-  const hasLeftIcon = fieldIcon?.position === "left"
+  const hasLeftIcon  = fieldIcon?.position === "left"
   const hasLabelIcon = fieldIcon?.position === "label"
+  const fieldId      = `outlined_${label?.toLowerCase().replace(/\s+/g, "_") ?? "field"}`
+
+  // Padding droit : espace pour l'icône de validation + bouton optionnel
+  const prRight = rightPadding ?? (validation.showIcons && currentValidation ? "2.5rem" : "0.75rem")
 
   return (
-    <div className={className}>
-      <div className="relative" ref={fieldRef}>
-        {/* Icône à gauche du champ */}
+    <div className={className} style={{ position: "relative" }}>
+      <style>{FIELD_KEYFRAMES}</style>
+
+      <div
+        style={{
+          position: "relative",
+          animation: isAnimating && animationType === "error" ? "fieldShake 0.5s ease-out" : "none",
+        }}
+      >
+        {/* Icône gauche */}
         {hasLeftIcon && (
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 z-10 bg-transparent text-white">
-            <FieldIconComponent fieldIcon={fieldIcon} validationColor={validationClasses.label} />
+          <div
+            style={{
+              position:  "absolute",
+              left:      "0.75rem",
+              top:       "50%",
+              transform: "translateY(-50%)",
+              zIndex:    10,
+            }}
+          >
+            <FieldIconComponent fieldIcon={fieldIcon} color={labelColor} />
           </div>
         )}
 
+        {/* Input */}
         <input
+          id={fieldId}
           type={type}
-          id={`outlined_${label?.toLowerCase().replace(/\s+/g, '_')}`}
           value={inputValue}
-          onChange={handleInputChange}
+          onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           disabled={disabled}
           required={required}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
-          className={`
-            block pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg 
-            border-1 appearance-none focus:outline-none focus:ring-0 peer
-            transition-all duration-500 text-white
-            ${validationClasses.border} ${validationClasses.focus} ${validationClasses.input}
-            ${isAnimating ? 'animate-pulse' : ''}
-            ${hasLeftIcon ? 'pl-10 pr-2.5' : 'px-2.5'}
-            ${validation.showIcons && currentValidation ? 'pr-12' : ''}
-            disabled:cursor-not-allowed disabled:opacity-50
-          `}
-          style={{
-            backgroundColor: 'rgba(0,0,0,0)',
-            WebkitBoxShadow: '0 0 0 1000px rgba(0,0,0,0) inset',
-            WebkitTextFillColor: '#ffffff',
-            WebkitAppearance: 'none',
-            MozAppearance: 'textfield',
-            colorScheme: 'dark',
-          } as React.CSSProperties}
           placeholder={placeholder}
-          aria-describedby={validation.showMessages && currentValidation ? `outlined_${label?.toLowerCase().replace(/\s+/g, '_')}_help` : undefined}
+          aria-describedby={validation.showMessages && currentValidation ? `${fieldId}_help` : undefined}
+          style={{
+            display:         "block",
+            width:           "100%",
+            paddingTop:      "1rem",
+            paddingBottom:   "0.625rem",
+            paddingLeft:     hasLeftIcon ? "2.5rem" : "0.75rem",
+            paddingRight:    prRight,
+            fontSize:        "var(--fs-sm, 0.875rem)",
+            lineHeight:      "var(--fs-sm-lh, 1.25rem)",
+            background:      "transparent",
+            borderRadius:    "var(--radius-md, 0.75rem)",
+            border:          `1.5px solid ${borderColor}`,
+            outline:         "none",
+            color:           "#ffffff",
+            transition:      "border-color var(--dur-normal,200ms) ease, box-shadow var(--dur-normal,200ms) ease",
+            boxShadow:       isFocused
+              ? `0 0 0 2px ${stateColor?.border ?? "var(--primary-500,#6366f1)"}28, inset 0 1px 0 rgba(255,255,255,0.05)`
+              : "inset 0 1px 0 rgba(255,255,255,0.04)",
+            cursor:          disabled ? "not-allowed" : "text",
+            opacity:         disabled ? 0.5 : 1,
+            WebkitBoxShadow: "0 0 0 1000px rgba(0,0,0,0) inset",
+            WebkitTextFillColor: "#ffffff",
+            colorScheme:     "dark",
+          } as React.CSSProperties}
         />
-        
+
+        {/* Label flottant */}
         {label && (
           <label
-            htmlFor={`outlined_${label?.toLowerCase().replace(/\s+/g, '_')}`}
-            className={`
-              absolute text-sm duration-500 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] 
-              dark:bg-gray-900 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 
-              peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 
-              peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 
-              rtl:peer-focus:left-auto flex items-center gap-1.5 bg-transparent text-white
-              ${hasLeftIcon ? 'start-8' : 'start-1'}
-              ${validationClasses.label}
-            `}
+            htmlFor={fieldId}
+            style={{
+              position:    "absolute",
+              left:        hasLeftIcon ? "2.25rem" : "0.625rem",
+              top:         inputValue || isFocused || placeholder !== " " ? "0" : "50%",
+              transform:   inputValue || isFocused || placeholder !== " "
+                ? "translateY(-50%) scale(0.78)"
+                : "translateY(-50%) scale(1)",
+              transformOrigin: "left center",
+              transition:  "all var(--dur-moderate,300ms) cubic-bezier(0.16,1,0.3,1)",
+              fontSize:    "var(--fs-sm, 0.875rem)",
+              fontWeight:  "500",
+              color:       labelColor,
+              zIndex:      10,
+              pointerEvents: "none",
+              display:     "flex",
+              alignItems:  "center",
+              gap:         "0.25rem",
+              // Fond qui "coupe" la bordure pour le label flottant
+              padding:     inputValue || isFocused || placeholder !== " " ? "0 0.25rem" : "0",
+              background:  inputValue || isFocused || placeholder !== " "
+                ? (labelBg ?? "rgba(10,10,20,0.80)")
+                : "transparent",
+              borderRadius: "2px",
+            }}
           >
-            {hasLabelIcon && <FieldIconComponent fieldIcon={fieldIcon} validationColor={validationClasses.label} />}
+            {hasLabelIcon && <FieldIconComponent fieldIcon={fieldIcon} color={labelColor} />}
             <span>
               {label}
-              {required && <span className="text-red-500 ml-1">*</span>}
+              {required && (
+                <span style={{ color: "var(--error-400,#f87171)", marginLeft: "0.2rem" }}>*</span>
+              )}
             </span>
           </label>
         )}
-        
-        <ValidationIcon 
-          currentValidation={currentValidation} 
-          showIcons={validation.showIcons || false}
+
+        {/* Icône de validation */}
+        <ValidationIcon
+          currentValidation={currentValidation}
+          showIcons={validation.showIcons ?? true}
+          animationType={animationType}
         />
       </div>
-      
-      {validation.showMessages && currentValidation && (
-        <p 
-          id={`outlined_${label?.toLowerCase().replace(/\s+/g, '_')}_help`}
-          className={`mt-2 text-xs ${validationClasses.message} transition-all duration-500 opacity-0 animate-fadeIn`}
-          style={{
-            animation: "fadeIn 0.5s ease-out forwards"
-          }}
-        >
-          <span className="font-medium">
-            {currentValidation.type === 'success' && 'Well done!'}
-            {currentValidation.type === 'error' && 'Oh, snapp!'}
-            {currentValidation.type === 'warning' && 'Attention!'}
-          </span>{' '}
-          {currentValidation.message}
-        </p>
-      )}
-      
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-4px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+
+      {/* Message de validation */}
+      <ValidationMessage
+        currentValidation={currentValidation}
+        showMessages={validation.showMessages ?? true}
+        fieldId={fieldId}
+      />
     </div>
   )
 }
 
-// Composant StandardField
-export const StandardField: React.FC<BaseFieldProps> = ({
-  label,
-  placeholder = " ",
-  type = "text",
-  value = "",
-  onChange,
-  className = "",
-  disabled = false,
-  required = false,
-  autoComplete,
-  autoFocus,
-  fieldIcon,
-  validation = defaultValidation,
-  onFocus,
-  onBlur,
-  onValidationChange,
+// ──────────────────────────────────────────────────────────────────────
+// FilledField — Champ rempli (style Google Material)
+// ──────────────────────────────────────────────────────────────────────
+export const FilledField: React.FC<BaseFieldProps> = ({
+  label, placeholder = " ", type = "text", value = "", onChange,
+  className = "", disabled = false, required = false, autoComplete, autoFocus,
+  fieldIcon, validation = defaultValidation, onFocus, onBlur, onValidationChange, labelBg,
 }) => {
   const [inputValue, setInputValue] = useState(value)
-  const [isFocused, setIsFocused] = useState(false)
-  const fieldRef = useRef<HTMLDivElement>(null)
+  const [isFocused,  setIsFocused]  = useState(false)
+  const { currentValidation, isAnimating, animationType } = useFieldValidation(inputValue, validation, onValidationChange)
 
-  const { currentValidation, isAnimating } = useFieldValidation(
-    inputValue,
-    validation,
-    onValidationChange
-  )
+  useEffect(() => { if (value !== inputValue) setInputValue(value) }, [value]) // eslint-disable-line
 
-  // Synchronisation avec la valeur externe
-  useEffect(() => {
-    if (value !== inputValue) {
-      setInputValue(value)
-    }
-  }, [value, inputValue])
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => { setInputValue(e.target.value); onChange?.(e.target.value) }
+  const handleFocus  = (e: React.FocusEvent<HTMLInputElement>)  => { setIsFocused(true);  onFocus?.(e) }
+  const handleBlur   = (e: React.FocusEvent<HTMLInputElement>)  => { setIsFocused(false); onBlur?.(e)  }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value
-    setInputValue(newValue)
-    onChange?.(newValue)
-  }
-
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(true)
-    onFocus?.(e)
-  }
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    setIsFocused(false)
-    onBlur?.(e)
-  }
-
-  const getValidationClasses = () => {
-    if (!currentValidation) return {
-      border: "border-gray-300 dark:border-gray-600",
-      label: "text-gray-500 dark:text-gray-400",
-      input: "text-gray-900 dark:text-white",
-      message: "",
-      focus: "focus:border-blue-600 dark:focus:border-blue-500"
-    }
-
-    switch (currentValidation.type) {
-      case "success":
-        return {
-          border: "border-green-600 dark:border-green-500",
-          label: "text-green-600 dark:text-green-500",
-          input: "text-green-600 dark:text-green-500",
-          message: "text-green-600 dark:text-green-400",
-          focus: "focus:border-green-600 dark:focus:border-green-500"
-        }
-      case "error":
-        return {
-          border: "border-red-600 dark:border-red-500",
-          label: "text-red-600 dark:text-red-500",
-          input: "text-red-600 dark:text-red-500",
-          message: "text-red-600 dark:text-red-400",
-          focus: "focus:border-red-600 dark:focus:border-red-500"
-        }
-      case "warning":
-        return {
-          border: "border-blue-600 dark:border-blue-500",
-          label: "text-blue-600 dark:text-blue-500",
-          input: "text-blue-600 dark:text-blue-500",
-          message: "text-blue-600 dark:text-blue-400",
-          focus: "focus:border-blue-600 dark:focus:border-blue-500"
-        }
-      default:
-        return {
-          border: "border-gray-300 dark:border-gray-600",
-          label: "dark:text-gray-400 bg-transparent text-white",
-          input: "text-gray-900 dark:text-white",
-          message: "",
-          focus: "focus:border-blue-600 dark:focus:border-blue-500"
-        }
-    }
-  }
-
-  const validationClasses = getValidationClasses()
-  const hasLeftIcon = fieldIcon?.position === "left"
+  const stateColor  = currentValidation ? VALIDATION_COLORS[currentValidation.type as keyof typeof VALIDATION_COLORS] : null
+  const borderColor = stateColor?.border ?? (isFocused ? "var(--primary-400,#818cf8)" : "rgba(255,255,255,0.20)")
+  const labelColor  = stateColor?.text   ?? (isFocused ? "var(--primary-300,#a5b4fc)" : "rgba(255,255,255,0.50)")
+  const hasLeftIcon  = fieldIcon?.position === "left"
   const hasLabelIcon = fieldIcon?.position === "label"
+  const fieldId = `filled_${label?.toLowerCase().replace(/\s+/g, "_") ?? "field"}`
 
   return (
     <div className={className}>
-      <div className="relative z-0" ref={fieldRef}>
-        {/* Icône à gauche du champ */}
+      <style>{FIELD_KEYFRAMES}</style>
+      <div style={{ position: "relative", animation: isAnimating && animationType === "error" ? "fieldShake 0.5s ease-out" : "none" }}>
         {hasLeftIcon && (
-          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
-            <FieldIconComponent fieldIcon={fieldIcon} validationColor={validationClasses.label} />
+          <div style={{ position: "absolute", left: "0.75rem", top: "50%", transform: "translateY(-50%)", zIndex: 10 }}>
+            <FieldIconComponent fieldIcon={fieldIcon} color={labelColor} />
           </div>
         )}
-
         <input
-          type={type}
-          id={`standard_${label?.toLowerCase().replace(/\s+/g, '_')}`}
-          value={inputValue}
-          onChange={handleInputChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          disabled={disabled}
-          required={required}
-          autoComplete={autoComplete}
-          autoFocus={autoFocus}
-          className={`
-            block py-2.5 w-full text-sm bg-transparent border-0 border-b-2 
-            appearance-none focus:outline-none focus:ring-0 peer
-            transition-all duration-500
-            ${validationClasses.border} ${validationClasses.focus} ${validationClasses.input}
-            ${isAnimating ? 'animate-pulse' : ''}
-            ${hasLeftIcon ? 'pl-6 pr-0' : 'px-0'}
-            ${validation.showIcons && currentValidation ? 'pr-12' : ''}
-            disabled:cursor-not-allowed disabled:opacity-50
-          `}
-          style={{
-            backgroundColor: 'rgba(0,0,0,0)',
-            WebkitBoxShadow: '0 0 0 1000px rgba(0,0,0,0) inset',
-            WebkitTextFillColor: '#ffffff',
-            WebkitAppearance: 'none',
-            MozAppearance: 'textfield',
-            colorScheme: 'dark',
-          } as React.CSSProperties}
+          id={fieldId} type={type} value={inputValue}
+          onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur}
+          disabled={disabled} required={required} autoComplete={autoComplete} autoFocus={autoFocus}
           placeholder={placeholder}
-          aria-describedby={validation.showMessages && currentValidation ? `standard_${label?.toLowerCase().replace(/\s+/g, '_')}_help` : undefined}
+          style={{
+            display: "block", width: "100%",
+            paddingTop: "1.25rem", paddingBottom: "0.5rem",
+            paddingLeft: hasLeftIcon ? "2.5rem" : "0.625rem",
+            paddingRight: validation.showIcons && currentValidation ? "2.5rem" : "0.625rem",
+            fontSize: "var(--fs-sm,0.875rem)", background: "rgba(255,255,255,0.06)",
+            borderTopLeftRadius: "var(--radius-md,0.75rem)", borderTopRightRadius: "var(--radius-md,0.75rem)",
+            borderBottom: `2px solid ${borderColor}`, border: "none", borderBottomStyle: "solid",
+            borderBottomWidth: "2px", borderBottomColor: borderColor,
+            outline: "none", color: "#ffffff", transition: "border-color var(--dur-normal,200ms) ease",
+            opacity: disabled ? 0.5 : 1, cursor: disabled ? "not-allowed" : "text",
+            WebkitBoxShadow: "0 0 0 1000px rgba(0,0,0,0) inset", WebkitTextFillColor: "#ffffff", colorScheme: "dark",
+          } as React.CSSProperties}
         />
-        
         {label && (
-          <label
-            htmlFor={`standard_${label?.toLowerCase().replace(/\s+/g, '_')}`}
-            className={`
-              absolute text-sm duration-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] 
-              peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
-              peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 
-              rtl:peer-focus:left-auto flex items-center gap-1.5 bg-transparent text-white
-              ${hasLeftIcon ? 'start-6' : 'start-0'}
-              ${validationClasses.label}
-            `}
-          >
-            {hasLabelIcon && <FieldIconComponent fieldIcon={fieldIcon} validationColor={validationClasses.label} />}
-            <span>
-              {label}
-              {required && <span className="text-red-500 ml-1">*</span>}
-            </span>
+          <label htmlFor={fieldId} style={{
+            position: "absolute", left: hasLeftIcon ? "2.5rem" : "0.625rem",
+            top: inputValue || isFocused ? "0.3rem" : "50%",
+            transform: inputValue || isFocused ? "scale(0.78)" : "translateY(-50%) scale(1)",
+            transformOrigin: "left top", transition: "all var(--dur-moderate,300ms) cubic-bezier(0.16,1,0.3,1)",
+            fontSize: "var(--fs-sm,0.875rem)", fontWeight: "500", color: labelColor,
+            zIndex: 10, pointerEvents: "none", display: "flex", alignItems: "center", gap: "0.25rem",
+          }}>
+            {hasLabelIcon && <FieldIconComponent fieldIcon={fieldIcon} color={labelColor} />}
+            <span>{label}{required && <span style={{ color: "var(--error-400,#f87171)", marginLeft: "0.2rem" }}>*</span>}</span>
           </label>
         )}
-        
-        <ValidationIcon 
-          currentValidation={currentValidation} 
-          showIcons={validation.showIcons || false}
-        />
+        <ValidationIcon currentValidation={currentValidation} showIcons={validation.showIcons ?? true} animationType={animationType} />
       </div>
-      
-      {validation.showMessages && currentValidation && (
-        <p 
-          id={`standard_${label?.toLowerCase().replace(/\s+/g, '_')}_help`}
-          className={`mt-2 text-xs ${validationClasses.message} transition-all duration-500 opacity-0 animate-fadeIn`}
+      <ValidationMessage currentValidation={currentValidation} showMessages={validation.showMessages ?? true} fieldId={fieldId} />
+    </div>
+  )
+}
+
+// ──────────────────────────────────────────────────────────────────────
+// StandardField — Champ standard souligné
+// ──────────────────────────────────────────────────────────────────────
+export const StandardField: React.FC<BaseFieldProps> = ({
+  label, placeholder = " ", type = "text", value = "", onChange,
+  className = "", disabled = false, required = false, autoComplete, autoFocus,
+  fieldIcon, validation = defaultValidation, onFocus, onBlur, onValidationChange,
+}) => {
+  const [inputValue, setInputValue] = useState(value)
+  const [isFocused,  setIsFocused]  = useState(false)
+  const { currentValidation, isAnimating, animationType } = useFieldValidation(inputValue, validation, onValidationChange)
+
+  useEffect(() => { if (value !== inputValue) setInputValue(value) }, [value]) // eslint-disable-line
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => { setInputValue(e.target.value); onChange?.(e.target.value) }
+  const handleFocus  = (e: React.FocusEvent<HTMLInputElement>)  => { setIsFocused(true);  onFocus?.(e) }
+  const handleBlur   = (e: React.FocusEvent<HTMLInputElement>)  => { setIsFocused(false); onBlur?.(e)  }
+
+  const stateColor  = currentValidation ? VALIDATION_COLORS[currentValidation.type as keyof typeof VALIDATION_COLORS] : null
+  const borderColor = stateColor?.border ?? (isFocused ? "var(--primary-400,#818cf8)" : "rgba(255,255,255,0.25)")
+  const labelColor  = stateColor?.text   ?? (isFocused ? "var(--primary-300,#a5b4fc)" : "rgba(255,255,255,0.50)")
+  const hasLeftIcon  = fieldIcon?.position === "left"
+  const hasLabelIcon = fieldIcon?.position === "label"
+  const fieldId = `standard_${label?.toLowerCase().replace(/\s+/g, "_") ?? "field"}`
+
+  return (
+    <div className={className}>
+      <style>{FIELD_KEYFRAMES}</style>
+      <div style={{ position: "relative", animation: isAnimating && animationType === "error" ? "fieldShake 0.5s ease-out" : "none" }}>
+        {hasLeftIcon && (
+          <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", zIndex: 10 }}>
+            <FieldIconComponent fieldIcon={fieldIcon} color={labelColor} />
+          </div>
+        )}
+        <input
+          id={fieldId} type={type} value={inputValue}
+          onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur}
+          disabled={disabled} required={required} autoComplete={autoComplete} autoFocus={autoFocus}
+          placeholder={placeholder}
           style={{
-            animation: "fadeIn 0.5s ease-out forwards"
-          }}
-        >
-          <span className="font-medium">
-            {currentValidation.type === 'success' && 'Well done!'}
-            {currentValidation.type === 'error' && 'Oh, snapp!'}
-            {currentValidation.type === 'warning' && 'Attention!'}
-          </span>{' '}
-          {currentValidation.message}
-        </p>
-      )}
-      
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-4px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+            display: "block", width: "100%", paddingTop: "0.625rem", paddingBottom: "0.5rem",
+            paddingLeft: hasLeftIcon ? "1.5rem" : "0",
+            paddingRight: validation.showIcons && currentValidation ? "2rem" : "0",
+            fontSize: "var(--fs-sm,0.875rem)", background: "transparent",
+            borderBottom: `2px solid ${borderColor}`, border: "none", borderBottomStyle: "solid",
+            borderBottomWidth: "2px", borderBottomColor: borderColor,
+            outline: "none", color: "#ffffff", transition: "border-color var(--dur-normal,200ms) ease",
+            opacity: disabled ? 0.5 : 1, cursor: disabled ? "not-allowed" : "text",
+            WebkitBoxShadow: "0 0 0 1000px rgba(0,0,0,0) inset", WebkitTextFillColor: "#ffffff", colorScheme: "dark",
+          } as React.CSSProperties}
+        />
+        {label && (
+          <label htmlFor={fieldId} style={{
+            position: "absolute", left: hasLeftIcon ? "1.5rem" : "0",
+            top: inputValue || isFocused ? "-1rem" : "50%",
+            transform: inputValue || isFocused ? "scale(0.78)" : "translateY(-50%) scale(1)",
+            transformOrigin: "left center", transition: "all var(--dur-moderate,300ms) cubic-bezier(0.16,1,0.3,1)",
+            fontSize: "var(--fs-sm,0.875rem)", fontWeight: "500", color: labelColor,
+            zIndex: -1, pointerEvents: "none", display: "flex", alignItems: "center", gap: "0.25rem",
+          }}>
+            {hasLabelIcon && <FieldIconComponent fieldIcon={fieldIcon} color={labelColor} />}
+            <span>{label}{required && <span style={{ color: "var(--error-400,#f87171)", marginLeft: "0.2rem" }}>*</span>}</span>
+          </label>
+        )}
+        <ValidationIcon currentValidation={currentValidation} showIcons={validation.showIcons ?? true} animationType={animationType} />
+      </div>
+      <ValidationMessage currentValidation={currentValidation} showMessages={validation.showMessages ?? true} fieldId={fieldId} />
     </div>
   )
 }
