@@ -1,5 +1,17 @@
-@use '@egen/esm-styleguide/src/vars' as *;
+// ============================================================
+// root.scss — Conteneur du MFE primary-navigation
+//
+// Ce div est un SPACER de flux : il réserve la hauteur de la
+// topbar dans le document flow normal (scroll, positionnement
+// des éléments siblings), pendant que CompactTopBar lui-même
+// est position:fixed et sort du flux.
+//
+// On utilise --header-height (64 px, défini dans index.ejs et
+// synchronisé par ThemeLoader) plutôt que --eigen-topnav-height
+// (48 px, héritage Carbon) pour correspondre exactement à la
+// hauteur réelle de CompactTopBar.
+// ============================================================
 
 .primaryNavContainer {
-  height: var(--egen-topnav-height);
+  height: var(--header-height, 64px);
 }

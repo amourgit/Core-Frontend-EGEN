@@ -1,82 +1,72 @@
+// ============================================================
+// root.component.test.tsx
+// Tests adaptés à la nouvelle architecture :
+//   Root → ThemeProvider → BrowserRouter → NavShell → CompactTopBar
+// ============================================================
 import React from 'react';
-import { of } from 'rxjs';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import {
-  useConfig,
-  useAssignedExtensions,
-  useSession,
-  type AssignedExtension,
-  type Session,
-  useLeftNavStore,
-} from '@egen/esm-framework';
-import { isDesktop } from './utils';
-import { mockUser } from '../__mocks__/mock-user';
-import { mockSession } from '../__mocks__/mock-session';
 import Root from './root.component';
 
-const mockUserObservable = of(mockUser);
-const mockSessionObservable = of({ data: mockSession });
+// ── Mocks globaux ─────────────────────────────────────────────
 
-vi.mock('@egen/esm-framework', () => ({
-  useConfig: vi.fn(),
-  useAssignedExtensions: vi.fn(),
-  useSession: vi.fn(),
-  useLeftNavStore: vi.fn(),
-  interpolateUrl: vi.fn(),
-}));
-
-vi.mock('./root.resource', () => ({
-  getSynchronizedCurrentUser: vi.fn(() => mockUserObservable),
-  getCurrentSession: vi.fn(() => mockSessionObservable),
-}));
-
-vi.mock('./utils', () => ({
-  isDesktop: vi.fn(() => true),
-}));
-
+// BrowserRouter + useLocation mockés
+let mockPathname = '/home';
 vi.mock('react-router-dom', () => ({
   BrowserRouter: ({ children }: any) => <>{children}</>,
-  Route: ({ children, element, path }: any) => {
-    if (path === 'login/*' || path === 'logout/*') {
-      return null;
-    }
-    return element ?? children;
-  },
-  Routes: ({ children }: any) => <>{children}</>,
+  useLocation: () => ({ pathname: mockPathname }),
 }));
 
-vi.mock('./components/navbar/navbar.component', () => ({
-  default: () => <div data-testid="navbar">Mock EMR</div>,
-}));
-
-const mockUseConfig = vi.mocked(useConfig);
-const mockUseAssignedExtensions = vi.mocked(useAssignedExtensions);
-const mockUseSession = vi.mocked(useSession);
-const mockUseLeftNavStore = vi.mocked(useLeftNavStore);
-const mockIsDesktop = vi.mocked(isDesktop);
-
-mockUseConfig.mockReturnValue({
-  logo: { src: null, alt: null, name: 'Mock EMR', link: 'Mock EMR' },
+// ThemeProvider — rendu transparent en test
+vi.mock('@eigen/esm-framework', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    ThemeProvider: ({ children }: any) => <>{children}</>,
+  };
 });
-mockUseAssignedExtensions.mockReturnValue(['mock-extension'] as unknown as AssignedExtension[]);
-mockUseSession.mockReturnValue(mockSession as unknown as Session);
-mockUseLeftNavStore.mockReturnValue({ slotName: '', basePath: '', mode: 'normal' });
 
-describe('Root', () => {
-  it('should display navbar with title', async () => {
-    render(<Root />);
-    expect(screen.getByTestId('navbar')).toBeInTheDocument();
+// CompactTopBar — mock léger
+vi.mock('@eigen/esm-styleguide/src/layouts/TopBarContent', () => ({
+  default: () => <div data-testid="compact-topbar">TopBar</div>,
+}));
+
+// ── Tests ──────────────────────────────────────────────────────
+describe('Root (esm-primary-navigation-app)', () => {
+  describe('sur une route authentifiée (/home)', () => {
+    beforeEach(() => { mockPathname = '/home'; });
+
+    it('monte le CompactTopBar', () => {
+      render(<Root />);
+      expect(screen.getByTestId('compact-topbar')).toBeInTheDocument();
+    });
   });
 
-  describe('when view is desktop', () => {
-    beforeEach(() => {
-      mockIsDesktop.mockImplementation(() => true);
-    });
+  describe('sur la route /login', () => {
+    beforeEach(() => { mockPathname = '/login'; });
 
-    it('does not render side menu button if desktop', async () => {
-      await waitFor(() => expect(screen.queryAllByLabelText('Open menu')).toHaveLength(0));
+    it('ne monte PAS le CompactTopBar (fix whitespace)', () => {
+      render(<Root />);
+      expect(screen.queryByTestId('compact-topbar')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('sur la route /logout', () => {
+    beforeEach(() => { mockPathname = '/logout'; });
+
+    it('ne monte PAS le CompactTopBar', () => {
+      render(<Root />);
+      expect(screen.queryByTestId('compact-topbar')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('sur une sous-route de login (/login/confirm)', () => {
+    beforeEach(() => { mockPathname = '/login/confirm'; });
+
+    it('ne monte PAS le CompactTopBar', () => {
+      render(<Root />);
+      expect(screen.queryByTestId('compact-topbar')).not.toBeInTheDocument();
     });
   });
 });

@@ -1,24 +1,49 @@
+// ============================================================
+// _main-content.scss — Variables CSS globales du layout EIGEN
+//
+// --header-height          : hauteur de CompactTopBar (64px)
+//                            définie dans index.ejs (anti-FOUC)
+//                            et honorée ici pour tout le framework.
+//
+// --eigen-navbar-height    : alias → --header-height
+//                            (compatibilité avec les composants
+//                            Carbon et les anciens modules).
+//
+// --eigen-topnav-height    : alias → --header-height
+//                            (idem, utilisé par side-nav, panels…)
+//
+// --eigen-sidenav-width    : largeur sidebar expanded (260px)
+// --eigen-offline-banner   : hauteur du bandeau offline (0 par défaut)
+// ============================================================
+
 @use '@carbon/layout';
 
 :root {
-  --egen-sidenav-width: 16rem;
-  --egen-offline-banner-height: 0;
-  --egen-navbar-height: #{layout.$spacing-09};
-  --egen-topnav-height: var(--egen-navbar-height);
+  // Hauteur réelle de CompactTopBar — source de vérité
+  // (définie à 64px dans index.ejs, mais --header-height peut être
+  //  surchargé par un thème → on lit sa valeur si disponible)
+  --eigen-sidenav-width:       16rem;
+  --eigen-offline-banner-height: 0px;
+
+  // Les deux vars historiques pointent désormais sur --header-height
+  // afin que side-nav, panels, workspaces soient alignés correctement
+  --eigen-navbar-height:  var(--header-height, 64px);
+  --eigen-topnav-height:  var(--header-height, 64px);
 }
 
-.egen-main-content {
+.eigen-main-content {
   margin-left: 0;
   transition: margin-left 0.5s ease;
 }
 
-.egen-offline {
-  --egen-offline-banner-height: #{layout.$spacing-06};
-  --egen-topnav-height: 4.5rem;
+// ── Mode offline : bandeau supplémentaire ─────────────────────
+.eigen-offline {
+  --eigen-offline-banner-height: #{layout.$spacing-06};
+  --eigen-topnav-height: calc(var(--header-height, 64px) + #{layout.$spacing-06});
 
   .cds--side-nav,
   .cds--header-panel--expanded,
   .cds--side-nav__overlay {
-    top: var(--egen-topnav-height);
+    top: var(--eigen-topnav-height);
   }
 }
