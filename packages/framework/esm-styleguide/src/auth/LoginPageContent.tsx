@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { useIAMAuth } from '@egen/esm-auth';
+import { useTheme, DarkModeToggle } from '../theme';
 import AnimateAgentAI from '../layouts/AnimateAgentAI';
 import LoginOrbitalAuth from './LoginOrbitalAuth';
 
@@ -119,6 +120,8 @@ export default function LoginPageContent() {
     );
   }
 
+  const { isLoading: isThemeLoading } = useTheme();
+
   return (
     <div
       style={{
@@ -128,6 +131,19 @@ export default function LoginPageContent() {
         background: 'var(--surface-background, #050510)',
       }}
     >
+      {/* ── Bouton dark/light mode flottant (coin supérieur droit) ── */}
+      {!isThemeLoading && (
+        <div
+          style={{
+            position: 'fixed',
+            top:      'var(--space-4, 1rem)',
+            right:    'var(--space-4, 1rem)',
+            zIndex:   'var(--z-top)' as any,
+          }}
+        >
+          <DarkModeToggle />
+        </div>
+      )}
       <AuthBackground />
       <AnimateAgentAI />
       <div

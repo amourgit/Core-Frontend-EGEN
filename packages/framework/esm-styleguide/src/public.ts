@@ -43,7 +43,27 @@ export {
 // ============================================================
 
 // Theme System (explicit to avoid conflict with hooks/index useTheme)
-export { ThemeProvider, ThemeSwitcher, useTheme, type ThemeContextType } from './theme/index';
+export {
+  ThemeProvider,
+  ThemeSwitcher,
+  DarkModeToggle,
+  ThemeColorPreview,
+  useTheme,
+  useThemeEvents,
+  useThemeVariables,
+  ThemeInitScript,
+  ThemeLoader,
+  themeUtils,
+  type ThemeContextType,
+  type Theme,
+  type ThemeColors,
+  type ThemeTypography,
+  type ThemeLayout,
+  type ThemeSpacing,
+  type ThemeAnimation,
+  type ThemeChangeEvent,
+  type ThemeStorage,
+} from './theme/index';
 
 // UI Components
 export * from './ui/index';

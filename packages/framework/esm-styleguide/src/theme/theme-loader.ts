@@ -19,12 +19,41 @@ export class ThemeLoader {
     return ThemeLoader.instance;
   }
 
+  // ── Base URL dynamique : s'adapte au publicPath EIGEN ─────
+  private static _baseUrl: string | null = null;
+
+  /** Surcharge manuelle du base URL (tests, env custom). */
+  static setBaseUrl(url: string): void {
+    ThemeLoader._baseUrl = url.replace(/\/$/, '');
+  }
+
+  private getThemeBaseUrl(): string {
+    if (ThemeLoader._baseUrl !== null) return ThemeLoader._baseUrl;
+    // window.getEgenSpaBase() est injecté par le shell webpack : ex. '/egen/spa'
+    if (typeof window !== 'undefined' && typeof (window as any).getEgenSpaBase === 'function') {
+      return (window as any).getEgenSpaBase().replace(/\/$/, '');
+    }
+    return '';
+  }
+
   // ── Chargement avec cache ──────────────────────────────────
   async loadTheme(name: string): Promise<Theme> {
     if (THEME_CACHE.has(name)) return THEME_CACHE.get(name)!;
 
-    const res = await fetch(`/themes/${name}.json`, { cache: 'force-cache' });
-    if (!res.ok) throw new Error(`Theme "${name}" introuvable`);
+    const base        = this.getThemeBaseUrl();
+    const primaryUrl  = `${base}/themes/${name}.json`;
+
+    // Tentative 1 : URL avec SPA base path (ex. /egen/spa/themes/default.json)
+    let res = await fetch(primaryUrl, { cache: 'force-cache' }).catch(() => null);
+
+    // Tentative 2 : racine pure — dev local sans publicPath (/themes/default.json)
+    if (!res || !res.ok) {
+      res = await fetch(`/themes/${name}.json`, { cache: 'force-cache' }).catch(() => null);
+    }
+
+    if (!res || !res.ok) {
+      throw new Error(`Theme "${name}" introuvable (essayé : ${primaryUrl})`);
+    }
 
     const theme: Theme = await res.json();
     this.validate(theme);
@@ -327,7 +356,22 @@ export class ThemeLoader {
   getCurrentTheme(): Theme | null { return this.currentTheme; }
 
   async discoverThemes(): Promise<string[]> {
-    return ['default', ...Array.from(THEME_CACHE.keys()).filter(k => k !== 'default')];
+    // Tente de charger un manifest /themes/manifest.json listant les thèmes disponibles
+    try {
+      const base = this.getThemeBaseUrl();
+      const urls = [`${base}/themes/manifest.json`, `/themes/manifest.json`];
+      for (const url of urls) {
+        const res = await fetch(url, { cache: 'no-cache' }).catch(() => null);
+        if (res?.ok) {
+          const manifest: string[] = await res.json();
+          if (Array.isArray(manifest) && manifest.length > 0) return manifest;
+        }
+      }
+    } catch { /* manifest optionnel */ }
+
+    // Fallback : thèmes déjà en cache + 'default'
+    const cached = Array.from(THEME_CACHE.keys()).filter(k => k !== 'default');
+    return ['default', ...cached];
   }
 
   exportTheme(): Theme | null { return this.currentTheme; }
