@@ -12,12 +12,11 @@ import {
 } from "lucide-react";
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
-import { useTheme, useThemeVariables } from "@egen/esm-styleguide/theme";
+import { useTheme, useThemeVariables } from "../theme";
 import { useGlass } from "../hooks/useGlass";
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
-import { useAuth } from "@egen/esm-auth";
-import { useIAMAuth } from '@egen/esm-auth';
+import { useAuth, useIAMAuth } from "@egen/esm-auth";
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 import { navigationData, NavigationItem } from "../services/navigation";
@@ -41,6 +40,18 @@ import SearchPopup from "../searchPopup";
 import MagicRings from "../MagicRings";
 import MenuToggleButton from "./StaggeredMenuButton";
 import StaggeredMenuPanel from "./StaggeredMenu";
+
+// ─── Hook utilitaire hover ────────────────────────────────────────────────────
+function useHoverState() {
+  const [hovered, setHovered] = React.useState(false);
+  return {
+    hovered,
+    hoverProps: {
+      onMouseEnter: () => setHovered(true),
+      onMouseLeave: () => setHovered(false),
+    },
+  };
+}
 
 // ─── Données statiques ────────────────────────────────────────────────────────
 const LANGUAGES = [
@@ -506,22 +517,10 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
     padding:     "var(--space-1) 0",
   };
 
-  // ─── Hover state helpers (simples via ref)────────────────────────────────
-  const useHover = () => {
-    const [hovered, setHovered] = useState(false);
-    return {
-      hovered,
-      hoverProps: {
-        onMouseEnter: () => setHovered(true),
-        onMouseLeave: () => setHovered(false),
-      },
-    };
-  };
-
-  const themeHover    = useHover();
-  const bellHover     = useHover();
-  const langHover     = useHover();
-  const logoutHover   = useHover();
+  const themeHover    = useHoverState();
+  const bellHover     = useHoverState();
+  const langHover     = useHoverState();
+  const logoutHover   = useHoverState();
 
   // ─────────────────────────────────────────────────────────────────────────
   // RENDU
@@ -548,7 +547,9 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
         style={{
           height:    "var(--header-height)",
           zIndex:    "var(--z-sticky)" as unknown as number,
-          background:"transparent",
+          background: "transparent",
+          // Le padding-left s'adapte à la sidebar collapsed/expanded via CSS var
+          paddingLeft: "var(--sidebar-collapsed, 3.05rem)",
         }}
       >
         {/* ExpandableDock — recherche rapide */}
@@ -624,17 +625,20 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
 
         {/* ─── Barre principale ─────────────────────────────────────────────── */}
         <div style={{
-          height:         "var(--header-height)",
-          display:        "flex",
-          alignItems:     "center",
-          justifyContent: "space-between",
-          padding:        "0 var(--space-4)",
-          background:     glassHeader.background,
-          backdropFilter: glassHeader.backdropFilter,
+          height:               "var(--header-height)",
+          display:              "flex",
+          alignItems:           "center",
+          justifyContent:       "space-between",
+          padding:              "0 var(--space-4)",
+          background:           glassHeader.background,
+          backdropFilter:       glassHeader.backdropFilter,
           WebkitBackdropFilter: glassHeader.backdropFilter,
-          borderBottom:   glassHeader.border,
-          boxShadow:      glassHeader.boxShadow,
-          transition:     "var(--transition-glass)",
+          borderBottom:         `1px solid var(--border-divider)`,
+          boxShadow:            glassHeader.boxShadow,
+          transition:           "var(--transition-glass)",
+          // Garantit que la barre prend toute la largeur restante
+          flex:                 1,
+          minWidth:             0,
         }}>
 
           {/* ── LOGO / MagicRings ────────────────────────────────────────── */}
@@ -684,16 +688,29 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
             <TopSheet>
               <TopSheetTrigger asChild>
                 <button style={{
-                  background:  "none",
-                  border:      "none",
-                  cursor:      "pointer",
-                  fontSize:    "var(--fs-sm)",
-                  fontWeight:  "var(--fw-medium)",
-                  color:       "var(--surface-foreground)",
-                  transition:  "var(--transition-colors)",
-                  textAlign:   "left",
-                  padding:     0,
+                  background:   "none",
+                  border:       "none",
+                  cursor:       "pointer",
+                  fontSize:     "var(--fs-xs)",
+                  fontWeight:   "var(--fw-medium)",
+                  color:        "var(--surface-mutedForeground)",
+                  transition:   "var(--transition-colors)",
+                  textAlign:    "left",
+                  padding:      0,
+                  letterSpacing:"0.03em",
+                  textTransform:"uppercase",
+                  display:      "flex",
+                  alignItems:   "center",
+                  gap:          "var(--space-1)",
                 }}>
+                  <span style={{
+                    width:        "var(--space-1-5, 0.375rem)",
+                    height:       "var(--space-1-5, 0.375rem)",
+                    borderRadius: "var(--radius-full)",
+                    background:   "var(--primary-400)",
+                    display:      "inline-block",
+                    flexShrink:   0,
+                  }} />
                   Configurations
                 </button>
               </TopSheetTrigger>
@@ -736,9 +753,16 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
                 ))
               ) : (
                 <>
-                  <span>Accueil</span>
+                  <Home style={{
+                    width:     "var(--icon-xs)",
+                    height:    "var(--icon-xs)",
+                    flexShrink: 0,
+                    color:     "var(--primary-400)",
+                  }} />
                   <ChevronRight style={{ width: "var(--icon-xs)", height: "var(--icon-xs)", flexShrink: 0 }} />
-                  <span>Tableau de bord</span>
+                  <span style={{ color: "var(--surface-foreground)", fontWeight: "var(--fw-medium)" }}>
+                    Tableau de bord
+                  </span>
                 </>
               )}
             </div>
@@ -778,16 +802,24 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
               }}
             >
               <Bell style={{ width: "var(--icon-sm)", height: "var(--icon-sm)" }} />
-              {/* Badge */}
+              {/* Badge notification */}
               <span style={{
                 position:     "absolute",
                 top:          "var(--space-1)",
                 right:        "var(--space-1)",
-                width:        "var(--space-2)",
+                minWidth:     "var(--space-2)",
                 height:       "var(--space-2)",
+                padding:      "0 2px",
                 background:   "var(--warning-500)",
                 borderRadius: "var(--radius-full)",
-              }} />
+                fontSize:     "9px",
+                fontWeight:   "var(--fw-bold)",
+                color:        "#fff",
+                display:      "flex",
+                alignItems:   "center",
+                justifyContent: "center",
+                boxShadow:    "0 0 0 2px var(--glass-header-bg, rgba(9,9,18,0.82))",
+              }}>3</span>
             </button>
 
             {/* Profil utilisateur */}
@@ -952,7 +984,7 @@ export const CompactTopBar = ({ className = "" }: { className?: string }) => {
               style={{
                 ...iconBtn,
                 color: logoutHover.hovered ? "var(--error-400)"  : "var(--surface-mutedForeground)",
-                background: logoutHover.hovered ? "rgba(var(--error-500), 0.10)" : "transparent",
+                background: logoutHover.hovered ? "rgba(239,68,68,0.10)" : "transparent",
               }}
             >
               <LogOut style={{ width: "var(--icon-sm)", height: "var(--icon-sm)" }} />
