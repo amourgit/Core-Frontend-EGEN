@@ -9,12 +9,14 @@ import { Link, useLocation }            from 'react-router-dom';
 import {
   Blocks, ChevronsUpDown, FileClock, GraduationCap,
   Layout, LayoutDashboard, LogOut, MessageSquareText,
-  MessagesSquare, Plus, Settings, UserCircle,
+  MessagesSquare, Moon, Plus, Settings, Sun, UserCircle,
   UserCog, UserSearch, Building2, Check,
 } from "lucide-react";
 
 // ─── Système de thème (source de vérité) ──────────────────────────────────────
-import { useGlass } from "../hooks/useGlass";
+import { useGlass }  from "../hooks/useGlass";
+import { useTheme }  from "../theme";
+import { DarkModeToggle } from "../theme";
 
 // ─── Composants UI ────────────────────────────────────────────────────────────
 import { ScrollArea } from "../ui/scroll-area";
@@ -26,12 +28,14 @@ import { cn } from "../lib/utils";
 // ============================================================================
 // VARIANTES FRAMER-MOTION
 // ============================================================================
-const SIDEBAR_OPEN_W   = "15rem";
-const SIDEBAR_CLOSED_W = "3.05rem";
+// Dimensions sidebar : synchronisées avec les CSS vars du thème
+// --sidebar-width et --sidebar-collapsed sont injectées par ThemeLoader
+const SIDEBAR_OPEN_W   = "var(--sidebar-width, 15rem)";
+const SIDEBAR_CLOSED_W = "var(--sidebar-collapsed, 3.05rem)";
 
 const sidebarVariants = {
-  open:   { width: SIDEBAR_OPEN_W },
-  closed: { width: SIDEBAR_CLOSED_W },
+  open:   { width: "15rem"  },   // framer-motion nécessite une valeur numérique
+  closed: { width: "3.05rem" },  // la CSS var est appliquée via sidebarStyle
 };
 
 const labelVariants = {
@@ -91,26 +95,28 @@ function NavItem({ href, icon: Icon, label, isCollapsed, isActive, badge }: NavI
   const [hovered, setHovered] = useState(false);
 
   const itemStyle: React.CSSProperties = {
-    display:       "flex",
-    flexDirection: "row",
-    alignItems:    "center",
-    height:        "var(--space-8)",
-    width:         "100%",
-    borderRadius:  "var(--radius-md)",
-    paddingLeft:   "var(--space-2)",
-    paddingRight:  "var(--space-2)",
-    paddingTop:    "var(--space-1-5)",
-    paddingBottom: "var(--space-1-5)",
-    gap:           "var(--space-2)",
-    transition:    "var(--transition-colors)",
+    display:        "flex",
+    flexDirection:  "row",
+    alignItems:     "center",
+    height:         "var(--space-8)",
+    width:          "100%",
+    borderRadius:   "var(--radius-md)",
+    paddingLeft:    "var(--space-2)",
+    paddingRight:   "var(--space-2)",
+    paddingTop:     "var(--space-1-5)",
+    paddingBottom:  "var(--space-1-5)",
+    gap:            "var(--space-2)",
+    transition:     "background var(--dur-fast,100ms) ease, color var(--dur-fast,100ms) ease",
     textDecoration: "none",
+    position:       "relative",
+    // Active : fond accent + bordure gauche indicatrice
     background: isActive
       ? "var(--surface-accent)"
       : hovered
         ? "var(--surface-glassHover)"
         : "transparent",
     color: isActive
-      ? "var(--primary-600)"
+      ? "var(--primary-400)"
       : hovered
         ? "var(--surface-foreground)"
         : "var(--surface-mutedForeground)",
@@ -123,11 +129,41 @@ function NavItem({ href, icon: Icon, label, isCollapsed, isActive, badge }: NavI
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <Icon style={{ width: "var(--icon-sm)", height: "var(--icon-sm)", flexShrink: 0, color: "inherit" }} />
-      <motion.span variants={labelVariants} style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", overflow: "hidden" }}>
+      {/* Barre active indicateur gauche */}
+      {isActive && (
+        <span style={{
+          position:     "absolute",
+          left:         0,
+          top:          "25%",
+          height:       "50%",
+          width:        "2px",
+          borderRadius: "0 var(--radius-full) var(--radius-full) 0",
+          background:   "var(--primary-400)",
+          boxShadow:    "0 0 6px var(--primary-400)",
+        }} />
+      )}
+      <Icon style={{
+        width:      "var(--icon-sm)",
+        height:     "var(--icon-sm)",
+        flexShrink: 0,
+        color:      "inherit",
+        transition: "transform var(--dur-fast,100ms) ease",
+        transform:  hovered && !isActive ? "scale(1.10)" : "scale(1)",
+      }} />
+      <motion.span
+        variants={labelVariants}
+        style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", overflow: "hidden", flex: 1 }}
+      >
         {!isCollapsed && (
           <>
-            <span style={{ fontSize: "var(--fs-sm)", fontWeight: "var(--fw-medium)", whiteSpace: "nowrap", overflow: "hidden", color: "inherit" }}>
+            <span style={{
+              fontSize:   "var(--fs-sm)",
+              fontWeight: isActive ? "var(--fw-semibold)" : "var(--fw-medium)",
+              whiteSpace: "nowrap",
+              overflow:   "hidden",
+              color:      "inherit",
+              flex:       1,
+            }}>
               {label}
             </span>
             {badge}
@@ -169,7 +205,7 @@ function PopupItem({ icon: Icon, label, href, onClick, danger = false, index }: 
         : "var(--surface-mutedForeground)",
     background:    hovered
       ? danger
-        ? "rgba(239,68,68,0.08)"
+        ? "rgba(239,68,68,0.10)"
         : "var(--surface-accent)"
       : "transparent",
     transition:    "var(--transition-colors)",
@@ -230,10 +266,11 @@ function SidebarDivider() {
   return (
     <div style={{
       height:     "1px",
-      width:      "100%",
+      width:      "calc(100% - var(--space-4))",
+      margin:     "var(--space-1) var(--space-2)",
       background: "var(--border-divider)",
-      margin:     "var(--space-1) 0",
       flexShrink: 0,
+      opacity:    0.6,
     }} />
   );
 }
@@ -340,7 +377,8 @@ export function LeftBarContent() {
   const pathname   = location.pathname;
 
   // ── Thème glass sidebar ────────────────────────────────────────────────────
-  const glassSidebar = useGlass("sidebar");
+  const glassSidebar  = useGlass("sidebar");
+  const { isDark, toggleDarkMode } = useTheme();
 
   // ── Styles centralisés ────────────────────────────────────────────────────
 
@@ -349,7 +387,7 @@ export function LeftBarContent() {
     left:                 0,
     top:                  0,
     zIndex:               "var(--z-sticky)" as unknown as number,
-    height:               "100%",
+    height:               "100vh",
     flexShrink:           0,
     background:           glassSidebar.background,
     backdropFilter:       glassSidebar.backdropFilter,
@@ -357,6 +395,8 @@ export function LeftBarContent() {
     borderRight:          "1px solid var(--border-divider)",
     boxShadow:            glassSidebar.boxShadow,
     overflow:             "visible",   // permet aux popups de déborder
+    // Transition sur la largeur uniquement via framer-motion
+    willChange:           "width",
   };
 
   /** Bouton trigger (organisation / compte) */
@@ -383,19 +423,20 @@ export function LeftBarContent() {
 
   /** Mini-avatar gradient */
   const avatarStyle = (size: "sm" | "md"): React.CSSProperties => ({
-    width:          size === "sm" ? "var(--space-4)" : "var(--space-6)",
-    height:         size === "sm" ? "var(--space-4)" : "var(--space-6)",
-    borderRadius:   "var(--radius-full)",
+    width:          size === "sm" ? "var(--space-5, 1.25rem)" : "var(--space-7, 1.75rem)",
+    height:         size === "sm" ? "var(--space-5, 1.25rem)" : "var(--space-7, 1.75rem)",
+    borderRadius:   "var(--radius-sm)",
     flexShrink:     0,
-    background:     "linear-gradient(135deg, var(--primary-400), var(--secondary-500))",
+    background:     "linear-gradient(135deg, var(--primary-500), var(--secondary-600, var(--primary-700)))",
     display:        "flex",
     alignItems:     "center",
     justifyContent: "center",
     fontSize:       "var(--fs-xs)",
     fontWeight:     "var(--fw-bold)",
     color:          "#ffffff",
-    userSelect:     "none",
+    userSelect:     "none" as React.CSSProperties["userSelect"],
     letterSpacing:  "-0.02em",
+    boxShadow:      "var(--shadow-sm)",
   });
 
   // Badge BETA
@@ -570,6 +611,40 @@ export function LeftBarContent() {
             }}>
 
               <NavItem href="/settings/integrations" icon={Settings} label="Paramètres" isCollapsed={isCollapsed} isActive={!!pathname?.includes("settings")} />
+
+              {/* ── TOGGLE THÈME ────────────────────────────────────────────── */}
+              <button
+                title={isDark ? "Mode clair" : "Mode sombre"}
+                onClick={toggleDarkMode}
+                style={{
+                  display:       "flex",
+                  flexDirection: "row",
+                  alignItems:    "center",
+                  height:        "var(--space-8)",
+                  width:         "100%",
+                  borderRadius:  "var(--radius-md)",
+                  paddingLeft:   "var(--space-2)",
+                  paddingRight:  "var(--space-2)",
+                  gap:           "var(--space-2)",
+                  background:    "transparent",
+                  border:        "none",
+                  cursor:        "pointer",
+                  color:         "var(--surface-mutedForeground)",
+                  transition:    "background var(--dur-fast,100ms) ease, color var(--dur-fast,100ms) ease",
+                }}
+              >
+                {isDark
+                  ? <Sun  style={{ width: "var(--icon-sm)", height: "var(--icon-sm)", flexShrink: 0, color: "inherit" }} />
+                  : <Moon style={{ width: "var(--icon-sm)", height: "var(--icon-sm)", flexShrink: 0, color: "inherit" }} />
+                }
+                <motion.span variants={labelVariants} style={{ overflow: "hidden" }}>
+                  {!isCollapsed && (
+                    <span style={{ fontSize: "var(--fs-sm)", fontWeight: "var(--fw-medium)", whiteSpace: "nowrap", color: "inherit" }}>
+                      {isDark ? "Mode clair" : "Mode sombre"}
+                    </span>
+                  )}
+                </motion.span>
+              </button>
 
               {/* ── TRIGGER COMPTE ─────────────────────────────────────────── */}
               <div style={{ position: "relative" }}>
