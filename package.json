@@ -60,6 +60,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
     "sonner": "^2.0.7",
+    "spectacle": "^10.2.3",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.4",
     "three": "^0.184.0",
@@ -81,6 +82,7 @@
     "@typescript-eslint/parser": "^8.35.0",
     "@vitejs/plugin-react": "^6.0.1",
     "classnames": "^2.3.2",
+    "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "eslint": "^9.0.0",
@@ -100,13 +102,12 @@
     "prettier": "^3.1.0",
     "swc-loader": "^0.2.6",
     "timezone-mock": "^1.2.2",
+    "tsx": "^4.19.2",
     "turbo": "^2.5.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.10",
-    "webpack": "^5.106.2",
-    "concurrently": "^9.1.2",
-    "tsx": "^4.19.2"
+    "webpack": "^5.106.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix --max-warnings 0",

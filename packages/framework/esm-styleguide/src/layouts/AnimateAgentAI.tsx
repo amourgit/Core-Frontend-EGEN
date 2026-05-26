@@ -4,8 +4,8 @@ const AnimateAgentAI = () => {
   return (
     <>
       {/* MagicRings - Miniature entre gauche et centre */}
-      <div className="fixed top-0 left-0 items-center justify-center mx-2">
-        <div style={{ width: '80px', height: '48px', position: 'relative' }}>
+      <div className="fixed top-0 left-0 items-center justify-center bg-red-500">
+        <div style={{ width: '80px', height: 'auto', position: 'relative' }}>
           <MagicRings
             color="#A855F7"
             colorTwo="#6366F1"

@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { useIAMAuth } from '@egen/esm-auth';
+import { CompactTopBar } from '../layouts/TopBarContent';
 import { useTheme, DarkModeToggle } from '../theme';
 import AnimateAgentAI from '../layouts/AnimateAgentAI';
 import LoginOrbitalAuth from './LoginOrbitalAuth';
@@ -145,6 +146,7 @@ export default function LoginPageContent() {
         </div>
       )}
       <AuthBackground />
+      <CompactTopBar />
       <AnimateAgentAI />
       <div
         style={{
