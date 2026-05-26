@@ -73,24 +73,28 @@ yargs.command(
         type: 'boolean',
       })
       .option('config-url', {
-        default: [],
+        default: [] as string[],
         describe: 'The URL to a valid frontend configuration. Can be used multiple times.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('config-file', {
-        default: [],
+        default: [] as string[],
         describe: 'The path to a frontend configuration file. Can be used multiple times.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('sources', {
-        default: ['.'],
+        default: ['.'] as string[],
         describe: 'Runs the projects from the provided source directories. Can be used multiple times.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('shared-dependencies', {
-        default: [],
+        default: [] as string[],
         describe: 'The additional shared dependencies besides the ones from the app shell.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('importmap', {
         default: 'importmap.json',
@@ -181,24 +185,28 @@ yargs.command(
         type: 'boolean',
       })
       .option('config-url', {
-        default: [],
+        default: [] as string[],
         describe: 'The URL to a valid frontend configuration. Can be used multiple times.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('config-file', {
-        default: [],
+        default: [] as string[],
         describe: 'The path to a frontend configuration file. Can be used multiple times.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('sources', {
-        default: ['.'],
+        default: ['.'] as string[],
         describe: 'Runs the projects from the provided source directories. Can be used multiple times.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('shared-dependencies', {
-        default: [],
+        default: [] as string[],
         describe: 'The additional shared dependencies besides the ones from the app shell.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('importmap', {
         default: 'importmap.json',
@@ -304,10 +312,11 @@ yargs.command(
         type: 'string',
       })
       .option('config-url', {
-        default: [],
+        default: [] as string[],
         describe:
           'The URL to a frontend configuration. Can be used multiple times. Resolved by the client during initialization.',
         type: 'array',
+        coerce: (a: unknown[]) => a.map(String),
       })
       .option('config-path', {
         default: [],
