@@ -1,0 +1,1 @@
+{"$schema":"https://json.egen.org/routes.schema.json","pages":[{"component":"devtools","route":true,"online":true,"offline":true}],"modals":[{"name":"importmap-override-modal","component":"importmapOverrideModal"}],"version":"9.0.2"}

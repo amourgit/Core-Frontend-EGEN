@@ -1,0 +1,1723 @@
+{
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "439.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "e802f166145cb59b",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 3119733,
+      "sizes": {
+        "javascript": 3119733
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "700.js"
+      ],
+      "auxiliaryFiles": [
+        "700.js.map"
+      ],
+      "hash": "7c14227df19dde97",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "723.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "1547e20f599c8979",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3583,
+      "sizes": {
+        "javascript": 3583
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "795.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "9fc791742d4179b3",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "890.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "160252c5a6c951d6",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "986.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "1cf8190b23b575a5",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "1119.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "e85122b2eb1b8853",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "1197.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "d2d8417c0ea270a5",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 619,
+      "sizes": {
+        "javascript": 619
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "1395.js"
+      ],
+      "auxiliaryFiles": [
+        "1395.js.map"
+      ],
+      "hash": "48e9567ab2793179",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 25608,
+      "sizes": {
+        "javascript": 25608
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "1405.js"
+      ],
+      "auxiliaryFiles": [
+        "1405.js.map"
+      ],
+      "hash": "cc2daacaaf3efd11",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 50518,
+      "sizes": {
+        "javascript": 50518
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "1504.js"
+      ],
+      "auxiliaryFiles": [
+        "1504.js.map"
+      ],
+      "hash": "36ee9c6accd2b950",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "500f71e6c0b9c01d",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "33da990cbe577782",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "2146.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "c6c6cfdc05b141e5",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 82840,
+      "sizes": {
+        "javascript": 82840
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "2279.js"
+      ],
+      "auxiliaryFiles": [
+        "2279.js.map"
+      ],
+      "hash": "ab555f60da7cabf1",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3333,
+      "sizes": {
+        "javascript": 3333
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "2690.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "e4abf1f3fa3b5c89",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "6c9e25687ebec714",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3590,
+      "sizes": {
+        "javascript": 3590
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "3099.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "82e6982ac3e05831",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "3584.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "396dd6e50a794358",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 34723,
+      "sizes": {
+        "javascript": 34723
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "3709.js"
+      ],
+      "auxiliaryFiles": [
+        "3709.js.map"
+      ],
+      "hash": "14be68e9717e61fc",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 619,
+      "sizes": {
+        "javascript": 619
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "3776.js"
+      ],
+      "auxiliaryFiles": [
+        "3776.js.map"
+      ],
+      "hash": "0f1cf1bf64c4bd15",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 2783553,
+      "sizes": {
+        "javascript": 2783553
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "3914.js"
+      ],
+      "auxiliaryFiles": [
+        "3914.js.map"
+      ],
+      "hash": "9c8e487126995747",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3645,
+      "sizes": {
+        "javascript": 3645
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4055.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "18b0b7397a852cce",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3245,
+      "sizes": {
+        "javascript": 3245
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4132.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "4c7f3859a83e1575",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 42,
+      "sizes": {
+        "consume-shared": 42
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "e65d5992ea8a5f35",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4300.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "7d0a76cca97be3e7",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3316,
+      "sizes": {
+        "javascript": 3316
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4335.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "3ae18a78646a7f35",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 1073,
+      "sizes": {
+        "javascript": 1073
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4489.js"
+      ],
+      "auxiliaryFiles": [
+        "4489.js.map"
+      ],
+      "hash": "e6587cbf28dd6160",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4618.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "60e1afa973afc810",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3156,
+      "sizes": {
+        "javascript": 3156
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4652.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "8b5eb47b96d91a16",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "4944.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "8c5f5bfa20a82f70",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5173.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "af234b7c0bb2127c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5241.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "a7a35536bbd8dc6d",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 388070,
+      "sizes": {
+        "javascript": 388070
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5254.js"
+      ],
+      "auxiliaryFiles": [
+        "5254.js.map"
+      ],
+      "hash": "cb7ec8ee1c843782",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5442.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "d3d1bfc18b411389",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 137481,
+      "sizes": {
+        "javascript": 137481
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5623.js"
+      ],
+      "auxiliaryFiles": [
+        "5623.js.map"
+      ],
+      "hash": "d7ac6fa5530edb1e",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 2514,
+      "sizes": {
+        "javascript": 2514
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5661.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "5a15d08c4222228b",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 106483,
+      "sizes": {
+        "javascript": 106483
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5725.js"
+      ],
+      "auxiliaryFiles": [
+        "5725.js.map"
+      ],
+      "hash": "4f45d6dd967f2c6f",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: defaultVendors)",
+      "size": 163792,
+      "sizes": {
+        "javascript": 163792
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "5770.js"
+      ],
+      "auxiliaryFiles": [
+        "5770.js.map"
+      ],
+      "hash": "24bad72041750eee",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 24166,
+      "sizes": {
+        "javascript": 42,
+        "share-init": 504,
+        "runtime": 23620
+      },
+      "names": [
+        "@egen/esm-offline-tools-app"
+      ],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app"
+      ],
+      "files": [
+        "egen-esm-offline-tools-app.js"
+      ],
+      "auxiliaryFiles": [
+        "egen-esm-offline-tools-app.js.map"
+      ],
+      "hash": "e6cce3c2f0a4d19c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3438,
+      "sizes": {
+        "javascript": 3438
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6022.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "6b8821c7ee9819bf",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 36924,
+      "sizes": {
+        "javascript": 36924
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6090.js"
+      ],
+      "auxiliaryFiles": [
+        "6090.js.map"
+      ],
+      "hash": "2ad1de1821149d10",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 26475,
+      "sizes": {
+        "javascript": 26475
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6269.js"
+      ],
+      "auxiliaryFiles": [
+        "6269.js.map"
+      ],
+      "hash": "d99329f6a1e47e40",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7120,
+      "sizes": {
+        "javascript": 7120
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6326.js"
+      ],
+      "auxiliaryFiles": [
+        "6326.js.map"
+      ],
+      "hash": "b0cc411052d00e74",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 316104,
+      "sizes": {
+        "javascript": 316104
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6408.js"
+      ],
+      "auxiliaryFiles": [
+        "6408.js.map"
+      ],
+      "hash": "1adc25082c272438",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 84,
+      "sizes": {
+        "consume-shared": 84
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "7aea261944c8db19",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3476,
+      "sizes": {
+        "javascript": 3476
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6468.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "ec6cfdfdff80e956",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 112337,
+      "sizes": {
+        "javascript": 112337
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6516.js"
+      ],
+      "auxiliaryFiles": [
+        "6516.js.map"
+      ],
+      "hash": "08899d047c2a3d63",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6589.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "1fd6536bfe9cc35a",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3456,
+      "sizes": {
+        "javascript": 3456
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6679.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "96e372bcfbaf73ec",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6840.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "b59c9adbf453c347",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6859.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "42ee5cbde43e8481",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 1073,
+      "sizes": {
+        "javascript": 1073
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "6870.js"
+      ],
+      "auxiliaryFiles": [
+        "6870.js.map"
+      ],
+      "hash": "952cd5feeb531bd8",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "reused as split chunk (cache group: default)",
+      "size": 2513326,
+      "sizes": {
+        "javascript": 2513158,
+        "consume-shared": 168
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "7036.js"
+      ],
+      "auxiliaryFiles": [
+        "7036.js.map"
+      ],
+      "hash": "e194e471df36e5a6",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "7097.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "6b00ed80be13c65c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "7159.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "fa4492196268519c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "7617.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "6774e94b686f953f",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "8163.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "bd7c5843a0e0afdd",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": false,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: default)",
+      "size": 84,
+      "sizes": {
+        "consume-shared": 84
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [],
+      "auxiliaryFiles": [],
+      "hash": "a52603d2d104fb14",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "8349.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "5149b644a1d3b0d1",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "8371.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "c48c96a5cdddb323",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "8618.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "d41493eb23c90a02",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 24274,
+      "sizes": {
+        "javascript": 24274
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "8650.js"
+      ],
+      "auxiliaryFiles": [
+        "8650.js.map"
+      ],
+      "hash": "5b4a0b2e436a38b7",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors)",
+      "size": 475079,
+      "sizes": {
+        "javascript": 475079
+      },
+      "names": [],
+      "idHints": [
+        "vendors"
+      ],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "8667.js"
+      ],
+      "auxiliaryFiles": [
+        "8667.js.map"
+      ],
+      "hash": "944b1542498043d0",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 454903,
+      "sizes": {
+        "consume-shared": 126,
+        "javascript": 452788,
+        "asset": 1989
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app"
+      ],
+      "files": [
+        "8668.js"
+      ],
+      "auxiliaryFiles": [
+        "1584c81d564cacde.svg",
+        "8668.js.map"
+      ],
+      "hash": "ef3f6950165c3e45",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 1173693,
+      "sizes": {
+        "consume-shared": 336,
+        "javascript": 1146687,
+        "asset": 1989,
+        "share-init": 504,
+        "runtime": 24177
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "main.js"
+      ],
+      "auxiliaryFiles": [
+        "1584c81d564cacde.svg",
+        "main.js.map"
+      ],
+      "hash": "a55fc97a6b07ef8f",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 48317,
+      "sizes": {
+        "javascript": 48317
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9123.js"
+      ],
+      "auxiliaryFiles": [
+        "9123.js.map"
+      ],
+      "hash": "9d450b57182cc7eb",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3465,
+      "sizes": {
+        "javascript": 3465
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9214.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "52718696a1e7ee81",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3502,
+      "sizes": {
+        "javascript": 3502
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9538.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "5f0f53437455521c",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9569.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "096ff32d36ec19bd",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 2514,
+      "sizes": {
+        "javascript": 2514
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9879.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "d8d1d63e809291e2",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9895.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "9c49bb80ff32fa05",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9900.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "91ea736f3a5f26e2",
+      "childrenByOrder": {}
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 3310,
+      "sizes": {
+        "javascript": 3310
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "@egen/esm-offline-tools-app",
+        "main"
+      ],
+      "files": [
+        "9913.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "b7ca6adface2c0d6",
+      "childrenByOrder": {}
+    }
+  ]
+}

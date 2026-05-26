@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-default-lang="en" translate="no" class="notranslate">
+  <head>
+    <meta charset="utf-8">
+    <!--
+      ╔══════════════════════════════════════════════════════════╗
+      ║  THEME ANTI-FOUC — Injecté AVANT tout autre script      ║
+      ║  Lit les prefs dans localStorage et applique les        ║
+      ║  CSS variables minimales avant le premier paint.        ║
+      ║  Remplacé par ThemeLoader dès l'hydratation React.      ║
+      ╚══════════════════════════════════════════════════════════╝
+    -->
+    <script id="__iam_theme_init__">(function(){
+      try{
+        var p=localStorage.getItem('iam-theme-prefs');
+        var isDark=false;
+        var themeName='default';
+        if(p){var o=JSON.parse(p);isDark=!!o.isDark;themeName=o.themeName||'default';}
+        else{isDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;}
+        document.documentElement.classList.toggle('dark',isDark);
+        document.documentElement.setAttribute('data-mode',isDark?'dark':'light');
+        document.documentElement.setAttribute('data-theme-name',themeName);
+        /* Variables CSS minimales anti-flash — remplacées par ThemeLoader */
+        var s=document.createElement('style');
+        s.id='__iam_theme_ssr__';
+        var bg=isDark?'rgba(9,9,18,0.92)':'rgba(248,250,252,0.85)';
+        var fg=isDark?'#f1f5f9':'#0f172a';
+        var card=isDark?'rgba(15,23,42,0.75)':'rgba(255,255,255,0.72)';
+        var headerBg=isDark?'rgba(9,9,18,0.82)':'rgba(255,255,255,0.78)';
+        var borderDefault=isDark?'rgba(51,65,85,0.70)':'rgba(203,213,225,0.70)';
+        var primaryColor=isDark?'#818cf8':'#6366f1';
+        s.textContent=':root{'
+          +'--surface-background:'+bg+';'
+          +'--surface-foreground:'+fg+';'
+          +'--surface-card:'+card+';'
+          +'--surface-header:'+headerBg+';'
+          +'--surface-headerForeground:'+fg+';'
+          +'--border-default:'+borderDefault+';'
+          +'--primary-500:'+primaryColor+';--primary-100:#e0e7ff;--primary-300:#a5b4fc;'
+          +'--primary-400:#818cf8;--primary-600:#4f46e5;--primary-700:#4338ca;'
+          +'--info-400:#60a5fa;--info-500:#3b82f6;'
+          +'--success-500:#22c55e;--error-500:#ef4444;--warning-500:#f59e0b;'
+          +'--header-height:64px;'
+          +'--sidebar-width:260px;--sidebar-collapsed:64px;'
+          +'--icon-xs:12px;--icon-sm:16px;--icon-md:20px;--icon-lg:24px;--icon-xl:32px;'
+          +'--icon-stroke:1.5;'
+          +'--radius-sm:0.5rem;--radius-md:0.75rem;--radius-lg:1rem;--radius-xl:1.25rem;--radius-full:9999px;'
+          +'--dur-fast:100ms;--dur-normal:200ms;--dur-moderate:300ms;--dur-slow:500ms;'
+          +'--ease-out:cubic-bezier(0,0,0.2,1);--ease-inOut:cubic-bezier(0.4,0,0.2,1);'
+          +'--transition-default:all 200ms cubic-bezier(0.42,0,0.18,1);'
+          +'--z-hide:-1;--z-base:0;--z-raised:1;--z-dropdown:100;--z-modal:400;--z-toast:600;--z-tooltip:700;--z-top:9999;'
+          +'--shadow-sm:0 2px 8px rgba(0,0,0,0.06);--shadow-md:0 8px 24px rgba(0,0,0,0.10);'
+          +'--glass-md-bg:'+(isDark?'rgba(15,23,42,0.60)':'rgba(255,255,255,0.55)')+';'
+          +'--glass-md-blur:blur(20px) saturate(180%);'
+          +'--glass-md-border:'+(isDark?'1px solid rgba(255,255,255,0.08)':'1px solid rgba(255,255,255,0.72)')+';'
+          +'--glass-md-shadow:0 8px 32px rgba(0,0,0,0.10);'
+          +'--glass-xs-blur:blur(8px) saturate(160%);'
+          +'--glass-header-bg:'+(isDark?'rgba(9,9,18,0.78)':'rgba(255,255,255,0.78)')+';'
+          +'--glass-header-blur:blur(24px) saturate(180%);'
+          +'--glass-card-bg:'+(isDark?'rgba(15,23,42,0.75)':'rgba(255,255,255,0.60)')+';'
+          +'--glass-card-blur:blur(20px) saturate(180%);'
+          +'color-scheme:'+(isDark?'dark':'light')+';'
+          +'}';
+        document.head.insertBefore(s, document.head.firstChild);
+      }catch(e){}
+    })();</script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EGEN</title>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/egen/spa/favicon.ico"
+    >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="importmap-type" content="systemjs-importmap">
+    
+
+    <link
+      rel="preload"
+      href="/egen/spa/importmap.json"
+      as="fetch"
+      crossorigin="anonymous"
+    >
+    <script type="systemjs-importmap" src="/egen/spa/importmap.json"></script>
+
+
+  <script type="systemjs-importmap">{"imports":{"@egen/esm-devtools-app":"./esm-devtools-app/egen-esm-devtools-app.js","@egen/esm-help-menu-app":"./esm-help-menu-app/egen-esm-help-menu-app.js","@egen/esm-implementer-tools-app":"./esm-implementer-tools-app/egen-esm-implementer-tools-app.js","@egen/esm-login-app":"./esm-login-app/egen-esm-login-app.js","@egen/esm-offline-tools-app":"./esm-offline-tools-app/egen-esm-offline-tools-app.js","@egen/esm-primary-navigation-app":"./esm-primary-navigation-app/egen-esm-primary-navigation-app.js"}}</script>
+
+
+  <link
+    rel="preload"
+    href="/egen/spa/routes.registry.json"
+    as="fetch"
+    crossorigin="anonymous"
+  >
+  <script type="egen-routes" src="/egen/spa/routes.registry.json"></script>
+
+
+  <script type="egen-routes">{"@egen/esm-devtools-app":{"$schema":"https://json.egen.org/routes.schema.json","pages":[{"component":"devtools","route":true,"online":true,"offline":true}],"modals":[{"name":"importmap-override-modal","component":"importmapOverrideModal"}],"version":"9.0.2"},"@egen/esm-help-menu-app":{"$schema":"https://json.egen.org/routes.schema.json","pages":[{"component":"root","route":true}],"extensions":[{"name":"release-notes","slot":"help-menu-slot","component":"releaseNotes","online":true,"offline":true},{"name":"docs","slot":"help-menu-slot","component":"docs","online":true,"offline":true},{"name":"contact-us","slot":"help-menu-slot","component":"contact","online":true,"offline":true}],"version":"9.0.2"},"@egen/esm-implementer-tools-app":{"$schema":"https://json.egen.org/routes.schema.json","pages":[{"component":"implementerTools","route":true},{"component":"globalImplementerTools","route":true}],"extensions":[{"name":"implementer-tools-button","slot":"top-nav-actions-slot","component":"implementerToolsButton","order":20}],"version":"9.0.2"},"@egen/esm-login-app":{"$schema":"https://json.egen.org/routes.schema.json","backendDependencies":{"webservices.rest":">=2.2.0"},"pages":[{"component":"root","route":"login","online":true,"offline":true},{"component":"root","route":"logout","online":true,"offline":true},{"component":"root","route":"change-password","online":true,"offline":true}],"extensions":[{"name":"location-picker","slot":"location-picker","component":"locationPicker","online":true,"offline":true},{"name":"logout-button","slot":"user-panel-bottom-slot","component":"logoutButton","online":true,"offline":true},{"name":"password-changer","slot":"user-panel-slot","component":"changePasswordLink","online":true,"offline":true},{"name":"location-changer","slot":"top-nav-info-slot","component":"changeLocationLink","online":true,"offline":true,"order":1}],"modals":[{"name":"change-password-modal","component":"changePasswordModal"}],"version":"9.0.2"},"@egen/esm-offline-tools-app":{"$schema":"https://json.egen.org/routes.schema.json","backendDependencies":{"webservices.rest":">=2.2.0"},"pages":[{"component":"offlineTools","route":"offline-tools","online":true,"offline":true}],"extensions":[{"name":"offline-tools-link","slot":"app-menu-slot","component":"offlineToolsLink","online":true,"offline":true},{"name":"offline-tools-nav-items","component":"offlineToolsNavItems","online":true,"offline":true},{"name":"offline-tools-dashboard-patients-card","slot":"offline-tools-dashboard-cards","component":"offlineToolsPatientsCard","online":true,"offline":true,"order":0},{"name":"offline-tools-dashboard-actions-card","slot":"offline-tools-dashboard-cards","component":"offlineToolsActionsCard","online":true,"offline":true,"order":2},{"name":"offline-tools-page-offline-patients-link","slot":"offline-tools-page-slot","component":"offlineToolsPatientsLink","meta":{"name":"patients","slot":"offline-tools-page-offline-patients-slot"},"online":true,"offline":true},{"name":"offline-tools-page-offline-actions-link","slot":"offline-tools-page-slot","component":"offlineToolsActionsLink","meta":{"name":"actions","slot":"offline-tools-page-offline-actions-slot"},"online":true,"offline":true},{"name":"offline-tools-page-offline-actions","slot":"offline-tools-page-offline-actions-slot","component":"offlineToolsPageActions","online":true,"offline":true},{"name":"offline-tools-page-offline-patients","slot":"offline-tools-page-offline-patients-slot","component":"offlineToolsPatients","online":true,"offline":true},{"name":"offline-tools-page-actions-link","slot":"offline-tools-page-actions-slot","component":"offlineToolsPatientsLink","meta":{"name":"actions","slot":"offline-tools-page-actions-slot"},"online":true,"offline":true},{"name":"offline-tools-page-actions","slot":"offline-tools-page-actions-slot","component":"offlineToolsPageActions","online":true,"offline":true},{"name":"offline-tools-patient-chart-actions-widget","slot":"patient-chart-summary-dashboard-slot","component":"offlineToolsPatientChartActions","meta":{"columnSpan":4},"online":false,"offline":true,"order":0},{"name":"offline-tools-patient-chart-actions-dashboard","slot":"patient-chart-offline-actions-dashboard-slot","component":"offlineToolsPatientChartActions","online":true,"offline":true,"order":0},{"name":"offline-tools-patient-chart-actions-dashboard-link","slot":"patient-chart-dashboard-slot","component":"offlineToolsPatientChartActionsDashboardLink","meta":{"columns":1,"title":"Offline Actions"},"order":12,"online":true,"offline":true},{"name":"offline-tools-opt-in-offline-mode-button","slot":"user-panel-slot","component":"offlineToolsOptInButton","online":true,"offline":true,"order":1}],"modals":[{"name":"offline-tools-confirmation-modal","component":"offlineToolsConfirmationModal"}],"version":"9.0.2"},"@egen/esm-primary-navigation-app":{"$schema":"https://json.egen.org/routes.schema.json","backendDependencies":{"webservices.rest":">=2.2.0"},"pages":[{"component":"root","routeRegex":"^(?!(?:login|change-password)/?)","online":true,"offline":true,"containerDomId":"egen-top-nav-app-container"},{"component":"redirect","routeRegex":"^$","online":true,"offline":true}],"extensions":[{"name":"default-user-panel","slot":"user-panel-slot","component":"userPanel","online":true,"offline":true,"order":0},{"name":"change-language","slot":"user-panel-slot","component":"changeLanguageLink","online":true,"offline":true,"order":1},{"name":"link","component":"linkComponent","online":true,"offline":true},{"name":"nav-group","component":"navGroup","online":true,"offline":true},{"name":"dashboard","component":"dashboard","online":true,"offline":true},{"name":"user-menu-button","component":"userMenuButton","online":true,"offline":true,"slot":"top-nav-actions-slot","order":40},{"name":"app-menu-button","component":"appMenuButton","online":true,"offline":true,"slot":"top-nav-app-menu-slot"}],"modals":[{"name":"change-language-modal","component":"changeLanguageModal"}],"version":"9.0.2"}}</script>
+
+  <meta name="theme-color" content="#000000" /><link rel="manifest" href="/egen/spa/manifest.f8ee734511b0c35cc6b4fb8e62ca213a.json" /></head>
+  <body>
+    <script src="/egen/spa/egen.js"></script>
+    <div class="egen-toasts-container"></div>
+    <div class="egen-inline-notifications-container"></div>
+    <div class="egen-actionable-notifications-container"></div>
+    <div class="egen-snackbars-container"></div>
+    <div class="egen-modals-container"></div>
+    <div id="egen-left-nav-container"></div>
+    <div id="egen-workspaces-container"></div>
+    <div id="egen-top-nav-app-container"></div>
+    <div id="egen-apps-container"></div>
+    <template id="loading-spinner">
+      <div class="egen-loading-spinner">
+        <div data-inline-loading="" class="cds--inline-loading" role="alert" aria-live="assertive">
+          <div class="cds--inline-loading__animation">
+            <div data-inline-loading-spinner="" class="cds--loading cds--loading--small">
+              <svg class="cds--loading__svg" viewBox="-75 -75 150 150">
+                <circle class="cds--loading__background" cx="0" cy="0" r="26.8125"></circle>
+                <circle class="cds--loading__stroke" cx="0" cy="0" r="26.8125"></circle>
+              </svg>
+            </div>
+          </div>
+          <p data-inline-loading-text-active="" class="cds--inline-loading__text">Loading ...</p>
+        </div>
+      </div>
+    </template>
+    <template id="app-error">
+      <div class="egen-app-error">
+        <h1>Application Error</h1>
+        <p>Something went wrong. Please try reloading.</p>
+        <p>Contact your system administrator if the problem persists.</p>
+        <div id="buttons">
+          <button class="cds--btn cds--btn--primary" onclick="location.reload()">Reload</button>
+        </div>
+        <div class="cds--snippet cds--snippet--single" >
+          <div tabindex="0"  class="cds--snippet-container"
+            aria-label="Code Snippet Text">
+            <pre>
+              <code data-var="message"></code>
+            </pre>
+          </div>
+          <button data-copy-btn class="cds--copy-btn" type="button" tabindex="0" onclick="copyText(this.parentElement)">
+            <span class="cds--assistive-text cds--copy-btn__feedback">Copied!</span>
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="cds--snippet__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M14,5v9H5V5h9m0-1H5A1,1,0,0,0,4,5v9a1,1,0,0,0,1,1h9a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1Z"></path><path d="M2,9H1V2A1,1,0,0,1,2,1H9V2H2Z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </template>
+    <script>
+      initializeSpa({
+        apiUrl: "/egen",
+        spaPath: "/egen/spa",
+        env: "development",
+        offline: true,
+        configUrls: [],
+      });
+    </script>
+  </body>
+</html>
