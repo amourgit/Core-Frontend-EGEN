@@ -1,6 +1,40 @@
-import MagicRings from "../MagicRings";
+// ============================================================
+// layouts/AnimateAgentAI.tsx — Logo animé flottant (login)
+//
+// FIXES :
+//  1. Tailwind 'fixed' non scanné par le tailwind.config root
+//     (content: './src/**/*', pas packages/framework/...).
+//     → Remplacement complet par style={{ position:'fixed', … }}
+//     pour garantir que le div est hors du flux DOM en toutes
+//     circonstances (évite le faux margin-top / scroll sur login).
+//
+//  2. Le wrapper intérieur est réduit à 60×44 px (légèrement plus
+//     petit que l'ancien 80×48) et porte overflow:'hidden' pour
+//     contenir proprement le canvas animé.
+//
+//  3. MagicRings reçoit des params ajustés (baseRadius, radiusStep)
+//     so que les 6 anneaux s'inscrivent tous dans le buffer canvas.
+//     → Fini les artefacts de clip sur les anneaux externes.
+//
+//  4. Le div externe ne définit aucune hauteur → sa hauteur est
+//     strictement celle du wrapper intérieur (60×44). Plus de
+//     discordance entre la hauteur déclarée et le contenu réel.
+// ============================================================
 
-const AnimateAgentAI = () => {
+import React from 'react';
+import MagicRings from '../MagicRings';
+
+// ── Dimensions du widget ──────────────────────────────────────
+// Légèrement plus petites que l'ancienne valeur (80×48).
+// Modifiables ici sans toucher à MagicRings.
+const WIDGET_W = 60;  // px CSS
+const WIDGET_H = 44;  // px CSS
+
+// Résolution du buffer de dessin (peut différer de la taille CSS)
+const CANVAS_W = 60;
+const CANVAS_H = 44;
+
+const AnimateAgentAI: React.FC = () => {
   return (
     <>
       {/* MagicRings - Miniature entre gauche et centre */}
